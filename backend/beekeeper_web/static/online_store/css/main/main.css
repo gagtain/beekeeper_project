@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Castoro+Titling&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+
+
+
+* {
+    font-family: 'Roboto';
+}
+
+
+.wrapper{
+    width: 100%;
+    background: url('../../images/main.jpe') no-repeat center;
+    background-size: cover;
+    position: relative;
+}
+.sot{
+    width: 100%;
+    padding-top: 3%;
+    background-color: rgb(241, 195, 96);
+}
+.main{
+    width: 100%;
+    padding-top: 50px;
+    transition: 2s ease;
+    display: flex;
+}
+.main-nak{
+    clip-path: polygon(0px 0px, 100% 0px, 0% 0%, 0% 0%);
+    background-color: rgba(252,201,39, .5);
+    width: 100%;
+    transition: 2s ease;
+    height: 100%;
+}
+.active{
+    clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0% 100%);
+}
+
+.tint{
+    
+  background-color: rgba(0,0,0,.5);
+  background-blend-mode: multiply;
+}
+
+.main_center{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 3% 2%;
+    
+}
+
+.main_text_div{
+    width: 60%;
+}
+.main_img_div{
+    width: 50%;
+    position: relative;
+}
+.phel{
+    width: 10%;
+    height: 10%;
+    position: absolute;
+    top: 25%;
+    left: 30%;
+    z-index: 6;
+}
+.main_img{
+    aspect-ratio: 1/1;
+    animation: wiggle 2s infinite;
+    float: right;
+}
+.main_img:hover{
+    animation: none;
+    
+}
+.main_text{
+    font-family: 'VAG';
+    font-weight: 400;
+    line-height: 1.2;
+    font-size: 86px;
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+   80% { transform: rotate(0deg); }
+   85% { transform: rotate(3deg); }
+   95% { transform: rotate(-3deg); }
+  100% { transform: rotate(0deg); }
+}
+.main_bt{
+    width: 70%;
+    height: 100%;
+    border: yellow 2px solid;
+    background: rgb(122, 148, 28);
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin: auto;
+    transition: 1s;
+    cursor: pointer;
+    margin-top: 5%;
+}
+.bt{
+    width: 100%;
+}
+.main_bt_p{
+    font-size: 32px;
+    font-family: 'VAG';
+}
+.main_bt:hover{
+    background-color: transparent;
+    box-shadow: inset 400px 0 0 0 rgb(91, 182, 55);
+    transition: 1s;
+}
+.tovar{
+    height: 80vh;
+    width: 100%;
+}
+.p-block{
+    
+    font-family: 'VAG';
+    line-height: 1.2;
+}
+.info{
+    z-index: 2;
+    position: relative;
+    width: 100%;
+    padding: 5% 0;
+    background-image: url("/images/pngwing.com\ \(1\).png");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.main-text{
+    line-height: 1.2;
+    font-family: 'VAG';
+}
+.text_in_sot{
+    text-align: center;
+}
+.block_info{
+    width: 100%;
+    display: flex;
+    min-width: 0;
+    justify-content: space-between;
+    padding: 5%;
+    min-width: 0;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    background-color: rgb(160,166,62);
+    border-radius: 20px;
+}
+.dostav_info{
+    width: 40%;
+}
+.kart{
+    width: 50%;
+}
+.tovar{
+    width: 100%;
+    height: 100%;
+}
+  .swiper-container{
+    overflow: hidden;
+  }
+  .sliders{
+    position: relative;
+    width: 100%;
+}
+.slide{
+    height: 100%;
+    width: 80%;
+}
+.swiper-slide{
+    height: 500px;
+}
+.ref-block{
+    background: url('../../images/3.jpg') no-repeat center;
+    background-size: cover;
+    height: 700px;
+    background-attachment: fixed;
+}
+.o_product {
+	display: grid;
+	grid-template-columns: 0.3fr 1fr;
+    height: 80%;
+}
+.predp{
+    text-align: center;
+}
+.predp-img{
+    width: 80%;
+    aspect-ratio: 1/1;
+
+}
+.predp-name{
+    font-family: 'VAG';
+}
+
+
+@media (max-width: 1200px){
+    .main_center{
+        display: block;
+        margin-top: 90px;
+        text-align: center;
+    }
+    .main_img_div{
+        margin: auto;
+        width: 80%
+    }
+    
+}
+@media (max-width:  1000px){
+    .main_text{
+        font-size: 64px;
+    }
+    .block_info{
+        display: block;
+    }
+    .dostav_info{
+        width: 100%;
+        text-align: center;
+    }
+    .kart{
+        margin: auto;
+        height: 500px;
+        width: 100%;
+    }
+    .p-block, .main-text{
+        font-size: 64px;
+    }
+    .ref-block{
+        height: auto;
+        padding: 4% 0%;
+    }
+    .o_product{
+        margin: auto;
+        height: auto;
+    }
+    .predp-img{
+        width: 40%;
+    }
+}
+@media (max-width: 780px){
+    .main_bt{
+        width: 80%;
+    }
+    .main_bt_p{
+        margin: auto;
+    }
+    .main_text_div{
+        width: auto;
+    }
+    .main_img_div{
+        width: auto;
+        height: 480px;
+    }
+    .dostav_info .small-big{
+        font-size: 24px;
+    }
+}
+@media (max-width: 600px){
+    .main_text{
+        font-size: 52px;
+    }
+    .slider-main .swiper-wrapper .swiper-slide{
+        height: auto;
+    }
+}

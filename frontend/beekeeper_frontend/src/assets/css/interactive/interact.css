@@ -1,0 +1,68 @@
+.flex{
+    display: flex;
+}
+.auto{
+    margin: auto;
+}
+.green{
+    color: green;
+}
+.yellow{
+    color: #ffd84d;
+}
+.big{
+    font-size: 84px;
+}
+.small-big{
+    font-size: 32px;
+}
+.small{
+    font-size: 24px;
+}
+.very-small{
+    font-size: 12px;
+}
+.normal-small{
+    font-size: 16px;
+}
+.w-sto{
+    width: 100%;
+}
+.interactiv{
+    width: 1400px;
+    margin: 0 auto;
+}
+.block{
+    display: block;
+}
+.relative{
+    position: relative;
+}
+.absolute{
+    position: absolute;
+}
+.h_sto{
+    height: 100%;
+}
+
+.jus-sp{
+    justify-content: space-between;
+}
+
+@font-face {
+    font-family: 'VAG';
+    src: url('../fonts/1/fonts/vag_world_bold.eot'),
+    url('../fonts/1/fonts/vag_world_bold.woff') format('woff')
+
+}
+.VAG{
+    font-family: 'VAG';
+}
+.m2{
+    margin-top: 2%;
+}
+@media (max-width: 1400px)  {
+    .interactiv {
+        width: 100%;
+    }
+  }

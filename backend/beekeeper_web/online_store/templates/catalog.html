@@ -1,0 +1,217 @@
+
+{% extends  'basic/basic.html' %}
+{% load static %}
+{% block styles %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'online_store/css/main/hex-tovar.css' %}">
+    <link rel="stylesheet" href="{% static 'online_store/css/katalog/katalog.css' %}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+{% endblock %}
+{% block content %}
+    <div class="sot-ob">
+        <div class="wrapper-product w-sto flex">
+            <div class="interactiv auto">
+                <div class="flex w-sto product_div">
+                    <div class="block filter_div">
+                        <div class="filter-product">
+                            <p class="filter-p small">Тип</p>
+                            <ul class="filter-ul">
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                            </ul>
+                            <p class="filter-p small">Тип</p>
+                            <ul class="filter-ul">
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                            </ul>
+                            <p class="filter-p small">Тип</p>
+                            <ul class="filter-ul">
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                            </ul>
+                            <p class="filter-p small">Тип</p>
+                            <ul class="filter-ul">
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                                <li class="filter-li">
+                                    <p class="normal-small">Красный</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="product_osnov">
+                        <div class="sorted_div flex jus-sp">
+
+                            <div class="sorted-product flex jus-sp">
+                                <p class="sorted-p small">По имени</p>
+                                <p class="sorted-p small">По имени</p>
+                                <p class="sorted-p small">По имени</p>
+                                <p class="sorted-p small">По имени</p>
+                            </div>
+                            <div class="mob_filter relative">
+                                <p class="open_filter_mob">Фильтрация</p>
+                                <div class="mob_filter_context absolute">
+
+                                    <p class="filter-p small">Тип</p>
+                                    <ul class="filter-ul">
+                                        <li class="filter-li">
+                                            <p class="normal-small">Красный</p>
+                                        </li>
+                                        <li class="filter-li">
+                                            <p class="normal-small">Красный</p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="w-sto product-list flex jus-sp">
+                            <!--
+                            <div class="product_card">
+                                <div class="product-card-img">
+                                    <img class="product-card-img-in_div" src="images/2.png" alt="">
+                                </div>
+                                <p>Размеры</p>
+                                <div class="flex">
+                                    <ul class="variant-ul">
+
+                                        <li class="photo-album-li">
+                                            <div class="h_sto">
+                                                <img width="100%" height="80%"
+                                                    src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg" />
+                                                <p>100 гр</p>
+                                            </div>
+
+                                        </li>
+                                        <li class="photo-album-li">
+                                            <div class="h_sto">
+                                                <img width="100%" height="80%"
+                                                    src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/bd0f2628180365.56370e61afb8e.jpg" />
+                                                <p class="normal-small">250 гр</p>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="flex w-sto">
+                                    <button class="btn">Добавить в корзину</button>
+
+                                </div>
+                            </div>
+                            <div class="product_card">
+
+                            </div>
+                            <div class="product_card">
+
+                            </div>
+                            <div class="product_card">
+
+                            </div>
+                        -->
+                            {% for pr in page_pr %}
+                            <section class="product">
+                                        <div class="product__photo">
+                                            <div class="photo-container">
+                                                <div class="photo-main">
+                                                    <div class="controls">
+                                                    </div>
+                                                    <img width="100%" height="100%"
+                                                        src="{{ pr.image.url }}"
+                                                        alt="green apple slice">
+                                                </div>
+                                                <div class="photo-album flex jus-sp">
+                                                    <img class="add-img-tovar"
+                                                        src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg">
+                                                    <img class="add-img-tovar"
+                                                        src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg">
+                                                    <img class="add-img-tovar"
+                                                        src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg">
+
+                                                    <img class="add-img-tovar"
+                                                        src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png">
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="product__info">
+                                            <div class="title">
+                                                <p class="small-big product__name">{{ pr.name }}</p>
+                                                <span class="very-small product__code">COD: {{ pr.id }}</span>
+                                            </div>
+                                            <div class="price">
+                                                <span class="product__price big">{{ pr.price.amount }}<span
+                                                        class="product__price small"> {{ pr.price.currency }}</span></span>
+                                            </div>
+                                            <div class="variant">
+                                                <h3>Размер</h3>
+                                                <div class="flex">
+                                                    <ul class="variant-ul">
+
+                                                        <li class="photo-album-li">
+                                                            <div class="h_sto">
+                                                                <img width="100%" height="80%"
+                                                                    src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg" />
+                                                                <p>100 гр</p>
+                                                            </div>
+
+                                                        </li>
+                                                        <li class="photo-album-li">
+                                                            <div class="h_sto">
+                                                                <img width="100%" height="80%"
+                                                                    src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/bd0f2628180365.56370e61afb8e.jpg" />
+                                                                <p class="normal-small">250 гр</p>
+                                                            </div>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="product__text">
+                                                <p class="small">{{pr.description}}</p>
+                                            </div>
+                                            <button class="btn">Добавить в корзину</button>
+                                        </div>
+                                    </section>
+                            {% endfor %}
+                        </div>
+                        <p>{{ page }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    {% block script %}
+    <script type="text/javascript">
+        if ($(document).height() <= $(window).height()) {
+            $(".footer").addClass("fixed-bottom");
+        }
+        function active_footer_mob(th) {
+            el = th.parent().parent().find('#mob')
+            if (el.is(':visible')) {
+                el.fadeOut(500)
+            } else {
+                el.fadeIn(500)
+            }
+        }
+        $('.open_filter_mob').on('click', function () {
+       
+            $('.mob_filter_context').toggleClass('mob_filter_context_active')
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    {% endblock %}

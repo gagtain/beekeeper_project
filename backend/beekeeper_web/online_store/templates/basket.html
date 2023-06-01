@@ -1,0 +1,75 @@
+{% extends 'basic/basic.html' %} 
+{% load static %} 
+{% block styles %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="{% static 'online_store/css/account.css' %}" />
+<script src="{% static 'online_store/js/jquery.js' %}"></script>
+{% endblock %} 
+{% block content %}
+
+    <div class="sot-ob">
+        <div class="wrapper flex">
+            <div class="user_card flex auto">
+                <div class="interactiv user_card_div auto">
+
+                    <div class="w-sto kor">
+                        <p class="small-big VAG">Корзина</p>
+                        <div class="w-sto flex kor_block">
+                            <greeter>
+                                <div class="box">
+                                    <div class="container-loader">
+                                      <span class="circle"></span>
+                                      <span class="circle"></span>
+                                      <span class="circle"></span>
+                                      <span class="circle"></span>
+                                    </div>
+                                  </div>
+                            </greeter>
+
+                            <div class="register_zakaz">
+                                <div class="kor_all_info auto w-sto">
+                                    <p class="VAG small zakaz_info_of">Информация о корзине</p>
+                                    <p class="m2">Товаров: 12</p>
+                                    <p class="m2">Вес: 1.25кг</p>
+                                    <p class="m2">Цена: 1111</p>
+                                    <p class="m2">скидки:</p>
+                                    <ul>
+                                        <li>Скидки на товары: 1000р</li>
+
+                                    </ul>
+                                    <p>Итоговая сумма</p>
+                                    <p class="small">111 руб</p>
+                                    <button class="w-sto">Оформить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %} 
+{% block script %}
+    <script type="text/javascript">
+        if ($(document).height() <= $(window).height()) {
+            $(".footer").addClass("fixed-bottom");
+        }
+        function active_footer_mob(th) {
+            el = th.parent().parent().find('#mob')
+            if (el.is(':visible')) {
+                el.fadeOut(500)
+            } else {
+                el.fadeIn(500)
+            }
+        }
+        function edit_block_get() {
+            $('.edit_block').css({ "filter": "blur(0px)" })
+            $('.s').css({ "display": "none" })
+        }
+    </script>
+
+    <script src="{% static 'online_store/js/scroll.js' %}"></script>
+    <script src="{% static 'online_store/js/vue/components/basket.js' %}"></script>
+    <script src="{% static 'online_store/js/vue/basket.js' %}"></script>
+    {% endblock %} 

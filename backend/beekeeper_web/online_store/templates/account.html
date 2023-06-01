@@ -1,0 +1,188 @@
+{% extends 'basic/basic.html' %} {% load static %} {% block styles %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link rel="stylesheet" href="{% static 'online_store/css/account.css' %}" />
+<script src="{% static 'online_store/js/jquery.js' %}"></script>
+{% endblock %} {% block content %}
+<div class="sot-ob">
+  <div class="wrapper flex">
+    <div class="user_card flex auto">
+      <div class="interactiv user_card_div auto">
+        <div class="flex jus-sp card">
+          <div class="user_info_menu">
+            <div class="user_info auto">
+              <div class="user_img_profile">
+                <img
+                  width="100%"
+                  height="100%"
+                  src="{{ user.image.url }}"
+                  alt=""
+                />
+              </div>
+              <p class="small user_name_profile">{{user.login}}</p>
+              <p class="small user_name_profile">{{ user.FIO }}</p>
+              <p class="user_price_profile small">
+                Ваш баланс
+                <span
+                  >{{ user.balance.amount }} {{ user.balance.currency }}</span
+                >
+              </p>
+              <div class="menu_user flex jus-sp auto">
+                <div class="favorite">
+                  <img
+                    class="user_menu_img"
+                    height="100%"
+                    src="images/favorite/favorite_add.png"
+                    alt=""
+                  />
+                  <p class="very-small">Избранное</p>
+                </div>
+                <div class="favorite">
+                  <img
+                    class="user_menu_img"
+                    height="100%"
+                    src="images/favorite/favorite_add.png"
+                    alt=""
+                  />
+                  <p class="very-small">Избранное</p>
+                </div>
+                <div class="favorite">
+                  <img
+                    class="user_menu_img"
+                    height="100%"
+                    src="images/favorite/favorite_add.png"
+                    alt=""
+                  />
+                  <p class="very-small">Избранное</p>
+                </div>
+                <div class="favorite">
+                  <img
+                    class="user_menu_img"
+                    height="100%"
+                    src="images/favorite/favorite_add.png"
+                    alt=""
+                  />
+                  <p class="very-small">Избранное</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="user_kor_zak">
+            <div class="user_kor flex relative">
+              <div class="w-sto h_sto s flex absolute">
+                <div class="auto edit-user_info h_sto">
+                  <button
+                    onclick="edit_block_get()"
+                    class="edit-user_info_btn auto"
+                  >
+                    Изменить данные
+                  </button>
+                </div>
+              </div>
+
+              <div class="auto edit_block w-sto" style="filter: blur(10px)">
+                <input
+                  type="text"
+                  class="user_form_input"
+                  placeholder="username"
+                />
+                <input
+                  type="password"
+                  class="user_form_input"
+                  placeholder="password"
+                />
+                <button class="edit-user_info_btn auto">Подтвердить</button>
+              </div>
+            </div>
+            <div class="user_zak">
+              <p class="small">Последний заказ</p>
+              <div class="end_zakaz">
+                <div class="end_zakaz_img flex">
+                  <img
+                    width="100%"
+                    style="aspect-ratio: 1/1"
+                    class="auto"
+                    src="images/2.png"
+                    alt=""
+                  />
+                </div>
+                <div class="end_zakaz_info flex">
+                  <div class="auto end_zakaz_info_p_all">
+                    <div class="block w-sto">
+                      <p class="normal-small end_zakaz_info_p">Цена:</p>
+                      <span class="info_end_zakaz_span">400 р</span>
+                    </div>
+                    <div class="block w-sto">
+                      <p class="normal-small end_zakaz_info_p">
+                        Дата офомления:
+                      </p>
+                      <span class="info_end_zakaz_span">20-10-23</span>
+                    </div>
+                    <div class="block">
+                      <p class="normal-small end_zakaz_info_p">Статус:</p>
+                      <span class="info_end_zakaz_span">В пути</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="w-sto kor" id="kor">
+          <p class="small-big VAG">Корзина</p>
+          <div class="w-sto flex kor_block">
+            <div class="list_tovar_kor">
+              
+              {% verbatim %}
+              <greeter></greeter>
+                
+              {% endverbatim %}
+            </div>
+
+            <div class="register_zakaz">
+              <div class="kor_all_info auto w-sto">
+                <p class="VAG small zakaz_info_of">Информация о корзине</p>
+                <p class="m2">Товаров: 12</p>
+                <p class="m2">Вес: 1.25кг</p>
+                <p class="m2">Цена: 1111</p>
+                <p class="m2">скидки:</p>
+                <ul>
+                  <li>Скидки на товары: 1000р</li>
+                </ul>
+                {% verbatim %}
+                <p id="is">Итоговая сумма {{ message }}</p>
+                {% endverbatim %}
+                <p class="small">111 руб</p>
+                <button class="w-sto">Оформить</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %} {% block script %}
+<script type="text/javascript">
+  if ($(document).height() <= $(window).height()) {
+    $(".footer").addClass("fixed-bottom");
+  }
+  function active_footer_mob(th) {
+    el = th.parent().parent().find("#mob");
+    if (el.is(":visible")) {
+      el.fadeOut(500);
+    } else {
+      el.fadeIn(500);
+    }
+  }
+  function edit_block_get() {
+    $(".edit_block").css({ filter: "blur(0px)" });
+    $(".s").css({ display: "none" });
+  }
+</script>
+
+<script src="{% static 'online_store/js/vue/components/basket.js' %}"></script>
+<script src="{% static 'online_store/js/vue/accounts.js' %}"></script>
+<script src="{% static 'online_store/js/scroll.js' %}"></script>
+<script src="{% static 'online_store/js/menu.js' %}"></script>
+{% endblock %}
