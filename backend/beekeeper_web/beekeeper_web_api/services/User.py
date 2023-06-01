@@ -65,3 +65,10 @@ class ServicesUser:
             product = get_object_or_404(Product, pk=id)
             user.basket.remove(product)
             return Response({'data': 'success'})
+        
+
+class ProductServises():
+    
+    @classmethod
+    def getPopular(self, size):
+        return Product.objects.all().order_by('count_purchase')[:size]

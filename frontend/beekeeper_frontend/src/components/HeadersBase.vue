@@ -1,5 +1,5 @@
 <template>
-<div>
+<div id="header">
     <div class="menu" style="background: linear-gradient(45deg, yellow, orange);">
         <div class="absolute w-sto h_sto g">
 
@@ -41,10 +41,11 @@
                     </div>
                 </div>
                 <div class="context_menu user_context">
-                    <div class="flex jus-sp user_in relative">
-                        <img class="user_img" src="" alt="">
+                    <div v-if="user.active" class="flex jus-sp user_in relative">
+                            
+                        <img class="user_img" :src="$api_root + user.image" alt="">
                         <div class="flex w-sto h-sto from_name">
-                            <p class="menu_items_text user_name auto"></p>
+                            <p class="menu_items_text user_name auto">{{ user.username }}</p>
                         </div>
                         <div class="context_menu_ absolute">
                             <ul>
@@ -62,6 +63,8 @@
                         <span class="material-symbols-outlined auto">
                             expand_more
                         </span>
+                    </div>
+                    <div v-else class="flex jus-sp user_in relative"> 
                         <a href="/registry">Регистрация</a>
                         <a href="/login">Вход</a>
                     </div>
@@ -93,24 +96,48 @@
 </div>
 </div>
 </template>
-<style>
+<style scoped>
 @import '../assets/css/interactive/search.css';
 @import '../assets/css/interactive/headers.css';
+@import '../assets/css/interactive/search.css';
 </style>
 
 <script>
-
+import axios from "axios";
+import getCookie from "../additional_func/getCookie"
 
 export default ({
     name: 'HeadersBase',
+    el: '#header',
+    created(){
+let self = this
+    axios({
+        url: `${this.$api_root}/api/v0.1/beekeeper_web_api/token/verif`,
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${getCookie('assess')}`
+        },
+      })
+        .then(function (response) {
+          self.user = response.data
+          self.user.active = true
+        })
+        .catch(function (error) {
+          console.log(error);
+          
+        });
+    },
     
-    data: function () {
+  data(){
     return {
       user: {
-        username: '',
-        FIO: '',
+        'username': '',
+        'FIO': '',
+        'image': '',
+        'active': false
       }
-    };
+    }
   },
     
     

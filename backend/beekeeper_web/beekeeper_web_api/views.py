@@ -1,18 +1,12 @@
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
-from rest_framework import viewsets, status, permissions
-from rest_framework.authentication import SessionAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from rest_framework_simplejwt.exceptions import InvalidToken
-from rest_framework_simplejwt.serializers import TokenRefreshSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-
-from online_store.models import MainUser
+from rest_framework.permissions import IsAuthenticated
 from .jwt_token.auth import CustomAuthentication
-from .serializers import RetrieveUserBalanceChange, RetrieveProduct
-from .services.User import ServicesUser
+from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen
+from .services.User import ServicesUser, ProductServises
 
 csrf_protect_method = method_decorator(csrf_protect)
 
@@ -68,6 +62,23 @@ class setCSRFCookie(APIView):
     def get(self, request):
         return Response("CSRF Cookie set.")
 
+
+
+class tokenVerif(APIView):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [CustomAuthentication]
+    def post(self, request):
+        
+        return Response(RetrieveUser(request.user).data)
+    
+
+class ProductAPI(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [CustomAuthentication]
+
+    def get_popular(self, request):
+        size = int(request.GET['size'])
+        return Response(RetrieveProductRemoveToProdachen(ProductServises.getPopular(size), many=True).data)
 
 
 

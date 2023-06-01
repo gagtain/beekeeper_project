@@ -16,8 +16,8 @@
               </div>
             </div>
             <div class="main_img_div">
-              <img src="images/phel.png" class="phel" alt="" />
-              <div class="slider-produtos-wrap">
+              <img :src="`${$api_root}static/online_store/images/phel.png`" class="phel" alt="" />
+              <div class="slider-produtos-wrap h_sto">
                 <swiper
     :slidesPerView="1"
     :spaceBetween="30"
@@ -27,6 +27,7 @@
     }"
     speed="5000"
     :modules="modules"
+    class="h_sto"
   >
     <swiper-slide><img
                         src="http://localhost:8000/static/online_store/images/honey.png"
@@ -91,7 +92,7 @@
     speed="5000"
     :modules="modules"
   >
-    <swiper-slide>
+    <swiper-slide v-for="(pop_product, index) in popular_product" :key="index">
       <div class="hex slide auto">
                     <section class="product">
                       <div class="product__photo">
@@ -101,8 +102,9 @@
                             <img
                               width="100%"
                               height="100%"
-                              src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg "
+                              :src="`${$api_root}${pop_product.image}`"
                               alt="green apple slice"
+                              class="w-sto h_sto"
                             />
                           </div>
                           <div class="photo-album flex jus-sp">
@@ -129,10 +131,10 @@
                       <div class="product__info">
                         <div class="title">
                           <p class="small-big product__name">
-                            pop_product.name
+                            {{ pop_product.name }}
                           </p>
                           <span class="very-small product__code"
-                            >COD: pop_product.id
+                            >COD: {{ pop_product.id }}
                           </span>
                         </div>
                         <div class="price">
@@ -163,13 +165,14 @@
                           </div>
                         </div>
                         <div class="product__text">
-                          <p class="small">pop_product.description</p>
+                          <p class="small">{{ pop_product.description }}</p>
                         </div>
                         <button class="btn">Добавить в корзину</button>
                       </div>
                     </section>
                   </div>
     </swiper-slide>
+    
 </swiper>
           </div>
 
@@ -209,23 +212,29 @@
   </div>
 
 </template>
-<style>
-@import "../assets/css/main/main.css";
-@import "../assets/css/main/hex-tovar.css";
-@import "../assets/css/interactive/slider.css";
+<style lang="css" src="../assets/css/main/main.css"></style>
+<style lang="css" src="../assets/css/main/hex-tovar.css"></style>
+<style scoped>
+@import 'https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css';
 .main_img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  
+  object-fit: contain;
+}
+.slider-produtos-wrap{
+  width: 100%;
 }
 </style>
 <script>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import 'swiper/css';
 import { Autoplay, Navigation } from 'swiper';
+import getCookie from "../additional_func/getCookie"
+import axios from 'axios';
 export default {
   name: "IndexItem",
   components: {
@@ -234,19 +243,50 @@ export default {
   },
   created() {
     console.log(this.$api_root)
+    let self = this
+    axios({
+        url: `${this.$api_root}/api/v0.1/beekeeper_web_api/get_popular_product?size=3`,
+        method: "get",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${getCookie('assess')}`
+        },
+      })
+        .then(function (response) {
+          self.popular_product = response.data
+        })
+        .catch(function (error) {
+          console.log(error);
+          
+        });
   },
-  methods: {
-    addScript(src) {
-      let externalScript = document.createElement("script");
-      externalScript.setAttribute("src", src);
-      document.body.appendChild(externalScript);
+  mounted() {
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', `${this.$api_root}static/online_store/js/main.js`)
+      document.head.appendChild(recaptchaScript)
     },
+  methods: {
+    
   },
   
+
   setup() {
       return {
         modules: [Autoplay, Navigation],
       };
     },
+
+  data() {
+    return {
+      popular_product:[{
+        'id':0,
+        'name':'',
+        'image':'',
+        'price':100,
+        'favorite':'',
+        'description':''
+      }]
+    }
+  }
 };
 </script>

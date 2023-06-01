@@ -27,9 +27,7 @@
     </div>
   </div>
 </template>
-<style>
-@import "../assets/css/login.css";
-</style>
+<style lang="scss" src="../assets/css/login.scss" scoped></style>
 <script>
 import axios from "axios";
 
@@ -39,8 +37,12 @@ export default {
   methods: {
 
     set_cookie(response){
-        document.cookie = "token=" + response.data.access,
-        document.cookie = "refresh=" + response.data.refresh
+        var now = new Date();
+        var time = now.getTime();
+        var expireTime = time + 1000*3600;
+        now.setTime(expireTime);
+        document.cookie = "assess=" + response.data.access + ';expires='+now.toUTCString()+';path=/',
+        document.cookie = "refresh=" + response.data.refresh + ';expires='+now.toUTCString()+';path=/'
     },
     redirect(params){
         this.$router.push(params)

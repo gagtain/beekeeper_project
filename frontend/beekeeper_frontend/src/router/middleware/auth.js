@@ -1,10 +1,10 @@
-import getCookie from "./getCookie"
+import getCookie from "../../additional_func/getCookie"
 
 export default function auth ({ to, from, next}){
     console.log(123)
     console.log(to, from,)
     console.log(document.cookie)
-    if (getCookie('token')){
+    if (getCookie('assess')){
         console.log('Есть токен')
         // проверка токена 
         // если нет

@@ -3,20 +3,23 @@
 
   <headersBase></headersBase>
   <router-view/>
+  <FooterBase></FooterBase>
 </div>
 </template>
 <script>
 import headersBase from './components/HeadersBase.vue'
+import FooterBase from './components/FooterBase.vue'
 export default {
   name: "App",
   el: "#app",
   components:{
-    headersBase
+    headersBase,
+    FooterBase
   }
 };
 </script>
 
-<style>
+<style scoped>
 @font-face {
     font-family: 'VAG';
     src: url('assets/css/fonts/1/fonts/vag_world_bold.eot'),
