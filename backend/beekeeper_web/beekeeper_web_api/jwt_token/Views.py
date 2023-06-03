@@ -27,6 +27,10 @@ class MyObtainTokenPairView(TokenObtainPairView):
 
         return Response({"Error": "Something went wrong"}, status=400)
 
+"""
+Добавить блэк лист assess и refresh токенов на случай смены пароля и при авторизации проверять токены
+на принадлежность к блэк листу
+"""
 
 class CookieTokenRefreshView(TokenRefreshView):
     serializer_class = CookieTokenRefreshSerializer

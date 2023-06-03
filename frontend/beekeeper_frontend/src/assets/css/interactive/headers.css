@@ -3,6 +3,7 @@
     margin: 0;
     color: black;
 }
+
 .menu{
     position: fixed;
     z-index: 20;

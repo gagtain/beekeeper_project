@@ -139,9 +139,9 @@
                         </div>
                         <div class="price">
                           <span class="product__price big">
-                            100
+                            {{ pop_product.price }}
                             <span class="product__price small">
-                              руб
+                              {{ pop_product.price_currency }}
                             </span></span
                           >
                         </div>
@@ -284,6 +284,7 @@ export default {
         'name':'',
         'image':'',
         'price':100,
+        'price_currency': '',
         'favorite':'',
         'description':''
       }],

@@ -9,23 +9,23 @@ const store = createStore({
         'username': '',
         'FIO': '',
         'image': ''
-      }
+      },
     }
   },
   mutations: {
     MUTATE_RENAME_USER: (state, user) =>{
         state.user = user
-    }  
+    },
   },
   actions:{
     RENAME_USER({commit}, user){
         commit('MUTATE_RENAME_USER', user)
-    }
+    },
   },
     getters:{
         USER_STATE(state){
             return state.user
-        }
+        },
   }
 })
 

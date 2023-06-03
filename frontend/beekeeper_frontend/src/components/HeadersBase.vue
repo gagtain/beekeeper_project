@@ -22,10 +22,10 @@
                         <span></span>
                     </div>
                     <div class="menu_items" id="deks_hed">
-                        <p class="menu_items_text">Главная</p>
+                        <RouterLink to="/"><p class="menu_items_text">Главная</p></RouterLink>
                     </div>
                     <div class="menu_items flex relative" id="deks_hed">
-                        <p class="menu_items_text">Товары</p>
+                        <RouterLink to="/catalog"><p class="menu_items_text">Товары</p></RouterLink>
                         <span class="material-symbols-outlined">
                             expand_more
                         </span>

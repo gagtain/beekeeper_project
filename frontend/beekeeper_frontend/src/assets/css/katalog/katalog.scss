@@ -43,6 +43,7 @@
     margin-top: 1%;
     display: block;
     text-align: center;
+    padding: 1%;
 }
 .add-img-tovar{
     width: 20%;
@@ -56,7 +57,7 @@
     height: auto;
 }
 .photo-main{
-    height: auto;
+    height: 250px;
 }
 .filter-p {
     font-family: 'Roboto';
@@ -69,7 +70,6 @@
 .sorted-product {
     width: 50%;
 }
-
 .sorted_div {
     width: 100%;
     padding-left: 2%;
@@ -77,10 +77,11 @@
 
 .sorted-p {
     font-family: 'Roboto';
-    color: brown;
+    color: #000;
 }
 .act_sorted-p{
-    color: #000;
+    color: antiquewhite;
+
 }
 
 .product-list {
@@ -122,7 +123,7 @@
     float: left;
     padding: 3px;
     width: 90px;
-    height: 90px;
+    height: auto;
     border-radius: 3px;
     cursor: pointer;
 }
@@ -145,6 +146,7 @@
     color: #000;
     background-color: rgb(245, 173, 40);
     box-shadow: 2px 2px 25px -7px black;
+    height: 53px;
     cursor: pointer;
 }
 
@@ -157,6 +159,15 @@
 .btn:hover {
     background-color: rgb(255, 188, 65);
 
+}
+.fav-btn{
+    padding: 5%;
+    border-radius: 50px;
+    background-color: rgb(245, 173, 40);
+}
+.fav-btn img{
+    height: 25px;
+    width: 25px;
 }
 
 .filter-li {
@@ -198,6 +209,13 @@
     padding: 1%;
     height: 200px;
     transition: .5s;
+}
+.btn-green{
+    background: #4CAF50;
+}
+.btn-green:active, .btn-green:hover{
+	background: #43A047;
+
 }
 
 @media (max-width: 1024px) {

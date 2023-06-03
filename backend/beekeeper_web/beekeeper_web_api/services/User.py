@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
-from online_store.models import UserBalanceChange, Product, MainUser
+from online_store.models import UserBalanceChange, Product, MainUser, Category
 
 
 class ServicesUser:
@@ -72,3 +72,16 @@ class ProductServises():
     @classmethod
     def getPopular(self, size):
         return Product.objects.all().order_by('count_purchase')[:size]
+    
+    @classmethod
+    def getProductList(self, size):
+        return Product.objects.all()[:size]
+
+class CategoryServises():
+    
+    
+    @classmethod
+    def getCategoryList(self):
+        return Category.objects.all()
+    
+

@@ -205,6 +205,7 @@
     .main_center{
         display: block;
         margin-top: 90px;
+        padding-top: 0;
         text-align: center;
     }
     .main_img_div{
@@ -269,5 +270,11 @@
     }
     .slider-main .swiper-wrapper .swiper-slide{
         height: auto;
+    }
+}
+
+@media (min-width: 1201px) {
+    .main_center{
+        padding-top: 120px;
     }
 }

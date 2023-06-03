@@ -7,8 +7,8 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .jwt_token.auth import CustomAuthentication
-from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, UserRegisterSerializers
-from .services.User import ServicesUser, ProductServises
+from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, UserRegisterSerializers, CategoryRetriveSerializers
+from .services.User import ServicesUser, ProductServises, CategoryServises
 from rest_framework.generics import CreateAPIView
 csrf_protect_method = method_decorator(csrf_protect)
 # Create your views here.
@@ -80,7 +80,17 @@ class ProductAPI(viewsets.ViewSet):
     def get_popular(self, request):
         size = int(request.GET['size'])
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getPopular(size), many=True).data)
+    
+    def get_product_list(self, request):
+        size = int(request.GET['size'])
+        return Response(RetrieveProductRemoveToProdachen(ProductServises.getProductList(size), many=True).data)
 
+class CategoryAPI(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+    authentication_classes = [CustomAuthentication]
+
+    def get_category_list(self, request):
+        return Response(CategoryRetriveSerializers(CategoryServises.getCategoryList(), many=True).data)
 
 class UserRegistAPI(CreateAPIView):
     serializer_class = UserRegisterSerializers

@@ -55,6 +55,15 @@ class UserBalanceChange(models.Model):
         super().save(*args, **kwargs)
 
 
+
+class Type_packaging(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Название типа упаковки")
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Название категории")
+
+
 class Product(models.Model):
     """"Модель продукта"""
     name = models.CharField(max_length=100, blank=False, verbose_name="Название продукта")
@@ -63,6 +72,8 @@ class Product(models.Model):
                               default="admin")
     price = MoneyField(max_digits=14, decimal_places=2, default_currency='RUB', verbose_name="Цена")
     count_purchase = models.IntegerField(default=0, verbose_name="кол-во покупок")
+    category = models.ManyToManyField(Category, related_name='category_list', blank=True)
+    type_packaging = models.ManyToManyField(Type_packaging, related_name='type_packaging_list', blank=True)
 
 
     objects = models.Manager()
