@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrapper">
-      <div class="absolute main-nak"></div>
+      <div class="absolute main-nak" :class="wrapper_active ? 'active' : '' "></div>
       <div class="main relative">
         <div class="interactiv flex">
           <div class="main_center auto">
@@ -261,6 +261,7 @@ export default {
         });
   },
   mounted() {
+    this.wrapper_active = true
       let recaptchaScript = document.createElement('script')
       recaptchaScript.setAttribute('src', `${this.$api_root}static/online_store/js/main.js`)
       document.head.appendChild(recaptchaScript)
@@ -285,7 +286,8 @@ export default {
         'price':100,
         'favorite':'',
         'description':''
-      }]
+      }],
+      'wrapper_active': false
     }
   }
 };

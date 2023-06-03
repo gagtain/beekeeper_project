@@ -1,6 +1,7 @@
 import { createWebHistory, createRouter } from "vue-router";
 import IndexItem from '../components/IndexItem.vue'
-import LoginComp from '../components/LoginComp.vue'
+import LoginComp from '../components/UserAuth/LoginComp.vue'
+import RegisterComp from '../components/UserAuth/RegisterComp.vue'
 import auth from './middleware/auth.js'
 
 const Router = new createRouter({
@@ -12,6 +13,7 @@ const Router = new createRouter({
             ] }
         },
         { path: '/login', component: LoginComp },
+        { path: '/register', component: RegisterComp },
     ]
 })
 

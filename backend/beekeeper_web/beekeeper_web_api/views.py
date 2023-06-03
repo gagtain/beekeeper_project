@@ -1,15 +1,16 @@
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from rest_framework import viewsets
+from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .jwt_token.auth import CustomAuthentication
-from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen
+from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, UserRegisterSerializers
 from .services.User import ServicesUser, ProductServises
-
+from rest_framework.generics import CreateAPIView
 csrf_protect_method = method_decorator(csrf_protect)
-
 # Create your views here.
 
 class UserAPI(viewsets.ViewSet):
@@ -80,6 +81,16 @@ class ProductAPI(viewsets.ViewSet):
         size = int(request.GET['size'])
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getPopular(size), many=True).data)
 
+
+class UserRegistAPI(CreateAPIView):
+    serializer_class = UserRegisterSerializers
+
+    def create(self, request, *args, **kwargs):
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response({'data': 'Пользователь создан'}, status=status.HTTP_201_CREATED, headers=headers)
 
 
 

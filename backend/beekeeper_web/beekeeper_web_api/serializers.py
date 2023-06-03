@@ -41,3 +41,30 @@ class RetrieveUser(serializers.ModelSerializer):
     class Meta:
         model = MainUser
         fields = ['username', 'FIO', 'image']
+
+
+class UserRegisterSerializers(serializers.ModelSerializer):
+    password2 = serializers.CharField()
+
+    class Meta:
+        model = MainUser
+        fields = ['username', 'FIO', 'password', 'password2']
+
+    def validate_password2(self, value):
+        
+        password2 = self.initial_data['password2']
+        password = self.initial_data['password']
+        if password2 != password:
+            raise serializers.ValidationError('Данное поле не совпадает с полем пароля')
+        return password2
+    
+    def save(self):
+
+        user = MainUser.objects.create_user(
+            username=self.validated_data['username'],
+            password=self.validated_data['password'],
+            FIO=self.validated_data['FIO'],
+        )
+
+        return user
+    

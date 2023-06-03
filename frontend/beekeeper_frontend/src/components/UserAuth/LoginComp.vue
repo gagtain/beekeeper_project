@@ -6,9 +6,10 @@
           <div class="form login-f log-img"></div>
           <div class="form">
             <p class="small login-p">Войти в аккаунт</p>
-        <div v-if="login_401" class="error"><ul class="errorlist"><li>Нету учетной записи с введенными данными</li></ul></div>
+        
             <div class="flex h_sto">
               <div class="login-form auto">
+              <div class="error_list"><div v-if="login_401">Нету учетной записи с введенными данными</div></div>
                 <input type="text" placeholder="username" v-model="username" />
                 <input
                   type="password"
@@ -27,10 +28,11 @@
     </div>
   </div>
 </template>
-<style lang="scss" src="../assets/css/login.scss" scoped></style>
+<style lang="scss" src="../../assets/css/login.scss" scoped></style>
 <script>
-import axios from "axios";
 
+import login from '../../additional_func/login'
+import redirect from '../../additional_func/redirect'
 export default {
   el: "#login_main",
   setup() {},
@@ -44,37 +46,30 @@ export default {
         document.cookie = "assess=" + response.data.access + ';expires='+now.toUTCString()+';path=/',
         document.cookie = "refresh=" + response.data.refresh + ';expires='+now.toUTCString()+';path=/'
     },
-    redirect(params){
-        this.$router.push(params)
-    },
 
-    login_request(event) {
+    async login_request(event) {
+      event.preventDefault;
       let obj = {
         'username': this.username,
         'password': this.password,
       };
-      event.preventDefault;
-      let self = this
-      axios({
-        url: "http://localhost:8000/api/token/",
-        method: "post",
-        data: JSON.stringify(obj),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then(function (response) {
-          self.set_cookie(response)
-          self.redirect({
+      let response = await login(JSON.stringify(obj))
+      console.log(response)
+      if (response.status == 200){
+        
+        this.set_cookie(response)
+          redirect(this,{
             path: '/profile'
           })
-        })
-        .catch(function (error) {
-          console.log(error);
-          if (error.response.status == 401){
-            self.login_401 = true
-          }
-        });
+      }else if (response.status == 401){
+        console.log('asd')
+            this.login_401 = true
+        
+      }else if (response == 404){
+        
+                alert('сайт на проверке, подождите 5 минут')
+      }
+      return false
     },
   },
   data() {

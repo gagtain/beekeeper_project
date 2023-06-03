@@ -41,11 +41,10 @@
                     </div>
                 </div>
                 <div class="context_menu user_context">
-                    <div v-if="user.active" class="flex jus-sp user_in relative">
-                            
-                        <img class="user_img" :src="$api_root + user.image" alt="">
+                    <div v-if="USER_STATE.username != '' " class="flex jus-sp user_in relative">
+                        <img class="user_img" :src="$api_root + USER_STATE.image" alt="">
                         <div class="flex w-sto h-sto from_name">
-                            <p class="menu_items_text user_name auto">{{ user.username }}</p>
+                            <p class="menu_items_text user_name auto">{{ USER_STATE.username }}</p>
                         </div>
                         <div class="context_menu_ absolute">
                             <ul>
@@ -103,32 +102,13 @@
 </style>
 
 <script>
-import axios from "axios";
-import getCookie from "../additional_func/getCookie"
-
+import {mapGetters} from 'vuex'
 export default ({
     name: 'HeadersBase',
     el: '#header',
     created(){
-let self = this
-    axios({
-        url: `${this.$api_root}/api/v0.1/beekeeper_web_api/token/verif`,
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${getCookie('assess')}`
-        },
-      })
-        .then(function (response) {
-          self.user = response.data
-          self.user.active = true
-        })
-        .catch(function (error) {
-          console.log(error);
-          
-        });
+        console.log(this.$store)
     },
-    
   data(){
     return {
       user: {
@@ -139,6 +119,11 @@ let self = this
       }
     }
   },
+  computed:{
+    ...mapGetters([
+        'USER_STATE'
+    ])
+  }
     
     
 })

@@ -14,7 +14,6 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     """"Модель пользователя"""
     # card = необходимо реализовать оплату, она будет на API
     username = models.CharField(max_length=50, unique=True, verbose_name="логин")
-    login = models.CharField(max_length=50, unique=True, verbose_name="логин")
     FIO = models.CharField(max_length=100, blank=False)
     email = models.EmailField(_("email address"), blank=True)
     image = models.ImageField(upload_to="images/%Y/%m/%d/", verbose_name="Изображение пользователя",

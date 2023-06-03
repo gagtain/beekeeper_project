@@ -9,6 +9,7 @@ urlpatterns = [
     path('favorite/<int:pk>', views.UserAPI.as_view({'post': 'AddFavoriteProduct', 'delete': 'RemoveFavoriteProduct'})),
     path('get_popular_product', views.ProductAPI.as_view({'get': 'get_popular'})),
     path('get_csrf', views.setCSRFCookie.as_view()),
-    path('token/verif', views.tokenVerif.as_view())
+    path('token/verif', views.tokenVerif.as_view()),
+    path('register', views.UserRegistAPI.as_view())
 
 ]

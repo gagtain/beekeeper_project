@@ -13,7 +13,16 @@
   border-radius: 5px;
   overflow: hidden;
 }
-
+.error_list{
+	min-height: 19px;
+	text-align: left;
+}
+.error_list div:not(:first-child){
+	margin-left: 2%;
+}
+.error_list div{
+	color: brown;
+}
 .accout_for_system {
 	width: 50%;
 	background-color: #000000;
