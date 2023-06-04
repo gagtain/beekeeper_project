@@ -5,7 +5,7 @@ import sys
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 sys.path.append('.')
-from online_store.models import UserBalanceChange, Product, MainUser, Category
+from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging
 
 
 class RetrieveUserBalanceChange(serializers.ModelSerializer):
@@ -29,15 +29,22 @@ class RetrieveProduct(serializers.ModelSerializer):
         return settings.MEDIA_URL + instance['image']
     
 
-class CategoryRetriveSerializers(serializers.ModelSerializer):
+class Type_packagingRetriveSerializers(serializers.ModelSerializer):
     
     class Meta:
         model = Category
         fields = ['name']
 
 
+class CategoryRetriveSerializers(serializers.ModelSerializer):
+    
+    class Meta:
+        model = Category
+        fields = ['name']
+
 class RetrieveProductRemoveToProdachen(serializers.ModelSerializer):
     category = CategoryRetriveSerializers(many=True)
+    type_packaging = Type_packagingRetriveSerializers(many = True)
     class Meta:
         model = Product
         depth = 1

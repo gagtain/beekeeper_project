@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
-from online_store.models import UserBalanceChange, Product, MainUser, Category
+from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging
 
 
 class ServicesUser:
@@ -83,5 +83,14 @@ class CategoryServises():
     @classmethod
     def getCategoryList(self):
         return Category.objects.all()
+    
+
+
+class Type_packagingServises():
+    
+    
+    @classmethod
+    def getCategoryList(self):
+        return Type_packaging.objects.all()
     
 

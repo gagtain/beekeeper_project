@@ -13,7 +13,7 @@ const Router = new createRouter({
         },
         { path: '/login', component: LoginComp },
         { path: '/register', component: RegisterComp },
-        { path: '/catalog', component: () => import('../components/CatalogItem.vue'), meta: {
+        { path: '/catalog', component: () => import('../components/Catalog/CatalogItem.vue'), meta: {
             middleware: [
                 auth
             ] }

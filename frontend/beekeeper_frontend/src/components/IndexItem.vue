@@ -60,25 +60,6 @@
     </div>
     <div class="sot">
       <div class="interactiv auto">
-        <div class="block_info">
-          <div class="dostav_info">
-            <p class="big p-block">Доставка</p>
-            <p class="small-big">
-              Наша доставка распространяется на города: Lorem ipsum dolor sit
-              amet consectetur adipisicing elit. Enim, architecto veritatis? Aut
-              iure labore qui ut molestiae minima repudiandae obcaecati beatae
-              illo. Aliquam debitis minus consequuntur illum et natus. Incidunt.
-            </p>
-          </div>
-          <div class="kart">
-            <iframe
-              src="https://yandex.ru/map-widget/v1/?um=constructor%3Acb54edd63e0d97f14a269aa9794fd46e0f207bd9929fbc582dc52579023e60d0&amp;source=constructor"
-              width="100%"
-              height="100%"
-              frameborder="0"
-            ></iframe>
-          </div>
-        </div>
         <div class="flex w-sto text_in_sot">
           <p class="big auto main-text">Популярные товары</p>
         </div>
@@ -177,6 +158,26 @@
           </div>
 
         </div>
+        <div class="block_info">
+          <div class="dostav_info">
+            <p class="big p-block">Доставка</p>
+            <p class="small-big">
+              Наша доставка распространяется на города: Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Enim, architecto veritatis? Aut
+              iure labore qui ut molestiae minima repudiandae obcaecati beatae
+              illo. Aliquam debitis minus consequuntur illum et natus. Incidunt.
+            </p>
+          </div>
+          <div class="kart">
+            <iframe
+              src="https://yandex.ru/map-widget/v1/?um=constructor%3Acb54edd63e0d97f14a269aa9794fd46e0f207bd9929fbc582dc52579023e60d0&amp;source=constructor"
+              width="100%"
+              height="100%"
+              frameborder="0"
+            ></iframe>
+          </div>
+        </div>
+        
       </div>
       <div class="flex w-sto text_in_sot">
         <p class="big auto main-text">О нашем товаре</p>
