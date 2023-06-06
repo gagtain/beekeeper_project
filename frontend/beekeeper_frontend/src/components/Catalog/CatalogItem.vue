@@ -36,7 +36,7 @@
                 </div>
               </div>
               <div
-                  v-if="CATALOG_LIST_STATE.length" class="w-sto product-list flex jus-sp">
+                  v-if="CATALOG_LIST_STATE" class="w-sto product-list flex jus-sp">
                 <section
                   v-for="(pr, index) in CATALOG_LIST_STATE"
                   :key="index"
@@ -138,7 +138,6 @@
 </style>
 <script>
 import getProductList from "../../additional_func/getProductlist";
-import getCategorylist from "../../additional_func/getCategoryList";
 import FilterCatalog from '../Catalog/FilterCatalog.vue';
 import AddBasket from '../AddtionalComp/AddBasket.vue';
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
@@ -186,65 +185,18 @@ export default {
     let catalog_response = await getProductList(50);
     this.catalog_list = catalog_response.data;
     this.catalog_list_sorted = this.catalog_list.slice();
-    let category_response = await getCategorylist();
-    this.category_list = category_response.data;
     console.log(this.category_list);
     store.dispatch('REFACTOR_CATALOG_LIST', this.catalog_list)
   },
   setup() {},
   methods: {
-    filteredProduct() {
-      const start = (this.page - 1) * 6;
-      const end = this.page * 6;
-      let sortered = this.catalog_list.slice();
-
-      if (this.sorteredAlf) {
-        sortered = this.sorteredAlfFunc(sortered);
-        console.log(sortered);
-      }
-      if (this.sorteredMonet) {
-        sortered = this.sorteredMoneyFUnc(sortered);
-        console.log(sortered);
-      }
-      if (this.sorteredNew) {
-        console.log(sortered);
-        sortered = this.sorteredNewFUnc(sortered);
-        console.log(sortered);
-      }
-      if (
-        this.sorteredAlf ||
-        this.sorteredMonet ||
-        this.sorteredNew ||
-        this.filter_class_name.length
-      ) {
-        console.log(1, sortered);
-        return sortered;
-      } else {
-        return this.catalog_list.slice(start, end);
-      }
-    },
-    sorteredAlfFunc(noSortered) {
-      if (this.sorteredAlf) {
-        return noSortered.sort((x, y) => x.name.localeCompare(y.name));
-      }
-    },
-    sorteredMoneyFUnc(noSortered) {
-      if (this.sorteredMonet) {
-        return noSortered.sort(
-          (a, b) => parseFloat(b.price) - parseFloat(a.price)
-        );
-      }
-    },
-    sorteredNewFUnc(noSortered) {
-      if (this.sorteredNew) {
-        return noSortered.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
-      }
-    },
+  
     
   },
   computed:{
     ...mapGetters([
-        'CATALOG_LIST_STATE'
+        'CATALOG_LIST_STATE',
+        'USER_STATE'
     ])
   }
 };

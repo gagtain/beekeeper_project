@@ -18,6 +18,11 @@ const Router = new createRouter({
                 auth
             ] }
         },
+        { path: '/profile', component: () => import('../components/UserComp/WrapperUser.vue'), meta: {
+            middleware: [
+                auth
+            ] }
+        },
     ]
 })
 

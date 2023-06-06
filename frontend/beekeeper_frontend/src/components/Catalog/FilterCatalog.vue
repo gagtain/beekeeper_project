@@ -65,12 +65,10 @@ export default {
       store.dispatch('REFACTOR_CATALOG_LIST', sortered)
     },
     addPackagingFilter(event) {
-        console.log(this.filter_packaging_name)
       let index = this.filter_packaging_name.indexOf(event.target.innerHTML);
       if (index >= 0) {
 
         this.filter_packaging_name.splice(index, 1);
-        console.log(this.filter_packaging_name)
         this.b()
       } else {
         this.filter_packaging_name.push(event.target.innerHTML);

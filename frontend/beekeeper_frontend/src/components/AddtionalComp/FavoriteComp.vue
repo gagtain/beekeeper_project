@@ -29,6 +29,7 @@
 <script>
 import addFavorite from '../../additional_func/addFavorite'
 import removeFavorite from '../../additional_func/removeFavorite'
+import {mapGetters} from 'vuex'
 export default {
   el: "#favorite",
   name: "FavoriteComp",
@@ -39,6 +40,23 @@ props: ['id'],
     }
   },
   setup() {},
+    created() {
+        let self = this
+            let a = this.USER_STATE.favorite_product.find(function(item){
+                console.log(item)
+            if (item.id == self.id){
+                return true
+            }else{
+                return false
+            }
+            })
+            if (a){
+                this.isFavorite = true
+            }else{
+                
+                this.isFavorite = false
+            }
+    },
   methods:{
     async addFavoriteBtn(){
             let response_add = await addFavorite(this.id)
@@ -54,6 +72,11 @@ props: ['id'],
                 this.isFavorite = false
             }  
     }
-  }
-};
+  },
+  computed:{
+    ...mapGetters([
+        'USER_STATE'
+    ])
+}
+}
 </script>

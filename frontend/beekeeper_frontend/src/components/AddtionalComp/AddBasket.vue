@@ -10,17 +10,33 @@
 <script>
 import addBasket from '../../additional_func/addBasket'
 import removeBasket from '../../additional_func/removeBasket'
+import {mapGetters} from 'vuex'
 export default({
     el: '#addBasket',
     name: 'AddBasket',
     props: ['sm', 'id'],
     data(){
         return {
-            isBasket: false
+            isBasket: false,
+            type: 'normal'
             }
     },
-    setup() {
-        
+    created() {
+        let self = this
+            let a = this.USER_STATE.basket.find(function(item){
+                console.log(item)
+            if (item.id == self.id){
+                return true
+            }else{
+                return false
+            }
+            })
+            if (a){
+                this.isBasket = true
+            }else{
+                
+                this.isBasket = false
+            }
     },
     methods:{
         async addBasketBtn(){
@@ -34,7 +50,12 @@ export default({
             if (response_add.status == 200){
                 this.isBasket = false
             }  
-        }
-    }
+        },
+    },
+  computed:{
+    ...mapGetters([
+        'USER_STATE'
+    ])
+  }
 })
 </script>

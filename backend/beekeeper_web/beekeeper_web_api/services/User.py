@@ -51,7 +51,7 @@ class ServicesUser:
 
     @classmethod
     def addBasketProduct(cls, user: MainUser, id: int):
-        if user.favorite_product.filter(pk=id).exists():
+        if user.basket.filter(pk=id).exists():
             return Response({'data': 'данный продукт уже в списке корзины'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             product = get_object_or_404(Product, pk=id)

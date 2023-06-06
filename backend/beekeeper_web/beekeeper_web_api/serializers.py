@@ -55,8 +55,9 @@ class RetrieveProductRemoveToProdachen(serializers.ModelSerializer):
 class RetrieveUser(serializers.ModelSerializer):
 
     class Meta:
+        depth = 1
         model = MainUser
-        fields = ['username', 'FIO', 'image']
+        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'balance', 'balance_currency']
 
 
 class UserRegisterSerializers(serializers.ModelSerializer):

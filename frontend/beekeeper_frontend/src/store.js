@@ -10,7 +10,7 @@ const store = createStore({
         'FIO': '',
         'image': ''
       },
-      catalog_list: [
+      catalog_list: null /*[
         {
           id: 0,
           name: "",
@@ -27,7 +27,7 @@ const store = createStore({
             name: "",
           },
         },
-      ],
+      ],*/
     }
   },
   mutations: {

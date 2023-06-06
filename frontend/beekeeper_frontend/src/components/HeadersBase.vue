@@ -49,7 +49,7 @@
                         <div class="context_menu_ absolute">
                             <ul>
                                 <li class="flex">
-                                    <p class="normal-small auto">Аккаунт</p>
+                        <RouterLink to="/profile" class="normal-small auto">Аккаунт</RouterLink>
                                 </li>
                                 <li class="flex">
                                     <p class="normal-small auto">Корзина</p>
