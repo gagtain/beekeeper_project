@@ -1,5 +1,5 @@
 <template>
-    <button v-if="isFavorite" @click="removeFavoriteBtn()" id="favorite" class="btn fav-btn flex auto">
+    <button v-if="isFavorite" @click="removeFavoriteBtn()" id="favorite" class="fav-btn flex auto">
       <img
         class="auto"
         :src="`${$api_root}static/online_store/images/favorite/favorite_add.png`"
@@ -7,7 +7,7 @@
       />
       из
     </button>
-    <button v-else id="favorite" @click="addFavoriteBtn()" class="btn fav-btn flex auto">
+    <button v-else id="favorite" @click="addFavoriteBtn()" class="fav-btn flex auto">
       <img
         class="auto"
         :src="`${$api_root}static/online_store/images/favorite/favorite_add.png`"
@@ -17,9 +17,18 @@
 </template>
 <style scoped>
 .fav-btn{
-    padding: 5%;
-    border-radius: 50px;
+    box-shadow: 2px 2px 25px -7px black;
+    height: 53px;
+    cursor: pointer;
+    width: 53px;
+    border-radius: 50%;
     background-color: rgb(245, 173, 40);
+    border: none;
+}
+.fav-btn:active {
+    background-color: rgb(245, 173, 40);
+    scale: 0.96;
+    color: #000;
 }
 .fav-btn img{
     height: 25px;

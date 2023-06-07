@@ -14,8 +14,9 @@
 }
 
 .wrapper {
-  padding-top: 170px;
+  padding-top: 120px;
   min-height: 100vh;
+  padding-bottom: 5%;
   background: url('../images/sot.png') center no-repeat;
 
   background-size: cover;
@@ -123,10 +124,8 @@ li {
 }
 
 .context_text {
-  display: none;
   padding-bottom: 2%;
 }
-
 .vib_ {
   margin-bottom: 2%;
 }
@@ -145,6 +144,10 @@ li {
 
 .but {
   height: 50px;
+  
+}
+.but-b{
+  width: 50%;
 }
 
 .size_tovar {

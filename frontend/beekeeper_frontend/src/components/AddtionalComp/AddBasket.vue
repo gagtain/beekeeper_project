@@ -7,6 +7,7 @@
 </template>
 <style>
 </style>
+<style lang="scss" src="../../assets/css/katalog/katalog.scss" scoped></style>
 <script>
 import addBasket from '../../additional_func/addBasket'
 import removeBasket from '../../additional_func/removeBasket'
@@ -18,7 +19,6 @@ export default({
     data(){
         return {
             isBasket: false,
-            type: 'normal'
             }
     },
     created() {

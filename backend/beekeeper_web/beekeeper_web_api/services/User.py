@@ -76,6 +76,11 @@ class ProductServises():
     @classmethod
     def getProductList(self, size):
         return Product.objects.all()[:size]
+    
+
+    @classmethod
+    def getProduct(self, pk):
+        return Product.objects.get(pk=pk)
 
 class CategoryServises():
     

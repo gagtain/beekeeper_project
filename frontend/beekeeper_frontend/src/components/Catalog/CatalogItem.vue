@@ -74,7 +74,7 @@
                   </div>
                   <div class="product__info">
                     <div class="title">
-                      <p class="small-big product__name">{{ pr.name }}</p>
+                      <RouterLink :to="`/tovar/${pr.id}`"><p class="small-big product__name">{{ pr.name }}</p></RouterLink>
                       <span class="very-small product__code"
                         >COD: {{ pr.id }}</span
                       >

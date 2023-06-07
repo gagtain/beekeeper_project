@@ -52,10 +52,10 @@
                         <RouterLink to="/profile" class="normal-small auto">Аккаунт</RouterLink>
                                 </li>
                                 <li class="flex">
-                                    <p class="normal-small auto">Корзина</p>
+                        <RouterLink to="/basket" class="normal-small auto">Корзина</RouterLink>
                                 </li>
                                 <li class="flex">
-                                    <p class="normal-small auto">Избранное</p>
+                        <RouterLink to="/favorite" class="normal-small auto">Избранное</RouterLink>
                                 </li>
                             </ul>
                         </div>

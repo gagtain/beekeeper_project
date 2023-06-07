@@ -23,6 +23,21 @@ const Router = new createRouter({
                 auth
             ] }
         },
+        { path: '/basket', component: () => import('../components/BasketBase.vue'), meta: {
+            middleware: [
+                auth
+            ] }
+        },
+        { path: '/favorite', component: () => import('../components/FavoriteBase.vue'), meta: {
+            middleware: [
+                auth
+            ] }
+        },
+        { path: '/tovar/:id', component: () => import('../components/Tovar/TovarBase.vue'), meta: {
+            middleware: [
+                auth
+            ] }
+        },
     ]
 })
 

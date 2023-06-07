@@ -79,6 +79,9 @@ class ProductAPI(viewsets.ViewSet):
     def get_product_list(self, request):
         size = int(request.GET['size'])
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getProductList(size), many=True).data)
+    
+    def get_product(self, request, id):
+        return Response(RetrieveProductRemoveToProdachen(ProductServises.getProduct(id)).data)
 
 class CategoryAPI(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]

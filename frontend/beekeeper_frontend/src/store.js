@@ -37,10 +37,17 @@ const store = createStore({
     MUTATE_CATALOG_LIST: (state, catalog_list) =>{
         state.catalog_list = catalog_list
     },
+    MUTATE_REMOVE_BASKET_ITEM: (state, id) =>{
+      state.user.basket = state.user.basket.filter(b => b.id != id)
+    }
   },
   actions:{
     RENAME_USER({commit}, user){
         commit('MUTATE_RENAME_USER', user)
+    },
+    REMOVE_BASKET_ITEM({commit}, id){
+      
+      commit('MUTATE_REMOVE_BASKET_ITEM', id)
     },
     REFACTOR_CATALOG_LIST({commit}, catalog_list){
         commit('MUTATE_CATALOG_LIST', catalog_list)

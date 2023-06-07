@@ -1,6 +1,15 @@
 <template>
-    <div class="list_tovar_kor w-sto">
-    <div v-for="b, index in USER_STATE.basket" :key="index"  class="tovar w-sto flex">
+
+    <div class="sot-ob">
+        <div class="wrapper flex">
+            <div class="user_card flex auto">
+                <div class="interactiv user_card_div auto" id="favorite_main">
+
+                    <div class="w-sto kor">
+                        <p class="small-big VAG">Избранное</p>
+                        <div class="w-sto flex">
+    <div class="w-sto">
+    <div v-for="b, index in USER_STATE.favorite_product" :key="index"  class="tovar w-sto flex">
     <div class="tovar_kor_img_div">
       <img
         class="tovar_kor_img"
@@ -44,7 +53,17 @@
     </div>
   </div>
   </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
 </template>
+
+
+<style lang="css" src="../assets/css/account.css"></style>
 
 <style>
 .tovar_kor_img_div img{
@@ -59,20 +78,19 @@
     text-overflow: ellipsis;
 }
 </style>
-
 <script>
+import AddBasket from './UserComp/BasketComp/AddBasket.vue'
+import FavoriteComp from './UserComp/BasketComp/FavoriteComp.vue'
 import {mapGetters} from 'vuex'
-import AddBasket from './BasketComp/AddBasket.vue'
-import FavoriteComp from './BasketComp/FavoriteComp.vue'
 export default {
-    data(){
-    },
+    el: '#favorite_main',
+    name: "FavoriteBase",
     components:{
-      AddBasket,
-      FavoriteComp
+        AddBasket,
+        FavoriteComp
     },
     created(){
-        console.log(this.USER_STATE.basket)
+        console.log(this.USER_STATE)
     },
   computed:{
     ...mapGetters([
