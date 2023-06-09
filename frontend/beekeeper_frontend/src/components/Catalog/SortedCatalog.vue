@@ -33,6 +33,7 @@
 </style>
 <script>
 import {mapGetters} from 'vuex'
+import store from "../../store";
 export default {
   el: "#sorted",
   name: "SortedCatalog",
@@ -47,23 +48,26 @@ export default {
   methods: {
     props: ["catalog_list"],
       sorteredAlfFunc() {
-          this.CATALOG_LIST_STATE.sort((x, y) => x.name.localeCompare(y.name));
+          let a = this.CATALOG_LIST_STATE.sort((x, y) => x.name.localeCompare(y.name));
           this.sorteredAlf = !this.sorteredAlf
           this.sorteredMonet = false
           this.sorteredNew = false
+      store.dispatch("REFACTOR_CATALOG_LIST", a);
         },
       sorteredMoneyFUnc() {
-          this.CATALOG_LIST_STATE.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+          let a = this.CATALOG_LIST_STATE.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
           this.sorteredMonet = !this.sorteredMonet
           this.sorteredAlf = false
           this.sorteredNew = false
+      store.dispatch("REFACTOR_CATALOG_LIST", a);
       },
       sorteredNewFUnc() {
 
-          this.CATALOG_LIST_STATE.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
+          let a = this.CATALOG_LIST_STATE.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
           this.sorteredNew = !this.sorteredNew
           this.sorteredMonet = false
           this.sorteredAlf = false
+      store.dispatch("REFACTOR_CATALOG_LIST", a);
       },
       },
   setup() {},

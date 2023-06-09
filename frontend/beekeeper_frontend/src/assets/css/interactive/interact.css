@@ -48,7 +48,9 @@
 .jus-sp{
     justify-content: space-between;
 }
-
+.jus-sp-ar{
+    justify-content: space-around;
+}
 
 @font-face {
     font-family: 'VAG';

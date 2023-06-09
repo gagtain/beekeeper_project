@@ -69,7 +69,6 @@ class tokenVerif(APIView):
     
 
 class ProductAPI(viewsets.ViewSet):
-    permission_classes = [IsAuthenticated]
     authentication_classes = [CustomAuthentication]
 
     def get_popular(self, request):
@@ -81,7 +80,9 @@ class ProductAPI(viewsets.ViewSet):
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getProductList(size), many=True).data)
     
     def get_product(self, request, id):
-        return Response(RetrieveProductRemoveToProdachen(ProductServises.getProduct(id)).data)
+        print(request.COOKIES)
+
+        return Response(RetrieveProductRemoveToProdachen(ProductServises.getProduct(id)[0]).data)
 
 class CategoryAPI(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]

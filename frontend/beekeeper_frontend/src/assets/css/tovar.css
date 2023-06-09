@@ -147,7 +147,7 @@ li {
   
 }
 .but-b{
-  width: 50%;
+  width: 70%;
 }
 
 .size_tovar {
@@ -262,14 +262,12 @@ li {
   .tovar_img_the_max{
     aspect-ratio: 1/0.7;
   }
-  .min ul li img{
-    width: 50%;
-  }
   .min ul{
     display: flex;
   }
   .min ul li{
     text-align: center;
+    width: 20%;
   }
   .tovar_infa{
     text-align: center;
@@ -277,6 +275,10 @@ li {
   }
   .size_tovar{
     margin-top: 3%;
+  }
+  .tovar_two{
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 @media (max-width: 850px){

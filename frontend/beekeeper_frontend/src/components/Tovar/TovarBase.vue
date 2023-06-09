@@ -4,25 +4,8 @@
 
             <div class="tovar_in flex interactiv jus-sp auto" id="tovar">
                 <div v-if="tovar" class="ob flex jus-sp w-sto">
-
-                    <div class="images_tovar flex">
-                        <div class="min">
-                            <ul>
-                                <li>
-                                    <img width="100%" class="tovar_img_the_min" src="images/2.png" alt="">
-                                </li>
-                                <li>
-                                    <img width="100%" class="tovar_img_the_min" src="images/2.png" alt="">
-                                </li>
-                                <li>
-                                    <img width="100%" class="tovar_img_the_min" src="images/2.png" alt="">
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="max">
-                            <img v-if="tovar" class="tovar_img_the_max" :src="$api_root + tovar.image" alt="">
-                        </div>
-                    </div>
+                    <TovarImage :image="tovar.image" :ImageProductList="tovar.ImageProductList"></TovarImage>
+                    
                     <div class="tovar_infa">
                         <div class="tovar_name">
                             <p class="black bolshoi auto">{{tovar.name}}</p>
@@ -96,12 +79,14 @@
 import getTovar from "../../additional_func/getTovar"
 import AddBasket from '../AddtionalComp/AddBasket.vue'
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue'
+import TovarImage from './TovarImage.vue'
 export default {
     el: '#tovar',
     name: 'TovarBase',
     components:{
         AddBasket,
-        FavoriteComp
+        FavoriteComp,
+        TovarImage
     },
     data(){
         return {

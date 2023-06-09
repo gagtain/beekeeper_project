@@ -158,24 +158,16 @@
     background-color: rgb(255, 188, 65);
 
 }
-
-.filter-li {
-    list-style: none;
-    border: 1px solid #000;
-    margin-top: 4%;
-    padding: 4%;
-    cursor: pointer;
-    background-color: rgb(255, 188, 65);
+.fav-btn{
+    padding: 5%;
+    border-radius: 50px;
+    background-color: rgb(245, 173, 40);
+}
+.fav-btn img{
+    height: 25px;
+    width: 25px;
 }
 
-.filter-li:hover {
-    background-color: rgba(255, 196, 86, 0.795);
-}
-
-.filter-ul {
-    padding-left: 10%;
-
-}
 
 .mob_filter {
     width: 25%;

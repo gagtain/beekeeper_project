@@ -3,7 +3,7 @@
     <div class="absolute flex w-sto h_sto" style="pointer-events: none;">
       <dialog id="dialog" class="absolute auto" style="
     pointer-events: auto;">
-        <FilterCatalog :catalog_list="catalog_list" @UpdateClassFiler="filterClassReg"></FilterCatalog>
+        <FilterCatalog :category_list="category_list" :type_packaging="type_packaging" :catalog_list="catalog_list" @UpdateClassFiler="filterClassReg"></FilterCatalog>
         <button class="btn w-sto btn-green">Показать</button>
         <button onclick="window.dialog.close();" aria-label="close" class="x">
           ❌
@@ -15,9 +15,8 @@
         <div class="interactiv auto back">
           <div class="flex w-sto product_div">
             <div class="block filter_div">
-              <div class="filter-product">
-                
-        <FilterCatalog :catalog_list="catalog_list"></FilterCatalog>
+              <div class="filter-product" id="filter_desk">
+        <FilterCatalog :category_list="category_list" :type_packaging="type_packaging" :catalog_list="catalog_list"></FilterCatalog>
               </div>
             </div>
             <div class="product_osnov">
@@ -142,6 +141,8 @@ import FilterCatalog from '../Catalog/FilterCatalog.vue';
 import AddBasket from '../AddtionalComp/AddBasket.vue';
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
 import SortedCatalog from '../Catalog/SortedCatalog.vue';
+import getCategorylist from "../../additional_func/getCategoryList";
+import getType_packaging_list from "../../additional_func/getType_packaging_list";
 import {mapGetters} from 'vuex'
 import store from '../../store'
 export default {
@@ -173,26 +174,30 @@ export default {
           },
         },
       ],
+      filter_teleport: false,
       category_list: [],
-      page: 1,
-      filter_menu_act: false,
-      filter_class_name: [],
-      filter_type_packaging: [],
-      one: true
+      type_packaging: [],
     };
   },
   async created() {
     let catalog_response = await getProductList(50);
+    this.filterReg()
     this.catalog_list = catalog_response.data;
     this.catalog_list_sorted = this.catalog_list.slice();
-    console.log(this.category_list);
     store.dispatch('REFACTOR_CATALOG_LIST', this.catalog_list)
   },
-  setup() {},
-  methods: {
-  
+  methods:{
+
+  async filterReg(){
     
+    let category_response = await getCategorylist();
+    this.category_list = category_response.data;
+    let type_packaging_response = await getType_packaging_list();
+    this.type_packaging = type_packaging_response.data;
+  }
   },
+  setup() {},
+    
   computed:{
     ...mapGetters([
         'CATALOG_LIST_STATE',

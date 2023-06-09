@@ -24,6 +24,8 @@
     border-radius: 50%;
     background-color: rgb(245, 173, 40);
     border: none;
+    
+    margin-left: 1%;
 }
 .fav-btn:active {
     background-color: rgb(245, 173, 40);

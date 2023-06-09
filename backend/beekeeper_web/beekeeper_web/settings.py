@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework_simplejwt',
     'corsheaders',
+ 'sorl.thumbnail',
+ 'galleryfield',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +57,6 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 INTERNAL_IPS = [
@@ -124,30 +125,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-"""
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
-LOGGING = {
-    'version': 1,
-    'filters': {
-        'require_debug_true': {
-            '()': 'django.utils.log.RequireDebugTrue',
-        }
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'filters': ['require_debug_true'],
-            'class': 'logging.StreamHandler',
-        }
-    },
-    'loggers': {
-        'django.db.backends': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        }
-    }
-}"""
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
@@ -235,4 +214,4 @@ SIMPLE_JWT = {
 # cors
 
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_CREDENTIALS = True

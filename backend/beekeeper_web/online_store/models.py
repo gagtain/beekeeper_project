@@ -1,3 +1,4 @@
+import os
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import AbstractUser, PermissionsMixin, UserManager
 from django.db import models
@@ -5,6 +6,7 @@ from django.db.models.manager import BaseManager
 from django.utils import timezone
 from djmoney.models.fields import MoneyField
 from django.utils.translation import gettext_lazy as _
+from galleryfield.fields import GalleryField
 
 
 # Create your models here.
@@ -62,6 +64,14 @@ class Type_packaging(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название категории")
+
+def get_galery_item_url(instance, filename):
+
+    return os.path.join(instance.product.name, 'galery', filename)
+
+class ImageProduct(models.Model):
+    photo = models.ImageField(upload_to=get_galery_item_url)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="ImageProductList", verbose_name="Продукт")
 
 
 class Product(models.Model):

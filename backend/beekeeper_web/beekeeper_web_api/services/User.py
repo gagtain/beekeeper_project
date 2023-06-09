@@ -1,13 +1,14 @@
 import sys
 
 from django.contrib.postgres.aggregates import ArrayAgg
+from django.db.models import Prefetch
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
-from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging
+from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging, ImageProduct
 
 
 class ServicesUser:
@@ -75,12 +76,20 @@ class ProductServises():
     
     @classmethod
     def getProductList(self, size):
-        return Product.objects.all()[:size]
+        return Product.objects.all()[:size].prefetch_related(
+            Prefetch('category', queryset=Category.objects.all().only('name')),
+            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
+           'ImageProductList'
+        )
     
-
+    # 'id', 'name', 'image', 'price', 'description', 'price_currency', 'category', 'type_packaging', 'ImageProductList'
     @classmethod
     def getProduct(self, pk):
-        return Product.objects.get(pk=pk)
+        return Product.objects.filter(pk=pk).prefetch_related(
+            Prefetch('category', queryset=Category.objects.all().only('name')),
+            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
+           'ImageProductList'
+        )
 
 class CategoryServises():
     
