@@ -15,7 +15,7 @@
 .logo-page{
     left: 0;
     top: 0;
-    background-color: orange;
+    background-color: rgb(254,185,45);
     width: 100%;
     height: 150%;
     border-radius: 0px 0px 24px 24px;
@@ -348,11 +348,11 @@
 }
 @media (max-width: 600px){
     .menu_pop_mob{
-        width: 50%
+        width: 50%;
         left: -50%;
     }
     .menu_pop_mob_zatem{
-        width: 50%
+        width: 50%;
         left: 50%;
     }
 }

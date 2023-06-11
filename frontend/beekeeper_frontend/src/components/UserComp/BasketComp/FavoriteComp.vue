@@ -1,33 +1,32 @@
 <template>
-  <button class="flex btn_add_favorite jus-sp">
+  <div id="favorite">
+
+  <button v-if="isFavorite" class="flex btn_add_favorite jus-sp" @click="removeFavoriteBtn()">
+    <img
+      class="add_favorite"
+      :src="`${$api_root}static/online_store/images/favorite/favorite_remove.png`"
+      alt=""
+    />
+    <p class="b_text" >
+      Избранное
+    </p>
+  </button>
+  <button v-else class="flex btn_add_favorite jus-sp" @click="addFavoriteBtn()">
     <img
       class="add_favorite"
       :src="`${$api_root}static/online_store/images/favorite/favorite_add.png`"
       alt=""
     />
-    <p v-if="isFavorite" class="b_text" @click="removeFavoriteBtn()">
-      Избранное
-    </p>
-    <p v-else class="b_text" @click="addFavoriteBtn()">
-      Добавить в избранное
-    </p>
+    <p class="b_text">Добавить в избранное</p>
   </button>
+  </div>
 </template>
-<style scoped>
-.fav-btn {
-  padding: 5%;
-  border-radius: 50px;
-  background-color: rgb(245, 173, 40);
-}
-.fav-btn img {
-  height: 25px;
-  width: 25px;
-}
-</style>
+<style lang="css" src="../../../assets/css/account.css" scoped></style>
 <script>
 import addFavorite from "../../../additional_func/addFavorite";
 import removeFavorite from "../../../additional_func/removeFavorite";
 import { mapGetters } from "vuex";
+import store from "@/store";
 export default {
   el: "#favorite",
   name: "FavoriteComp",
@@ -41,7 +40,6 @@ export default {
   created() {
     let self = this;
     let a = this.USER_STATE.favorite_product.find(function (item) {
-      console.log(item);
       if (item.id == self.id) {
         return true;
       } else {
@@ -64,7 +62,8 @@ export default {
     async removeFavoriteBtn() {
       let response_add = await removeFavorite(this.id);
       if (response_add.status == 200) {
-        this.isFavorite = false;
+        store.dispatch("REMOVE_FAVORITE_ITEM", this.id);
+          this.isFavorite = false;
       }
     },
   },

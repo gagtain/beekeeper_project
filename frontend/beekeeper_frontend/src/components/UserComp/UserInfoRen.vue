@@ -61,9 +61,8 @@
           </div>
 </template>
 
-<style>
 
-</style>
+<style lang="css" src="../../assets/css/account.css" scoped></style>
 
 <script>
 export default {

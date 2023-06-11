@@ -15,7 +15,7 @@ import {mapGetters} from 'vuex'
 export default({
     el: '#addBasket',
     name: 'AddBasket',
-    props: ['sm', 'id'],
+    props: ['id'],
     data(){
         return {
             isBasket: false,

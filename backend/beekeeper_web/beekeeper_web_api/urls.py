@@ -14,6 +14,7 @@ urlpatterns = [
     path('type_packaging', views.Type_packagingAPI.as_view({'get': 'get_Type_packaging_list'})),
     path('get_csrf', views.setCSRFCookie.as_view()),
     path('token/verif', views.tokenVerif.as_view()),
-    path('register', views.UserRegistAPI.as_view())
+    path('register', views.UserRegistAPI.as_view()),
+    path('get_basket_info', views.UserAPI.as_view({'get': 'GetBasketInfo'}))
 
 ]

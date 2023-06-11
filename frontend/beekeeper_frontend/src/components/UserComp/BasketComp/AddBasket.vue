@@ -1,24 +1,25 @@
 <template>
     <div id="addBasket">
         
-  <button v-if="isBasket" class="flex btn_add_favorite remove_kor jus-sp">
+  <button v-if="isBasket" class="flex btn_add_favorite remove_kor jus-sp"  @click="removeBasketBtn()">
             <img
               class="add_favorite"
-              src="images/x_tovar.png"
+              :src="$api_root + 'static/online_store/' + 'images/x_tovar.png'"
               alt=""
             />
-            <p class="b_text" @click="removeBasketBtn()" >Убрать из корзины</p>
+            <p class="b_text" >Убрать из корзины</p>
           </button>
-  <button v-else class="flex btn_add_favorite remove_kor jus-sp">
+  <button v-else class="flex btn_add_favorite remove_kor jus-sp"  @click="removeBasketBtn()">
             <img
               class="add_favorite"
-              src="images/x_tovar.png"
+              :src="$api_router + 'images/x_tovar.png'"
               alt=""
             />
-            <p class="b_text" @click="addBasketBtn()" >Добавить в корзину</p>
+            <p class="b_text" >Добавить в корзину</p>
           </button>
     </div>
 </template>
+<style lang="css" src="../../../assets/css/account.css" scoped></style>
 <style>
 
 </style>
@@ -39,7 +40,6 @@ export default({
     created() {
                 let self = this
             let a = this.USER_STATE.basket.find(function(item){
-                console.log(item)
             if (item.id == self.id){
                 return true
             }else{
@@ -57,9 +57,8 @@ export default({
         async removeBasketBtn(){
             let response_add = await removeBasket(this.id)
             if (response_add.status == 200){
-                this.isBasket = false
                 store.dispatch('REMOVE_BASKET_ITEM', this.id)
-                console.log(store)
+                    this.isBasket = false
             }  
         },
         async addBasketBtn(){

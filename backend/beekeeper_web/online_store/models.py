@@ -6,7 +6,6 @@ from django.db.models.manager import BaseManager
 from django.utils import timezone
 from djmoney.models.fields import MoneyField
 from django.utils.translation import gettext_lazy as _
-from galleryfield.fields import GalleryField
 
 
 # Create your models here.
@@ -42,11 +41,14 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    def __str__(self):
+        return self.username
+
 
 class UserBalanceChange(models.Model):
     user = models.ForeignKey(MainUser, related_name='balance_changes', on_delete=models.CASCADE)
     amount = MoneyField(default=0, max_digits=14, decimal_places=2,
-                               verbose_name="Сумма транзакции", default_currency='RUB')
+                        verbose_name="Сумма транзакции", default_currency='RUB')
     tovar_list = models.ManyToManyField('Product', verbose_name="Товары заказа",
                                         related_name="product_list_transaction")
     datetime = models.DateTimeField(default=timezone.now, verbose_name="Время")
@@ -57,21 +59,28 @@ class UserBalanceChange(models.Model):
         super().save(*args, **kwargs)
 
 
-
 class Type_packaging(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название типа упаковки")
+
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название категории")
 
-def get_galery_item_url(instance, filename):
+    def __str__(self):
+        return self.name
 
+
+def get_galery_item_url(instance, filename):
     return os.path.join(instance.product.name, 'galery', filename)
+
 
 class ImageProduct(models.Model):
     photo = models.ImageField(upload_to=get_galery_item_url)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="ImageProductList", verbose_name="Продукт")
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="ImageProductList",
+                                verbose_name="Продукт")
 
 
 class Product(models.Model):
@@ -85,5 +94,7 @@ class Product(models.Model):
     category = models.ManyToManyField(Category, related_name='category_list', blank=True)
     type_packaging = models.ManyToManyField(Type_packaging, related_name='type_packaging_list', blank=True)
 
-
     objects = models.Manager()
+
+    def __str__(self):
+        return self.name

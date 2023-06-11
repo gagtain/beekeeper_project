@@ -1,6 +1,6 @@
 <template>
     <div class="list_tovar_kor w-sto">
-    <div v-for="b, index in USER_STATE.basket" :key="index"  class="tovar w-sto flex">
+    <div v-for="b in USER_STATE.basket" :key="b.id"  class="tovar w-sto flex">
     <div class="tovar_kor_img_div">
       <img
         class="tovar_kor_img"
@@ -16,8 +16,8 @@
           {{ b.description }}
         </p>
         <div class="btn_tovar_kor flex">
-          <FavoriteComp :id="b.id"></FavoriteComp>
-          <AddBasket :id="b.id"></AddBasket>
+          <FavoriteComp :id="b.id" ></FavoriteComp>
+          <AddBasket :id="b.id" ></AddBasket>
         </div>
       </div>
       <div class="size_tovar_div">
@@ -46,6 +46,7 @@
   </div>
 </template>
 
+<style lang="css" src="../../assets/css/account.css" scoped></style>
 <style>
 .tovar_kor_img_div img{
     width: 100%;
@@ -72,7 +73,6 @@ export default {
       FavoriteComp
     },
     created(){
-        console.log(this.USER_STATE.basket)
     },
   computed:{
     ...mapGetters([

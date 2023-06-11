@@ -1,10 +1,9 @@
 <template>
   <div id="catalog">
     <div class="absolute flex w-sto h_sto" style="pointer-events: none;">
-      <dialog id="dialog" class="absolute auto" style="
-    pointer-events: auto;">
+      <dialog id="dialog" class="absolute auto" style="pointer-events: auto;">
         <FilterCatalog :category_list="category_list" :type_packaging="type_packaging" :catalog_list="catalog_list" @UpdateClassFiler="filterClassReg"></FilterCatalog>
-        <button class="btn w-sto btn-green">Показать</button>
+        <button class="btn w-sto btn-green"  onclick="window.dialog.close();">Показать</button>
         <button onclick="window.dialog.close();" aria-label="close" class="x">
           ❌
         </button>
@@ -21,10 +20,8 @@
             </div>
             <div class="product_osnov">
               <div class="sorted_div flex jus-sp">
-                <div class="sorted-product flex jus-sp">
                   
         <SortedCatalog :catalog_list="catalog_list"></SortedCatalog>
-                </div>
                 <div class="mob_filter relative">
                   <p
                     onclick="window.dialog.showModal();"
@@ -50,25 +47,8 @@
                           alt="green apple slice"
                         />
                       </div>
-                      <div class="photo-album flex jus-sp">
-                        <img
-                          class="add-img-tovar"
-                          src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg"
-                        />
-                        <img
-                          class="add-img-tovar"
-                          src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg"
-                        />
-                        <img
-                          class="add-img-tovar"
-                          src="https://mir-s3-cdn-cf.behance.net/project_modules/1400/d7516b44740087.581c4d069eaf8.jpg"
-                        />
-
-                        <img
-                          class="add-img-tovar"
-                          src="https://res.cloudinary.com/john-mantas/image/upload/v1537303708/codepen/delicious-apples/apple-top.png"
-                        />
-                      </div>
+                      <TovarMinImageList :image="pr.image" :ImageProductList="pr.ImageProductList"></TovarMinImageList>
+                      
                     </div>
                   </div>
                   <div class="product__info">
@@ -107,7 +87,7 @@
                       <p class="small">{{ pr.description }}</p>
                     </div>
                     <div class="flex">
-                      <AddBasket :sm="true" :id="pr.id"></AddBasket>
+                      <AddBasket :id="pr.id"></AddBasket>
                       <FavoriteComp :id="pr.id"></FavoriteComp>
                     </div>
                   </div>
@@ -144,6 +124,7 @@ import SortedCatalog from '../Catalog/SortedCatalog.vue';
 import getCategorylist from "../../additional_func/getCategoryList";
 import getType_packaging_list from "../../additional_func/getType_packaging_list";
 import {mapGetters} from 'vuex'
+import TovarMinImageList from "../AddtionalComp/TovarMinImageList.vue";
 import store from '../../store'
 export default {
   el: "#catalog",
@@ -151,6 +132,7 @@ export default {
   components:{
     FilterCatalog,
     SortedCatalog,
+    TovarMinImageList,
     AddBasket,
     FavoriteComp
   },

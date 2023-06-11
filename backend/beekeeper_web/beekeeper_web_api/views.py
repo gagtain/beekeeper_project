@@ -1,3 +1,6 @@
+import sys
+
+from django.db.models import Sum, Count
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
 from rest_framework import viewsets
@@ -7,11 +10,13 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .jwt_token.auth import CustomAuthentication
-from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, UserRegisterSerializers, CategoryRetriveSerializers, Type_packagingRetriveSerializers
+from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
+    UserRegisterSerializers, CategoryRetriveSerializers, Type_packagingRetriveSerializers, BasketInfoSerializer
 from .services.User import ServicesUser, ProductServises, CategoryServises, Type_packagingServises
 from rest_framework.generics import CreateAPIView
 # Create your views here.
-
+from online_store.models import MainUser
+sys.path.append('.')
 class UserAPI(viewsets.ViewSet):
     authentication_classes = [CustomAuthentication]
 
@@ -22,8 +27,6 @@ class UserAPI(viewsets.ViewSet):
         return Response(serializer.data)
 
     def GetBasket(self, request):
-        print(request.user)
-        print(123)
         basket = ServicesUser.getBasket(request.user)
         # basket = ServicesUser.getBasket(1)
         serializer = RetrieveProduct(basket, many=True, context={'user_id': request.user.id})
@@ -47,6 +50,9 @@ class UserAPI(viewsets.ViewSet):
     def RemoveBasketProduct(self, request, pk):
         return ServicesUser.removeBasketProduct(request.user, pk)
 
+    def GetBasketInfo(self, request):
+        return Response(BasketInfoSerializer(ServicesUser.getBasketInfo(request.user)).data)
+
 
 ensure_csrf = method_decorator(ensure_csrf_cookie)
 
@@ -64,8 +70,11 @@ class tokenVerif(APIView):
     permission_classes = [IsAuthenticated]
     authentication_classes = [CustomAuthentication]
     def post(self, request):
-        
-        return Response(RetrieveUser(request.user).data)
+
+        return Response(RetrieveUser(request.user,
+                                     context=request.user.basket.aggregate(summ=Sum('price'),
+                                                                           count=Count('basket'))
+                                     ).data)
     
 
 class ProductAPI(viewsets.ViewSet):

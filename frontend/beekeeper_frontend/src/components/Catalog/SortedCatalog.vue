@@ -30,6 +30,12 @@
     cursor: default;
     pointer-events: none;
 }
+.sorted-p{
+  cursor: pointer;
+}
+.sorted-product{
+  width: 100%;
+}
 </style>
 <script>
 import {mapGetters} from 'vuex'

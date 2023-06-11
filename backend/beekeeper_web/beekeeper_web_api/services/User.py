@@ -1,7 +1,7 @@
 import sys
 
 from django.contrib.postgres.aggregates import ArrayAgg
-from django.db.models import Prefetch
+from django.db.models import Prefetch, Sum, Count
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
@@ -66,7 +66,13 @@ class ServicesUser:
             product = get_object_or_404(Product, pk=id)
             user.basket.remove(product)
             return Response({'data': 'success'})
-        
+
+
+    @classmethod
+    def getBasketInfo(cls, user: MainUser):
+        """ кол-во товаров, общая сумма  """
+        basket_info = user.basket.only('price').aggregate(summ=Sum('price'), count=Count('basket'))
+        return basket_info
 
 class ProductServises():
     

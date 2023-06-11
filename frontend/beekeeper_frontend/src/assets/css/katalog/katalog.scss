@@ -66,9 +66,16 @@
 .product_osnov {
     width: 85%;
 }
-
+.product__text p{
+    overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+    height: 58px;
+}
 .sorted-product {
-    width: 50%;
+    width: 40%;
 }
 .sorted_div {
     width: 100%;
@@ -158,8 +165,10 @@
     background-color: rgb(255, 188, 65);
 
 }
+.open_filter_mob{
+    cursor: pointer;
+}
 .fav-btn{
-    padding: 5%;
     border-radius: 50px;
     background-color: rgb(245, 173, 40);
 }

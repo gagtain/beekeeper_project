@@ -13,7 +13,7 @@
     </div>
 </template>
 
-<style lang="css" src="../assets/css/account.css"></style>
+<style lang="css" src="../assets/css/account.css" scoped></style>
 
 <script>
 import UserBasket from './UserComp/UserBasket.vue'

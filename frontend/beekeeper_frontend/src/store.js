@@ -10,24 +10,7 @@ const store = createStore({
         'FIO': '',
         'image': ''
       },
-      catalog_list: null /*[
-        {
-          id: 0,
-          name: "",
-          image: "",
-          price: "",
-          price_currency: "",
-          description: "",
-          category: [
-            {
-              name: "",
-            },
-          ],
-          type_packaging: {
-            name: "",
-          },
-        },
-      ],*/
+      catalog_list: null
     }
   },
   mutations: {
@@ -39,6 +22,10 @@ const store = createStore({
     },
     MUTATE_REMOVE_BASKET_ITEM: (state, id) =>{
       state.user.basket = state.user.basket.filter(b => b.id != id)
+    },
+    MUTATE_REMOVE_FAVORITE_ITEM: (state, id) =>{
+      
+      state.user.favorite_product = state.user.favorite_product.filter(b => b.id != id)
     }
   },
   actions:{
@@ -48,6 +35,10 @@ const store = createStore({
     REMOVE_BASKET_ITEM({commit}, id){
       
       commit('MUTATE_REMOVE_BASKET_ITEM', id)
+    },
+    REMOVE_FAVORITE_ITEM({commit}, id){
+      
+      commit('MUTATE_REMOVE_FAVORITE_ITEM', id)
     },
     REFACTOR_CATALOG_LIST({commit}, catalog_list){
         commit('MUTATE_CATALOG_LIST', catalog_list)

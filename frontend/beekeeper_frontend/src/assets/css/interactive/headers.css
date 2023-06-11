@@ -16,7 +16,7 @@
 .logo-page{
     left: 0;
     top: 0;
-    background-color: orange;
+    background-color: rgb(254,185,45);
     width: 100%;
     height: 150%;
     border-radius: 0px 0px 24px 24px;
@@ -49,6 +49,7 @@
 
 .menu_{
     width: 100%;
+    height: 100%;
     display: flex;
     justify-content: space-between;
 }

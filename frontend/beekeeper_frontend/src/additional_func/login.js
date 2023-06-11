@@ -1,9 +1,10 @@
 import axios from "axios";
+import { api_root } from '@/main'
 
 
 export default async function login(data){
     try {
-        var response = await axios({url: "http://localhost:8000/api/token/",
+        var response = await axios({url: `${api_root}api/token/`,
         method: "post",
         data: data,
         headers: {

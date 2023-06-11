@@ -5,32 +5,22 @@
         <BasketList></BasketList>
 
 
-      <div class="register_zakaz">
-        <div class="kor_all_info auto w-sto">
-          <p class="VAG small zakaz_info_of">Информация о корзине</p>
-          <p class="m2">Товаров: 12</p>
-          <p class="m2">Вес: 1.25кг</p>
-          <p class="m2">Цена: 1111</p>
-          <p class="m2">скидки:</p>
-          <ul>
-            <li>Скидки на товары: 1000р</li>
-          </ul>
-          <p id="is">Итоговая сумма 100р</p>
-          <p class="small">111 руб</p>
-          <button class="w-sto">Оформить</button>
-        </div>
-      </div>
+      
+        <BasketInfo></BasketInfo>
     </div>
   </div>
 </template>
 
+<style lang="css" src="../../assets/css/account.css" scoped></style>
 <script>
+import BasketInfo from './BasketComp/BasketInfo.vue'
 import BasketList from './BasketList.vue';
 export default {
     el: '#kor',
     name: 'UserBasket',
     components:{
-        BasketList
+        BasketList,
+        BasketInfo
     }
 };
 </script>

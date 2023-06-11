@@ -51,6 +51,7 @@
   </div>
   </div>
 </template>
+<style lang="css" src="../../assets/css/account.css" scoped></style>
 <style>
 .user_img_profile img{
     width:100%;
@@ -63,7 +64,11 @@ export default {
     el: '#user_info',
     name: 'UserInfo',
   setup() {},
-    
+    watch:{
+      'USER_STATE.basket'(){
+        console.log('корзина изменен')
+      }
+    },
   computed:{
     ...mapGetters([
         'USER_STATE'

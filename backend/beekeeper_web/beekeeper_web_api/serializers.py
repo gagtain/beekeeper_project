@@ -8,6 +8,14 @@ sys.path.append('.')
 from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging, ImageProduct
 
 
+class BasketInfoSerializer(serializers.Serializer):
+    summ = serializers.CharField()
+    count = serializers.CharField()
+
+    class Meta:
+        fields = '__all__'
+
+
 class RetrieveUserBalanceChange(serializers.ModelSerializer):
     class Meta:
         model = UserBalanceChange
@@ -62,12 +70,15 @@ class RetrieveProductRemoveToProdachen(serializers.ModelSerializer):
 
 
 class RetrieveUser(serializers.ModelSerializer):
+    basket_info = serializers.SerializerMethodField()
 
     class Meta:
         depth = 1
         model = MainUser
-        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'balance', 'balance_currency']
+        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'basket_info', 'balance', 'balance_currency']
 
+    def get_basket_info(self, instance):
+        return BasketInfoSerializer(self.context).data
 
 class UserRegisterSerializers(serializers.ModelSerializer):
     password2 = serializers.CharField()

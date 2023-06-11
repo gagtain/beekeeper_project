@@ -2,10 +2,9 @@
     <button v-if="isFavorite" @click="removeFavoriteBtn()" id="favorite" class="fav-btn flex auto">
       <img
         class="auto"
-        :src="`${$api_root}static/online_store/images/favorite/favorite_add.png`"
+        :src="`${$api_root}static/online_store/images/favorite/favorite_remove.png`"
         alt=""
       />
-      из
     </button>
     <button v-else id="favorite" @click="addFavoriteBtn()" class="fav-btn flex auto">
       <img
