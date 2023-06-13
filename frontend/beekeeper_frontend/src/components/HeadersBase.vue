@@ -55,21 +55,22 @@
               </div>
               <div class="context_menu_ absolute">
                 <ul>
+                  <RouterLink to="/favorite">
                   <li class="flex">
-                    <RouterLink to="/profile" class="normal-small auto"
-                      >Аккаунт</RouterLink
-                    >
+                      <p class="normal-small auto">Аккаунт</p>
                   </li>
+                </RouterLink>
+                    <RouterLink to="/basket">
                   <li class="flex">
-                    <RouterLink to="/basket" class="normal-small auto"
-                      >Корзина</RouterLink
-                    >
+                      <p class="normal-small auto">Корзина</p>
                   </li>
+                </RouterLink>
+                  <RouterLink to="/favorite">
                   <li class="flex">
                     <RouterLink to="/favorite" class="normal-small auto"
                       >Избранное</RouterLink
                     >
-                  </li>
+                  </li></RouterLink>
                 </ul>
               </div>
               <span class="material-symbols-outlined auto"> expand_more </span>
@@ -95,16 +96,12 @@
         </div>
         <p class="VAG menu_mob_p_org_name small">Уварово пасечник</p>
         <ul>
-          <li><RouterLink to="/"
-                      >Главная</RouterLink></li>
-          <li><RouterLink to="/additional"
-                      >О нас</RouterLink></li>
-          <li><RouterLink to="/zakaz_list"
-                      >Заказы</RouterLink></li>
-          <li><RouterLink to="/polit"
-                      >Политика соглашения</RouterLink></li>
-          <li><RouterLink to="/add_money"
-                      >Пополнить счет</RouterLink></li>
+          <RouterLink to="/"
+                      ><li>Главная</li></RouterLink>
+          <RouterLink to="/additional"><li>О нас</li></RouterLink>
+          <RouterLink to="/zakaz_list"><li>Заказы</li></RouterLink>
+          <RouterLink to="/polit"><li>Политика соглашения</li></RouterLink>
+          <RouterLink to="/add_money"><li>Пополнить счет</li></RouterLink>
         </ul>
       </div>
     </div>
@@ -116,7 +113,11 @@
 @import "../assets/css/interactive/headers.css";
 @import "../assets/css/interactive/search.css";
 </style>
-
+<style>
+a{
+  text-decoration: none;
+}
+</style>
 <script>
 import { mapGetters } from "vuex";
 export default {

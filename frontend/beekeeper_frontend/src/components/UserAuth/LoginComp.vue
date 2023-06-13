@@ -3,7 +3,9 @@
     <div class="sot-ob">
       <div class="wrapper flex">
         <div class="login-page flex">
-          <div v-if="width>700" class="form login-f log-img"></div>
+          <div @click="login_img_active = !login_img_active"
+          :style="login_img_active ? 'width: 400px' : ''"
+          v-if="width>700" class="form login-f log-img"></div>
           <div class="form">
             <p class="small login-p">Войти в аккаунт</p>
 
@@ -87,6 +89,7 @@ export default {
     updateWidth() {
       this.width = window.innerWidth;
     },
+
   },
   data() {
     return {
@@ -94,6 +97,7 @@ export default {
       password: "13",
       login_401: false,
       width: 0,
+      login_img_active: false
     };
   },
 };

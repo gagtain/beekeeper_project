@@ -2,7 +2,8 @@
   <div class="sot-ob">
     <div class="wrapper flex">
       <div class="login-page flex" id="registry">
-        <div v-if="width>700" class="form login-f log-img"></div>
+        <div  @click="login_img_active = !login_img_active"
+          :style="login_img_active ? 'width: 400px' : ''" v-if="width>700" class="form login-f log-img"></div>
         <div class="form">
           <p class="small login-p">Создать аккаунт</p>
           <div class="flex h_sto">
@@ -91,7 +92,8 @@ export default {
         name: "password2",
         value: "",
       },
-      width: 0
+      width: 0,
+      login_img_active: false
     };
   },
   created(){

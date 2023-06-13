@@ -51,7 +51,7 @@
                         <div class="tovar_two vib">
                             <div class="flex jus-sp op_contex" @click="open_sostav()">
                                 <p class="black malenkii vib_">Состав</p>
-                                <div class="contex material-symbols-outlined"> expand_more </div>
+                                <div class="contex material-symbols-outlined"><span  class="material-symbols-outlined"> expand_more </span></div>
 
                             </div>
                             <div v-if="isSostav" class="context_text">
@@ -75,6 +75,11 @@
 
 
 <style lang="css" src="../../assets/css/tovar.css" scoped></style>
+
+<style>
+.material-symbols-outlined{
+    font-family: 'Material Symbols Outlined';
+}</style>
 <script>
 import getTovar from "../../additional_func/getTovar"
 import AddBasket from '../AddtionalComp/AddBasket.vue'

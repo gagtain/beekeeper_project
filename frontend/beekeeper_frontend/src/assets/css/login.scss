@@ -12,6 +12,7 @@
   margin: auto;
   border-radius: 5px;
   overflow: hidden;
+  box-shadow: 0px 0px 2px 1px white;
 }
 .error_list{
 	min-height: 19px;
@@ -122,9 +123,7 @@
 	width: 230px;
 	cursor: pointer;
 	transition: .3s;
-	&:hover {
-		width: 400px;
-	}
+	
 }
 .log-img {
 	background: url('../images/3.jpg') no-repeat center;

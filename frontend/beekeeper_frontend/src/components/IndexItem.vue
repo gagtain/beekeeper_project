@@ -27,7 +27,7 @@
               <div class="slider-produtos-wrap h_sto">
                 <swiper
                   :slidesPerView="1"
-                  :spaceBetween="30"
+                  :spaceBetween="500"
                   :autoplay="{
                     delay: 3000,
                     disableOnInteraction: true,
@@ -79,7 +79,7 @@
               :slidesPerView="1"
               :spaceBetween="30"
               :navigation="true"
-              speed="3000"
+              speed="1500"
               :modules="modules"
             >
               <swiper-slide
