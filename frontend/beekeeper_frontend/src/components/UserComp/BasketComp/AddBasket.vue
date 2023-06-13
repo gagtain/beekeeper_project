@@ -9,10 +9,11 @@
             />
             <p class="b_text" >Убрать из корзины</p>
           </button>
-  <button v-else class="flex btn_add_favorite remove_kor jus-sp"  @click="removeBasketBtn()">
+  <button v-else class="flex btn_add_favorite remove_kor jus-sp"  @click="addBasketBtn()">
             <img
               class="add_favorite"
-              :src="$api_router + 'images/x_tovar.png'"
+              :style="!isBasket ? 'transform: rotate(45deg)' : ''"
+              :src="$api_root + 'static/online_store/' + 'images/x_tovar.png'"
               alt=""
             />
             <p class="b_text" >Добавить в корзину</p>

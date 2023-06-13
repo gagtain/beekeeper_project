@@ -174,14 +174,12 @@
     height: 100%;
     width: 80%;
 }
-.swiper-slide{
-    height: 500px;
-}
 .ref-block{
     background: url('../../images/3.jpg') no-repeat center;
     background-size: cover;
     height: 700px;
     background-attachment: fixed;
+    margin-top: 3%;
 }
 .o_product {
 	display: grid;

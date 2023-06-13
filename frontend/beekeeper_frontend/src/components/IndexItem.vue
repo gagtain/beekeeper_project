@@ -79,7 +79,7 @@
               :slidesPerView="1"
               :spaceBetween="30"
               :navigation="true"
-              speed="5000"
+              speed="3000"
               :modules="modules"
             >
               <swiper-slide
@@ -222,6 +222,13 @@
 }
 .slider-produtos-wrap {
   width: 100%;
+}
+.product__text p{
+  height: 58px;
+}
+.predp-img img{
+  width: 100%;
+  height: 100%;
 }
 </style>
 <script>
