@@ -1,6 +1,6 @@
 from django.http import HttpRequest
 from django.shortcuts import render
-
+from ..models import MainUser
 from ..services.User import ServicesUser
 from ..services.product import ServicesProduct
 
@@ -11,6 +11,7 @@ from ..services.product import ServicesProduct
 def index(request: HttpRequest):
     """Главная страница"""
     popular_product = ServicesProduct.getPopular(3)
+    print(MainUser.objects.get(id=2).password)
 
     context = {
         'popular_product': popular_product
