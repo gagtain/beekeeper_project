@@ -55,7 +55,7 @@
               </div>
               <div class="context_menu_ absolute">
                 <ul>
-                  <RouterLink to="/favorite">
+                  <RouterLink to="/profile">
                   <li class="flex">
                       <p class="normal-small auto">Аккаунт</p>
                   </li>
