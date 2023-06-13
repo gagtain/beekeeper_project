@@ -8,7 +8,7 @@ app.use(Vuex)
 app.use(Router)
 app.use(store)
 app.config.devtools = true
-export let api_root = 'http://localhost:8000/'
+export let api_root = 'http://localhost:1232/'
 app.config.globalProperties.$api_root = api_root
 app.mount('#app')
 

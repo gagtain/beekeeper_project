@@ -16,6 +16,7 @@
                     </div>
 </template>
 
+<style lang="css" src="../../assets/css/tovar.css" scoped></style>
 <style >
 .tovar_img_the_min{
     width: 100%;

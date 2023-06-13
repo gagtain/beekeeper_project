@@ -74,7 +74,7 @@
 </template>
 
 
-<style lang="css" src="../../assets/css/tovar.css"></style>
+<style lang="css" src="../../assets/css/tovar.css" scoped></style>
 <script>
 import getTovar from "../../additional_func/getTovar"
 import AddBasket from '../AddtionalComp/AddBasket.vue'

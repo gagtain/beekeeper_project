@@ -10,7 +10,3 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 RUN pip install -r /temp/requiments.txt
-
-RUN adduser --disabled-password beekeeper_web
-
-USER beekeeper_web
