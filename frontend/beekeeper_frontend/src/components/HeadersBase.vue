@@ -17,8 +17,8 @@
             </div>
           </div>
           <div class="context_menu context_menu_info">
-            <div class="menu_items mob_men relative" id="mob_hed">
-              <span></span>
+            <div  @click="mob_menu_click()" :class="is_menu_mobile ? 'menu_active' : ''" class="menu_items mob_men relative" id="mob_hed">
+              <span  :class="is_menu_mobile ? 'menu_pop_mob_active' : ''"></span>
             </div>
             <div class="menu_items" id="deks_hed">
               <RouterLink to="/"
@@ -75,14 +75,14 @@
               <span class="material-symbols-outlined auto"> expand_more </span>
             </div>
             <div v-else class="flex jus-sp user_in relative">
-              <a href="/registry">Регистрация</a>
+              <a href="/register">Регистрация</a>
               <a href="/login">Вход</a>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="absolute menu_pop_mob">
+    <div :class="is_menu_mobile ? 'menu_pop_mob_active' : ''" class="absolute menu_pop_mob">
       <div class="h_sto w-sto sote">
         <div class="logo-sote auto">
           <div class="logo-page flex auto">
@@ -95,15 +95,20 @@
         </div>
         <p class="VAG menu_mob_p_org_name small">Уварово пасечник</p>
         <ul>
-          <li>Главная</li>
-          <li>О нас</li>
-          <li>Заказы</li>
-          <li>Политика соглашения</li>
-          <li>Пополнить счет</li>
+          <li><RouterLink to="/"
+                      >Главная</RouterLink></li>
+          <li><RouterLink to="/additional"
+                      >О нас</RouterLink></li>
+          <li><RouterLink to="/zakaz_list"
+                      >Заказы</RouterLink></li>
+          <li><RouterLink to="/polit"
+                      >Политика соглашения</RouterLink></li>
+          <li><RouterLink to="/add_money"
+                      >Пополнить счет</RouterLink></li>
         </ul>
       </div>
     </div>
-    <div class="absolute menu_pop_mob_zatem"></div>
+    <div @click="mob_menu_click()" :class="is_menu_mobile ? 'menu_pop_mob_zatem_active' : ''" class="absolute menu_pop_mob_zatem"></div>
   </div>
 </template>
 <style scoped>
@@ -129,11 +134,12 @@ export default {
         active: false,
         scroll_top: 0
       },
+        is_menu_mobile: false
     };
   },
   methods: {
     scrollToHeaderLogo() {
-      if (window.width >= 701) {
+      if (window.innerWidth >= 701) {
         this.menu_scroll_ev(50);
       } else {
         this.menu_scroll_ev(10);
@@ -150,6 +156,10 @@ export default {
         document.getElementsByClassName('logo-page')[0].style.top = `0px`;
         document.getElementsByClassName('logo-page')[0].style.opacity = 1;
     }
+    },
+    mob_menu_click(){
+      console.log(this.is_menu_mobile)
+      this.is_menu_mobile = !this.is_menu_mobile
     }
   },
   computed: {

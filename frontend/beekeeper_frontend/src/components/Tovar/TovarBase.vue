@@ -36,7 +36,7 @@
                         <div class="tovar_two vib">
                             <div class="flex jus-sp op_contex" @click="open_descrip()">
                                 <p class="black malenkii vib_">Описание</p>
-                                <div class="contex" style="background-image: url('img/Vector (6).png');"></div>
+                                <div class="contex material-symbols-outlined"> expand_more </div>
 
                             </div>
                             <div v-if="isDescription" class="context_text">
@@ -51,7 +51,7 @@
                         <div class="tovar_two vib">
                             <div class="flex jus-sp op_contex" @click="open_sostav()">
                                 <p class="black malenkii vib_">Состав</p>
-                                <div class="contex" style="background-image: url('img/Vector (6).png');"></div>
+                                <div class="contex material-symbols-outlined"> expand_more </div>
 
                             </div>
                             <div v-if="isSostav" class="context_text">

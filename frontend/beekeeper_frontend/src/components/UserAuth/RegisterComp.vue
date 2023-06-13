@@ -2,7 +2,7 @@
   <div class="sot-ob">
     <div class="wrapper flex">
       <div class="login-page flex" id="registry">
-        <div class="form login-f log-img"></div>
+        <div v-if="width>700" class="form login-f log-img"></div>
         <div class="form">
           <p class="small login-p">Создать аккаунт</p>
           <div class="flex h_sto">
@@ -91,7 +91,12 @@ export default {
         name: "password2",
         value: "",
       },
+      width: 0
     };
+  },
+  created(){
+    this.updateWidth()
+    window.addEventListener('resize', this.updateWidth);
   },
   methods:{
     async refisterSubmit(event){
@@ -111,6 +116,10 @@ export default {
             }
 }
         return false;
+    },
+    updateWidth(){
+
+    this.width = window.innerWidth;
     }
   },
   validations() {

@@ -78,6 +78,6 @@ export default {
     ...mapGetters([
         'USER_STATE'
     ])
-  }
+  },
 }
 </script>
