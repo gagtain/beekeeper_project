@@ -101,7 +101,7 @@ DATABASES = {
         'NAME': 'beekeeper',
         'USER': 'gagtain',
         'PASSWORD': '13576422',
-        'HOST': 'localhost',
+        'HOST': 'database',
         'PORT': '5432'
     }
 }
