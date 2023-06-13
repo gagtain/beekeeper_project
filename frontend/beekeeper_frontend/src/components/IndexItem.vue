@@ -249,7 +249,7 @@ export default {
     FavoriteComp,
     AddBasket,
   },
-  created() {
+  async created() {
     console.log(this.$api_root);
     let self = this;
     axios({
