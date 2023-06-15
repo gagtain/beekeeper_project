@@ -2,7 +2,7 @@
 
             <div class="input-number" id="count_button">
     <div class="input-number__minus" @click="minus_input($event)">-</div>
-    <input class="input-number__input" @keydown="input_keydown($event)" type="text" pattern="^[0-9]+$" v-model="USER_STATE.basket.filter(f => f.id == id)[0].count">
+    <input class="input-number__input" @keydown="input_keydown($event)" type="text" pattern="^[0-9]+$" @focusout="input_onfocus($event)" @input="re_count($event)"  :value="USER_STATE.basket.filter(f => f.id == id)[0].count">
     <div class="input-number__plus" @click="plus_input($event)">+
 </div>
           </div>
@@ -52,26 +52,37 @@ export default({
     name:'CountProduct',
     props: ['id'],
     methods:{
+        re_count(event){
+            if (!(event.srcElement.value == '' || event.srcElement.value == '0')){
+                
+                this.$store.dispatch('REFACTOR_COUNT_BASKET_ITEM', {basket_id: this.id, count: parseInt(event.srcElement.value)})
+            }
+        },
+        input_onfocus(event){
+            if(event.srcElement.value == ''){
+                event.srcElement.value = this.USER_STATE.basket.filter(f => f.id == this.id)[0].count
+            }else if(event.srcElement.value == '0'){
+                this.$store.dispatch('REFACTOR_COUNT_BASKET_ITEM', {basket_id: this.id, count: 1})
+            }
+        },
         minus_input (event) {
       console.log(event)
         let total = event.srcElement.nextElementSibling;
         if (total.value > 1) {
-            total.value = parseInt(total.value) - 1;
+            this.$store.dispatch('REFACTOR_COUNT_BASKET_ITEM', {basket_id: this.id, count: parseInt(total.value) - 1})
         }
         
     },
-
     // Увеличиваем на 1
     plus_input (event) {
       console.log(event.srcElement.previousElementSibling)
         let total = event.srcElement.previousElementSibling;
-            total.value = parseInt(total.value) + 1;
+            this.$store.dispatch('REFACTOR_COUNT_BASKET_ITEM', {basket_id: this.id, count: parseInt(total.value) + 1})
     },
 
     // Запрещаем ввод текста 
     
         input_keydown (event) {
-            console.log(1)
             // Разрешаем: backspace, delete, tab
             if (event.keyCode == 46 || event.keyCode == 8 || event.keyCode == 9 ||
                 // Ctrl+A
@@ -85,9 +96,10 @@ export default({
                     
                     event.preventDefault();
                 }
+                
             }
 
-        }
+        },
     },
   computed:{
     ...mapGetters([

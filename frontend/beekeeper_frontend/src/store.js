@@ -23,6 +23,12 @@ const store = createStore({
     MUTATE_REMOVE_BASKET_ITEM: (state, id) =>{
       state.user.basket = state.user.basket.filter(b => b.product.id != id)
     },
+    MUTATE_COUNT_BASKET_ITEM: (state, obj_basketId_count) =>{
+      if (Number.isInteger(obj_basketId_count.count)){
+        console.log(1)
+        state.user.basket.filter(b => b.id == obj_basketId_count.basket_id)[0].count = obj_basketId_count.count
+      }
+    },
     MUTATE_REMOVE_FAVORITE_ITEM: (state, id) =>{
       
       state.user.favorite_product = state.user.favorite_product.filter(b => b.id != id)
@@ -42,6 +48,9 @@ const store = createStore({
     },
     REFACTOR_CATALOG_LIST({commit}, catalog_list){
         commit('MUTATE_CATALOG_LIST', catalog_list)
+    },
+    REFACTOR_COUNT_BASKET_ITEM({commit}, obj_basketId_count){
+        commit('MUTATE_COUNT_BASKET_ITEM', obj_basketId_count)
     },
   },
     getters:{
