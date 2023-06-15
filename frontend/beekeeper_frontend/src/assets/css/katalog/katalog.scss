@@ -8,7 +8,7 @@
 .wrapper-product {
     padding-top: 200px;
     min-height: 102vh;
-    background: url('../../images/sot.png') center no-repeat;
+    background: url('../../images/sot.png') repeat-y;
 
     background-size: cover;
     padding-bottom: 3%;
@@ -35,7 +35,8 @@
 .product_div {
     background-color: rgb(160, 166, 62);
     padding: 2%;
-    border-radius: 5px;
+    border-radius: 5px;  
+    height: 100%;
 }
 .product{
     width: 350px;
@@ -47,7 +48,8 @@
 }
 @media (min-width: 1026px) {
     .product{
-        width: 33%;
+        width: 30%;
+        margin-left: 1%;
     }
 }
 .add-img-tovar{
@@ -140,7 +142,7 @@
     cursor: pointer;
 }
 
-.photo-album-li:hover {
+.photo-album-li.active {
     box-shadow: 0px 0px 2px 1px black;
 
 }
@@ -214,7 +216,8 @@
 
 @media (max-width: 1024px) {
     .product{
-        width: 290px;
+        width: 45%;
+margin-left: 2%;
     }
 
     .filter_div {

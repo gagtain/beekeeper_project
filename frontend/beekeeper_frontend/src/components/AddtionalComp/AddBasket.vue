@@ -15,7 +15,7 @@ import {mapGetters} from 'vuex'
 export default({
     el: '#addBasket',
     name: 'AddBasket',
-    props: ['id'],
+    props: ['id', 'pack_id', 'wei_id'],
     data(){
         return {
             isBasket: false,
@@ -25,7 +25,7 @@ export default({
         let self = this
             let a = this.USER_STATE.basket.find(function(item){
                 console.log(item)
-            if (item.id == self.id){
+            if (item.product.id == self.id){
                 return true
             }else{
                 return false
@@ -40,7 +40,7 @@ export default({
     },
     methods:{
         async addBasketBtn(){
-            let response_add = await addBasket(this.id)
+            let response_add = await addBasket(this.id, this.pack_id, this.wei_id)
             if (response_add.status == 200){
                 this.isBasket = true
             }  

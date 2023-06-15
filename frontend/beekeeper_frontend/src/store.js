@@ -21,7 +21,7 @@ const store = createStore({
         state.catalog_list = catalog_list
     },
     MUTATE_REMOVE_BASKET_ITEM: (state, id) =>{
-      state.user.basket = state.user.basket.filter(b => b.id != id)
+      state.user.basket = state.user.basket.filter(b => b.product.id != id)
     },
     MUTATE_REMOVE_FAVORITE_ITEM: (state, id) =>{
       

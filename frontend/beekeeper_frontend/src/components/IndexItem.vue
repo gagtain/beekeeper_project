@@ -174,10 +174,10 @@
           </div>
         </div>
       </div>
+      <div class="ref-block w-sto">
       <div class="flex w-sto text_in_sot">
-        <p class="big auto main-text">О нашем товаре</p>
+        <p class="big auto main-text" style="color: rgb(241, 195, 96);text-shadow: 10px 10px 10px black;padding: 1%;">О нашем товаре</p>
       </div>
-      <div class="ref-block w-sto flex">
         <div class="interactiv auto h-sto flex">
           <div class="block_info o_product auto">
             <div class="predp">

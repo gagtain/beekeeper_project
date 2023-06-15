@@ -45,7 +45,8 @@ class UserAPI(viewsets.ViewSet):
     def RemoveFavoriteProduct(self, request, pk):
         return ServicesUser.removeFavoriteProduct(request.user, pk)
     def AddBasketProduct(self, request, pk):
-        return ServicesUser.addBasketProduct(request.user, pk)
+
+        return ServicesUser.addBasketProduct(request, pk)
 
     def RemoveBasketProduct(self, request, pk):
         return ServicesUser.removeBasketProduct(request.user, pk)
@@ -72,8 +73,9 @@ class tokenVerif(APIView):
     def post(self, request):
 
         return Response(RetrieveUser(request.user,
-                                     context=request.user.basket.aggregate(summ=Sum('price'),
-                                                                           count=Count('basket'))
+                                     context={'basket_info':request.user.basket.aggregate(summ=Sum('price'),
+                                                                           count=Count('basket')),
+                                              'user_id': request.user.id}
                                      ).data)
     
 

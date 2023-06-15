@@ -32,66 +32,8 @@
                 </div>
               </div>
               <div
-                  v-if="CATALOG_LIST_STATE" class="w-sto product-list flex jus-sp">
-                <section
-                  v-for="(pr, index) in CATALOG_LIST_STATE"
-                  :key="index"
-                  class="product"
-                >
-                  <div class="product__photo">
-                    <div class="photo-container">
-                      <div class="photo-main">
-                        <div class="controls"></div>
-                        <img
-                          :src="$api_root + pr.image"
-                          alt="green apple slice"
-                        />
-                      </div>
-                      <TovarMinImageList :image="pr.image" :ImageProductList="pr.ImageProductList"></TovarMinImageList>
-                      
-                    </div>
-                  </div>
-                  <div class="product__info">
-                    <div class="title">
-                      <RouterLink :to="`/tovar/${pr.id}`"><p class="small-big product__name">{{ pr.name }}</p></RouterLink>
-                      <span class="very-small product__code"
-                        >COD: {{ pr.id }}</span
-                      >
-                    </div>
-                    <div class="price">
-                      <span class="product__price small-big"
-                        >{{ pr.price }}
-                        <span class="product__price small">{{
-                          pr.price_currency
-                        }}</span></span
-                      >
-                    </div>
-                    <div class="variant">
-                      <h3>Размер</h3>
-                      <div class="flex">
-                        <ul class="variant-ul">
-                          <li class="photo-album-li">
-                            <div class="h_sto">
-                              <p>100 гр</p>
-                            </div>
-                          </li>
-                          <li class="photo-album-li">
-                            <div class="h_sto">
-                              <p class="normal-small">250 гр</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="product__text">
-                      <p class="small">{{ pr.description }}</p>
-                    </div>
-                    <div class="flex">
-                      <AddBasket :id="pr.id"></AddBasket>
-                      <FavoriteComp :id="pr.id"></FavoriteComp>
-                    </div>
-                  </div>
-                </section>
+                  v-if="CATALOG_LIST_STATE" class="w-sto product-list flex">
+                <CatalogProduct v-for="pr in CATALOG_LIST_STATE" :key="pr.id" :pr="pr" ></CatalogProduct>
               </div>
             </div>
           </div>
@@ -112,19 +54,18 @@
 .back {
   background: antiquewhite;
   padding: 2%;
-  border-radius: 5px;
+  border-radius: 5px;  
+  min-height: 833px;
 }
 </style>
 <script>
 import getProductList from "../../additional_func/getProductlist";
 import FilterCatalog from '../Catalog/FilterCatalog.vue';
-import AddBasket from '../AddtionalComp/AddBasket.vue';
-import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
 import SortedCatalog from '../Catalog/SortedCatalog.vue';
+import CatalogProduct from './CatalogProduct.vue';
 import getCategorylist from "../../additional_func/getCategoryList";
 import getType_packaging_list from "../../additional_func/getType_packaging_list";
 import {mapGetters} from 'vuex'
-import TovarMinImageList from "../AddtionalComp/TovarMinImageList.vue";
 import store from '../../store'
 export default {
   el: "#catalog",
@@ -132,9 +73,7 @@ export default {
   components:{
     FilterCatalog,
     SortedCatalog,
-    TovarMinImageList,
-    AddBasket,
-    FavoriteComp
+    CatalogProduct
   },
   data() {
     return {

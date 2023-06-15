@@ -21,7 +21,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
                               blank=True, default="images/ds.png")
     balance = MoneyField(default=0, max_digits=14, decimal_places=2, default_currency='RUB',
                          verbose_name="Сумма баланса")
-    basket = models.ManyToManyField('Product', related_name="basket")
+    basket = models.ManyToManyField(through='BasketItem', to='Product', related_name="basket")
     favorite_product = models.ManyToManyField('Product', related_name='favorite_product')
     USERNAME_FIELD = 'username'
     is_staff = models.BooleanField(
@@ -43,6 +43,18 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+class BasketItem(models.Model):
+    user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+    weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE) # ожидание в ТЗ информации о кастомном весе.
+    type_packaging = models.ForeignKey('Type_packaging', on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=1)
+
+
+    def __str__(self):
+        return f"{self.user.username} {self.product.name} {self.weight.weight} {self.type_packaging.name}"
+
 
 
 class UserBalanceChange(models.Model):
@@ -82,6 +94,13 @@ class ImageProduct(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="ImageProductList",
                                 verbose_name="Продукт")
 
+class Type_weight(models.Model):
+    weight = models.FloatField(verbose_name="Вес в граммах")
+
+    def __str__(self):
+        return str(self.weight)
+
+
 
 class Product(models.Model):
     """"Модель продукта"""
@@ -92,6 +111,7 @@ class Product(models.Model):
     price = MoneyField(max_digits=14, decimal_places=2, default_currency='RUB', verbose_name="Цена")
     count_purchase = models.IntegerField(default=0, verbose_name="кол-во покупок")
     category = models.ManyToManyField(Category, related_name='category_list', blank=True)
+    list_weight = models.ManyToManyField(Type_weight, null=True, related_name='list_weight')
     type_packaging = models.ManyToManyField(Type_packaging, related_name='type_packaging_list', blank=True)
 
     objects = models.Manager()

@@ -41,7 +41,7 @@ export default({
     created() {
                 let self = this
             let a = this.USER_STATE.basket.find(function(item){
-            if (item.id == self.id){
+            if (item.product.id == self.id){
                 return true
             }else{
                 return false

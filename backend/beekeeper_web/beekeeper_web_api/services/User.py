@@ -8,7 +8,8 @@ from rest_framework.response import Response
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
-from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging, ImageProduct
+from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging, ImageProduct, \
+    Type_weight, BasketItem
 
 
 class ServicesUser:
@@ -23,8 +24,11 @@ class ServicesUser:
 
     @classmethod
     def getBasket(cls, user: MainUser) -> list[Product]:
-        basket = user.basket.annotate(favorite_product_list=ArrayAgg('favorite_product'))\
-            .values('favorite_product_list', 'name', 'image', 'price', 'id', 'description')
+        basket = user.basket.prefetch_related(
+            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
+            Prefetch('favorite_product', queryset=MainUser.objects.all().only('id')),
+           'list_weight',
+        )
         return basket
 
     @classmethod
@@ -51,12 +55,16 @@ class ServicesUser:
 
 
     @classmethod
-    def addBasketProduct(cls, user: MainUser, id: int):
+    def addBasketProduct(cls, request, id: int):
+        user: MainUser = request.user
         if user.basket.filter(pk=id).exists():
             return Response({'data': 'данный продукт уже в списке корзины'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             product = get_object_or_404(Product, pk=id)
-            user.basket.add(product)
+            packaging = get_object_or_404(Type_packaging, pk=request.data['packaging'])
+            type_weight = get_object_or_404(Type_weight, pk=request.data['type_weight'])
+            BasketItem.objects.create(user=user,product=product, weight=type_weight, type_packaging=packaging)
+
             return Response({'data': 'success'})
     @classmethod
     def removeBasketProduct(cls, user: MainUser, id: int):
@@ -85,7 +93,7 @@ class ProductServises():
         return Product.objects.all()[:size].prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
             Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
-           'ImageProductList'
+           'ImageProductList','list_weight'
         )
     
     # 'id', 'name', 'image', 'price', 'description', 'price_currency', 'category', 'type_packaging', 'ImageProductList'
@@ -94,7 +102,7 @@ class ProductServises():
         return Product.objects.filter(pk=pk).prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
             Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
-           'ImageProductList'
+           'ImageProductList','list_weight'
         )
 
 class CategoryServises():
