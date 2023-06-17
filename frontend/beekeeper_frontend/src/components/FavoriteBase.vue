@@ -15,7 +15,7 @@
                   <div class="tovar_kor_img_div">
                     <img
                       class="tovar_kor_img"
-                      :src="$api_root + b.image"
+                      :src="$api_root + b.productItem.product.image"
                       alt=""
                     />
                   </div>

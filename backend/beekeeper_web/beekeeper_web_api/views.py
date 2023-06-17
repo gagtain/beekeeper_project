@@ -11,7 +11,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from .jwt_token.auth import CustomAuthentication
 from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
-    UserRegisterSerializers, CategoryRetriveSerializers, Type_packagingRetriveSerializers, BasketInfoSerializer
+    UserRegisterSerializers, CategoryRetriveSerializers, Type_packagingRetriveSerializers, BasketInfoSerializer, \
+    BasketSerializer
 from .services.User import ServicesUser, ProductServises, CategoryServises, Type_packagingServises
 from rest_framework.generics import CreateAPIView
 # Create your views here.
@@ -40,19 +41,24 @@ class UserAPI(viewsets.ViewSet):
         return Response(serializer.data)
 
     def AddFavoriteProduct(self, request, pk):
-        return ServicesUser.addFavoriteProduct(request.user, pk)
+        return ServicesUser.addFavoriteProduct(request, pk)
 
     def RemoveFavoriteProduct(self, request, pk):
-        return ServicesUser.removeFavoriteProduct(request.user, pk)
+        return ServicesUser.removeFavoriteProduct(request.user, product=pk, **request.data)
     def AddBasketProduct(self, request, pk):
 
         return ServicesUser.addBasketProduct(request, pk)
 
     def RemoveBasketProduct(self, request, pk):
-        return ServicesUser.removeBasketProduct(request.user, pk)
+        return ServicesUser.removeBasketProduct(request.user, product=pk, **request.data)
 
     def GetBasketInfo(self, request):
         return Response(BasketInfoSerializer(ServicesUser.getBasketInfo(request.user)).data)
+
+
+
+    def UpdateBasketItemCount(self, request, basket_pk):
+        return ServicesUser.updateBasketItemCount(basket_pk, request.user, request.data['count'])
 
 
 ensure_csrf = method_decorator(ensure_csrf_cookie)
@@ -72,11 +78,7 @@ class tokenVerif(APIView):
     authentication_classes = [CustomAuthentication]
     def post(self, request):
 
-        return Response(RetrieveUser(request.user,
-                                     context={'basket_info':request.user.basket.aggregate(summ=Sum('price'),
-                                                                           count=Count('basket')),
-                                              'user_id': request.user.id}
-                                     ).data)
+        return Response(RetrieveUser(request.user, context={'user_id':request.user.id}).data)
     
 
 class ProductAPI(viewsets.ViewSet):

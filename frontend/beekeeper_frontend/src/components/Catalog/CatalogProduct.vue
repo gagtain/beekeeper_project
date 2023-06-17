@@ -55,7 +55,7 @@
                     </div>
                     <div class="flex">
                       <AddBasket :id="pr.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></AddBasket>
-                      <FavoriteComp :id="pr.id"></FavoriteComp>
+                      <FavoriteComp :id="pr.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></FavoriteComp>
                     </div>
                   </div>
                 </section>

@@ -13,21 +13,31 @@
                         <div class="tovar_two">
                             <p class="black nebolsh">Категории: {{getCategoryList().join(', ')}}</p>
                         </div>
-                        <div class="tovar_two">
-                            <p class="normal-small kolvo">количество</p>
-                                                    <input type="number" value="1" max="22" class="size_tovar" name=""
-                                                        id="">
-                        </div>
-                        <div class="tovar_two">
-                            <p class="black malenkii">Цвет: класс</p>
-                        </div>
-                        <div class="tovar_two but">
-                            <select class="select_raz black" id="">
-                                <option value="" selected>100 г</option>
-                            </select>
-                        </div>
+                        
+                        <div class="variant tovar_two">
+                      <h3>Размер</h3>
+                      <div class="flex">
+                        <ul class="variant-ul">
+                          <li  @click="select_type_weigth(ls_w.id)" :class="type_weigth_id == ls_w.id ? 'active' : ''" v-for="ls_w, index in tovar.list_weight" :key="index" class="photo-album-li">
+                            <div class="h_sto">
+                              <p>{{ ls_w.weight }} гр</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                      <h3>Тип упаковки</h3>
+                      <div class="flex">
+                        <ul class="variant-ul">
+                          <li  @click="select_type_pack(ty_pck.id)" :class="type_pack_id == ty_pck.id ? 'active' : ''" v-for="ty_pck, index in tovar.type_packaging" :key="index" class="photo-album-li">
+                            <div class="h_sto">
+                              <p>{{ ty_pck.name }}</p>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
                         <div class="flex tovar_two jus-sp but but-b">
-                            <AddBasket :id="tovar.id"></AddBasket>
+                            <AddBasket :id="tovar.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></AddBasket>
                             <FavoriteComp :id="tovar.id"></FavoriteComp>
                         </div>
                         <div class="tovar_two">
@@ -75,7 +85,32 @@
 
 
 <style lang="css" src="../../assets/css/tovar.css" scoped></style>
+<style>
 
+.variant-ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+.photo-album-li:not(:first-child) {
+  margin-left: 1%;
+}
+.photo-album-li {
+  text-align: center;
+  float: left;
+  padding: 3px;
+  width: 90px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.photo-album-li:hover {
+  box-shadow: 0px 0px 2px 1px black;
+}
+.photo-album-li.active {
+    box-shadow: 0px 0px 2px 1px black;
+
+}
+</style>
 <style>
 .material-symbols-outlined{
     font-family: 'Material Symbols Outlined';
@@ -97,7 +132,9 @@ export default {
         return {
             tovar: null,
             isDescription: false,
-            isSostav: false
+            isSostav: false,
+      type_weigth_id: null,
+      type_pack_id: null
         }
     },
     async created(){
@@ -106,6 +143,8 @@ export default {
         if (response_tovar.status == 200){
             this.tovar = response_tovar.data
         }
+    this.type_weigth_id = this.tovar.list_weight[0].id
+    this.type_pack_id = this.tovar.type_packaging[0].id
     },
     methods: {
         getCategoryList(){
@@ -121,7 +160,15 @@ export default {
         },
         open_sostav(){
             this.isSostav = !this.isSostav
-        }
+        },
+    select_type_weigth(pk){
+      console.log(pk)
+      this.type_weigth_id = pk
+    },
+    select_type_pack(pk){
+      console.log(pk)
+      this.type_pack_id = pk
+    }
     }
 }
 </script>

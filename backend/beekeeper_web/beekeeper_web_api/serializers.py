@@ -6,7 +6,9 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 sys.path.append('.')
 from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging, ImageProduct, \
-    Type_weight, BasketItem
+    Type_weight, BasketItem, ProductItem, FavoriteItem
+
+
 
 
 class BasketInfoSerializer(serializers.Serializer):
@@ -79,24 +81,32 @@ class RetrieveProductRemoveToProdachen(serializers.ModelSerializer):
 class BasketSerializer(serializers.ModelSerializer):
 
     class Meta:
-        depth = 2
+        depth = 3
         model = BasketItem
-        fields = ['id','weight','product','count']
+        fields = ['id','productItem','count']
 
 
+class FavoriteSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = FavoriteItem
+        depth = 3
+        fields = ['id','productItem']
 class RetrieveUser(serializers.ModelSerializer):
-    basket_info = serializers.SerializerMethodField()
     basket = serializers.SerializerMethodField()
+    favorite_product = serializers.SerializerMethodField()
     class Meta:
         depth = 2 # исправить
         model = MainUser
-        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'basket_info', 'balance', 'balance_currency']
+        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'balance', 'balance_currency']
 
-    def get_basket_info(self, instance):
-        return BasketInfoSerializer(self.context['basket_info']).data
+
 
     def get_basket(self, instance):
         return BasketSerializer(BasketItem.objects.filter(user=self.context['user_id']), many=True).data
+
+    def get_favorite_product(self, instance):
+        return FavoriteSerializer(FavoriteItem.objects.filter(user=self.context['user_id']), many=True).data
 class UserRegisterSerializers(serializers.ModelSerializer):
     password2 = serializers.CharField()
 

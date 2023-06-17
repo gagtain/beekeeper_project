@@ -3,12 +3,12 @@
     <div class="kor_all_info auto w-sto">
       <p class="VAG small zakaz_info_of">Информация о корзине</p>
       <p class="m2">Товаров: {{ getCountBasket() }}</p>
-      <p class="m2">Вес: 1.25кг</p>
+      <p class="m2">Вес: {{getWeight()}}</p>
       <p class="m2">
         Цена:
         {{
           USER_STATE.basket.reduce(function (sum, elem) {
-            return sum + parseFloat(elem.product.price);
+            return sum + parseFloat(elem.productItem.product.price);
           }, 0)
         }}
       </p>
@@ -51,9 +51,23 @@ export default {
       });
       return count;
     },
+    getWeight(){
+      let weight = this.USER_STATE.basket.reduce(function (weight_s, elem) {
+        return weight_s + parseFloat(elem.productItem.weight.weight * elem.count);
+      }, 0);
+      let str_weight = ``
+      if (weight >= 1000){
+        weight = weight / 1000
+      str_weight = `${weight} кг`
+      }else{
+
+        str_weight = `${weight} гр`
+      }
+      return str_weight
+    },
     getSumm() {
       let summ = this.USER_STATE.basket.reduce(function (sum, elem) {
-        return sum + parseFloat(elem.product.price * elem.count);
+        return sum + parseFloat(elem.productItem.product.price * elem.count);
       }, 0);
       return summ
     },

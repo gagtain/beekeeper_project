@@ -21,8 +21,8 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
                               blank=True, default="images/ds.png")
     balance = MoneyField(default=0, max_digits=14, decimal_places=2, default_currency='RUB',
                          verbose_name="Сумма баланса")
-    basket = models.ManyToManyField(through='BasketItem', to='Product', related_name="basket")
-    favorite_product = models.ManyToManyField('Product', related_name='favorite_product')
+    basket = models.ManyToManyField(through='BasketItem', to='ProductItem', related_name="basket")
+    favorite_product = models.ManyToManyField(through='FavoriteItem', to='ProductItem', related_name='favorite_product')
     USERNAME_FIELD = 'username'
     is_staff = models.BooleanField(
         _("staff status"),
@@ -44,21 +44,38 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
 
+
 class BasketItem(models.Model):
+    """Связь корзины пользователя с объектом продукта с определенными параметрами"""
     user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
-    product = models.ForeignKey('Product', on_delete=models.CASCADE)
-    weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE) # ожидание в ТЗ информации о кастомном весе.
-    type_packaging = models.ForeignKey('Type_packaging', on_delete=models.CASCADE)
+    productItem = models.ForeignKey('ProductItem', on_delete=models.CASCADE, default=1)
     count = models.PositiveIntegerField(default=1)
 
+    def __str__(self):
+        return f"{self.user.username} {self.productItem}"
+
+
+class FavoriteItem(models.Model):
+    """Связь избранных пользователя с объектом продукта с определенными параметрами"""
+    user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
+    productItem = models.ForeignKey('ProductItem', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
-        return f"{self.user.username} {self.product.name} {self.weight.weight} {self.type_packaging.name}"
+        return f"{self.user.username} {self.productItem}"
 
+
+class ProductItem(models.Model):
+    """Объект продукта с определенными параметрами"""
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='productItemList')
+    weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE)  # ожидание в ТЗ информации о кастомном весе.
+    type_packaging = models.ForeignKey('Type_packaging', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.product.name} {self.weight} {self.type_packaging}"
 
 
 class UserBalanceChange(models.Model):
-    user = models.ForeignKey(MainUser, related_name='balance_changes', on_delete=models.CASCADE)
+    user: MainUser = models.ForeignKey(MainUser, related_name='balance_changes', on_delete=models.CASCADE)
     amount = MoneyField(default=0, max_digits=14, decimal_places=2,
                         verbose_name="Сумма транзакции", default_currency='RUB')
     tovar_list = models.ManyToManyField('Product', verbose_name="Товары заказа",
@@ -94,12 +111,12 @@ class ImageProduct(models.Model):
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="ImageProductList",
                                 verbose_name="Продукт")
 
+
 class Type_weight(models.Model):
     weight = models.FloatField(verbose_name="Вес в граммах")
 
     def __str__(self):
         return str(self.weight)
-
 
 
 class Product(models.Model):

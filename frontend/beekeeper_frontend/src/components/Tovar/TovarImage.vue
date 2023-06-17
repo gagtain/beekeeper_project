@@ -2,10 +2,10 @@
     <div class="images_tovar flex" id="galery_product">
                         <div class="min">
                             <ul class="jus-sp-ar">
-                                <li>
+                                <li class="li_min_img">
                                     <img @click="a($event)" class="tovar_img_the_min" :src="$api_root + image" alt="">
                                 </li>
-                                <li v-for="im, index in ImageProductList" :key="index">
+                                <li class="li_min_img" v-for="im, index in ImageProductList" :key="index">
                                     <img @click="a($event)" class="tovar_img_the_min" :src="$api_root + im.photo" alt="">
                                 </li>
                             </ul>

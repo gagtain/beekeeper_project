@@ -32,7 +32,7 @@ import store from '../../../store'
 export default({
     el: '#addBasket',
     name: 'AddBasket',
-    props: ['sm', 'id'],
+    props: ['sm', 'ProductItem'],
     data(){
         return {
             isBasket: false,
@@ -41,7 +41,7 @@ export default({
     created() {
                 let self = this
             let a = this.USER_STATE.basket.find(function(item){
-            if (item.product.id == self.id){
+            if (item.productItem.id == self.ProductItem.id){
                 return true
             }else{
                 return false
@@ -56,9 +56,9 @@ export default({
     },
     methods:{
         async removeBasketBtn(){
-            let response_add = await removeBasket(this.id)
+            let response_add = await removeBasket(this.ProductItem.product.id, undefined, undefined, this.ProductItem.id)
             if (response_add.status == 200){
-                store.dispatch('REMOVE_BASKET_ITEM', this.id)
+                store.dispatch('REMOVE_BASKET_ITEM', this.ProductItem.id)
                     this.isBasket = false
             }  
         },
