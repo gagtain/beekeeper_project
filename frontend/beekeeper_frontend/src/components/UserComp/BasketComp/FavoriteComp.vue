@@ -30,7 +30,7 @@ import store from "@/store";
 export default {
   el: "#favorite",
   name: "FavoriteComp",
-  props: ["id"],
+  props: ["ProductItem"],
   data() {
     return {
       isFavorite: false,
@@ -39,8 +39,10 @@ export default {
   setup() {},
   created() {
     let self = this;
+    console.log(this.USER_STATE.favorite_product)
     let a = this.USER_STATE.favorite_product.find(function (item) {
-      if (item.id == self.id) {
+      console.log(item.id, self.id)
+      if (item.productItem.id == self.ProductItem.id) {
         return true;
       } else {
         return false;
@@ -53,16 +55,18 @@ export default {
     }
   },
   methods: {
+    
     async addFavoriteBtn() {
-      let response_add = await addFavorite(this.id);
+      let response_add = await addFavorite(this.ProductItem.product.id, this.ProductItem.type_packaging.id,this.ProductItem.weight.id);
       if (response_add.status == 200) {
         this.isFavorite = true;
       }
     },
     async removeFavoriteBtn() {
-      let response_add = await removeFavorite(this.id);
+      console.log(this.ProductItem)
+      let response_add = await removeFavorite(this.ProductItem.product.id, undefined, undefined, this.ProductItem.id);
       if (response_add.status == 200) {
-        store.dispatch("REMOVE_FAVORITE_ITEM", this.id);
+        store.dispatch("REMOVE_FAVORITE_ITEM", this.ProductItem.id);
           this.isFavorite = false;
       }
     },

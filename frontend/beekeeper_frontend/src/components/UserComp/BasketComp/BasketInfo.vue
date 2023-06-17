@@ -14,7 +14,7 @@
       </p>
       <p class="m2">скидки:</p>
       <ul>
-        <li>Скидки на товары: 1000р</li>
+        <li>*в разработке*</li>
       </ul>
       <p id="is" class="small">
         Итоговая сумма:
@@ -22,13 +22,24 @@
           getSumm()
         }}
       </p>
-      <button class="w-sto">Оформить</button>
+      <button v-if="USER_STATE.basket.length" class="w-sto"> <div class="fon_btn"></div>Оформить</button>
+      <RouterLink v-else to="/catalog"><button class="w-sto"> <div class="fon_btn"></div> Добавить товар</button></RouterLink>
     </div>
   </div>
 </template>
 
 <style lang="css" src="../../../assets/css/account.css" scoped></style>
-
+<style scoped>
+.fon_btn{
+  background: url(http://localhost:8080/img/sot.0b9dac38.png) center no-repeat;
+opacity: 0.1;
+position: absolute;
+height: 100%;
+width: 100%;
+top: 0;
+left: 0;
+}
+</style>
 <script>
 import { mapGetters } from "vuex";
 export default {

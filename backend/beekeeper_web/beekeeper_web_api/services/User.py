@@ -64,6 +64,7 @@ class ServicesUser:
     @classmethod
     def removeFavoriteProduct(cls, user: MainUser, **kwargs):
         basketFilterList = user.favorite_product.filter(**kwargs)
+        print(kwargs)
         if not basketFilterList:
             return Response({'data': 'данный продукт не в списке избранных'}, status=status.HTTP_400_BAD_REQUEST)
         else:

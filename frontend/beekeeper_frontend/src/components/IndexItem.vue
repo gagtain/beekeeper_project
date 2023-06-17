@@ -3,7 +3,7 @@
     <div class="wrapper">
       <div
         class="absolute main-nak"
-        :class="wrapper_active ? 'active' : ''"
+        :class="wrapper_active ? 'actives' : ''"
       ></div>
       <div class="main relative">
         <div class="interactiv flex">
@@ -69,6 +69,7 @@
       </div>
     </div>
     <div class="sot">
+
       <div class="interactiv auto">
         <div class="flex w-sto text_in_sot">
           <p class="big auto main-text">Популярные товары</p>
@@ -87,68 +88,8 @@
                 :key="index"
               >
                 <div class="hex slide auto">
-                  <section class="product">
-                    <div class="product__photo">
-                      <div class="photo-container">
-                        <div class="photo-main">
-                          <div class="controls"></div>
-                          <img
-                            width="100%"
-                            height="100%"
-                            :src="`${$api_root}${pop_product.image}`"
-                            alt="green apple slice"
-                            class="w-sto h_sto"
-                          />
-                        </div>
-                        <TovarMinImageList
-                          :image="pop_product.image"
-                          :ImageProductList="pop_product.ImageProductList"
-                        ></TovarMinImageList>
-                      </div>
-                    </div>
-                    <div class="product__info">
-                      <div class="title">
-                        <p class="small-big product__name">
-                          {{ pop_product.name }}
-                        </p>
-                        <span class="very-small product__code"
-                          >COD: {{ pop_product.id }}
-                        </span>
-                      </div>
-                      <div class="price">
-                        <span class="product__price big">
-                          {{ pop_product.price }}
-                          <span class="product__price small">
-                            {{ pop_product.price_currency }}
-                          </span></span
-                        >
-                      </div>
-                      <div class="variant">
-                        <h3>Размер</h3>
-                        <div class="flex">
-                          <ul class="variant-ul">
-                            <li class="photo-album-li">
-                              <div class="h_sto">
-                                <p>100 гр</p>
-                              </div>
-                            </li>
-                            <li class="photo-album-li">
-                              <div class="h_sto">
-                                <p class="normal-small">250 гр</p>
-                              </div>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="product__text">
-                        <p class="small">{{ pop_product.description }}</p>
-                      </div>
-                      <div class="flex">
-                        <AddBasket :id="pop_product.id"></AddBasket>
-                        <FavoriteComp :id="pop_product.id"></FavoriteComp>
-                      </div>
-                    </div>
-                  </section>
+                  <PopularProduct :pr="pop_product"></PopularProduct>
+
                 </div>
               </swiper-slide>
             </swiper>
@@ -236,18 +177,14 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import { Autoplay, Navigation } from "swiper";
 import getCookie from "../additional_func/getCookie";
-import TovarMinImageList from "./AddtionalComp/TovarMinImageList.vue";
-import AddBasket from "./AddtionalComp/AddBasket.vue";
-import FavoriteComp from "./AddtionalComp/FavoriteComp.vue";
 import axios from "axios";
+import PopularProduct from "./AddtionalComp/PopularProduct.vue"
 export default {
   name: "IndexItem",
   components: {
     Swiper,
     SwiperSlide,
-    TovarMinImageList,
-    FavoriteComp,
-    AddBasket,
+    PopularProduct
   },
   async created() {
     console.log(this.$api_root);
@@ -276,7 +213,15 @@ export default {
     );
     document.head.appendChild(recaptchaScript);
   },
-  methods: {},
+  methods: {
+    select_type_weigth(pk){
+      console.log(pk)
+      this.type_weigth_id = pk
+    },
+    select_type_pack(pk){
+      console.log(pk)
+      this.type_pack_id = pk
+    }},
 
   setup() {
     return {
@@ -288,6 +233,8 @@ export default {
     return {
       popular_product: null,
       wrapper_active: false,
+      type_weigth_id: null,
+      type_pack_id: null
     };
   },
 };

@@ -62,54 +62,29 @@
 </template>
 
 
-<style lang="scss" src="../../assets/css/katalog/katalog.scss" scoped></style>
-<style lang="scss" src="../../assets/css/interactive/checkbox.scss" scoped></style>
-<style scoped>
-.photo-main img {
+<style lang="css" src="../../assets/css/main/main.css" scoped></style>
+<style lang="css" src="../../assets/css/main/hex-tovar.css" scoped></style>
+<style>
+.photo-main img{
   width: 100%;
-  height: 100%;
-}
-.back {
-  background: antiquewhite;
-  padding: 2%;
-  border-radius: 5px;  
-  min-height: 833px;
+height: 100%;
 }
 </style>
-
 <script>
 import AddBasket from '../AddtionalComp/AddBasket.vue';
 import TovarMinImageList from "../AddtionalComp/TovarMinImageList.vue";
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
+import CatalogProduct from '../Catalog/CatalogProduct.vue';
 export default({
     el:'#product_catalog',
     name:'CatalogProduct',
     props: ['pr'],
+    extends: CatalogProduct,
   components:{
     TovarMinImageList,
     AddBasket,
     FavoriteComp,
   },
-  data(){
-    return {
-      type_weigth_id: null,
-      type_pack_id: null
-    }
-  },
-  created(){
-    this.type_weigth_id = this.pr.list_weight[0].id
-    this.type_pack_id = this.pr.type_packaging[0].id
-  },
-  methods:{
-    select_type_weigth(pk){
-      console.log(pk)
-      this.type_weigth_id = pk
-    },
-    select_type_pack(pk){
-      console.log(pk)
-      this.type_pack_id = pk
-    }
-  }
 })
 
 </script>

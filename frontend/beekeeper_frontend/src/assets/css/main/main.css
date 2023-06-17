@@ -36,7 +36,7 @@
     transition: 2s ease;
     height: 100%;
 }
-.active{
+.actives{
     clip-path: polygon(0px 0px, 100% 0px, 100% 100%, 0% 100%);
 }
 

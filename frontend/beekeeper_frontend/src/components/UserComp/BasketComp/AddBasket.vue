@@ -39,8 +39,10 @@ export default({
             }
     },
     created() {
+        console.log(this.ProductItem)
                 let self = this
             let a = this.USER_STATE.basket.find(function(item){
+            console.log(item.productItem.id, self.ProductItem.id)
             if (item.productItem.id == self.ProductItem.id){
                 return true
             }else{
@@ -63,7 +65,7 @@ export default({
             }  
         },
         async addBasketBtn(){
-            let response_add = await addBasket(this.id)
+            let response_add = await addBasket(this.ProductItem.product.id, this.ProductItem.type_packaging.id,this.ProductItem.weight.id)
             if (response_add.status == 200){
                 this.isBasket = true
             }  

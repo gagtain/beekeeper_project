@@ -38,7 +38,7 @@
                     </div>
                         <div class="flex tovar_two jus-sp but but-b">
                             <AddBasket :id="tovar.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></AddBasket>
-                            <FavoriteComp :id="tovar.id"></FavoriteComp>
+                            <FavoriteComp :id="tovar.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></FavoriteComp>
                         </div>
                         <div class="tovar_two">
                             <p class="black malenkii">Подробности</p>
