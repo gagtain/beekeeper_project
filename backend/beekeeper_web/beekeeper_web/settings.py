@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tlr9d(mc+d8k7%dwly0rlb3v8w)lb1#lih%-sj1*stk$zg05gp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = bool(os.environ.get("DEBUG"))
 
 ALLOWED_HOSTS = ['94.139.247.128', 'localhost']
 
@@ -94,17 +94,28 @@ DATABASES = {
     }
 }
 """
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'beekeeper',
-        'USER': 'gagtain',
-        'PASSWORD': '13576422',
-        'HOST': 'localhost',
-        'PORT': '5432'
+if DEBUG == True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'beekeeper',
+            'USER': 'gagtain',
+            'PASSWORD': '13576422',
+            'HOST': 'localhost',
+            'PORT': '5432'
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'beekeeper',
+            'USER': 'gagtain',
+            'PASSWORD': '13576422',
+            'HOST': os.environ.get("DATABASE_HOST"),
+            'PORT': '5432'
+        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

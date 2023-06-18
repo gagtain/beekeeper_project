@@ -50,11 +50,7 @@
 
                             </div>
                             <div v-if="isDescription" class="context_text">
-                                <p class="malenkii black">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                    Aspernatur,
-                                    consectetur eius! Optio quas accusantium quis excepturi aut dicta totam cum atque
-                                    dolor
-                                    culpa aliquid vitae, ratione veritatis consequuntur maiores beatae.</p>
+                                <p class="malenkii black">{{ tovar.description }}</p>
 
                             </div>
                         </div>
