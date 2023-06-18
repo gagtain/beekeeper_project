@@ -32,6 +32,18 @@
     </div>
   </div>
   </div>
+  
+  <div v-if="!USER_STATE.basket.length"  style="width: 50%;margin: auto;margin-top: 10%;">
+                    
+                    <p style="font-size: 28px;" class="VAG">Список корзины пуст :(</p>
+                    <div class="select_size" >
+                      <router-link to="/catalog">
+                            <button style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 26px;padding: 2%;margin-top: 1%;" >
+                              Перейти в каталог
+                            </button>
+                          </router-link>
+                          </div>
+                  </div>
   </div>
 </template>
 

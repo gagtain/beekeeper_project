@@ -1,6 +1,9 @@
 .flex{
     display: flex;
 }
+* {
+    font-family: 'Roboto';
+}
 .auto{
     margin: auto;
 }

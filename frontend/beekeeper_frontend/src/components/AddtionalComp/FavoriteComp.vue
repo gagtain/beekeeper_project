@@ -97,6 +97,7 @@ export default {
     async removeFavoriteBtn() {
       let response_add = await removeFavorite(this.id, this.pack_id, this.wei_id);
       if (response_add.status == 200) {
+        this.$store.dispatch('REMOVE_FAVORITE_ITEM', response_add.data.id)
         this.isFavorite = false;
       }
     },

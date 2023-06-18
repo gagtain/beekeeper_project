@@ -26,7 +26,6 @@
 import addFavorite from "../../../additional_func/addFavorite";
 import removeFavorite from "../../../additional_func/removeFavorite";
 import { mapGetters } from "vuex";
-import store from "@/store";
 export default {
   el: "#favorite",
   name: "FavoriteComp",
@@ -66,7 +65,7 @@ export default {
       console.log(this.ProductItem)
       let response_add = await removeFavorite(this.ProductItem.product.id, undefined, undefined, this.ProductItem.id);
       if (response_add.status == 200) {
-        store.dispatch("REMOVE_FAVORITE_ITEM", this.ProductItem.id);
+        this.$store.dispatch('REMOVE_FAVORITE_ITEM', response_add.data.id)
           this.isFavorite = false;
       }
     },

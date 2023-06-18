@@ -16,15 +16,15 @@ services:
     networks: 
       - forwebapi
 
-  webapi:
+  webapi_one:
     build: 
       context: ../backend/
-    container_name: webapi
+    container_name: webapi_one
     environment:
       - DJANGO_SUPERUSER_PASSWORD=13
       - DEBUG=False
       - DATABASE_HOST=database
-    command: ["sh", "-c", "python manage.py makemigrations && python manage.py runserver 0.0.0.0:8000"]
+    command: ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python3 manage.py createsuperuser --noinput --username gag && python manage.py runserver 0.0.0.0:8000"]
     
     
     ports:
@@ -34,20 +34,7 @@ services:
     depends_on:
         database:
           condition: service_healthy
-          
-  online_store_vue:
-    build: 
-      context: ../frontend/beekeeper_frontend/
-    container_name: online_store_vue
-    
-    
-    ports:
-        - 8080:8080
-    networks: 
-      - forwebapi
-    depends_on:
-        database:
-          condition: service_healthy
+
 
 networks:
   forwebapi:

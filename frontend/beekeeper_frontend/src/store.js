@@ -36,8 +36,7 @@ const store = createStore({
       }
     },
     MUTATE_REMOVE_FAVORITE_ITEM: (state, id) =>{
-      
-      state.user.favorite_product = state.user.favorite_product.filter(b => b.id != id)
+      state.user.favorite_product = state.user.favorite_product.filter(b => b.productItem.id != id)
     }
   },
   actions:{
