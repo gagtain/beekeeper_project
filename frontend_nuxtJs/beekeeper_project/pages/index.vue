@@ -95,7 +95,10 @@
                 </swiper-slide>
 
               </swiper>
-              <LoadingComp v-else></LoadingComp>
+              <div v-else class="w-sto h_sto">
+
+                <LoadingComp></LoadingComp>
+              </div>
             </div>
           </div>
           <div class="block_info">
@@ -203,7 +206,6 @@
 
     },
     mounted() {
-      console.log(this.$store.getUser.username)
       self = this
     axios({
       url: `${this.$api_root}/api/v0.1/beekeeper_web_api/get_popular_product?size=5`,
@@ -229,11 +231,9 @@
     },
     methods: {
       select_type_weigth(pk){
-        console.log(pk)
         this.type_weigth_id = pk
       },
       select_type_pack(pk){
-        console.log(pk)
         this.type_pack_id = pk
       }},
   

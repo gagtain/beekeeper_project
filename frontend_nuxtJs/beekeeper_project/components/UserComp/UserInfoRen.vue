@@ -4,7 +4,7 @@
               <div class="w-sto h_sto s flex absolute">
                 <div class="auto edit-user_info h_sto">
                   <button
-                    onclick="edit_block_get()"
+                    onclick="alert('В разработке')"
                     class="edit-user_info_btn auto"
                   >
                     Изменить данные
@@ -26,7 +26,7 @@
                 <button class="edit-user_info_btn auto">Подтвердить</button>
               </div>
             </div>
-            <div class="user_zak">
+            <div class="user_zak" onclick="alert('В разработке')">
               <p class="small">Последний заказ</p>
               <div class="end_zakaz">
                 <div class="end_zakaz_img flex">
@@ -34,7 +34,7 @@
                     width="100%"
                     style="aspect-ratio: 1/1"
                     class="auto"
-                    src="images/2.png"
+                    src="../../assets/images/2.png"
                     alt=""
                   />
                 </div>

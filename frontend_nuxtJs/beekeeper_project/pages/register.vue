@@ -119,11 +119,10 @@ export default {
         value: {
             minLength: helpers.withMessage('Длинна не менее 8-ми символов', minLength(8)),
             required: helpers.withMessage('Требуется', required),
-            sameAsPassword: helpers.withMessage('Пароли не совпадают', sameAs(state.password.value))
+            sameAsPassword: helpers.withMessage('Пароли не совпадают', sameAs(computed(()=> state.password.value)))
         },
       },
     }
-    console.log(1234)
     const v$ = useVuelidate(rules, state)
 
     return { state, v$ }

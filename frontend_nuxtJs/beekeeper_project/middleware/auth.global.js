@@ -14,10 +14,18 @@ export default async (event) => {
           if (useCookie('refresh')){
               console.log('Есть рефреш')
               return // установить новый токен
+          }else{
+            if (event.href != '/login' && event.href != '/register'){
+              return navigateTo('/login')
+            }
           }
       }else{
-        console.log(1)
         stores.userSet(assess_response.data)
       }
+  }else{
+
+    if (event.href != '/login' && event.href != '/register'){
+      return navigateTo('/login')
+    }
   }
 }

@@ -75,10 +75,10 @@
               </div>
               <span class="material-symbols-outlined auto"> expand_more </span>
             </div>
-            <div v-else class="flex jus-sp user_in relative">
-                    <NuxtLink to="/register" class="normal-small auto"
+            <div v-else class="flex jus-sp user_in relative" style="min-width: 50%;">
+                    <NuxtLink no-prefetch to="/register" class=" auto"
                       >Регистрация</NuxtLink>
-                    <NuxtLink to="/login" class="normal-small auto"
+                    <NuxtLink no-prefetch to="/login" class=" auto"
                       >Вход</NuxtLink>
             </div>
           </div>

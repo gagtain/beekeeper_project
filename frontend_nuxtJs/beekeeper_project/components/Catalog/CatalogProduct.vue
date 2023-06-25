@@ -15,7 +15,7 @@
                   </div>
                   <div class="product__info">
                     <div class="title">
-                      <RouterLink :to="`/tovar/${pr.id}`"><p class="small-big product__name">{{ pr.name }}</p></RouterLink>
+                      <NuxtLink no-prefetch :to="`/tovar/${pr.id}`"><p class="small-big product__name">{{ pr.name }}</p></NuxtLink>
                       <span class="very-small product__code"
                         >COD: {{ pr.id }}</span
                       >
