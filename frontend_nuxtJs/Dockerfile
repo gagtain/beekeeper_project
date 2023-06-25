@@ -9,4 +9,5 @@ WORKDIR /app
 COPY ./beekeeper_project/.output .
 
 # собираем приложение для production с минификацией
+
 CMD node server/index.mjs
