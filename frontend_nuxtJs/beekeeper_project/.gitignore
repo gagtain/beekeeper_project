@@ -5,7 +5,6 @@
 dist
 
 # Node dependencies
-/node_modules/
 
 # Logs
 logs
