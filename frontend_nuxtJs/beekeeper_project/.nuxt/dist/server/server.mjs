@@ -2570,7 +2570,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: `http://localhost:8000/`
+      api_root: `http://94.139.247.128:8000/`
     }
   };
 });
