@@ -48,6 +48,15 @@ services:
     depends_on:
         database:
           condition: service_healthy
+  nginx:
+    build: ../nginx
+    container_name: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - online_store_vue
+    networks: 
+      - forwebapi
 
 networks:
   forwebapi:
