@@ -5,8 +5,8 @@ import sys
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 sys.path.append('.')
-from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging, ImageProduct, \
-    Type_weight, BasketItem, ProductItem, FavoriteItem
+from online_store.models import Product, MainUser, Category, Type_packaging, ImageProduct, \
+    Type_weight, BasketItem, ProductItem, FavoriteItem, Order
 
 
 
@@ -19,11 +19,7 @@ class BasketInfoSerializer(serializers.Serializer):
         fields = '__all__'
 
 
-class RetrieveUserBalanceChange(serializers.ModelSerializer):
-    class Meta:
-        model = UserBalanceChange
-        depth = 1
-        fields = ['amount', 'tovar_list', 'datetime']
+
 
 class RetrieveProduct(serializers.ModelSerializer):
     favorite = serializers.SerializerMethodField()
@@ -98,7 +94,7 @@ class RetrieveUser(serializers.ModelSerializer):
     class Meta:
         depth = 2 # исправить
         model = MainUser
-        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'balance', 'balance_currency']
+        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product']
 
 
 
@@ -131,4 +127,11 @@ class UserRegisterSerializers(serializers.ModelSerializer):
         )
 
         return user
-    
+
+
+class OrderSerializers(serializers.ModelSerializer):
+    product_list_transaction = BasketSerializer(many=True)
+    class Meta:
+        model = Order
+        depth = 3
+        fields = ['id','amount', 'user', 'product_list_transaction', 'datetime']

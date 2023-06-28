@@ -19,8 +19,6 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("email address"), blank=True)
     image = models.ImageField(upload_to="images/%Y/%m/%d/", verbose_name="Изображение пользователя",
                               blank=True, default="images/ds.png")
-    balance = MoneyField(default=0, max_digits=14, decimal_places=2, default_currency='RUB',
-                         verbose_name="Сумма баланса")
     basket = models.ManyToManyField(through='BasketItem', to='ProductItem', related_name="basket")
     favorite_product = models.ManyToManyField(through='FavoriteItem', to='ProductItem', related_name='favorite_product')
     USERNAME_FIELD = 'username'
@@ -44,48 +42,6 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.username
 
-
-class BasketItem(models.Model):
-    """Связь корзины пользователя с объектом продукта с определенными параметрами"""
-    user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
-    productItem = models.ForeignKey('ProductItem', on_delete=models.CASCADE, default=1)
-    count = models.PositiveIntegerField(default=1)
-
-    def __str__(self):
-        return f"{self.user.username} {self.productItem}"
-
-
-class FavoriteItem(models.Model):
-    """Связь избранных пользователя с объектом продукта с определенными параметрами"""
-    user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
-    productItem = models.ForeignKey('ProductItem', on_delete=models.CASCADE, default=1)
-
-    def __str__(self):
-        return f"{self.user.username} {self.productItem}"
-
-
-class ProductItem(models.Model):
-    """Объект продукта с определенными параметрами"""
-    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='productItemList')
-    weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE)  # ожидание в ТЗ информации о кастомном весе.
-    type_packaging = models.ForeignKey('Type_packaging', on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.product.name} {self.weight} {self.type_packaging}"
-
-
-class UserBalanceChange(models.Model):
-    user: MainUser = models.ForeignKey(MainUser, related_name='balance_changes', on_delete=models.CASCADE)
-    amount = MoneyField(default=0, max_digits=14, decimal_places=2,
-                        verbose_name="Сумма транзакции", default_currency='RUB')
-    tovar_list = models.ManyToManyField('Product', verbose_name="Товары заказа",
-                                        related_name="product_list_transaction")
-    datetime = models.DateTimeField(default=timezone.now, verbose_name="Время")
-
-    def save(self, *args, **kwargs):
-        self.user.balance += self.amount
-        self.user.save()
-        super().save(*args, **kwargs)
 
 
 class Type_packaging(models.Model):
@@ -135,3 +91,51 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+class ProductItem(models.Model):
+    """Объект продукта с определенными параметрами"""
+    product: Product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='productItemList')
+    weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE)  # ожидание в ТЗ информации о кастомном весе.
+    type_packaging = models.ForeignKey('Type_packaging', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.product.name} {self.weight} {self.type_packaging}"
+
+
+class BasketItem(models.Model):
+    """Связь корзины пользователя с объектом продукта с определенными параметрами"""
+    user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
+    productItem: ProductItem = models.ForeignKey('ProductItem', on_delete=models.CASCADE, default=1)
+    count = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.user.username} {self.productItem}"
+
+
+class FavoriteItem(models.Model):
+    """Связь избранных пользователя с объектом продукта с определенными параметрами"""
+    user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
+    productItem = models.ForeignKey('ProductItem', on_delete=models.CASCADE, default=1)
+
+    def __str__(self):
+        return f"{self.user.username} {self.productItem}"
+
+
+
+
+class Order(models.Model):
+    user: MainUser = models.ForeignKey(MainUser, related_name='user_order', on_delete=models.CASCADE)
+    amount = MoneyField(default=0, max_digits=14, decimal_places=2,
+                        verbose_name="Сумма транзакции", default_currency='RUB')
+    datetime = models.DateTimeField(auto_now_add=True, verbose_name="Время")
+
+class OrderItem(models.Model):
+    user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)
+    order: Order = models.ForeignKey(Order, on_delete=models.CASCADE, related_name="product_list_transaction",
+                                     default=21)
+    productItem: ProductItem = models.ForeignKey('ProductItem', on_delete=models.CASCADE)
+    count = models.PositiveIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.user.username} {self.productItem}"
+

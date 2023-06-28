@@ -1,7 +1,9 @@
 <template>
+  
   <div class="register_zakaz">
-    <div class="kor_all_info auto w-sto">
-      <p class="VAG small zakaz_info_of">Информация о корзине</p>
+    <button v-if="USER_STATE.basket.length" class="w-sto" @click="submin_order()"> <div class="fon_btn"></div>Оформить</button>
+      <RouterLink v-else to="/catalog"><button class="w-sto"> <div class="fon_btn"></div> Добавить товар</button></RouterLink>
+    <div class="kor_all_info auto w-sto m-2">
       <p class="m2">Товаров: {{ getCountBasket() }}</p>
       <p class="m2">Вес: {{getWeight()}}</p>
       <p class="m2">
@@ -22,8 +24,7 @@
           getSumm()
         }}
       </p>
-      <button v-if="USER_STATE.basket.length" class="w-sto"> <div class="fon_btn"></div>Оформить</button>
-      <RouterLink v-else to="/catalog"><button class="w-sto"> <div class="fon_btn"></div> Добавить товар</button></RouterLink>
+      
     </div>
   </div>
 </template>
@@ -41,6 +42,7 @@ left: 0;
 }
 </style>
 <script>
+import addOrder from '~/additional_func/addOrder';
 export default {
   el: "#reg_zakaz",
   name: "BasketInfo",
@@ -79,6 +81,13 @@ export default {
       }, 0);
       return summ
     },
+    async submin_order(){
+      let response_order = await addOrder()
+      if (response_order.status == 200){
+        this.$router.push('/orders')
+      }
+      
+    }
   },
 };
 </script>

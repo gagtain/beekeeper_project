@@ -65,6 +65,11 @@
                       <p class="normal-small auto">Корзина</p>
                   </li>
                 </NuxtLink>
+                    <NuxtLink to="/orders">
+                  <li class="flex">
+                      <p class="normal-small auto">Заказы</p>
+                  </li>
+                </NuxtLink>
                   <NuxtLink to="/favorite">
                   <li class="flex">
                     <NuxtLink to="/favorite" class="normal-small auto"

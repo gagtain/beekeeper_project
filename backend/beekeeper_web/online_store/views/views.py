@@ -1,7 +1,6 @@
 from django.http import HttpRequest
 from django.shortcuts import render
 from ..models import MainUser
-from ..services.User import ServicesUser
 from ..services.product import ServicesProduct
 
 

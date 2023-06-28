@@ -9,8 +9,10 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+
+from .Part_API.OrderAPI import OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI
 from .jwt_token.auth import CustomAuthentication
-from .serializers import RetrieveUserBalanceChange, RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
+from .serializers import RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
     UserRegisterSerializers, CategoryRetriveSerializers, Type_packagingRetriveSerializers, BasketInfoSerializer, \
     BasketSerializer
 from .services.User import ServicesUser, ProductServises, CategoryServises, Type_packagingServises
@@ -21,11 +23,6 @@ sys.path.append('.')
 class UserAPI(viewsets.ViewSet):
     authentication_classes = [CustomAuthentication]
 
-    def GetLastOrder(self, request):
-        last_order = ServicesUser.getLastOrder(request.user.id)
-        # last_order = ServicesUser.getLastOrder(1)
-        serializer = RetrieveUserBalanceChange(last_order)
-        return Response(serializer.data)
 
     def GetBasket(self, request):
         basket = ServicesUser.getBasket(request.user)
@@ -121,7 +118,7 @@ class UserRegistAPI(CreateAPIView):
             return Response({'data': 'Пользователь создан'}, status=status.HTTP_201_CREATED, headers=headers)
 
 
-
-
+class OrderAPI(viewsets.ViewSet, OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI):
+    authentication_classes = [CustomAuthentication]
 
 

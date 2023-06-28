@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import MainUser, Product, UserBalanceChange, Category, Type_packaging, ImageProduct, Type_weight, BasketItem
+from .models import MainUser, Product, Category, Type_packaging, ImageProduct, Type_weight, BasketItem, ProductItem,\
+    Order, OrderItem
 
 # Register your models here.
 class BasketItemInline(admin.TabularInline):
@@ -17,8 +18,10 @@ class AccountAdmin(admin.ModelAdmin):
 admin.site.register(MainUser, AccountAdmin)
 admin.site.register(Product)
 admin.site.register(BasketItem)
-admin.site.register(UserBalanceChange)
+admin.site.register(ProductItem)
 admin.site.register(Category)
 admin.site.register(ImageProduct)
+admin.site.register(Order)
+admin.site.register(OrderItem)
 admin.site.register(Type_packaging)
 admin.site.register(Type_weight)

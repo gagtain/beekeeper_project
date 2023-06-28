@@ -26,15 +26,14 @@
                 <button class="edit-user_info_btn auto">Подтвердить</button>
               </div>
             </div>
-            <div class="user_zak" onclick="alert('В разработке')">
+            <div class="user_zak relative">
               <p class="small">Последний заказ</p>
-              <div class="end_zakaz">
+              <div v-if="last_order.amount" class="end_zakaz">
                 <div class="end_zakaz_img flex">
                   <img
-                    width="100%"
                     style="aspect-ratio: 1/1"
-                    class="auto"
-                    src="../../assets/images/2.png"
+                    class="auto w-sto"
+                    :src="$api_root + last_order.product_list_transaction[0].productItem.product.image"
                     alt=""
                   />
                 </div>
@@ -42,7 +41,7 @@
                   <div class="auto end_zakaz_info_p_all">
                     <div class="block w-sto">
                       <p class="normal-small end_zakaz_info_p">Цена:</p>
-                      <span class="info_end_zakaz_span">400 р</span>
+                      <span class="info_end_zakaz_span">{{ last_order.amount }}</span>
                     </div>
                     <div class="block w-sto">
                       <p class="normal-small end_zakaz_info_p">
@@ -57,6 +56,16 @@
                   </div>
                 </div>
               </div>
+              <LoadingComp v-else-if="isLastOrder_loading"></LoadingComp>
+              <div class="auto" v-else>
+                    <p style="font-size: 28px;" class="VAG">Список заказов пуст :(</p>
+                    <div class="select_size" >
+                      <router-link to="/basket">
+                            <button style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 26px;padding: 2%;margin-top: 1%;" >
+                              Перейти в корзину
+                            </button>
+                          </router-link>
+                          </div></div>
             </div>
           </div>
 </template>
@@ -65,8 +74,39 @@
 <style lang="css" src="../../assets/css/account.css" scoped></style>
 
 <script>
+import getLastOrder from "~/additional_func/getLastOrder"
+import LoadingComp from '../AddtionalComp/LoadingComp.vue'
 export default {
+  components: { LoadingComp },
     el: '#UserInfoRen',
-    name: 'UserInfoRen'
+    name: 'UserInfoRen',
+    data(){
+      return{
+        last_order: {
+          amount: null,
+          product_list_transaction:[{
+            productItem:{
+              product:{
+              image: null
+            }
+            }
+            
+          }]
+        },
+        isLastOrder_loading: true
+      }
+    },
+    
+    async mounted() {
+      let response_last_order = await getLastOrder()
+      if (response_last_order.code != 400){
+        this.last_order = response_last_order.data
+        console.log(123213)
+        this.isLastOrder_loading = false
+      }else{
+        this.isLastOrder_loading = false
+      }
+       
+    },
 }
 </script>

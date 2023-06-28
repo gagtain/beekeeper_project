@@ -10,19 +10,13 @@ from beekeeper_web_api.serializers import BasketSerializer, FavoriteSerializer
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
-from online_store.models import UserBalanceChange, Product, MainUser, Category, Type_packaging, ImageProduct, \
+from online_store.models import Product, MainUser, Category, Type_packaging, ImageProduct, \
     Type_weight, BasketItem, ProductItem, FavoriteItem
 
 
 class ServicesUser:
 
-    @classmethod
-    def getLastOrder(cls, user_id: int) -> UserBalanceChange:
-        LastOrder = UserBalanceChange.objects.filter(user__id=user_id).last()
-        if LastOrder:
-            return LastOrder
-        else:
-            raise NotFound("У пользователя нет заказов")
+
 
     @classmethod
     def getBasket(cls, user: MainUser) -> list[Product]:

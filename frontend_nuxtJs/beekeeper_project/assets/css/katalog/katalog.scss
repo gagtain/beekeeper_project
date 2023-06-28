@@ -150,7 +150,7 @@
     display: inline-block;
     padding: 1.5em 3.1em;
     border: none;
-    border-radius: 50px;
+    border-radius: 12px;
     font-size: 0.8em;
     font-weight: 700;
     color: #000;
@@ -174,8 +174,8 @@
     cursor: pointer;
 }
 .fav-btn{
-    border-radius: 50px;
-    background-color: rgb(245, 173, 40);
+    border-radius: 12px;
+    background-color: transparent;
 }
 .fav-btn img{
     height: 25px;

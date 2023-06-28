@@ -67,6 +67,12 @@
 .m2{
     margin-top: 2%;
 }
+.w-50{
+    width: 50%;
+}
+.m-2{
+    margin-top: 2%;
+}
 @media (max-width: 1400px)  {
     .interactiv {
         width: 100%;

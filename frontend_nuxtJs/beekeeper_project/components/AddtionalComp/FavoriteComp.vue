@@ -26,20 +26,15 @@
 </template>
 <style scoped>
 .fav-btn {
-  box-shadow: 2px 2px 25px -7px black;
   height: 53px;
   cursor: pointer;
   width: 53px;
-  border-radius: 50%;
-  background-color: rgb(245, 173, 40);
+  
+  border-radius: 12px;
+    background-color: transparent;
   border: none;
 
   margin-left: 1%;
-}
-.fav-btn:active {
-  background-color: rgb(245, 173, 40);
-  scale: 0.96;
-  color: #000;
 }
 .fav-btn img {
   height: 25px;
