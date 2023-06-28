@@ -1,0 +1,5 @@
+const orders_vue_vue_type_style_index_1_scoped_2c72354e_lang = ".kor[data-v-2c72354e]{min-height:50vh}.name_order_product[data-v-2c72354e]{-webkit-line-clamp:2;-webkit-box-orient:vertical;display:-webkit-box;line-height:16px;overflow:hidden;text-overflow:ellipsis}.order_description[data-v-2c72354e],.product_order[data-v-2c72354e]{width:50%}.order[data-v-2c72354e]{border:2px solid gray;margin-inline:auto;padding:2%;width:60%}.img_order_product_div[data-v-2c72354e]{width:80px}.img_order_product[data-v-2c72354e]{aspect-ratio:1/1;width:100%}.product_order_info[data-v-2c72354e]{display:flex}.info_order_product_div[data-v-2c72354e]{padding:2% 0;text-align:left}.order_description[data-v-2c72354e]{text-align:left}@media (max-width:1000px){.order[data-v-2c72354e]{display:block}.order_description[data-v-2c72354e],.product_order[data-v-2c72354e]{width:100%}}@media (max-width:500px){.order[data-v-2c72354e]{width:100%}}";
+export {
+  orders_vue_vue_type_style_index_1_scoped_2c72354e_lang as default
+};
+//# sourceMappingURL=orders-styles-2.mjs-a1c936ae.js.map

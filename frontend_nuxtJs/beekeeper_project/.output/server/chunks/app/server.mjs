@@ -1235,7 +1235,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/basket-ac24474f.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/basket-44d33176.mjs').then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -1243,7 +1243,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/catalog-e53f8811.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/catalog-16910c44.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1251,7 +1251,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/favorite-f159b958.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/favorite-87ad1683.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -1259,7 +1259,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-ae07fe48.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-7fcbdebe.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1270,12 +1270,20 @@ const _routes = [
     component: () => import('./_nuxt/login-90bb0d94.mjs').then((m) => m.default || m)
   },
   {
+    name: "orders",
+    path: "/orders",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/orders-c3cddeba.mjs').then((m) => m.default || m)
+  },
+  {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
     path: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.path) ?? "/profile",
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/profile-fe27ae67.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/profile-d0795aea.mjs').then((m) => m.default || m)
   },
   {
     name: "register",
@@ -1291,7 +1299,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-b3a453f1.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-76747627.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1363,7 +1371,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "http://94.139.247.128:8000/";
+let api_root = "http://localhost:8000/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -1765,7 +1773,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: `http://94.139.247.128:8000/`
+      api_root: `http://localhost:8000/`
     }
   };
 });
@@ -1841,11 +1849,11 @@ const _sfc_main$3 = /* @__PURE__ */ defineNuxtComponent({
 }, "$TBXt0gpp6A");
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_NuxtLink = __nuxt_component_0$1;
-  _push(`<div${ssrRenderAttrs(mergeProps({ id: "header" }, _attrs))} data-v-7cc160b2><div class="menu" style="${ssrRenderStyle({ "background": "linear-gradient(45deg, yellow, orange)" })}" data-v-7cc160b2><div class="absolute w-sto h_sto g" data-v-7cc160b2></div><div class="interactiv h_sto" data-v-7cc160b2><div class="w-sto name_org flex" id="mob_mob_block" data-v-7cc160b2><p class="auto" data-v-7cc160b2>Уварово пасечник</p></div><div class="menu_" data-v-7cc160b2><div class="logo relative" data-v-7cc160b2><div class="logo-page flex absolute" data-v-7cc160b2><img${ssrRenderAttr("src", _imports_0)} class="logo_img auto" alt="" data-v-7cc160b2></div></div><div class="context_menu context_menu_info" data-v-7cc160b2><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_active" : "", "menu_items mob_men relative"])}" id="mob_hed" data-v-7cc160b2><span class="${ssrRenderClass(_ctx.is_menu_mobile ? "menu_pop_mob_active" : "")}" data-v-7cc160b2></span></div><div class="menu_items" id="deks_hed" data-v-7cc160b2>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ id: "header" }, _attrs))} data-v-55b323af><div class="menu" style="${ssrRenderStyle({ "background": "linear-gradient(45deg, yellow, orange)" })}" data-v-55b323af><div class="absolute w-sto h_sto g" data-v-55b323af></div><div class="interactiv h_sto" data-v-55b323af><div class="w-sto name_org flex" id="mob_mob_block" data-v-55b323af><p class="auto" data-v-55b323af>Уварово пасечник</p></div><div class="menu_" data-v-55b323af><div class="logo relative" data-v-55b323af><div class="logo-page flex absolute" data-v-55b323af><img${ssrRenderAttr("src", _imports_0)} class="logo_img auto" alt="" data-v-55b323af></div></div><div class="context_menu context_menu_info" data-v-55b323af><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_active" : "", "menu_items mob_men relative"])}" id="mob_hed" data-v-55b323af><span class="${ssrRenderClass(_ctx.is_menu_mobile ? "menu_pop_mob_active" : "")}" data-v-55b323af></span></div><div class="menu_items" id="deks_hed" data-v-55b323af>`);
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<p class="menu_items_text" data-v-7cc160b2${_scopeId}>Главная</p>`);
+        _push2(`<p class="menu_items_text" data-v-55b323af${_scopeId}>Главная</p>`);
       } else {
         return [
           createVNode("p", { class: "menu_items_text" }, "Главная")
@@ -1854,11 +1862,11 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><div class="menu_items flex relative" id="deks_hed" data-v-7cc160b2>`);
+  _push(`</div><div class="menu_items flex relative" id="deks_hed" data-v-55b323af>`);
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/catalog" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<p class="menu_items_text" data-v-7cc160b2${_scopeId}>Товары</p>`);
+        _push2(`<p class="menu_items_text" data-v-55b323af${_scopeId}>Товары</p>`);
       } else {
         return [
           createVNode("p", { class: "menu_items_text" }, "Товары")
@@ -1867,13 +1875,13 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`<span class="material-symbols-outlined" data-v-7cc160b2> expand_more </span></div><div class="menu_items no_b_border" data-v-7cc160b2><div class="container relative" data-v-7cc160b2><input class="input" type="text" placeholder="Search" data-v-7cc160b2><div class="zone_search absolute" data-v-7cc160b2></div></div></div></div><div class="context_menu user_context" data-v-7cc160b2>`);
+  _push(`<span class="material-symbols-outlined" data-v-55b323af> expand_more </span></div><div class="menu_items no_b_border" data-v-55b323af><div class="container relative" data-v-55b323af><input class="input" type="text" placeholder="Search" data-v-55b323af><div class="zone_search absolute" data-v-55b323af></div></div></div></div><div class="context_menu user_context" data-v-55b323af>`);
   if (_ctx.$store.getUser.username != null && typeof _ctx.$store.getUser.username !== "undefined") {
-    _push(`<div class="flex jus-sp user_in relative" data-v-7cc160b2><img class="user_img"${ssrRenderAttr("src", _ctx.$api_root + _ctx.$store.getUser.image)} alt="" data-v-7cc160b2><div class="flex w-sto h-sto from_name" data-v-7cc160b2><p class="menu_items_text user_name auto" data-v-7cc160b2>${ssrInterpolate(_ctx.$store.getUser.username)}</p></div><div class="context_menu_ absolute" data-v-7cc160b2><ul data-v-7cc160b2>`);
+    _push(`<div class="flex jus-sp user_in relative" data-v-55b323af><img class="user_img"${ssrRenderAttr("src", _ctx.$api_root + _ctx.$store.getUser.image)} alt="" data-v-55b323af><div class="flex w-sto h-sto from_name" data-v-55b323af><p class="menu_items_text user_name auto" data-v-55b323af>${ssrInterpolate(_ctx.$store.getUser.username)}</p></div><div class="context_menu_ absolute" data-v-55b323af><ul data-v-55b323af>`);
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/profile" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-7cc160b2${_scopeId}><p class="normal-small auto" data-v-7cc160b2${_scopeId}>Аккаунт</p></li>`);
+          _push2(`<li class="flex" data-v-55b323af${_scopeId}><p class="normal-small auto" data-v-55b323af${_scopeId}>Аккаунт</p></li>`);
         } else {
           return [
             createVNode("li", { class: "flex" }, [
@@ -1887,7 +1895,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/basket" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-7cc160b2${_scopeId}><p class="normal-small auto" data-v-7cc160b2${_scopeId}>Корзина</p></li>`);
+          _push2(`<li class="flex" data-v-55b323af${_scopeId}><p class="normal-small auto" data-v-55b323af${_scopeId}>Корзина</p></li>`);
         } else {
           return [
             createVNode("li", { class: "flex" }, [
@@ -1898,10 +1906,24 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       }),
       _: 1
     }, _parent));
+    _push(ssrRenderComponent(_component_NuxtLink, { to: "/orders" }, {
+      default: withCtx((_, _push2, _parent2, _scopeId) => {
+        if (_push2) {
+          _push2(`<li class="flex" data-v-55b323af${_scopeId}><p class="normal-small auto" data-v-55b323af${_scopeId}>Заказы</p></li>`);
+        } else {
+          return [
+            createVNode("li", { class: "flex" }, [
+              createVNode("p", { class: "normal-small auto" }, "Заказы")
+            ])
+          ];
+        }
+      }),
+      _: 1
+    }, _parent));
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/favorite" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-7cc160b2${_scopeId}>`);
+          _push2(`<li class="flex" data-v-55b323af${_scopeId}>`);
           _push2(ssrRenderComponent(_component_NuxtLink, {
             to: "/favorite",
             class: "normal-small auto"
@@ -1936,9 +1958,9 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       }),
       _: 1
     }, _parent));
-    _push(`</ul></div><span class="material-symbols-outlined auto" data-v-7cc160b2> expand_more </span></div>`);
+    _push(`</ul></div><span class="material-symbols-outlined auto" data-v-55b323af> expand_more </span></div>`);
   } else {
-    _push(`<div class="flex jus-sp user_in relative" style="${ssrRenderStyle({ "min-width": "50%" })}" data-v-7cc160b2>`);
+    _push(`<div class="flex jus-sp user_in relative" style="${ssrRenderStyle({ "min-width": "50%" })}" data-v-55b323af>`);
     _push(ssrRenderComponent(_component_NuxtLink, {
       "no-prefetch": "",
       to: "/register",
@@ -1973,11 +1995,11 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }, _parent));
     _push(`</div>`);
   }
-  _push(`</div></div></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_active" : "", "absolute menu_pop_mob"])}" data-v-7cc160b2><div class="h_sto w-sto sote" data-v-7cc160b2><div class="logo-sote auto" data-v-7cc160b2><div class="logo-page flex auto" data-v-7cc160b2><img${ssrRenderAttr("src", _ctx.$api_root + "static/online_store/images/logo.png")} class="logo_img auto" alt="" data-v-7cc160b2></div></div><p class="VAG menu_mob_p_org_name small" data-v-7cc160b2>Уварово пасечник</p><ul data-v-7cc160b2>`);
+  _push(`</div></div></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_active" : "", "absolute menu_pop_mob"])}" data-v-55b323af><div class="h_sto w-sto sote" data-v-55b323af><div class="logo-sote auto" data-v-55b323af><div class="logo-page flex auto" data-v-55b323af><img${ssrRenderAttr("src", _ctx.$api_root + "static/online_store/images/logo.png")} class="logo_img auto" alt="" data-v-55b323af></div></div><p class="VAG menu_mob_p_org_name small" data-v-55b323af>Уварово пасечник</p><ul data-v-55b323af>`);
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-7cc160b2${_scopeId}>Главная</li>`);
+        _push2(`<li data-v-55b323af${_scopeId}>Главная</li>`);
       } else {
         return [
           createVNode("li", null, "Главная")
@@ -1989,7 +2011,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/additional" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-7cc160b2${_scopeId}>О нас</li>`);
+        _push2(`<li data-v-55b323af${_scopeId}>О нас</li>`);
       } else {
         return [
           createVNode("li", null, "О нас")
@@ -2001,7 +2023,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/zakaz_list" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-7cc160b2${_scopeId}>Заказы</li>`);
+        _push2(`<li data-v-55b323af${_scopeId}>Заказы</li>`);
       } else {
         return [
           createVNode("li", null, "Заказы")
@@ -2013,7 +2035,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/polit" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-7cc160b2${_scopeId}>Политика соглашения</li>`);
+        _push2(`<li data-v-55b323af${_scopeId}>Политика соглашения</li>`);
       } else {
         return [
           createVNode("li", null, "Политика соглашения")
@@ -2025,7 +2047,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/add_money" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-7cc160b2${_scopeId}>Пополнить счет</li>`);
+        _push2(`<li data-v-55b323af${_scopeId}>Пополнить счет</li>`);
       } else {
         return [
           createVNode("li", null, "Пополнить счет")
@@ -2034,7 +2056,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</ul></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_zatem_active" : "", "absolute menu_pop_mob_zatem"])}" data-v-7cc160b2></div></div>`);
+  _push(`</ul></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_zatem_active" : "", "absolute menu_pop_mob_zatem"])}" data-v-55b323af></div></div>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -2042,7 +2064,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/HeadersBase.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-7cc160b2"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-55b323af"]]);
 const interpolatePath = (route, match) => {
   return match.path.replace(/(:\w+)\([^)]+\)/g, "$1").replace(/(:\w+)[?+*]/g, "$1").replace(/:\w+/g, (r) => {
     var _a;
