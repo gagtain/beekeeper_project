@@ -14,7 +14,7 @@ export const useMainStore = defineStore('main', {
 
       }]
     },
-    catalog_list: null,
+    catalog_list: [],
     assess_token: ''
   }),
   actions: {

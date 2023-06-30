@@ -49,8 +49,8 @@ export default {
       sorteredNew: false,
     };
   },
-  methods: {
     props: ["catalog_list"],
+  methods: {
       sorteredAlfFunc() {
           let a = this.$store.getCatalog_list.sort((x, y) => x.name.localeCompare(y.name));
           this.sorteredAlf = !this.sorteredAlf

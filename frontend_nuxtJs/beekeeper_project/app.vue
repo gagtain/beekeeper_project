@@ -44,6 +44,8 @@ export default defineNuxtComponent({
   },
   created(){
 
-  }
+  },
+  watch: {
+}
 })
 </script>

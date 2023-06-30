@@ -32,10 +32,7 @@
               <span class="material-symbols-outlined"> expand_more </span>
             </div>
             <div class="menu_items no_b_border">
-              <div class="container relative">
-                <input class="input" type="text" placeholder="Search" />
-                <div class="zone_search absolute"></div>
-              </div>
+                <SeacrhComp></SeacrhComp>
             </div>
           </div>
           <div class="context_menu user_context">
@@ -115,7 +112,6 @@
     <div @click="mob_menu_click()" :class="is_menu_mobile ? 'menu_pop_mob_zatem_active' : ''" class="absolute menu_pop_mob_zatem"></div>
   </div>
 </template>
-<style src="../assets/css/interactive/search.css" scoped></style>
 <style src="../assets/css/interactive/headers.css" scoped></style>
 <style>
 a{

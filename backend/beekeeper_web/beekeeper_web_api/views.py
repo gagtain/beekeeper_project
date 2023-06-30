@@ -11,6 +11,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 from .Part_API.OrderAPI import OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI
+from .Part_API.ProductAPI import ProductFilterName
 from .jwt_token.auth import CustomAuthentication
 from .serializers import RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
     UserRegisterSerializers, CategoryRetriveSerializers, Type_packagingRetriveSerializers, BasketInfoSerializer, \
@@ -78,7 +79,7 @@ class tokenVerif(APIView):
         return Response(RetrieveUser(request.user, context={'user_id':request.user.id}).data)
     
 
-class ProductAPI(viewsets.ViewSet):
+class ProductAPI(viewsets.ViewSet, ProductFilterName):
     authentication_classes = [CustomAuthentication]
 
     def get_popular(self, request):

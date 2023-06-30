@@ -1,11 +1,16 @@
-@use postcss-color-function;
-@use postcss-nested;
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,700,900');
+
 
 /* Base styling */
 
 .container{
     width: 300px;
+}
+.zone_search{
+    width: 10%;
+    height: 100%;
+    right: 5px;
+    top: 0;
+    cursor: pointer;
 }
 .container:hover {
         border-bottom: none;

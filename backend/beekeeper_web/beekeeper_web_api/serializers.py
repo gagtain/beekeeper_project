@@ -19,7 +19,18 @@ class BasketInfoSerializer(serializers.Serializer):
         fields = '__all__'
 
 
+class RetrieveClearAllOptionalProduct(serializers.ModelSerializer):
+    def __init__(self, *args, **kwargs):
+        """Создание динамических полей сериализатора"""
+        self.Meta.fields = kwargs['context']['fields'] if not ('__all__' in kwargs['context']['fields']) else '__all__'
 
+        super().__init__(self, *args, **kwargs)
+
+
+    class Meta:
+        depth = 3
+        model = Product
+        fields = '__all__'
 
 class RetrieveProduct(serializers.ModelSerializer):
     favorite = serializers.SerializerMethodField()

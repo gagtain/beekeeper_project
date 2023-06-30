@@ -12,13 +12,14 @@
     <div class="sot-ob">
       <div class="wrapper-product w-sto flex">
         <div class="interactiv auto back">
+        <p style="margin-left: 5%;" class="small" v-if="filters">{{JSON.parse(this.$route.query.filter).name}}</p>
           <div class="flex w-sto product_div">
             <div class="block filter_div">
               <div class="filter-product" id="filter_desk">
         <FilterCatalog :category_list="category_list" :type_packaging="type_packaging" :catalog_list="catalog_list"></FilterCatalog>
               </div>
             </div>
-            <div class="product_osnov">
+            <div class="product_osnov relative">
               <div class="sorted_div flex jus-sp">
                   
         <SortedCatalog :catalog_list="catalog_list"></SortedCatalog>
@@ -32,9 +33,23 @@
                 </div>
               </div>
               <div
-                  v-if="$store.getCatalog_list" class="w-sto product-list flex">
+                  v-if="$store.getCatalog_list.length" class="w-sto product-list flex">
                 <CatalogProduct v-for="pr in $store.getCatalog_list" :key="pr.id" :pr="pr" ></CatalogProduct>
               </div>
+              <LoadingComp v-else-if="!catalog_loads"></LoadingComp>
+              <div v-else style="width: 50%;margin: auto;margin-top: 10%;">
+                    <div style="text-align: center;" class="flex w-sto">
+
+                      <p style="font-size: 28px;" class="VAG auto">Товаров с выбранными параметрами нету :(</p>
+                    </div>
+                    <div class="select_size" >
+                      <NuxtLink to="/catalog">
+                            <button @click="clear_filter()" style="background: rgb(255, 188, 65); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 26px;padding: 2%;margin-top: 1%;" >
+                              Сбросить настройки
+                            </button>
+                          </NuxtLink>
+                          </div>
+                  </div>
             </div>
           </div>
         </div>
@@ -64,14 +79,17 @@ import FilterCatalog from "~/components/Catalog/FilterCatalog.vue";
 import SortedCatalog from '~/components/Catalog/SortedCatalog.vue';
 import CatalogProduct from '~/components/Catalog/CatalogProduct.vue';
 import getCategorylist from "~/additional_func/getCategoryList";
+import getSearchNameproduct from "~/additional_func/getSearchNameProduct";
 import getType_packaging_list from "~/additional_func/getType_packaging_list";
+import LoadingComp from '../components/AddtionalComp/LoadingComp.vue';
 export default {
   el: "#catalog",
   name: "CatalogItem",
   components:{
     FilterCatalog,
     SortedCatalog,
-    CatalogProduct
+    CatalogProduct,
+    LoadingComp
   },
   data() {
     return {
@@ -96,18 +114,40 @@ export default {
       filter_teleport: false,
       category_list: [],
       type_packaging: [],
-      CATALOG_LIST_STATE: this.$store.getCatalog_list
+      CATALOG_LIST_STATE: this.$store.getCatalog_list,
+      filters: false,
+      catalog_loads: false
     };
   },
-  async created() {
-    let catalog_response = await getProductList(50);
+  async mounted() {
+    this.restartCatalog()
     this.filterReg()
+  },
+
+  methods:{
+    async clear_filter(){
+      await this.$router.replace({'query': null});
+      
+      setInterval(()=>{if (!this.$route.query?.filter){
+        this.$router.go()
+      }},100)
+      
+    },
+    async restartCatalog(){
+      this.catalog_loads = false
+      let catalog_response = null
+    if (this.$route.query?.filter){
+      
+      catalog_response = await getSearchNameproduct(`name=${JSON.parse(this.$route.query.filter).name}&fields=["__all__"]`)
+      this.filters = true
+    }else{
+      catalog_response = await getProductList(50);
+    }
     this.catalog_list = catalog_response.data;
     this.catalog_list_sorted = this.catalog_list.slice();
     this.$store.REFACTOR_CATALOG_LIST(this.catalog_list)
-  },
-  methods:{
-
+    this.catalog_loads = true
+    },
   async filterReg(){
     
     let category_response = await getCategorylist();
@@ -117,6 +157,10 @@ export default {
   }
   },
   setup() {},
-    
+  watch:{
+    '$route.query': async function () {
+      this.restartCatalog()
+    }
+  }
 };
 </script>

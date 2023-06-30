@@ -63,7 +63,7 @@ export default {
     },
     c() {
       let list = this.b(this.a());
-
+      
       this.$store.REFACTOR_CATALOG_LIST(list);
     },
     a() {

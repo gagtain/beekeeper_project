@@ -90,13 +90,6 @@
 .context_menu_info{
     width: 45%;
 }
-.zone_search{
-    width: 10%;
-    height: 100%;
-    right: 5px;
-    top: 0;
-    cursor: pointer;
-}
 .user_in{
     margin: auto;
     font-family: 'Roboto';
