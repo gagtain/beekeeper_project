@@ -9,6 +9,7 @@ export default async (event) => {
       // проверка токена
       stores.assess_token = useCookie('assess')
       let assess_response = await verifAssessToken(stores.assess_token)
+      console.log(assess_response)
       if (!(assess_response.status == 200)){
       // если нет
           if (useCookie('refresh')){

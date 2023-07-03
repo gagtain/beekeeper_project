@@ -28,6 +28,7 @@
                         }}</span></span
                       >
                     </div>
+                    <rating-comp></rating-comp>
                     <div class="variant">
                       <h3>Размер</h3>
                       <div class="flex">
@@ -81,6 +82,7 @@
 import AddBasket from '../AddtionalComp/AddBasket.vue';
 import TovarMinImageList from "../AddtionalComp/TovarMinImageList.vue";
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
+import RatingComp from '../Tovar/RatingComp.vue';
 export default{
     el:'#product_catalog',
     name:'CatalogProduct',
@@ -89,6 +91,7 @@ export default{
     TovarMinImageList,
     AddBasket,
     FavoriteComp,
+    RatingComp,
   },
   data(){
     return {

@@ -27,6 +27,13 @@
                 </div>
               <input type="text" :placeholder="state.FIO.label" :name="state.FIO.name"
                 v-model="v$.FIO.value.$model" />
+              <div class="error_list">
+                <div v-for="element in v$.email.value.$errors" :key="element.$uid">
+                    {{element.$message}}
+                </div>
+                </div>
+              <input type="text" :placeholder="state.email.label" :name="state.email.name"
+                v-model="v$.email.value.$model" />
               
               <div class="error_list">
                 <div v-for="element in v$.password.value.$errors" :key="element.$uid">
@@ -64,7 +71,7 @@
 
 <script>
 import { useVuelidate } from "@vuelidate/core";
-import { helpers, required, minLength, sameAs } from "@vuelidate/validators";
+import { helpers, required, minLength, sameAs, email } from "@vuelidate/validators";
 import redirect from '~/additional_func/redirect'
 import register from '~/additional_func/register'
 export default {
@@ -87,6 +94,11 @@ export default {
         name: "FIO",
         value: "",
       },
+      email: {
+        label: "почта",
+        name: "email",
+        value: "",
+      },
       password: {
         label: "Пароль",
         name: "password",
@@ -107,6 +119,12 @@ export default {
       FIO: {
         value: {
             required: helpers.withMessage('Требуется', required)
+        },
+      },
+      email: {
+        value: {
+            required: helpers.withMessage('Требуется', required),
+            email: helpers.withMessage('Неверная почта', email)
         },
       },
       password: {

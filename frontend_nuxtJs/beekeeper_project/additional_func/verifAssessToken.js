@@ -14,6 +14,7 @@ export default async function verifAssessToken(assess_token){
       })
       return response
       } catch (error) {
+        console.log(error)
         return error.response
       }
     }

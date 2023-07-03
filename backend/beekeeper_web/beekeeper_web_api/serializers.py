@@ -119,7 +119,7 @@ class UserRegisterSerializers(serializers.ModelSerializer):
 
     class Meta:
         model = MainUser
-        fields = ['username', 'FIO', 'password', 'password2']
+        fields = ['username', 'email', 'FIO', 'password', 'password2']
 
     def validate_password2(self, value):
         
@@ -135,6 +135,7 @@ class UserRegisterSerializers(serializers.ModelSerializer):
             username=self.validated_data['username'],
             password=self.validated_data['password'],
             FIO=self.validated_data['FIO'],
+            email=self.validated_data['email'],
         )
 
         return user

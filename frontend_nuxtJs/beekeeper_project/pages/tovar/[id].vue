@@ -14,6 +14,14 @@
                             <p class="black nebolsh">Категории: {{getCategoryList().join(', ')}}</p>
                         </div>
                         
+                    <div class="price flex">
+                      <span style="line-height: 1;" class="tovar_price VAG small-big"
+                        >{{ tovar.price }}
+                        <span style="line-height: 1;" class="tovar_price VAG small">{{
+                          tovar.price_currency
+                        }}</span></span
+                      >
+                    </div>
                         <div class="variant tovar_two">
                       <h3>Размер</h3>
                       <div class="flex">

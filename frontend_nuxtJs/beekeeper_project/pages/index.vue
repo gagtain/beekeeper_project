@@ -102,34 +102,17 @@
             </div>
           </div>
           <div style="display: block;" class="block_info">
-            <div class="flex w-sto jus-sp">
-              <div class="dostav_info flex">
-                <div class="w-sto auto">
-                  <p class="small-big p-block">Чистый как золото, на вкус как солнечный свет</p>
-              <p class="small m2">
-                Каждая капля – это восхитительный взрыв природной сладости. Необработанный и наполненный невероятными питательными веществами и ферментами, этот мед поразит ваши вкусовые рецепторы.
-              </p>
-                </div>
-              
-            </div>
+            <div class="flex w-sto jus-sp info_kart_div">
               <div class="kart">
               <div class="w-sto h_sto">
-                <img style="border-radius: 40px;" class="w-sto h_sto" :src="$api_root + 'static/online_store/images/3.jpg'" alt="">
-              </div>
-            </div>
-            
-            </div>
-            <div class="flex w-sto jus-sp m2">
-              <div class="kart">
-              <div class="w-sto h_sto">
-                <img style="border-radius: 40px;" class="w-sto h_sto" :src="$api_root + 'static/online_store/images/3.jpg'" alt="">
+                <img style="border-radius: 40px;" class="w-sto h_sto" src="../assets/images/eco-friend.jpg" alt="">
               </div>
             </div>
               <div class="dostav_info flex">
                 <div class="w-sto auto">
-                  <p class="small-big p-block">Чистый как золото, на вкус как солнечный свет</p>
+                  <p class="small-big VAG" style="line-height: 1;">Чистый как золото, на вкус как солнечный свет</p>
               <p class="small m2">
-                Каждая капля – это восхитительный взрыв природной сладости. Необработанный и наполненный невероятными питательными веществами и ферментами, этот мед поразит ваши вкусовые рецепторы.
+              Наш мед является исключительно натуральным продуктом. Без примесей, без химии.
               </p>
                 </div>
               
@@ -140,35 +123,7 @@
             
             
           </div>
-          <div class="interactiv">
-          <div class="flex w-sto text_in_sot">
-            <p class="big auto main-text">Отзывы</p>
-          </div>
-          <div class="w-sto flex jus-sp m2">
 
-            <div style="width: 25%; background-color: rgb(160,166,62); border-radius: 40px; padding: 2% 5%;">
-              <div style="width: 50px; aspect-ratio: 1/1;">
-                <img style="border-radius: 40px;" class="w-sto h_sto" :src="$api_root + 'static/online_store/images/3.jpg'" alt="">
-              </div>
-              <p style="margin-top: 15px; height: 50%; font-size: 20px;" >Отличный товар, рекомендую!</p>
-              <p style="margin-top: 45px;" class="normal-small">asdasd</p>
-            </div>
-            <div style="width: 25%; background-color: rgb(160,166,62); border-radius: 40px; padding: 2% 5%;">
-              <div style="width: 50px; aspect-ratio: 1/1;">
-                <img style="border-radius: 40px;" class="w-sto h_sto" :src="$api_root + 'static/online_store/images/3.jpg'" alt="">
-              </div>
-              <p style="margin-top: 15px; height: 50%; font-size: 20px;" >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur dignissimos libero ab, voluptate quo optio?</p>
-              <p style="margin-top: 45px;" class="normal-small">asdasd</p>
-            </div>
-            <div style="width: 25%; background-color: rgb(160,166,62); border-radius: 40px; padding: 2% 5%;">
-              <div style="width: 50px; aspect-ratio: 1/1;">
-                <img style="border-radius: 40px;" class="w-sto h_sto" :src="$api_root + 'static/online_store/images/3.jpg'" alt="">
-              </div>
-              <p style="margin-top: 15px; height: 50%; font-size: 20px;" >Отличный товар, рекомендую!</p>
-              <p style="margin-top: 45px;" class="normal-small">asdasd</p>
-            </div>
-          </div>
-          </div>
         </div>
         <div class="ref-block w-sto">
         <div class="flex w-sto text_in_sot">

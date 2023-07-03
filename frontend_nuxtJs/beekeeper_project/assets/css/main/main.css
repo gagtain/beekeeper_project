@@ -4,11 +4,6 @@
 
 
 
-* {
-    font-family: 'Roboto';
-}
-
-
 .wrapper{
     width: 100%;
     background: url('../../images/main.jpeg') no-repeat center;
@@ -244,6 +239,9 @@
 @media (max-width: 780px){
     .main_bt{
         width: 80%;
+    }
+    .info_kart_div{
+        display: block;
     }
     .main_bt_p{
         margin: auto;

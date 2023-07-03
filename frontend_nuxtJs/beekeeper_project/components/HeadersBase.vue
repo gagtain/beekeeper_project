@@ -77,11 +77,22 @@
               </div>
               <span class="material-symbols-outlined auto"> expand_more </span>
             </div>
-            <div v-else class="flex jus-sp user_in relative" style="min-width: 50%;">
-                    <NuxtLink no-prefetch to="/register" class=" auto"
-                      >Регистрация</NuxtLink>
-                    <NuxtLink no-prefetch to="/login" class=" auto"
-                      >Вход</NuxtLink>
+            <div v-else class="flex context_menu jus-sp user_in relative" style="min-width: 50%;">
+                    <p>Войти</p>
+              <div style="bottom: -60px;" class="context_menu_ absolute">
+                <ul>
+                  <NuxtLink to="/register">
+                  <li class="flex">
+                      <p class="normal-small auto">Регистрация</p>
+                  </li>
+                </NuxtLink>
+                    <NuxtLink to="/login">
+                  <li class="flex">
+                      <p class="normal-small auto">Вход</p>
+                  </li>
+                </NuxtLink>
+                </ul>
+              </div>
             </div>
           </div>
         </div>

@@ -235,11 +235,6 @@
     position: absolute;
     transition: .5s;
 }
-@media (max-width: 900px) {
-    .container{
-        width: 200px;
-    }
-}
 @media (max-width: 700px) {
     .logo{
         width: 100px;
@@ -252,9 +247,6 @@
     .user_name{
         display: none;
     }
-    .container{
-        margin-left: 10%;
-    }
 }
 .name_org{
     padding-top: 2%;
@@ -263,9 +255,6 @@
     
     .no_b_border{
         margin-left: 5%;
-    }
-    .container{
-        margin: 0;
     }
     #mob_mob_block{
         display: flex;
@@ -286,9 +275,6 @@
         width: 80%;
     }
     .no_b_border{
-        width: 100%;
-    }
-    .container{
         width: 100%;
     }
     .menu_{

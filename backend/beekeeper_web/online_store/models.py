@@ -16,7 +16,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     # card = необходимо реализовать оплату, она будет на API
     username = models.CharField(max_length=50, unique=True, verbose_name="логин")
     FIO = models.CharField(max_length=100, blank=False)
-    email = models.EmailField(_("email address"), blank=True)
+    email = models.EmailField(blank=False, default='asd@asd.ru')
     image = models.ImageField(upload_to="images/%Y/%m/%d/", verbose_name="Изображение пользователя",
                               blank=True, default="images/ds.png")
     basket = models.ManyToManyField(through='BasketItem', to='ProductItem', related_name="basket")

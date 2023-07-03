@@ -225,3 +225,12 @@ SIMPLE_JWT = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+
+# MAIL
+SENDER_MAIL = 'gagtain@gmail.com'
+PASSWORD_MAIL = 'wmwqtejviqtydtsp'
+
+# CELERY
+
+CELERY_BROKER_URL = 'amqp://rmuser:rmpassword@rabbitmq:5672'

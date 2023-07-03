@@ -1,12 +1,18 @@
 <template>
-    <div class="container relative" id="search">
-      <input class="input" type="text" v-model="search_text" placeholder="Search" />
-      <div @click="submin_src(pop)" class="zone_search absolute"></div>
-    <div v-if="search_product.length" class="absolute src_comp w-sto">
-        <div @click="submin_src(pop)" v-for="pop in search_product" :key="pop.id" class="w-sto src_el">
+    <div @click="search_container()" class="container relative" id="search">
+      <input style="z-index: 11;" class="input relative" type="text" v-model="search_text" placeholder="Search" />
+      <div style="z-index: 11;" @click="submin_src(pop)" class="relative zone_search absolute"></div>
+      <div @click.stop="zone()" class="zone">
+
+      </div>
+      <div class="absolute src_comp w-sto"  style="z-index: 11;">
+        
+    <div v-if="search_product.length" class="w-sto h_sto">
+        <div @click.stop="submit_src_but(pop)" v-for="pop in search_product" :key="pop.id" class="w-sto src_el">
             <p class="m2 normal-small">{{ pop.name }}</p>
         </div>
     </div>
+      </div>
     </div>
 </template>
 <style>
@@ -26,19 +32,17 @@
     background: rgb(104, 166, 62);
 }
 .src_comp{
-    visibility: hidden;
-    transition: .5s;
+    display: none;
 }
-.container input:focus ~ .src_comp{
-    display: block;
-    visibility: visible;
-    top: 100%;
-    opacity: 1;
-    transition: .5s;
-    
-}
-.src_comp:focus{
-    display: block;
+.zone{
+    background-color: rgba(3,8,13,.32);
+height: 100vh;
+left: 0;
+position: fixed;
+top: 0;
+width: 100vw;
+z-index: 10;
+display: none;
 }
 </style>
 
@@ -60,7 +64,20 @@ export default defineNuxtComponent({
     },
     methods:{
         submin_src(){
+            this.zone()
             redirect(this,{ name: 'catalog', query: { filter:`{"name": "${this.search_text}"}` } })
+        },
+        submit_src_but(product){
+            redirect(this,{ name: 'catalog', query: { filter:`{"name": "${product.name}"}` } })
+            this.zone()
+        },
+        zone(){
+            document.getElementsByClassName('src_comp')[0].style.display="none";
+            document.getElementsByClassName('zone')[0].style.display="none";
+        },
+        search_container(){
+            document.getElementsByClassName('src_comp')[0].style.display= "block";
+            document.getElementsByClassName('zone')[0].style.display="block";
         }
     },
     watch: {

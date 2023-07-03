@@ -1,6 +1,10 @@
 import sys
 
+from django.template.loader import render_to_string
 from rest_framework.exceptions import NotFound, ValidationError
+
+from celery_app import debug_task
+from .Email import EmailOrder
 
 sys.path.append('.')
 from online_store.models import Order, MainUser, BasketItem, OrderItem
@@ -30,6 +34,8 @@ class OrderServices():
                                      count=basket_item.count, order=order)
 
         user.basket.clear()
+        debug_task.delay(order.id, user.id)
+
         return order
 
     @classmethod
