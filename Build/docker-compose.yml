@@ -58,6 +58,36 @@ services:
     networks: 
       - forwebapi
 
+  rabbitmq:
+    image: rabbitmq:3.10.7-management
+    hostname: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=rmuser
+      - RABBITMQ_DEFAULT_PASS=rmpassword
+    ports:
+      
+      - 5672:5672
+      - 15672:15672
+    networks: 
+      - forwebapi
+
+
+  worker:
+    build: 
+      context: ../backend/
+    container_name: worker
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD=13
+      - DEBUG=False
+      - DATABASE_HOST=database
+    entrypoint: celery
+    command: -A celery_app.app worker --loglevel=info
+    depends_on:
+      - rabbitmq
+    networks: 
+      - forwebapi
+      
 networks:
   forwebapi:
     name: forwebapi
