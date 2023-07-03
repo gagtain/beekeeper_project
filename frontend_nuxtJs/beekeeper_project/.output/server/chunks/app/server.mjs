@@ -1371,7 +1371,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "http://localhost:8001/";
+let api_root = "http://94.139.247.128:8000/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
