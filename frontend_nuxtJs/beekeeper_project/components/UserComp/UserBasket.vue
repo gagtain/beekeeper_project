@@ -5,8 +5,10 @@
         <BasketList></BasketList>
 
 
-      
-        <BasketInfo></BasketInfo>
+      <div style="width: 35%;">
+
+        <BasketInfo :items="$store.getUser.basket"></BasketInfo>
+      </div>
     </div>
   </div>
 </template>

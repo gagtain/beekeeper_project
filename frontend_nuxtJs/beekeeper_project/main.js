@@ -1,1 +1,1 @@
-export let api_root = 'http://94.139.247.128:8000/'
+export let api_root = 'http://localhost:8000/'

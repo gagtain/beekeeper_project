@@ -3,7 +3,7 @@ import sys
 from django.template.loader import render_to_string
 from rest_framework.exceptions import NotFound, ValidationError
 
-from celery_app import debug_task
+from ..tasks import order_email_send
 from .Email import EmailOrder
 
 sys.path.append('.')
@@ -21,12 +21,13 @@ class OrderServices():
             raise NotFound("У пользователя нет заказов")
 
     @classmethod
-    def createOrder(cls, user: MainUser, BasketItemList: list[BasketItem]):
+    def createOrderInBasket(cls, user: MainUser, BasketItemList: list[BasketItem]):
         """Создание заказа"""
         if BasketItemList.count() == 0:
             raise ValidationError(detail='Список товаров пуст')
         total_amount = 0
         for i in BasketItemList:
+            print(i)
             total_amount += i.count * (i.productItem.product.price ) # добавить наценку за упаковку и скидки
         order = Order.objects.create(user=user, amount=total_amount)
         for basket_item in BasketItemList:
@@ -34,10 +35,14 @@ class OrderServices():
                                      count=basket_item.count, order=order)
 
         user.basket.clear()
-        debug_task.delay(order.id, user.id)
+        order_email_send.delay(order.id, user.id)
 
         return order
 
     @classmethod
+    def compare_order_product_and_real_price(cls, user: MainUser, ):
+        """Проверка стоимости товара в базе и стоимости товара у пользователя"""
+        pass
+    @classmethod
     def getOrderList(cls, user):
-        return user.user_order.all()
+        return user.user_order.all().order_by('-id')

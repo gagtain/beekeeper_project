@@ -14,9 +14,12 @@ from ..serializers import OrderSerializers
 class OrderCreateAPI(APIView):
 
     def createOrder(self, request):
-        BasketItemList = BasketItem.objects.filter(user=request.user)
-        print(BasketItemList)
-        order = OrderServices.createOrder(user=request.user, BasketItemList=BasketItemList)
+        if request.data.get('basket'):
+            BasketItemList = request.data.get('basket')
+            order = OrderServices.createOrderInBasket(user=request.user, BasketItemList=BasketItemList)
+        else:
+            BasketItemList = BasketItem.objects.filter(user=request.user)
+            order = OrderServices.createOrderInBasket(user=request.user, BasketItemList=BasketItemList)
         return Response(OrderSerializers(order).data)
 
 class OrderGetLastAPI(APIView):
