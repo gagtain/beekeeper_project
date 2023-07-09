@@ -1,0 +1,6 @@
+const RatingChoise_vue_vue_type_style_index_0_scoped_250d4233_lang = '.rating-area[data-v-250d4233]{margin:0 auto}.rating-area:not(:checked)>input[data-v-250d4233]{display:none}.rating-area:not(:checked)>span[data-v-250d4233]{color:#d3d3d3;cursor:pointer;float:right;font-size:54px;line-height:54px;padding:0;text-shadow:1px 1px #bbb;width:60px}.rating-area:not(:checked)>span[data-v-250d4233]:before{content:"\u2605"}.rating-area>input:checked~span[data-v-250d4233]{color:gold;text-shadow:1px 1px #c60}.rating-area:not(:checked)>span[data-v-250d4233]:hover,.rating-area:not(:checked)>span:hover~span[data-v-250d4233]{color:gold}.rating-area>input:checked+span[data-v-250d4233]:hover,.rating-area>input:checked+span:hover~span[data-v-250d4233],.rating-area>input:checked~span[data-v-250d4233]:hover,.rating-area>input:checked~span:hover~span[data-v-250d4233],.rating-area>span:hover~input:checked~span[data-v-250d4233]{color:gold;text-shadow:1px 1px #daa520}.rate-area>span[data-v-250d4233]:active{position:relative}';
+
+const RatingChoiseStyles_63f9a65e = [RatingChoise_vue_vue_type_style_index_0_scoped_250d4233_lang];
+
+export { RatingChoiseStyles_63f9a65e as default };
+//# sourceMappingURL=RatingChoise-styles.63f9a65e.mjs.map

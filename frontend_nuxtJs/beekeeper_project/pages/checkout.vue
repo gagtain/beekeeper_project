@@ -10,7 +10,10 @@
     <div class="w-sto flex kor_block jus-sp">
         <div style="width: 50%; padding-top: 20px; padding-left: 2%;">
 
+            <client-only>
             <checkout ref="checkout_form"></checkout>
+
+            </client-only>
             <p align="left" class="VAG small">Товары</p>
             
             <order-product-list :orderList="$store.getUser.basket"></order-product-list>

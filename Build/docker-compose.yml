@@ -53,6 +53,7 @@ services:
     container_name: nginx
     ports:
       - 80:80
+      - 443:443
     depends_on:
       - online_store_vue
     networks: 

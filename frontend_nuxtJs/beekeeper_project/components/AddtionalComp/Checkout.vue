@@ -1,7 +1,9 @@
 <template>
   <div id="check_form">
-    
+    <p class="VAG" align="left">Доставка</p>
             <div class=" h_sto">
+              <div style="display: none;">
+                
               <div class="error_list">
                 <div v-for="element in v$.adress.value.$errors" :key="element.$uid">
                     {{element.$message}}
@@ -14,13 +16,39 @@
                     {{element.$message}}
                 </div>
                 </div>
+                <div class="relative w-sto">
+                  
                 <input
                   type="text"
-                  placeholder="Индекс"
                   v-model="v$.index.value.$model"
                 />
+  <span class="floating-label">Your email address</span>
+                </div>
+              </div>
+                <div v-if="delivery_info">
+                  <div class="relative">
+
+                    <input type="text" disabled  v-model="delivery_info.price" />
+  <span class="floating-label active">Цена</span>
+                  </div>
+                  <div class="relative">
+
+                    <input type="text" disabled  v-model="delivery_info.id" />
+  <span class="floating-label active">Номер постмата</span>
+                  </div>
+                  <div class="relative">
+
+                    <input type="text" disabled  v-model="delivery_info.PVZ.Address" />
+  <span class="floating-label active">Адрес</span>
+                  </div>
+                  <div class="relative">
+
+                    <input type="text"  disabled v-model="delivery_info.term" />
+  <span class="floating-label active">Примерное время доставки</span>
+                  </div>
+                </div>
             </div>
-           
+           <SDEKcart v-on:onChoise="onChoise($event)"></SDEKcart>
   </div>
 </template>
 
@@ -40,6 +68,19 @@
 }
 </style>
 <style scoped>
+.floating-label {
+	position: absolute;
+	pointer-events: none;
+	top: 20%;
+	left: 10px;
+	transition: 0.2s ease all;
+}
+input:focus ~ .floating-label, .floating-label.active{
+	top: -4px;
+	left: 10px;
+	font-size: 13px;
+	opacity: 1;
+}
 input {
 		font-family: "Roboto", sans-serif;
 		outline: 0;
@@ -74,12 +115,15 @@ cursor: pointer;
 <script>
 import { helpers, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+import SDEKcart from './SDEKcart.vue';
 export default {
+  components: { SDEKcart },
     el: '#check_form',
 
     data(){
     return {
-      USER_STATE: this.$store.getUser
+      USER_STATE: this.$store.getUser,
+      delivery_info: null
     }
   },
   methods:{
@@ -99,6 +143,10 @@ export default {
           index: this.state.index.value
         }
       }
+    },
+    async onChoise(info){
+      console.log(info)
+      this.delivery_info = await info
     }
   },
 setup(){

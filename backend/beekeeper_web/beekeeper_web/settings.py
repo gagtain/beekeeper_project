@@ -235,3 +235,6 @@ CELERY_BROKER_URL = 'amqp://rmuser:rmpassword@rabbitmq:5672'
 
 Configuration.account_id = '227407'
 Configuration.secret_key = 'test_saGcPjuDSma2BZNQD0nUkutHtn_C6xHPDZPPh0p4lD4'
+
+
+SDEK_SHIPMENT_POINT = 123

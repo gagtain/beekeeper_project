@@ -1235,7 +1235,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/basket-44d33176.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/basket-50e523f1.mjs').then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -1243,7 +1243,15 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/catalog-95905fdf.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/catalog-33e04bb1.mjs').then((m) => m.default || m)
+  },
+  {
+    name: "checkout",
+    path: "/checkout",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/checkout-eb4cf816.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1251,7 +1259,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/favorite-87ad1683.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/favorite-5ebd91da.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -1259,7 +1267,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-c585250c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-335b8b19.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1275,7 +1283,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/orders-c3cddeba.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/orders-86a56df6.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -1283,7 +1291,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/profile-d0795aea.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/profile-eaa5aa9c.mjs').then((m) => m.default || m)
   },
   {
     name: "register",
@@ -1299,7 +1307,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-97173df6.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-596f8caf.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1371,7 +1379,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "http://94.139.247.128:8000/";
+let api_root = "https://owa.gagtain.ru/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -1775,7 +1783,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "http://94.139.247.128:8000/"
+      api_root: "https://owa.gagtain.ru/"
     }
   };
 });

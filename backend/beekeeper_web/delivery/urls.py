@@ -21,6 +21,6 @@ from payments.views import PaymentAPI
 from . import views
 
 urlpatterns = [
-    path('create/', PaymentAPI.as_view({'get': 'create_payments'})),
+    path('create/', views.A.as_view()),
 
 ]
