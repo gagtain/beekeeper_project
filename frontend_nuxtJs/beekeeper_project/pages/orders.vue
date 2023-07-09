@@ -1,6 +1,27 @@
 <template>
   <div class="sot-ob">
     <div class="wrapper flex">
+        <DialogWindow>
+            <OrderProductList v-if="rating_list" :orderList="rating_list_obj">
+                <template v-slot:default="slotProps">
+                    <button @click="select_rating_product(slotProps.orderItem.productItem.product.id)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                              Выбрать
+                            </button>
+                </template>
+
+        
+        
+        </OrderProductList>
+        <div  v-else>
+        <div   class="flex">
+
+            <RatingChoise :product_id="select_rating_product_id" v-on:submit="RatingSubmit($event)"></RatingChoise>
+        </div>
+            <p class="VAG" align="center">Ваш отзыв</p>
+        </div>
+            
+        
+        </DialogWindow>
       <div class="user_card flex auto">
         <div class="interactiv user_card_div auto" id="orders_main">
           <div class="kor w-sto relative">
@@ -8,20 +29,19 @@
     <div class="w-sto h_sto">
         <div v-if="!list_order[0].loading" class="product_order_list ">
                 <div v-for="order in list_order" :key="order.id" class="order m-2">
+                    <div class="flex w-sto jus-sp">
                     <p align="left">Заказ номер {{ order.id }}</p>
-                    <div class="w-sto h_sto flex">
-                        <div class="product_order m-2">
-                <div v-for="orderItem in order.product_list_transaction" :key="orderItem.id" class="product_order_info">
-                  <div class="img_order_product_div">
-                    <img class="img_order_product" :src="$api_root + orderItem.productItem.product.image" alt="" />
-                  </div>
-                  <div class="info_order_product_div">
+                        <div class="select_size" >
+                            <button @click="ratingDialog(order.product_list_transaction)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                              Оставить отзыв
+                            </button>
+                          </div>
+                    </div>
 
-                    <div class="name_order_product">{{ orderItem.productItem.product.name }} [{{ orderItem.productItem.weight.weight }} гр, {{ orderItem.productItem.type_packaging.name }}]</div>
-                <p>{{ orderItem.productItem.product.price }} {{ orderItem.productItem.product.price_currency }}</p>
-                <p>{{ orderItem.count }} шт</p>
-                  </div>
-                </div>
+                    <div class="w-sto h_sto flex jus-sp">
+                        <div class="product_order m-2">
+                
+                            <order-product-list :orderList="order.product_list_transaction"></order-product-list>
 
               </div><div class="order_description">
                         <div class="flex w-sto m-2">
@@ -31,7 +51,17 @@
                             </div>
                             <div class="w-50">
 
-                                <p>Когда</p>
+                                <p>{{ getDateFormat(new Date(order.datetime))  }}</p>
+                            </div>
+                        </div>
+                        <div class="flex w-sto m-2">
+                            <div class="w-50 ">
+
+                                <p>Куда</p>
+                            </div>
+                            <div class="w-50">
+
+                                <p>{{ order.order_address }} {{ order.order_index }}</p>
                             </div>
                         </div>
                         <div class="flex w-sto m-2">
@@ -116,7 +146,7 @@
   overflow: hidden;
 }
 .order_description, .product_order{
-    width: 50%;
+    width: 40%;
 }
 .order{
     width: 60%;
@@ -159,8 +189,11 @@
 <script>
 import getListOrder from '~/additional_func/getListOrder';
 import LoadingComp from '../components/AddtionalComp/LoadingComp.vue';
+import OrderProductList from '~/components/AddtionalComp/OrderProductList.vue';
+import DialogWindow from '../components/AddtionalComp/Dialog.vue';
+import RatingChoise from '~/components/Tovar/RatingChoise.vue';
 export default {
-  components: { LoadingComp },
+  components: { LoadingComp, OrderProductList, DialogWindow, RatingChoise },
   el: "orders_main",
   name: "BasketBase",
   data(){
@@ -200,9 +233,14 @@ export default {
                     
                     count: null
                 }],
-                datetime: null
+                datetime: null,
+                order_address: null,
+                order_index: null
             }
-        ]
+        ],
+        rating_list: true,
+        select_rating_product_id: null,
+        rating_list_obj: []
     }
   },
   async mounted(){
@@ -211,6 +249,29 @@ export default {
         this.list_order = response_list_order.data
     }else{
         this.list_order[0].no_order = true
+    }
+  },
+  methods:{
+    select_rating_product(id){
+        this.select_rating_product_id = id,
+        this.rating_list = false
+    },
+    RatingSubmit(status){
+        console.log(status)
+        if (status == 201){
+
+            this.rating_list = true
+        }else{
+            this.rating_list = true
+            alert('Вы уже оставляли отзыв')
+        }
+    },
+    getDateFormat(date){
+        return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
+    },
+    ratingDialog(rating_list_obj){
+        this.rating_list_obj = rating_list_obj
+        window.dialog.showModal();
     }
   }
 };

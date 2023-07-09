@@ -11,6 +11,7 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 from .Part_API.OrderAPI import OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI
+from .Part_API.RatingProductAPI import RatingProductCreate, RatingProductList, RatingProductAVG
 from .Part_API.ProductAPI import ProductFilterName
 from .jwt_token.auth import CustomAuthentication
 from .serializers import RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
@@ -19,7 +20,7 @@ from .serializers import RetrieveProduct, RetrieveUser, RetrieveProductRemoveToP
 from .services.User import ServicesUser, ProductServises, CategoryServises, Type_packagingServises
 from rest_framework.generics import CreateAPIView
 # Create your views here.
-from online_store.models import MainUser
+from .models import MainUser
 sys.path.append('.')
 class UserAPI(viewsets.ViewSet):
     authentication_classes = [CustomAuthentication]
@@ -122,4 +123,8 @@ class UserRegistAPI(CreateAPIView):
 class OrderAPI(viewsets.ViewSet, OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI):
     authentication_classes = [CustomAuthentication]
 
+
+class RatingAPI(viewsets.ViewSet, RatingProductCreate, RatingProductList, RatingProductAVG):
+
+    pass
 

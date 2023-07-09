@@ -5,7 +5,7 @@ from celery import shared_task
 from .services.Email import EmailOrder
 
 sys.path.append('.')
-from online_store.models import MainUser, Order
+from .models import MainUser, Order
 
 @shared_task()
 def order_email_send(order_id, user_id):

@@ -20,6 +20,7 @@
                         >COD: {{ pr.id }}</span
                       >
                     </div>
+                    <rating-comp :rating="pr.rating"></rating-comp>
                     <div class="price">
                       <span class="product__price small-big"
                         >{{ pr.price }}
@@ -75,6 +76,7 @@ import AddBasket from '../AddtionalComp/AddBasket.vue';
 import TovarMinImageList from "../AddtionalComp/TovarMinImageList.vue";
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
 import CatalogProduct from '../Catalog/CatalogProduct.vue';
+import RatingComp from '../Tovar/RatingComp.vue';
 export default {
     el:'#product_catalog',
     name:'CatalogProduct',
@@ -84,6 +86,7 @@ export default {
     TovarMinImageList,
     AddBasket,
     FavoriteComp,
+    RatingComp
   },
   created(){
   }

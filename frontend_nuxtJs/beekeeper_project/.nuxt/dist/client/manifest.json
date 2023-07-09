@@ -1,0 +1,425 @@
+{
+  "BasketInfo.css": {
+    "file": "_nuxt/BasketInfo.2f491495.css",
+    "src": "BasketInfo.css"
+  },
+  "CatalogProduct.css": {
+    "file": "_nuxt/CatalogProduct.9b483b6b.css",
+    "src": "CatalogProduct.css"
+  },
+  "FavoriteComp.css": {
+    "file": "_nuxt/FavoriteComp.666d0aec.css",
+    "src": "FavoriteComp.css"
+  },
+  "LoadingComp.css": {
+    "file": "_nuxt/LoadingComp.c9d2ab2a.css",
+    "src": "LoadingComp.css"
+  },
+  "UserBasket.css": {
+    "file": "_nuxt/UserBasket.fa5a4fb9.css",
+    "src": "UserBasket.css"
+  },
+  "_BasketInfo.438c3f4d.js": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/BasketInfo.2f491495.css"
+    ],
+    "file": "_nuxt/BasketInfo.438c3f4d.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_CatalogProduct.2f612997.js": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/CatalogProduct.9b483b6b.css"
+    ],
+    "file": "_nuxt/CatalogProduct.2f612997.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js",
+      "_FavoriteComp.eaf61b62.js"
+    ]
+  },
+  "_FavoriteComp.723fbbdf.js": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/FavoriteComp.ba04e558.css"
+    ],
+    "file": "_nuxt/FavoriteComp.723fbbdf.js",
+    "imports": [
+      "_removeFavorite.559452a9.js",
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_FavoriteComp.eaf61b62.js": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/FavoriteComp.666d0aec.css"
+    ],
+    "file": "_nuxt/FavoriteComp.eaf61b62.js",
+    "imports": [
+      "_removeFavorite.559452a9.js",
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_ImageForm.a6fbf59d.js": {
+    "file": "_nuxt/ImageForm.a6fbf59d.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_LoadingComp.277b7951.js": {
+    "css": [
+      "_nuxt/LoadingComp.c9d2ab2a.css"
+    ],
+    "file": "_nuxt/LoadingComp.277b7951.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_UserBasket.5fd6de24.js": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/UserBasket.fa5a4fb9.css"
+    ],
+    "file": "_nuxt/UserBasket.5fd6de24.js",
+    "imports": [
+      "_BasketInfo.438c3f4d.js",
+      "_FavoriteComp.723fbbdf.js",
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_index.5f451472.js": {
+    "file": "_nuxt/index.5f451472.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "_removeFavorite.559452a9.js": {
+    "file": "_nuxt/removeFavorite.559452a9.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ]
+  },
+  "assets/css/fonts/1/fonts/vag_world_bold.woff": {
+    "file": "_nuxt/vag_world_bold.a8b3128a.woff",
+    "src": "assets/css/fonts/1/fonts/vag_world_bold.woff"
+  },
+  "assets/images/3.jpg": {
+    "file": "_nuxt/3.de54ba29.jpg",
+    "src": "assets/images/3.jpg"
+  },
+  "assets/images/eco-friend.jpg": {
+    "file": "_nuxt/eco-friend.3cab6412.jpg",
+    "src": "assets/images/eco-friend.jpg"
+  },
+  "assets/images/main.jpeg": {
+    "file": "_nuxt/main.d41752ea.jpeg",
+    "src": "assets/images/main.jpeg"
+  },
+  "assets/images/sot.png": {
+    "file": "_nuxt/sot.416737b6.png",
+    "src": "assets/images/sot.png"
+  },
+  "middleware/isAuth.js": {
+    "file": "_nuxt/isAuth.998fa724.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "middleware/isAuth.js"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.css": {
+    "file": "_nuxt/error-404.23f2309d.css",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.css"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": {
+    "css": [
+      "_nuxt/error-404.23f2309d.css"
+    ],
+    "file": "_nuxt/error-404.1e509d63.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.css": {
+    "file": "_nuxt/error-500.aa16ed4d.css",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.css"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": {
+    "css": [
+      "_nuxt/error-500.aa16ed4d.css"
+    ],
+    "file": "_nuxt/error-500.faeccb6f.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
+  },
+  "node_modules/nuxt/dist/app/entry.css": {
+    "file": "_nuxt/entry.05a7b6cd.css",
+    "src": "node_modules/nuxt/dist/app/entry.css"
+  },
+  "node_modules/nuxt/dist/app/entry.js": {
+    "assets": [
+      "_nuxt/sot.416737b6.png",
+      "_nuxt/vag_world_bold.a8b3128a.woff"
+    ],
+    "css": [
+      "_nuxt/entry.05a7b6cd.css"
+    ],
+    "dynamicImports": [
+      "pages/basket.vue",
+      "pages/catalog.vue",
+      "pages/checkout.vue",
+      "pages/favorite.vue",
+      "pages/index.vue",
+      "pages/login.vue",
+      "pages/orders.vue",
+      "pages/profile.vue",
+      "pages/register.vue",
+      "pages/tovar/[id].vue",
+      "middleware/isAuth.js",
+      "virtual:nuxt:/media/gagtain/9C804AA4804A84AC/beekeeper_project/frontend_nuxtJs/beekeeper_project/.nuxt/error-component.mjs"
+    ],
+    "file": "_nuxt/entry.e4d18448.js",
+    "isEntry": true,
+    "src": "node_modules/nuxt/dist/app/entry.js"
+  },
+  "pages/basket.css": {
+    "file": "_nuxt/basket.6d3e52a5.css",
+    "src": "pages/basket.css"
+  },
+  "pages/basket.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/basket.6d3e52a5.css"
+    ],
+    "file": "_nuxt/basket.97f9aeb7.js",
+    "imports": [
+      "_UserBasket.5fd6de24.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_BasketInfo.438c3f4d.js",
+      "_FavoriteComp.723fbbdf.js",
+      "_removeFavorite.559452a9.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/basket.vue"
+  },
+  "pages/catalog.css": {
+    "file": "_nuxt/catalog.b5e23c73.css",
+    "src": "pages/catalog.css"
+  },
+  "pages/catalog.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/catalog.b5e23c73.css"
+    ],
+    "file": "_nuxt/catalog.83863bdc.js",
+    "imports": [
+      "_CatalogProduct.2f612997.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_LoadingComp.277b7951.js",
+      "_FavoriteComp.eaf61b62.js",
+      "_removeFavorite.559452a9.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/catalog.vue"
+  },
+  "pages/checkout.css": {
+    "file": "_nuxt/checkout.36ccb06d.css",
+    "src": "pages/checkout.css"
+  },
+  "pages/checkout.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/checkout.36ccb06d.css"
+    ],
+    "file": "_nuxt/checkout.ffbc2aeb.js",
+    "imports": [
+      "_BasketInfo.438c3f4d.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_index.5f451472.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/checkout.vue"
+  },
+  "pages/favorite.css": {
+    "file": "_nuxt/favorite.2169af9c.css",
+    "src": "pages/favorite.css"
+  },
+  "pages/favorite.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/favorite.2169af9c.css"
+    ],
+    "file": "_nuxt/favorite.0b53348d.js",
+    "imports": [
+      "_FavoriteComp.723fbbdf.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_removeFavorite.559452a9.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/favorite.vue"
+  },
+  "pages/index.css": {
+    "file": "_nuxt/index.85a5443e.css",
+    "src": "pages/index.css"
+  },
+  "pages/index.vue": {
+    "assets": [
+      "_nuxt/eco-friend.3cab6412.jpg",
+      "_nuxt/main.d41752ea.jpeg",
+      "_nuxt/3.de54ba29.jpg"
+    ],
+    "css": [
+      "_nuxt/index.85a5443e.css"
+    ],
+    "file": "_nuxt/index.1e8a1edb.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js",
+      "_FavoriteComp.eaf61b62.js",
+      "_CatalogProduct.2f612997.js",
+      "_LoadingComp.277b7951.js",
+      "_removeFavorite.559452a9.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/index.vue"
+  },
+  "pages/login.css": {
+    "file": "_nuxt/login.1f0094d1.css",
+    "src": "pages/login.css"
+  },
+  "pages/login.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png",
+      "_nuxt/3.de54ba29.jpg"
+    ],
+    "css": [
+      "_nuxt/login.1f0094d1.css"
+    ],
+    "file": "_nuxt/login.baf71f4a.js",
+    "imports": [
+      "_ImageForm.a6fbf59d.js",
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/login.vue"
+  },
+  "pages/orders.css": {
+    "file": "_nuxt/orders.c137ac90.css",
+    "src": "pages/orders.css"
+  },
+  "pages/orders.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/orders.c137ac90.css"
+    ],
+    "file": "_nuxt/orders.6af4bdad.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js",
+      "_LoadingComp.277b7951.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/orders.vue"
+  },
+  "pages/profile.css": {
+    "file": "_nuxt/profile.0a1820da.css",
+    "src": "pages/profile.css"
+  },
+  "pages/profile.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/profile.0a1820da.css"
+    ],
+    "file": "_nuxt/profile.32b413af.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js",
+      "_LoadingComp.277b7951.js",
+      "_UserBasket.5fd6de24.js",
+      "_BasketInfo.438c3f4d.js",
+      "_FavoriteComp.723fbbdf.js",
+      "_removeFavorite.559452a9.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/profile.vue"
+  },
+  "pages/register.css": {
+    "file": "_nuxt/register.710c22d3.css",
+    "src": "pages/register.css"
+  },
+  "pages/register.vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png",
+      "_nuxt/3.de54ba29.jpg"
+    ],
+    "css": [
+      "_nuxt/register.710c22d3.css"
+    ],
+    "file": "_nuxt/register.b4237d9c.js",
+    "imports": [
+      "_ImageForm.a6fbf59d.js",
+      "node_modules/nuxt/dist/app/entry.js",
+      "_index.5f451472.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/register.vue"
+  },
+  "pages/tovar/[id].css": {
+    "file": "_nuxt/_id_.5db288e8.css",
+    "src": "pages/tovar/[id].css"
+  },
+  "pages/tovar/[id].vue": {
+    "assets": [
+      "_nuxt/sot.416737b6.png"
+    ],
+    "css": [
+      "_nuxt/_id_.5db288e8.css"
+    ],
+    "file": "_nuxt/_id_.57a35afd.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js",
+      "_FavoriteComp.eaf61b62.js",
+      "_removeFavorite.559452a9.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "pages/tovar/[id].vue"
+  },
+  "virtual:nuxt:/media/gagtain/9C804AA4804A84AC/beekeeper_project/frontend_nuxtJs/beekeeper_project/.nuxt/error-component.mjs": {
+    "dynamicImports": [
+      "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
+      "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
+    ],
+    "file": "_nuxt/error-component.ef7cc99e.js",
+    "imports": [
+      "node_modules/nuxt/dist/app/entry.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "virtual:nuxt:/media/gagtain/9C804AA4804A84AC/beekeeper_project/frontend_nuxtJs/beekeeper_project/.nuxt/error-component.mjs"
+  }
+}

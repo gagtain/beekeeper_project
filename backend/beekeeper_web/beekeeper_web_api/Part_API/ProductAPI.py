@@ -1,7 +1,7 @@
 from django.db.models import QuerySet
 from rest_framework.views import APIView
 
-from online_store.models import Product
+from ..models import Product
 from .custom_mixins import Filter
 from ..serializers import RetrieveClearAllOptionalProduct
 

@@ -24,8 +24,9 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('online_store.urls')),
     path('api/v0.1/beekeeper_web_api/', include('beekeeper_web_api.urls')),
+    path('api/v0.1/payments/', include('payments.urls')),
+    path('api/v0.1/delivery/', include('delivery.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('api/token/', MyObtainTokenPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', CookieTokenRefreshView.as_view(), name='token_refresh'),

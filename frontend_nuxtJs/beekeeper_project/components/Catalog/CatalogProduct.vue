@@ -28,7 +28,7 @@
                         }}</span></span
                       >
                     </div>
-                    <rating-comp></rating-comp>
+                    <rating-comp :rating="pr.rating"></rating-comp>
                     <div class="variant">
                       <h3>Размер</h3>
                       <div class="flex">

@@ -2,11 +2,22 @@
   <div id="check_form">
     
             <div class=" h_sto">
-                <input type="text" placeholder="Адрес" v-model="username" />
+              <div class="error_list">
+                <div v-for="element in v$.adress.value.$errors" :key="element.$uid">
+                    {{element.$message}}
+                </div>
+                </div>
+                <input type="text" placeholder="Адрес" v-model="v$.adress.value.$model" />
+                
+              <div class="error_list">
+                <div v-for="element in v$.index.value.$errors" :key="element.$uid">
+                    {{element.$message}}
+                </div>
+                </div>
                 <input
                   type="text"
                   placeholder="Индекс"
-                  v-model="password"
+                  v-model="v$.index.value.$model"
                 />
             </div>
            
@@ -15,6 +26,19 @@
 
 
 <style src="~/assets/css/interactive/checkbox.scss" lang="scss" scoped></style>
+<style scoped>
+.error_list{
+	min-height: 19px;
+	text-align: left;
+}
+.error_list div:not(:first-child){
+	margin-left: 2%;
+}
+.error_list div{
+	color: brown;
+  text-align: left;
+}
+</style>
 <style scoped>
 input {
 		font-family: "Roboto", sans-serif;
@@ -48,7 +72,8 @@ cursor: pointer;
 }
  </style>
 <script>
-import addOrder from '~/additional_func/addOrder'
+import { helpers, required } from "@vuelidate/validators";
+import { useVuelidate } from "@vuelidate/core";
 export default {
     el: '#check_form',
 
@@ -59,13 +84,47 @@ export default {
   },
   methods:{
 
-    async submin_order(){
-      let response_order = await addOrder()
-      if (response_order.status == 200){
-        this.$router.push('/orders')
-      }
+    order_info_select(){
       
+      this.v$.$touch()
+      console.log(this.v$.$errors)
+      if (this.v$.$errors.length){
+        return {
+          status: true,
+        }
+      }else{
+        return {
+          status: true,
+          adress: this.state.adress.value,
+          index: this.state.index.value
+        }
+      }
     }
-  }
+  },
+setup(){
+    const state = reactive({
+      adress: {
+        value: "",
+      },
+      index: {
+        value: "",
+      },
+    })
+    const rules = {
+      adress: {
+        value: {
+            required: helpers.withMessage('Требуется', required)
+        },
+      },
+      index: {
+        value: {
+            required: helpers.withMessage('Требуется', required)
+        },
+      },
+    }
+    const v$ = useVuelidate(rules, state)
+
+    return { state, v$ }
+  },
 }
 </script>

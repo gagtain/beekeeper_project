@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 
 from ..services.Order import OrderServices
 sys.path.append('.')
-from online_store.models import MainUser, BasketItem
+from ..models import MainUser, BasketItem
 
 from ..serializers import OrderSerializers
 
@@ -16,10 +16,12 @@ class OrderCreateAPI(APIView):
     def createOrder(self, request):
         if request.data.get('basket'):
             BasketItemList = request.data.get('basket')
-            order = OrderServices.createOrderInBasket(user=request.user, BasketItemList=BasketItemList)
+            order = OrderServices.createOrderInBasket(user=request.user, BasketItemList=BasketItemList,
+                                                      data=request.data)
         else:
             BasketItemList = BasketItem.objects.filter(user=request.user)
-            order = OrderServices.createOrderInBasket(user=request.user, BasketItemList=BasketItemList)
+            order = OrderServices.createOrderInBasket(user=request.user, BasketItemList=BasketItemList,
+                                                      data=request.data)
         return Response(OrderSerializers(order).data)
 
 class OrderGetLastAPI(APIView):

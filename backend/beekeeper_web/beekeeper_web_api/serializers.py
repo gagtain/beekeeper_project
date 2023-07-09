@@ -5,11 +5,23 @@ import sys
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 sys.path.append('.')
-from online_store.models import Product, MainUser, Category, Type_packaging, ImageProduct, \
-    Type_weight, BasketItem, ProductItem, FavoriteItem, Order
+from .models import Product, MainUser, Category, Type_packaging, ImageProduct, \
+    Type_weight, BasketItem, ProductItem, FavoriteItem, Order, RatingProductReview
 
 
+class RatingProductReviewSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = RatingProductReview
+        fields = '__all__'
+
+
+class RatingProductReviewRetrieveSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = RatingProductReview
+        fields = '__all__'
+        depth = 1
 
 class BasketInfoSerializer(serializers.Serializer):
     summ = serializers.CharField()
@@ -77,12 +89,12 @@ class RetrieveProductRemoveToProdachen(serializers.ModelSerializer):
     type_packaging = Type_packagingRetriveSerializers(many=True)
     ImageProductList = PhotoItemSerializers(many=True)
     list_weight = Type_weightSerializers(many=True)
-
+    rating = serializers.FloatField(source='rating_product__rating__avg')
     class Meta:
         model = Product
         fields = ['id', 'name', 'image', 'price', 'description',
                   'price_currency', 'category', 'type_packaging',
-                  'ImageProductList', 'list_weight']
+                  'ImageProductList', 'list_weight', 'rating']
 
 
 class BasketSerializer(serializers.ModelSerializer):
@@ -146,4 +158,4 @@ class OrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = Order
         depth = 3
-        fields = ['id','amount', 'user', 'product_list_transaction', 'datetime']
+        fields = ['id','amount', 'user', 'product_list_transaction', 'datetime', 'order_address', 'order_index']

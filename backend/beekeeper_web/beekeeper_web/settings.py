@@ -13,9 +13,10 @@ import datetime
 import os
 from pathlib import Path
 
+from yookassa import Configuration
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,7 +29,6 @@ DEBUG = os.environ.get("DEBUG", True)
 
 ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'shop.gagtain.online']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,14 +38,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'online_store',
     'rest_framework',
     'beekeeper_web_api',
     'djmoney',
     'debug_toolbar',
     'rest_framework_simplejwt',
     'corsheaders',
- 'sorl.thumbnail',
+    'sorl.thumbnail',
+    'payments',
+    'delivery'
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'beekeeper_web.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -145,7 +145,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
@@ -161,12 +160,11 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'online_store.MainUser'
+AUTH_USER_MODEL = 'beekeeper_web_api.MainUser'
 
 # money
 
 CURRENCIES = ('USD', 'EUR', 'RUB')
-
 
 # rest
 
@@ -179,7 +177,6 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
-
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": datetime.timedelta(days=1),
@@ -226,7 +223,6 @@ SIMPLE_JWT = {
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
-
 # MAIL
 SENDER_MAIL = 'gagtain@gmail.com'
 PASSWORD_MAIL = 'wmwqtejviqtydtsp'
@@ -234,3 +230,8 @@ PASSWORD_MAIL = 'wmwqtejviqtydtsp'
 # CELERY
 
 CELERY_BROKER_URL = 'amqp://rmuser:rmpassword@rabbitmq:5672'
+
+# yookassa
+
+Configuration.account_id = '227407'
+Configuration.secret_key = 'test_saGcPjuDSma2BZNQD0nUkutHtn_C6xHPDZPPh0p4lD4'

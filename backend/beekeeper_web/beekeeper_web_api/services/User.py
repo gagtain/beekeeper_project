@@ -1,7 +1,7 @@
 import sys
 
 from django.contrib.postgres.aggregates import ArrayAgg
-from django.db.models import Prefetch, Sum, Count
+from django.db.models import Prefetch, Sum, Count, Avg
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
@@ -10,7 +10,7 @@ from beekeeper_web_api.serializers import BasketSerializer, FavoriteSerializer
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
-from online_store.models import Product, MainUser, Category, Type_packaging, ImageProduct, \
+from ..models import Product, MainUser, Category, Type_packaging, ImageProduct, \
     Type_weight, BasketItem, ProductItem, FavoriteItem
 
 
@@ -121,7 +121,11 @@ class ProductServises():
 
     @classmethod
     def getPopular(self, size):
-        return Product.objects.all().order_by('count_purchase')[:size]
+        return Product.objects.all().order_by('count_purchase')[:size].prefetch_related(
+            Prefetch('category', queryset=Category.objects.all().only('name')),
+            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
+            'ImageProductList', 'list_weight'
+        ).annotate(Avg('rating_product__rating'))
 
     @classmethod
     def getProductList(self, size):
@@ -129,7 +133,7 @@ class ProductServises():
             Prefetch('category', queryset=Category.objects.all().only('name')),
             Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
             'ImageProductList', 'list_weight'
-        )
+        ).annotate(Avg('rating_product__rating'))
 
     # 'id', 'name', 'image', 'price', 'description', 'price_currency', 'category', 'type_packaging', 'ImageProductList'
     @classmethod
@@ -138,7 +142,7 @@ class ProductServises():
             Prefetch('category', queryset=Category.objects.all().only('name')),
             Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
             'ImageProductList', 'list_weight'
-        )
+        ).annotate(Avg('rating_product__rating'))
 
 
 class CategoryServises():

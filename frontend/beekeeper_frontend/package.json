@@ -1,0 +1,61 @@
+{
+  "name": "beekeeper_frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@vue/server-renderer": "^3.3.4",
+    "@vuelidate/core": "^2.0.2",
+    "@vuelidate/validators": "^2.0.2",
+    "axios": "^1.4.0",
+    "core-js": "^3.31.0",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "jquery": "^3.7.0",
+    "path": "^0.12.7",
+    "sass": "^1.63.3",
+    "sass-loader": "^13.3.2",
+    "stream": "^0.0.2",
+    "swiper": "^9.4.0",
+    "vue": "^3.2.13",
+    "vue-axios": "^3.5.2",
+    "vue-route-middleware": "^1.0.7",
+    "vue-router": "^4.2.2",
+    "vuelidate": "^0.7.7",
+    "vuex": "4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.5",
+    "@babel/eslint-parser": "^7.22.5",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.7.1"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser",
+      "requireConfigFile": false
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}

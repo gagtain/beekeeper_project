@@ -14,6 +14,7 @@
                             <p class="black nebolsh">Категории: {{getCategoryList().join(', ')}}</p>
                         </div>
                         
+                    <rating-comp :rating="tovar.rating"></rating-comp>
                     <div class="price flex">
                       <span style="line-height: 1;" class="tovar_price VAG small-big"
                         >{{ tovar.price }}
@@ -124,13 +125,15 @@ import getTovar from "../../additional_func/getTovar"
 import AddBasket from '~/components/AddtionalComp/AddBasket.vue'
 import FavoriteComp from '~/components/AddtionalComp/FavoriteComp.vue'
 import TovarImage from '~/components/Tovar/TovarImage.vue'
+import RatingComp from "~/components/Tovar/RatingComp.vue"
 export default {
     el: '#tovar',
     name: 'TovarBase',
     components:{
         AddBasket,
         FavoriteComp,
-        TovarImage
+        TovarImage,
+        RatingComp
     },
     data(){
         return {
