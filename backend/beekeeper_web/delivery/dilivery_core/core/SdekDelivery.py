@@ -14,5 +14,24 @@ class SDEKDelivery:
 
     @classmethod
     @token_verif(token=Configuration.token, time=Configuration.time)
-    def create_order_delivery(cls, order_delivery_obj:Delivery.DeliveryAdd):
-        pass
+    def create_delivery(cls, delivery_obj: Delivery.DeliveryAdd):
+        data = delivery_obj.to_json()
+        a = requests.post(f'{Configuration.api_url}orders', headers={
+            'Authorization': f"Bearer {Configuration.token}",
+            'Content-Type': 'application/json',
+            "Accept": "application/json",
+        },
+                      data=data
+                      )
+        return a
+
+    @classmethod
+    @token_verif(token=Configuration.token, time=Configuration.time)
+    def get_delivery(cls, uuid):
+        a = requests.get(f'{Configuration.api_url}orders/{uuid}/', headers={
+            'Authorization': f"Bearer {Configuration.token}",
+            'Content-Type': 'application/json',
+            "Accept": "application/json",
+        },
+                      )
+        return a

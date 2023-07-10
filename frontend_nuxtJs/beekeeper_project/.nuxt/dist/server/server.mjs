@@ -2040,7 +2040,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/basket-50e523f1.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/basket-6be1193a.js").then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -2056,7 +2056,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/checkout-eb4cf816.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/checkout-68ccdac1.js").then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -2096,7 +2096,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import("./_nuxt/profile-eaa5aa9c.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/profile-fc83b56b.js").then((m) => m.default || m)
   },
   {
     name: "register",

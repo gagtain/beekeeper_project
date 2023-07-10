@@ -11,7 +11,7 @@ class AbstractPaymentService(ABC):
 
     @classmethod
     @abstractmethod
-    def get_initial_data(cls, data):
+    def get_initial_data(cls, data, order):
         pass
 
     @classmethod

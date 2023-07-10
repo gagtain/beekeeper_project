@@ -21,15 +21,15 @@ class PaymentsYookassaServices(AbstractPaymentService):
         order.save()
 
     @classmethod
-    def get_initial_data(cls, data):
+    def get_initial_data(cls, data, order):
         initial_data = shemas.PaymentsCreate(
             amount=shemas.PaymentsAmount(
-                value=data['value'],
+                value=str(order.amount.amount),
                 currency=data['currency']
             ),
             capture=True,
             confirmation=shemas.PaymentsConfirmation(
-                return_url='https:vk.com',
+                return_url='https://gagtain.ru/orders',
                 type='redirect'
             ),
             description=f'Заказ №{data["order_id"]}'

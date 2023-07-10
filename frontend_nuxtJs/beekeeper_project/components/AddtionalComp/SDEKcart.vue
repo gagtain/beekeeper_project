@@ -1,6 +1,8 @@
 <template>
     <div id="s">
-    <p> <a href="javascript:void(0)" @click="orderWidjet.open()">Выбрать ПВЗ</a> </p>
+    <button @click="orderWidjet.open()" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                              Выбрать пунк выдачи
+                            </button>
 <div id="linkForWidjet" style="display: none;">
 </div>
 

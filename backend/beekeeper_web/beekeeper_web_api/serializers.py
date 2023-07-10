@@ -158,4 +158,4 @@ class OrderSerializers(serializers.ModelSerializer):
     class Meta:
         model = Order
         depth = 3
-        fields = ['id','amount', 'user', 'product_list_transaction', 'datetime', 'order_address', 'order_index']
+        fields = ['id','amount', 'user', 'product_list_transaction', 'datetime']

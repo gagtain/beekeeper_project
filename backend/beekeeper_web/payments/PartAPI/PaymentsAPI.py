@@ -29,7 +29,7 @@ class CreatePaymentsAPI(APIView):
             return Response({'error': 'выбранной заказной системы не существует'})
         Order = order_model.objects.get(id=request.data['order_id'])
 
-        initial_data = payment_service_class.get_initial_data(request.data)
+        initial_data = payment_service_class.get_initial_data(request.data, Order)
         payment = payment_service_class.create_payment(initial_data)
         payment_model = payment_service_class.create_model_payment(payment, Order)
 

@@ -10,6 +10,7 @@
           }, 0)
         }}
       </p>
+      <p class="m2">Цена доставки {{ delivery_price }}</p>
       <p class="m2">скидки:</p>
       <ul>
         <li>*в разработке*</li>
@@ -28,7 +29,7 @@
 <script>
 export default {
     el: '#pr_list_info',
-  props: ['items'],
+  props: ['items', 'delivery_price'],
   data(){
     return {
       summ: 0,
@@ -60,7 +61,7 @@ export default {
       let summ = this.items.reduce(function (sum, elem) {
         return sum + parseFloat(elem.productItem.product.price * elem.count);
       }, 0);
-      return summ
+      return summ + parseFloat(this.delivery_price)
     },
   },
 }

@@ -30,7 +30,7 @@ class Packages:
     length: int
     width: int
     height: int
-    items: PackagesItems
+    items: list[PackagesItems]
 
 @dataclass_json
 @dataclass
@@ -38,14 +38,23 @@ class SenderPhones:
     number: str
 
 
-class DefaultSenderPhones(SenderPhones):
-    number = '89142321321'
+@dataclass_json
+@dataclass
+class DefaultSenderPhones:
+    number: str = '89142321321'
 
 
+@dataclass_json
+@dataclass
 class Recipient:
     name: str
-    phones: list[SenderPhones] = field(default_factory=list[SenderPhones])
+    phones: list[SenderPhones]
 
+@dataclass_json
+@dataclass
+class DefaultRecipient:
+    name: str = 'asd asd asd'
+    phones: list[SenderPhones] = DefaultSenderPhones()
 
 @dataclass_json
 @dataclass
@@ -54,9 +63,11 @@ class Sender:
     name: str
 
 
-class DefaultSender(Sender):
-    company = 'Уварово пасечник'
-    name = 'Белоусов Сергей Сергеевич'
+@dataclass_json
+@dataclass
+class DefaultSender:
+    company: str = 'Уварово пасечник'
+    name: str = 'Белоусов Сергей Сергеевич'
 
 
 class TypeOrder(enum.Enum):
@@ -77,8 +88,30 @@ class DeliveryAdd:
     tariff_code: int
     delivery_point: int
     type: TypeOrder
+    packages: Packages
+    shipment_point: str = settings.SDEK_SHIPMENT_POINT
+    recipient: Recipient = DefaultRecipient()
     additional_order_type: list[AdditionalTypeOrder] = field(default_factory=list)
-    number: str = field(default_factory=str)
-    comment: str = None
-    shipment_point: int = settings.SDEK_SHIPMENT_POINT
-    sender: Sender = DefaultSender
+    sender: Sender = DefaultSender()
+
+
+@dataclass_json
+@dataclass
+class DeliveryResponseEntity:
+    uuid: str
+
+
+@dataclass_json
+@dataclass
+class DeliveryResponseRequests:
+    request_uuid: str
+    type: str
+    date_time: str
+    state: str
+
+
+@dataclass_json
+@dataclass
+class DeliveryResponseAdd:
+    entity: DeliveryResponseEntity
+    requests: list[DeliveryResponseRequests]

@@ -19,6 +19,6 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('create/', views.PaymentAPI.as_view({'get': 'create_payments'})),
+    path('create/', views.PaymentAPI.as_view({'post': 'create_payments'})),
 
 ]

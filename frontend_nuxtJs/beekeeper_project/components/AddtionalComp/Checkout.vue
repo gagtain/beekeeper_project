@@ -2,29 +2,7 @@
   <div id="check_form">
     <p class="VAG" align="left">Доставка</p>
             <div class=" h_sto">
-              <div style="display: none;">
-                
-              <div class="error_list">
-                <div v-for="element in v$.adress.value.$errors" :key="element.$uid">
-                    {{element.$message}}
-                </div>
-                </div>
-                <input type="text" placeholder="Адрес" v-model="v$.adress.value.$model" />
-                
-              <div class="error_list">
-                <div v-for="element in v$.index.value.$errors" :key="element.$uid">
-                    {{element.$message}}
-                </div>
-                </div>
-                <div class="relative w-sto">
-                  
-                <input
-                  type="text"
-                  v-model="v$.index.value.$model"
-                />
-  <span class="floating-label">Your email address</span>
-                </div>
-              </div>
+              
                 <div v-if="delivery_info">
                   <div class="relative">
 
@@ -130,23 +108,20 @@ export default {
 
     order_info_select(){
       
-      this.v$.$touch()
-      console.log(this.v$.$errors)
-      if (this.v$.$errors.length){
+      if (this.delivery_info == null){
         return {
-          status: true,
+          status: false,
         }
       }else{
         return {
           status: true,
-          adress: this.state.adress.value,
-          index: this.state.index.value
         }
       }
     },
     async onChoise(info){
       console.log(info)
       this.delivery_info = await info
+      this.$emit('delivery', this.delivery_info.price)
     }
   },
 setup(){

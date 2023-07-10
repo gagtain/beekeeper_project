@@ -237,4 +237,4 @@ Configuration.account_id = '227407'
 Configuration.secret_key = 'test_saGcPjuDSma2BZNQD0nUkutHtn_C6xHPDZPPh0p4lD4'
 
 
-SDEK_SHIPMENT_POINT = 123
+SDEK_SHIPMENT_POINT = 'MSK52'

@@ -7,6 +7,7 @@ from django.utils import timezone
 from djmoney.models.fields import MoneyField
 from django.utils.translation import gettext_lazy as _
 
+from delivery.models import DeliveryTransaction
 from payments.models import PaymentTransaction
 
 
@@ -43,7 +44,6 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
-
 
 
 class Type_packaging(models.Model):
@@ -93,6 +93,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class ProductItem(models.Model):
     """Объект продукта с определенными параметрами"""
     product: Product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='productItemList')
@@ -122,18 +123,18 @@ class FavoriteItem(models.Model):
         return f"{self.user.username} {self.productItem}"
 
 
-
-
 class Order(models.Model):
     user: MainUser = models.ForeignKey(MainUser, related_name='user_order', on_delete=models.CASCADE)
     amount = MoneyField(default=0, max_digits=14, decimal_places=2,
                         verbose_name="Сумма транзакции", default_currency='RUB')
     datetime = models.DateTimeField(auto_now_add=True, verbose_name="Время")
-    order_address = models.CharField(max_length=400, default="")
-    order_index = models.CharField(max_length=100, default="")
     payment = models.ForeignKey(PaymentTransaction,
                                 related_name='order_payment_transaction',
                                 on_delete=models.CASCADE, blank=True, null=True)
+    delivery = models.ForeignKey(DeliveryTransaction,
+                                 related_name='order_delivery_transaction',
+                                 on_delete=models.CASCADE, blank=True, null=True)
+
 
 class OrderItem(models.Model):
     user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE)

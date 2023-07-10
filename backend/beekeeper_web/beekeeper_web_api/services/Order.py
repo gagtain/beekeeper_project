@@ -1,5 +1,7 @@
 import sys
+from _decimal import Decimal
 
+from django.db.models import DecimalField
 from django.template.loader import render_to_string
 from rest_framework.exceptions import NotFound, ValidationError
 
@@ -21,21 +23,23 @@ class OrderServices():
             raise NotFound("У пользователя нет заказов")
 
     @classmethod
-    def createOrderInBasket(cls, user: MainUser, BasketItemList: list[BasketItem], data: dict):
+    def createOrderInBasket(cls, request, BasketItemList: list[BasketItem], data: dict):
         """Создание заказа"""
         if BasketItemList.count() == 0:
             raise ValidationError(detail='Список товаров пуст')
         total_amount = 0
+
         for i in BasketItemList:
-            total_amount += i.count * (i.productItem.product.price ) # добавить наценку за упаковку и скидки
-        order = Order.objects.create(user=user, amount=total_amount,
-                                     order_address=data['address'], order_index=data['index'])
+            print(i.productItem.product.price.amount)
+            total_amount += i.count * i.productItem.product.price.amount # добавить наценку за упаковку и скидки
+        total_amount = float(total_amount) + float(request.data['delivery_price'])
+        order = Order.objects.create(user=request.user, amount=total_amount)
         for basket_item in BasketItemList:
-            OrderItem.objects.create(user=user, productItem=basket_item.productItem,
+            OrderItem.objects.create(user=request.user, productItem=basket_item.productItem,
                                      count=basket_item.count, order=order)
 
 
-        user.basket.clear()
+        request.user.basket.clear()
         order_email_send.delay(order.id, user.id)
 
         return order

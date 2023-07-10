@@ -11,7 +11,7 @@
         <div style="width: 50%; padding-top: 20px; padding-left: 2%;">
 
             <client-only>
-            <checkout ref="checkout_form"></checkout>
+            <checkout v-on:delivery="delivery_price_select($event)" ref="checkout_form"></checkout>
 
             </client-only>
             <p align="left" class="VAG small">Товары</p>
@@ -19,8 +19,8 @@
             <order-product-list :orderList="$store.getUser.basket"></order-product-list>
         </div>
             <div style="width: 40%;" class="register_zakaz">
-                <Submit_order v-on:forms_validate_met="forms_validate_met" :items="$store.getUser.basket" :forms_validate="forms_validate"></Submit_order>
-                <ProductListInfo :items="$store.getUser.basket"></ProductListInfo>
+                <Submit_order :delivery_price="delivery_price" v-on:forms_validate_met="forms_validate_met" :items="$store.getUser.basket" :forms_validate="forms_validate"></Submit_order>
+                <ProductListInfo :items="$store.getUser.basket" :delivery_price="delivery_price"></ProductListInfo>
             </div>
                     
                 </div>
@@ -81,19 +81,17 @@ export default {
 },
 data(){
     return{
-        forms_validate: false
+        forms_validate: false,
+        delivery_price: 0
     }
 },
     methods:{
-        async submin_order(){
-      let response_order = await addOrder()
-      if (response_order.status == 200){
-        this.$router.push('/orders')
-      }
-    },
     forms_validate_met(){
         this.forms_validate = this.$refs.checkout_form.order_info_select()
-        console.log(this.forms_validate)
+    },
+    async delivery_price_select(delivery_price){
+
+        this.delivery_price = await delivery_price
     }
 },
 
