@@ -21,10 +21,10 @@ const styles = {
   "components/UserComp/UserInfoRen.vue": () => import('./_nuxt/UserInfoRen-styles.cd7dc7c2.mjs').then(interopDefault),
   "components/UserComp/UserInfo.vue": () => import('./_nuxt/UserInfo-styles.5e1823f1.mjs').then(interopDefault),
   "components/Tovar/TovarImage.vue": () => import('./_nuxt/TovarImage-styles.6b0b9d10.mjs').then(interopDefault),
-  "components/HeadersBase.vue": () => import('./_nuxt/HeadersBase-styles.246be514.mjs').then(interopDefault),
   "components/FooterBase.vue": () => import('./_nuxt/FooterBase-styles.568d6562.mjs').then(interopDefault),
-  "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": () => import('./_nuxt/error-404-styles.a5c3f351.mjs').then(interopDefault),
   "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": () => import('./_nuxt/error-500-styles.6b5b5ff2.mjs').then(interopDefault),
+  "components/HeadersBase.vue": () => import('./_nuxt/HeadersBase-styles.246be514.mjs').then(interopDefault),
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": () => import('./_nuxt/error-404-styles.a5c3f351.mjs').then(interopDefault),
   "components/AddtionalComp/SDEKcart.vue": () => import('./_nuxt/SDEKcart-styles.dcc07e5a.mjs').then(interopDefault),
   "components/SeacrhComp.vue": () => import('./_nuxt/SeacrhComp-styles.a988d79a.mjs').then(interopDefault)
 };
