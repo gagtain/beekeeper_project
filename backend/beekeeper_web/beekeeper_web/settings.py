@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-tlr9d(mc+d8k7%dwly0rlb3v8w)lb1#lih%-sj1*stk$zg05gp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", True)
 
-ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'shop.gagtain.online']
-
+ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'shop.gagtain.online', 'webapi']
+CSRF_TRUSTED_ORIGINS = ['https://owa.gagtain.ru', 'https://gagtain.ru']
 # Application definition
 
 INSTALLED_APPS = [
