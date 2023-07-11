@@ -20,7 +20,7 @@
         </div>
             <div style="width: 40%;" class="register_zakaz">
                 <Submit_order :delivery_price="delivery_price" v-on:forms_validate_met="forms_validate_met" :items="$store.getUser.basket" :forms_validate="forms_validate"></Submit_order>
-                <ProductListInfo :items="$store.getUser.basket" :delivery_price="delivery_price"></ProductListInfo>
+                <ProductListInfo :ordered="true" :items="$store.getUser.basket" :delivery_price="delivery_price"></ProductListInfo>
             </div>
                     
                 </div>

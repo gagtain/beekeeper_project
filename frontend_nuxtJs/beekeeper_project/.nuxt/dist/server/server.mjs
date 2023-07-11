@@ -2040,7 +2040,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/basket-6be1193a.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/basket-5e9558d6.js").then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -2056,7 +2056,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/checkout-68ccdac1.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/checkout-709f84e4.js").then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -2080,7 +2080,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/login-f0e78781.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/login-f073c51a.js").then((m) => m.default || m)
   },
   {
     name: "orders",
@@ -2096,7 +2096,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import("./_nuxt/profile-fc83b56b.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/profile-2614bf1a.js").then((m) => m.default || m)
   },
   {
     name: "register",
@@ -2184,7 +2184,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "https://owa.gagtain.ru/";
+let api_root = "http://localhost:8000/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -2588,7 +2588,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "https://owa.gagtain.ru/"
+      api_root: "http://localhost:8000/"
     }
   };
 });

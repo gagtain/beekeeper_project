@@ -1,7 +1,7 @@
 <template>
   <div class="register_zakaz" style="width: 100%;">
     <SubmitOrderref :items="items"></SubmitOrderref>
-    <ProductListInfo :items="items"></ProductListInfo>
+    <ProductListInfo :items="items" :ordered="false"></ProductListInfo>
     
   </div>
 </template>

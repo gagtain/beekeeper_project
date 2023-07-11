@@ -40,7 +40,7 @@ class OrderServices():
 
 
         request.user.basket.clear()
-        order_email_send.delay(order.id, user.id)
+        order_email_send.delay(order.id, request.user.id)
 
         return order
 
