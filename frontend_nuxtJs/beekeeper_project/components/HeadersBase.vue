@@ -7,13 +7,13 @@
       <div class="absolute w-sto h_sto g"></div>
       <div class="interactiv h_sto">
         <div class="w-sto name_org flex" id="mob_mob_block">
-          <p class="auto">Уварово пасечник</p>
+          <p class="auto">Пчелиная артель</p>
         </div>
 
         <div class="menu_ ">
           <div class="logo relative">
             <div class="logo-page flex absolute">
-              <img @click="alert(123)" src="/favicon.ico" class="logo_img auto" alt="" />
+              <img src="/favicon.ico" class="logo_img auto" alt="" />
             </div>
           </div>
           <div class="context_menu context_menu_info">
@@ -109,7 +109,7 @@
             />
           </div>
         </div>
-        <p class="VAG menu_mob_p_org_name small">Уварово пасечник</p>
+        <p class="VAG menu_mob_p_org_name small">Пчелиная артель</p>
         <ul>
           <NuxtLink to="/"
                       ><li>Главная</li></NuxtLink>

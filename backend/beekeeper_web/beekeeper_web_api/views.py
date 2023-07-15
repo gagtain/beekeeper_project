@@ -81,7 +81,6 @@ class tokenVerif(APIView):
     
 
 class ProductAPI(viewsets.ViewSet, ProductFilterName):
-    authentication_classes = [CustomAuthentication]
 
     def get_popular(self, request):
         size = int(request.GET['size'])
@@ -92,7 +91,6 @@ class ProductAPI(viewsets.ViewSet, ProductFilterName):
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getProductList(size), many=True).data)
     
     def get_product(self, request, id):
-        print(request.COOKIES)
 
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getProduct(id)[0]).data)
 

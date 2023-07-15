@@ -1,5 +1,4 @@
 import axios from "axios";
-import getCookie from "./getCookie";
 import { api_root } from '@/main'
 
 

@@ -1,5 +1,6 @@
 from django.contrib import admin
 
+from news.models import News
 from .models import MainUser, Product, Category, Type_packaging, ImageProduct, Type_weight, BasketItem, ProductItem, \
     Order, OrderItem, RatingProductReview
 
@@ -27,3 +28,4 @@ admin.site.register(OrderItem)
 admin.site.register(Type_packaging)
 admin.site.register(Type_weight)
 admin.site.register(RatingProductReview)
+admin.site.register(News)

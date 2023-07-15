@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'sorl.thumbnail',
     'payments',
-    'delivery'
+    'delivery',
+    'news'
 ]
 
 MIDDLEWARE = [

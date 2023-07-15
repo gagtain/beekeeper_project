@@ -26,7 +26,7 @@
             <button style="background: rgb(76, 175, 80); cursor: pointer;width: 100%;height: 32px;border: none;border-radius: 6px;" onclick="alert('в разработке')">Изменить</button>
             
 <p class="normal-small kolvo">количество</p>
-<CountProduct :id="b.id"></CountProduct>
+<CountProduct :item="b"></CountProduct>
         </div>
       </div>
     </div>

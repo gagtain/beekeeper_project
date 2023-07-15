@@ -2,7 +2,7 @@
 
             <div class="input-number" id="count_button">
     <div class="input-number__minus" @click="minus_input($event)">-</div>
-    <input class="input-number__input" @keydown="input_keydown($event)" type="text" pattern="^[0-9]+$" @focusout="input_onfocus($event)" @input="re_count($event)"  :value="USER_STATE.basket.filter(f => f.id == id)[0].count">
+    <input class="input-number__input" @keydown="input_keydown($event)" type="text" pattern="^[0-9]+$" @focusout="input_onfocus($event)" @input="re_count($event)"  :value="item.count">
     <div class="input-number__plus" @click="plus_input($event)">+
 </div>
 
@@ -52,7 +52,7 @@ import updateCountBasketItem from '@/additional_func/updateCountBasketItem'
 export default{
     el:'#count_button',
     name:'CountProduct',
-    props: ['id'],
+    props: ['item'],
     data(){
         return {
             time_prover: null,
@@ -62,11 +62,11 @@ export default{
     methods:{
 
         async re_basketItem(){
-            let response = await updateCountBasketItem(this.id, this.USER_STATE.basket.filter(f => f.id == this.id)[0].count)
+            let response = await updateCountBasketItem(this.item.id, this.item.count)
             if (response.status == 400){
                 this.$store.REMOVE_BASKET_ITEM(this.id)
             }else{
-                this.USER_STATE.basket.filter(f => f.id == this.id)[0] == response.data
+                this.item == response.data
             }
         },
 
@@ -80,10 +80,10 @@ export default{
         },
         input_onfocus(event){
             if(event.srcElement.value == ''){
-                event.srcElement.value = this.BASKET_LIST_STATE.filter(f => f.id == this.id)[0].count
+                event.srcElement.value = this.item.count
             }else if(event.srcElement.value == '0'){
-                if (this.BASKET_LIST_STATE.filter(f => f.id == this.id)[0].count != 1){
-                    this.$store.REFACTOR_COUNT_BASKET_ITEM({basket_id: this.id, count: 1})
+                if (this.item.count != 1){
+                    this.$store.REFACTOR_COUNT_BASKET_ITEM({basket_id: this.item.id, count: 1})
                     this.re_basketItem()
                 }else{
                     event.srcElement.value = 1
@@ -94,7 +94,7 @@ export default{
         let total = event.srcElement.nextElementSibling;
         let value = parseInt(total.value)
         if (total.value > 1) {
-            this.$store.REFACTOR_COUNT_BASKET_ITEM({basket_id: this.id, count: value - 1})
+            this.$store.REFACTOR_COUNT_BASKET_ITEM({basket_id: this.item.id, count: value - 1})
         setTimeout(() => { let count = value - 1
             if (count == event.srcElement.nextElementSibling.value  ){
                     this.re_basketItem()
@@ -110,7 +110,7 @@ export default{
         
         let total = event.srcElement.previousElementSibling;
         let value = parseInt(total.value)
-        this.$store.REFACTOR_COUNT_BASKET_ITEM({basket_id: this.id, count: value + 1})
+        this.$store.REFACTOR_COUNT_BASKET_ITEM({basket_id: this.item.id, count: value + 1})
         setTimeout(() => { let count = value + 1
             if (count == event.srcElement.previousElementSibling.value){
                 this.re_basketItem()

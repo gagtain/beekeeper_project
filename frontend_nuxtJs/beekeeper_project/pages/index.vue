@@ -124,6 +124,31 @@
             
           </div>
 
+          <div class="interactiv auto">
+
+            <div class="flex w-sto text_in_sot">
+            <p class="big auto main-text">Новости</p>
+          </div>
+            <section style="padding: 5%;" class="auto grid">
+    <article v-for="new_obj in news" :key="new_obj.id" class="grid-item">
+        <div class="image">
+            <img :src="this.$api_root + new_obj.main_image" />
+        </div>
+        <div class="info">
+            <NuxtLink :to="`/news/${new_obj.id}`"><h2 class="VAG">{{ new_obj.title }}</h2></NuxtLink>
+            <div class="info-text">
+                <p>{{ new_obj.main_text }}</p>
+            </div>
+            <div class="button-wrap">
+              <NuxtLink class="atuin-btn" :to="`/news/${new_obj.id}`">Подробнее</NuxtLink>
+            </div>
+        </div>
+    </article>
+    
+</section>
+<NuxtLink :to="`/news`"><button style="background: rgb(160,166,62);; cursor: pointer;width: 100%;border: none;border-radius: 6px; padding: 2% 3%;"><div class="w-sto h_sto flex"><p class="auto small-big">Все новости</p></div></button>
+</NuxtLink>
+        </div>
         </div>
         <div class="ref-block w-sto">
         <div class="flex w-sto text_in_sot">
@@ -166,6 +191,7 @@
 @import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css";
 </style>
   <style lang="css" src="../assets/css/main/main.css" scoped></style>
+  <style lang="css" src="../assets/css/news_min.css" scoped></style>
   <style lang="css" src="../assets/css/main/hex-tovar.css" scoped></style>
   <style scoped>
   .main_img {
@@ -194,6 +220,7 @@
   import { Autoplay, Navigation } from "swiper";
   import LoadingComp from "~/components/AddtionalComp/LoadingComp.vue";
   import axios from "axios";
+  import newsList from "~/additional_func/News/newsList";
   export default {
     name: "IndexItem",
     components: {
@@ -206,13 +233,14 @@
         popular_product: null,
         wrapper_active: false,
         type_weigth_id: null,
-        type_pack_id: null
+        type_pack_id: null,
+        news: []
       };
     },
     async created() {
 
     },
-    mounted() {
+    async mounted() {
       self = this
     axios({
       url: `${this.$api_root}/api/v0.1/beekeeper_web_api/get_popular_product?size=5`,
@@ -235,6 +263,8 @@
         `${this.$api_root}static/online_store/js/main.js`
       );
       document.head.appendChild(recaptchaScript);
+      let r = await newsList(0, 3)
+      this.news = r.data
     },
     methods: {
       select_type_weigth(pk){
