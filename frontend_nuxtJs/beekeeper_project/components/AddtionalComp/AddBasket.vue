@@ -29,7 +29,7 @@ export default{
             let self = this
             console.log(this.$store.getUser.basket)
             let a = this.$store.getUser.basket.find(function(item){
-            if (self.id == item.productItem.product.id && self.wei_id == item.productItem.weight.id && self.pack_id == item.productItem.type_packaging.id){
+            if (self.id == item.productItem.product.id && self.wei_id == item.productItem.weight.id){
                 return true
             }else{
                 return false
@@ -43,14 +43,14 @@ export default{
             }
         },
         async addBasketBtn(){
-            let response_add = await addBasket(this.id, this.pack_id, this.wei_id)
+            let response_add = await addBasket(this.id, this.wei_id)
             if (response_add.status == 200){
                 this.$store.ADD_BASKET_ITEM(response_add.data.basketItem)
                 this.isBasket = true
             }  
         },
         async removeBasketBtn(){
-            let response_add = await removeBasket(this.id, this.pack_id, this.wei_id)
+            let response_add = await removeBasket(this.id, this.wei_id)
             if (response_add.status == 200){
                 this.$store.REMOVE_BASKET_ITEM(response_add.data.id)
                 this.isBasket = false

@@ -1,0 +1,5 @@
+const checkbox_scss_vue_type_style_index_0_src_8d1bc19e_scoped_8d1bc19e_lang = "[data-v-8d1bc19e]:root{--vs-primary:29 92 255}dialog[data-v-8d1bc19e]{animation:fadeIn 1s ease both;background:#fff;border:0;border-radius:20px;box-shadow:0 5px 30px 0 rgba(0,0,0,.1);max-width:400px;padding:2rem 3rem 1rem;width:50%}dialog[data-v-8d1bc19e]::backdrop{animation:fadeIn 1s ease both;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);background:hsla(0,0%,100%,.4);z-index:2}dialog .x[data-v-8d1bc19e]{background:none;border:none;cursor:pointer;filter:grayscale(1);position:absolute;right:10px;top:15px;transform-origin:center;transition:filter ease,transform .3s}dialog .x[data-v-8d1bc19e]:hover{filter:grayscale(0);transform:scale(1.1)}dialog h2[data-v-8d1bc19e]{font-size:2rem;font-weight:600;padding-bottom:1rem}dialog p[data-v-8d1bc19e]{font-size:1rem;line-height:1.3rem;padding:.5rem 0}dialog p a[data-v-8d1bc19e]:visited{color:rgb(var(--vs-primary))}";
+export {
+  checkbox_scss_vue_type_style_index_0_src_8d1bc19e_scoped_8d1bc19e_lang as default
+};
+//# sourceMappingURL=OrderProductList-styles-1.mjs-4aeda600.js.map

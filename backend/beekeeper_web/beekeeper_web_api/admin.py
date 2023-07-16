@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 from news.models import News
-from .models import MainUser, Product, Category, Type_packaging, ImageProduct, Type_weight, BasketItem, ProductItem, \
-    Order, OrderItem, RatingProductReview
+from .models import MainUser, Product, Category, ImageProduct, BasketItem, ProductItem, \
+    Order, OrderItem, RatingProductReview, Type_weight
 
 
 # Register your models here.
@@ -25,7 +25,6 @@ admin.site.register(Category)
 admin.site.register(ImageProduct)
 admin.site.register(Order)
 admin.site.register(OrderItem)
-admin.site.register(Type_packaging)
 admin.site.register(Type_weight)
 admin.site.register(RatingProductReview)
 admin.site.register(News)

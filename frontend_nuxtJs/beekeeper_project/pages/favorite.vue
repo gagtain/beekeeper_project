@@ -22,7 +22,7 @@
                   </div>
                   <div class="info_tovar_kor flex jus-sp">
                     <div class="info_tovar_kor_osnov">
-                      <p class="normal-small tovar_kor_name">{{ b.productItem.product.name }} [{{ b.productItem.weight.weight }} гр, {{ b.productItem.type_packaging.name }}]</p>
+                      <p class="normal-small tovar_kor_name">{{ b.productItem.product.name }} [{{ b.productItem.weight.weight }} гр]</p>
 
                       <p class="normal-small info_in_tovar_kor description">
                         {{ b.productItem.product.price }} {{ b.productItem.product.price_currency }}

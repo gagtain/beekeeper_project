@@ -22,10 +22,7 @@ class Filter:
         self.fields = request.GET.get('fields', list(self.filter_options.keys()))
         if type(self.fields) != list:
             self.fields = json.loads(self.fields)
-
-
         try:
-
             q = self.init_queryset(self.models.objects.filter(**filters))
             ser = self.serializers_retrieve(q, many=True, context={'fields':self.fields})
             return Response(ser.data, status=status.HTTP_200_OK)
@@ -38,5 +35,4 @@ class Filter:
         for key, value in req.items():
             if key in list(self.filter_options):
                 filters[self.filter_options[key]] = req[key]
-        print(filters)
         return filters

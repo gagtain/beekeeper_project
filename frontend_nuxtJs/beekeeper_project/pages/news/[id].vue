@@ -6,7 +6,7 @@
 
 
 <div v-if="news != null" class="card w-sto">
-  <div class="card-header">
+  <div class="card-header VAG small" style="text-align: center;">
     {{ news.title }}
   </div>
   <div v-html="news.context" class="card-body">
@@ -68,7 +68,13 @@ export default{
         console.log(data)
         this.news = data
         console.log(this.news)
-    }
+        let width = window.screen.width
+        if (width <= 900){
+
+        data.context = data.context.replace(/width: \d{1,2}%/, `width: 100%`)
+        }
+        
+    },
 }
 
 </script>

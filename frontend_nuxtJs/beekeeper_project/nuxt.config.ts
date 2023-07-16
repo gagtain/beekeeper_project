@@ -8,6 +8,9 @@ export default defineNuxtConfig({
   plugins: [
     { src: '@/plugins/myPlug.js' },
   ],
+  nitro:{
+    compressPublicAssets: true
+  },
   ssr: true,
   
 })

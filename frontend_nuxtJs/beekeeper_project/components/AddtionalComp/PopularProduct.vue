@@ -40,16 +40,6 @@
                           </li>
                         </ul>
                       </div>
-                      <h3>Тип упаковки</h3>
-                      <div class="flex">
-                        <ul class="variant-ul">
-                          <li  @click="select_type_pack(ty_pck.id)" :class="type_pack_id == ty_pck.id ? 'active' : ''" v-for="ty_pck, index in pr.type_packaging" :key="index" class="photo-album-li">
-                            <div class="h_sto">
-                              <p>{{ ty_pck.name }}</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
                     </div>
                     <div class="product__text">
                       <p class="small">{{ pr.description }}</p>

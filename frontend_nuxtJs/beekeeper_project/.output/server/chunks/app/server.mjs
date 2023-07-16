@@ -1230,12 +1230,20 @@ const __nuxt_page_meta = {
 };
 const _routes = [
   {
+    name: "admin-news",
+    path: "/admin/news",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/news-20520874.mjs').then((m) => m.default || m)
+  },
+  {
     name: "basket",
     path: "/basket",
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/basket-5e9558d6.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/basket-bac64814.mjs').then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -1243,7 +1251,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/catalog-33e04bb1.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/catalog-e98a3758.mjs').then((m) => m.default || m)
   },
   {
     name: "checkout",
@@ -1251,7 +1259,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/checkout-709f84e4.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout-df85e74d.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1259,7 +1267,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/favorite-5ebd91da.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/favorite-4d456522.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -1267,7 +1275,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-335b8b19.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-464e7475.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1278,12 +1286,28 @@ const _routes = [
     component: () => import('./_nuxt/login-f073c51a.mjs').then((m) => m.default || m)
   },
   {
+    name: "news-id",
+    path: "/news/:id()",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/_id_-44d8e2a4.mjs').then((m) => m.default || m)
+  },
+  {
+    name: "news",
+    path: "/news",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/index-127d62fa.mjs').then((m) => m.default || m)
+  },
+  {
     name: "orders",
     path: "/orders",
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/orders-86a56df6.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/orders-42aa7310.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -1291,7 +1315,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/profile-2614bf1a.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/profile-7f7d639b.mjs').then((m) => m.default || m)
   },
   {
     name: "register",
@@ -1307,7 +1331,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-596f8caf.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-f0fa2e38.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1379,7 +1403,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "https://owa.gagtain.ru/";
+let api_root = "http://localhost:8000/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -1783,7 +1807,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "https://owa.gagtain.ru/"
+      api_root: "http://localhost:8000/"
     }
   };
 });
@@ -1943,11 +1967,11 @@ const _sfc_main$3 = /* @__PURE__ */ defineNuxtComponent({
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_NuxtLink = __nuxt_component_0$1;
   const _component_SeacrhComp = __nuxt_component_1$1;
-  _push(`<div${ssrRenderAttrs(mergeProps({ id: "header" }, _attrs))} data-v-4bc1c6f7><div class="menu" style="${ssrRenderStyle({ "background": "linear-gradient(45deg, yellow, orange)" })}" data-v-4bc1c6f7><div class="absolute w-sto h_sto g" data-v-4bc1c6f7></div><div class="interactiv h_sto" data-v-4bc1c6f7><div class="w-sto name_org flex" id="mob_mob_block" data-v-4bc1c6f7><p class="auto" data-v-4bc1c6f7>Уварово пасечник</p></div><div class="menu_" data-v-4bc1c6f7><div class="logo relative" data-v-4bc1c6f7><div class="logo-page flex absolute" data-v-4bc1c6f7><img${ssrRenderAttr("src", _imports_0)} class="logo_img auto" alt="" data-v-4bc1c6f7></div></div><div class="context_menu context_menu_info" data-v-4bc1c6f7><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_active" : "", "menu_items mob_men relative"])}" id="mob_hed" data-v-4bc1c6f7><span class="${ssrRenderClass(_ctx.is_menu_mobile ? "menu_pop_mob_active" : "")}" data-v-4bc1c6f7></span></div><div class="menu_items" id="deks_hed" data-v-4bc1c6f7>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ id: "header" }, _attrs))} data-v-97747a5c><div class="menu" style="${ssrRenderStyle({ "background": "linear-gradient(45deg, yellow, orange)" })}" data-v-97747a5c><div class="absolute w-sto h_sto g" data-v-97747a5c></div><div class="interactiv h_sto" data-v-97747a5c><div class="w-sto name_org flex" id="mob_mob_block" data-v-97747a5c><p class="auto" data-v-97747a5c>Пчелиная артель</p></div><div class="menu_" data-v-97747a5c><div class="logo relative" data-v-97747a5c><div class="logo-page flex absolute" data-v-97747a5c><img${ssrRenderAttr("src", _imports_0)} class="logo_img auto" alt="" data-v-97747a5c></div></div><div class="context_menu context_menu_info" data-v-97747a5c><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_active" : "", "menu_items mob_men relative"])}" id="mob_hed" data-v-97747a5c><span class="${ssrRenderClass(_ctx.is_menu_mobile ? "menu_pop_mob_active" : "")}" data-v-97747a5c></span></div><div class="menu_items" id="deks_hed" data-v-97747a5c>`);
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<p class="menu_items_text" data-v-4bc1c6f7${_scopeId}>Главная</p>`);
+        _push2(`<p class="menu_items_text" data-v-97747a5c${_scopeId}>Главная</p>`);
       } else {
         return [
           createVNode("p", { class: "menu_items_text" }, "Главная")
@@ -1956,11 +1980,11 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><div class="menu_items flex relative" id="deks_hed" data-v-4bc1c6f7>`);
+  _push(`</div><div class="menu_items flex relative" id="deks_hed" data-v-97747a5c>`);
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/catalog" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<p class="menu_items_text" data-v-4bc1c6f7${_scopeId}>Товары</p>`);
+        _push2(`<p class="menu_items_text" data-v-97747a5c${_scopeId}>Товары</p>`);
       } else {
         return [
           createVNode("p", { class: "menu_items_text" }, "Товары")
@@ -1969,15 +1993,15 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`<span class="material-symbols-outlined" data-v-4bc1c6f7> expand_more </span></div><div class="menu_items no_b_border" data-v-4bc1c6f7>`);
+  _push(`<span class="material-symbols-outlined" data-v-97747a5c> expand_more </span></div><div class="menu_items no_b_border" data-v-97747a5c>`);
   _push(ssrRenderComponent(_component_SeacrhComp, null, null, _parent));
-  _push(`</div></div><div class="context_menu user_context" data-v-4bc1c6f7>`);
+  _push(`</div></div><div class="context_menu user_context" data-v-97747a5c>`);
   if (_ctx.$store.getUser.username != null && typeof _ctx.$store.getUser.username !== "undefined") {
-    _push(`<div class="flex jus-sp user_in relative" data-v-4bc1c6f7><img class="user_img"${ssrRenderAttr("src", _ctx.$api_root + _ctx.$store.getUser.image)} alt="" data-v-4bc1c6f7><div class="flex w-sto h-sto from_name" data-v-4bc1c6f7><p class="menu_items_text user_name auto" data-v-4bc1c6f7>${ssrInterpolate(_ctx.$store.getUser.username)}</p></div><div class="context_menu_ absolute" data-v-4bc1c6f7><ul data-v-4bc1c6f7>`);
+    _push(`<div class="flex jus-sp user_in relative" data-v-97747a5c><img class="user_img"${ssrRenderAttr("src", _ctx.$api_root + _ctx.$store.getUser.image)} alt="" data-v-97747a5c><div class="flex w-sto h-sto from_name" data-v-97747a5c><p class="menu_items_text user_name auto" data-v-97747a5c>${ssrInterpolate(_ctx.$store.getUser.username)}</p></div><div class="context_menu_ absolute" data-v-97747a5c><ul data-v-97747a5c>`);
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/profile" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-4bc1c6f7${_scopeId}><p class="normal-small auto" data-v-4bc1c6f7${_scopeId}>Аккаунт</p></li>`);
+          _push2(`<li class="flex" data-v-97747a5c${_scopeId}><p class="normal-small auto" data-v-97747a5c${_scopeId}>Аккаунт</p></li>`);
         } else {
           return [
             createVNode("li", { class: "flex" }, [
@@ -1991,7 +2015,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/basket" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-4bc1c6f7${_scopeId}><p class="normal-small auto" data-v-4bc1c6f7${_scopeId}>Корзина</p></li>`);
+          _push2(`<li class="flex" data-v-97747a5c${_scopeId}><p class="normal-small auto" data-v-97747a5c${_scopeId}>Корзина</p></li>`);
         } else {
           return [
             createVNode("li", { class: "flex" }, [
@@ -2005,7 +2029,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/orders" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-4bc1c6f7${_scopeId}><p class="normal-small auto" data-v-4bc1c6f7${_scopeId}>Заказы</p></li>`);
+          _push2(`<li class="flex" data-v-97747a5c${_scopeId}><p class="normal-small auto" data-v-97747a5c${_scopeId}>Заказы</p></li>`);
         } else {
           return [
             createVNode("li", { class: "flex" }, [
@@ -2019,7 +2043,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/favorite" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-4bc1c6f7${_scopeId}>`);
+          _push2(`<li class="flex" data-v-97747a5c${_scopeId}>`);
           _push2(ssrRenderComponent(_component_NuxtLink, {
             to: "/favorite",
             class: "normal-small auto"
@@ -2054,13 +2078,13 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       }),
       _: 1
     }, _parent));
-    _push(`</ul></div><span class="material-symbols-outlined auto" data-v-4bc1c6f7> expand_more </span></div>`);
+    _push(`</ul></div><span class="material-symbols-outlined auto" data-v-97747a5c> expand_more </span></div>`);
   } else {
-    _push(`<div class="flex context_menu jus-sp user_in relative" style="${ssrRenderStyle({ "min-width": "50%" })}" data-v-4bc1c6f7><p data-v-4bc1c6f7>Войти</p><div style="${ssrRenderStyle({ "bottom": "-60px" })}" class="context_menu_ absolute" data-v-4bc1c6f7><ul data-v-4bc1c6f7>`);
+    _push(`<div class="flex context_menu jus-sp user_in relative" style="${ssrRenderStyle({ "min-width": "50%" })}" data-v-97747a5c><p data-v-97747a5c>Войти</p><div style="${ssrRenderStyle({ "bottom": "-60px" })}" class="context_menu_ absolute" data-v-97747a5c><ul data-v-97747a5c>`);
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/register" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-4bc1c6f7${_scopeId}><p class="normal-small auto" data-v-4bc1c6f7${_scopeId}>Регистрация</p></li>`);
+          _push2(`<li class="flex" data-v-97747a5c${_scopeId}><p class="normal-small auto" data-v-97747a5c${_scopeId}>Регистрация</p></li>`);
         } else {
           return [
             createVNode("li", { class: "flex" }, [
@@ -2074,7 +2098,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(ssrRenderComponent(_component_NuxtLink, { to: "/login" }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
-          _push2(`<li class="flex" data-v-4bc1c6f7${_scopeId}><p class="normal-small auto" data-v-4bc1c6f7${_scopeId}>Вход</p></li>`);
+          _push2(`<li class="flex" data-v-97747a5c${_scopeId}><p class="normal-small auto" data-v-97747a5c${_scopeId}>Вход</p></li>`);
         } else {
           return [
             createVNode("li", { class: "flex" }, [
@@ -2087,11 +2111,11 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }, _parent));
     _push(`</ul></div></div>`);
   }
-  _push(`</div></div></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_active" : "", "absolute menu_pop_mob"])}" data-v-4bc1c6f7><div class="h_sto w-sto sote" data-v-4bc1c6f7><div class="logo-sote auto" data-v-4bc1c6f7><div class="logo-page flex auto" data-v-4bc1c6f7><img${ssrRenderAttr("src", _ctx.$api_root + "static/online_store/images/logo.png")} class="logo_img auto" alt="" data-v-4bc1c6f7></div></div><p class="VAG menu_mob_p_org_name small" data-v-4bc1c6f7>Уварово пасечник</p><ul data-v-4bc1c6f7>`);
+  _push(`</div></div></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_active" : "", "absolute menu_pop_mob"])}" data-v-97747a5c><div class="h_sto w-sto sote" data-v-97747a5c><div class="logo-sote auto" data-v-97747a5c><div class="logo-page flex auto" data-v-97747a5c><img${ssrRenderAttr("src", _ctx.$api_root + "static/online_store/images/logo.png")} class="logo_img auto" alt="" data-v-97747a5c></div></div><p class="VAG menu_mob_p_org_name small" data-v-97747a5c>Пчелиная артель</p><ul data-v-97747a5c>`);
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-4bc1c6f7${_scopeId}>Главная</li>`);
+        _push2(`<li data-v-97747a5c${_scopeId}>Главная</li>`);
       } else {
         return [
           createVNode("li", null, "Главная")
@@ -2103,7 +2127,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/additional" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-4bc1c6f7${_scopeId}>О нас</li>`);
+        _push2(`<li data-v-97747a5c${_scopeId}>О нас</li>`);
       } else {
         return [
           createVNode("li", null, "О нас")
@@ -2115,7 +2139,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/zakaz_list" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-4bc1c6f7${_scopeId}>Заказы</li>`);
+        _push2(`<li data-v-97747a5c${_scopeId}>Заказы</li>`);
       } else {
         return [
           createVNode("li", null, "Заказы")
@@ -2127,7 +2151,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/polit" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-4bc1c6f7${_scopeId}>Политика соглашения</li>`);
+        _push2(`<li data-v-97747a5c${_scopeId}>Политика соглашения</li>`);
       } else {
         return [
           createVNode("li", null, "Политика соглашения")
@@ -2139,7 +2163,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NuxtLink, { to: "/add_money" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-4bc1c6f7${_scopeId}>Пополнить счет</li>`);
+        _push2(`<li data-v-97747a5c${_scopeId}>Пополнить счет</li>`);
       } else {
         return [
           createVNode("li", null, "Пополнить счет")
@@ -2148,7 +2172,7 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</ul></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_zatem_active" : "", "absolute menu_pop_mob_zatem"])}" data-v-4bc1c6f7></div></div>`);
+  _push(`</ul></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_zatem_active" : "", "absolute menu_pop_mob_zatem"])}" data-v-97747a5c></div></div>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
@@ -2156,7 +2180,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/HeadersBase.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-4bc1c6f7"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-97747a5c"]]);
 const interpolatePath = (route, match) => {
   return match.path.replace(/(:\w+)\([^)]+\)/g, "$1").replace(/(:\w+)[?+*]/g, "$1").replace(/:\w+/g, (r) => {
     var _a;
@@ -2394,5 +2418,5 @@ const plugins = normalizePlugins(_plugins);
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { _export_sfc as _, api_root as a, __nuxt_component_0$1 as b, createError as c, defineNuxtComponent as d, entry$1 as default, useMainStore as e, useHead as f, getSearchNameproduct as g, navigateTo as n, redirect as r, useCookie as u, verifAssessToken as v };
+export { _export_sfc as _, api_root as a, __nuxt_component_0$1 as b, createError as c, defineNuxtComponent as d, entry$1 as default, useMainStore as e, useHead as f, navigateTo as n, redirect as r, useCookie as u, verifAssessToken as v };
 //# sourceMappingURL=server.mjs.map

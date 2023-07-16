@@ -48,7 +48,6 @@
  background: rgb(241, 195, 96);
  min-height: 100vh;
 }
-
 .wrapper {
  padding-top: 120px;
  min-height: 100vh;

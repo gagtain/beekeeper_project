@@ -49,7 +49,7 @@ import removeFavorite from "../../additional_func/removeFavorite";
 export default defineNuxtComponent({
   el: "#favorite",
   name: "FavoriteComp",
-  props: ["id", "pack_id", "wei_id"],
+  props: ["id", "wei_id"],
   data() {
     return {
       isFavorite: false,
@@ -66,8 +66,7 @@ export default defineNuxtComponent({
       let a = this.$store.getUser.favorite_product.find(function (item) {
         if (
           self.id == item.productItem.product.id &&
-          self.wei_id == item.productItem.weight.id &&
-          self.pack_id == item.productItem.type_packaging.id
+          self.wei_id == item.productItem.weight.id
         ) {
           return true;
         } else {
@@ -82,7 +81,7 @@ export default defineNuxtComponent({
     },
     async addFavoriteBtn() {
       
-      let response_add = await addFavorite(this.id, this.pack_id, this.wei_id);
+      let response_add = await addFavorite(this.id, this.wei_id);
       if (response_add.status == 200) {
         this.$store.ADD_FAVORITE_ITEM(
           response_add.data.favoriteItem
@@ -91,7 +90,7 @@ export default defineNuxtComponent({
       }
     },
     async removeFavoriteBtn() {
-      let response_add = await removeFavorite(this.id, this.pack_id, this.wei_id);
+      let response_add = await removeFavorite(this.id, this.wei_id);
       if (response_add.status == 200) {
         this.$store.REMOVE_FAVORITE_ITEM(
            response_add.data.id
@@ -101,9 +100,6 @@ export default defineNuxtComponent({
     },
   },
   watch: {
-    pack_id() {
-      this.a();
-    },
     wei_id() {
       this.a();
     },

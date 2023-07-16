@@ -1,7 +1,7 @@
 import axios from "axios";
 import { api_root } from '@/main'
 
-export default async function addBasket(pk, packaging_id, type_weight_id){
+export default async function addBasket(pk, type_weight_id){
     try {
         var response = await axios({url: `${api_root}api/v0.1/beekeeper_web_api/basket/${pk}`,
         method: "post",
@@ -10,7 +10,6 @@ export default async function addBasket(pk, packaging_id, type_weight_id){
 
         },
         data:{
-          packaging:packaging_id,
           type_weight:type_weight_id
         }
       })

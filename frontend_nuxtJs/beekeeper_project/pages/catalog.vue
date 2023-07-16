@@ -2,7 +2,7 @@
   <div id="catalog">
     <div class="absolute flex w-sto h_sto" style="pointer-events: none;">
       <dialog id="dialog" class="absolute auto" style="pointer-events: auto;">
-        <FilterCatalog :category_list="category_list" :type_packaging="type_packaging" :catalog_list="catalog_list" @UpdateClassFiler="filterClassReg"></FilterCatalog>
+        <FilterCatalog :category_list="category_list" :catalog_list="catalog_list" @UpdateClassFiler="filterClassReg"></FilterCatalog>
         <button class="btn w-sto btn-green"  onclick="window.dialog.close();">Показать</button>
         <button onclick="window.dialog.close();" aria-label="close" class="x">
           ❌
@@ -16,24 +16,20 @@
           <div class="flex w-sto product_div">
             <div class="block filter_div">
               <div class="filter-product" id="filter_desk">
-        <FilterCatalog :category_list="category_list" :type_packaging="type_packaging" :catalog_list="catalog_list"></FilterCatalog>
+        <FilterCatalog :category_list="category_list" :catalog_list="catalog_list"></FilterCatalog>
               </div>
             </div>
             <div class="product_osnov relative">
               <div class="sorted_div flex jus-sp">
                   
         <SortedCatalog :catalog_list="catalog_list"></SortedCatalog>
-                <div class="mob_filter relative">
-                  <p
-                    onclick="window.dialog.showModal();"
-                    class="open_filter_mob"
-                  >
-                    Фильтрация
-                  </p>
+                <div class="mob_filter flex">
+                  <img onclick="window.dialog.showModal();" class="open_filter_mob auto" src="~assets/images/filter.png" alt="">
                 </div>
               </div>
               <div
                   v-if="$store.getCatalog_list.length" class="w-sto product-list flex">
+                  
                 <CatalogProduct v-for="pr in $store.getCatalog_list" :key="pr.id" :pr="pr" ></CatalogProduct>
               </div>
               <LoadingComp v-else-if="!catalog_loads"></LoadingComp>
@@ -79,8 +75,7 @@ import FilterCatalog from "~/components/Catalog/FilterCatalog.vue";
 import SortedCatalog from '~/components/Catalog/SortedCatalog.vue';
 import CatalogProduct from '~/components/Catalog/CatalogProduct.vue';
 import getCategorylist from "~/additional_func/getCategoryList";
-import getSearchNameproduct from "~/additional_func/getSearchNameProduct";
-import getType_packaging_list from "~/additional_func/getType_packaging_list";
+import getSearchProduct from "~/additional_func/getSearchProduct";
 import LoadingComp from '../components/AddtionalComp/LoadingComp.vue';
 export default {
   el: "#catalog",
@@ -106,10 +101,7 @@ export default {
               name: "",
             },
           ],
-          type_packaging: {
-            name: "",
-          },
-        },
+        }
       ],
       filter_teleport: false,
       category_list: [],
@@ -138,11 +130,12 @@ export default {
       let catalog_response = null
     if (this.$route.query?.filter){
       
-      catalog_response = await getSearchNameproduct(`name=${JSON.parse(this.$route.query.filter).name}&fields=["__all__"]`)
+      catalog_response = await getSearchProduct(`name=${JSON.parse(this.$route.query.filter).name}`)
       this.filters = true
     }else{
       catalog_response = await getProductList(50);
     }
+    console.log(catalog_response, 342)
     this.catalog_list = catalog_response.data;
     this.catalog_list_sorted = this.catalog_list.slice();
     this.$store.REFACTOR_CATALOG_LIST(this.catalog_list)
@@ -151,9 +144,7 @@ export default {
   async filterReg(){
     
     let category_response = await getCategorylist();
-    this.category_list = category_response.data;
-    let type_packaging_response = await getType_packaging_list();
-    this.type_packaging = type_packaging_response.data;
+    this.category_list = category_response.data
   }
   },
   setup() {},

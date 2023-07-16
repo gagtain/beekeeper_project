@@ -40,23 +40,13 @@
                           </li>
                         </ul>
                       </div>
-                      <h3>Тип упаковки</h3>
-                      <div class="flex">
-                        <ul class="variant-ul">
-                          <li  @click="select_type_pack(ty_pck.id)" :class="type_pack_id == ty_pck.id ? 'active' : ''" v-for="ty_pck, index in pr.type_packaging" :key="index" class="photo-album-li">
-                            <div class="h_sto">
-                              <p>{{ ty_pck.name }}</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
                     </div>
                     <div class="product__text">
                       <p class="small">{{ pr.description }}</p>
                     </div>
                     <div class="flex">
-                      <AddBasket :id="pr.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></AddBasket>
-                      <FavoriteComp :id="pr.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></FavoriteComp>
+                      <AddBasket :id="pr.id" :wei_id="type_weigth_id"></AddBasket>
+                      <FavoriteComp :id="pr.id" :wei_id="type_weigth_id"></FavoriteComp>
                     </div>
                   </div>
                 </section>
@@ -96,12 +86,11 @@ export default{
   data(){
     return {
       type_weigth_id: null,
-      type_pack_id: null
     }
   },
   created(){
     this.type_weigth_id = this.pr.list_weight[0].id
-    this.type_pack_id = this.pr.type_packaging[0].id
+    
   },
   methods:{
     select_type_weigth(pk){

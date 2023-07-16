@@ -12,12 +12,12 @@ from rest_framework.permissions import IsAuthenticated
 
 from .Part_API.OrderAPI import OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI
 from .Part_API.RatingProductAPI import RatingProductCreate, RatingProductList, RatingProductAVG
-from .Part_API.ProductAPI import ProductFilterName
+from .Part_API.ProductAPI import ProductFilterName, ProductFilter
 from .jwt_token.auth import CustomAuthentication
 from .serializers import RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
-    UserRegisterSerializers, CategoryRetriveSerializers, Type_packagingRetriveSerializers, BasketInfoSerializer, \
+    UserRegisterSerializers, CategoryRetriveSerializers, BasketInfoSerializer, \
     BasketSerializer
-from .services.User import ServicesUser, ProductServises, CategoryServises, Type_packagingServises
+from .services.User import ServicesUser, ProductServises, CategoryServises
 from rest_framework.generics import CreateAPIView
 # Create your views here.
 from .models import MainUser
@@ -94,6 +94,12 @@ class ProductAPI(viewsets.ViewSet, ProductFilterName):
 
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getProduct(id)[0]).data)
 
+
+class ProductFilterAPI(viewsets.ViewSet, ProductFilter):
+    pass
+
+
+
 class CategoryAPI(viewsets.ViewSet):
     permission_classes = [IsAuthenticated]
     authentication_classes = [CustomAuthentication]
@@ -101,12 +107,6 @@ class CategoryAPI(viewsets.ViewSet):
     def get_category_list(self, request):
         return Response(CategoryRetriveSerializers(CategoryServises.getCategoryList(), many=True).data)
 
-class Type_packagingAPI(viewsets.ViewSet):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [CustomAuthentication]
-
-    def get_Type_packaging_list(self, request):
-        return Response(Type_packagingRetriveSerializers(Type_packagingServises.getCategoryList(), many=True).data)
 class UserRegistAPI(CreateAPIView):
     serializer_class = UserRegisterSerializers
 

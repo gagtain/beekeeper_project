@@ -10,7 +10,7 @@ from beekeeper_web_api.serializers import BasketSerializer, FavoriteSerializer
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
-from ..models import Product, MainUser, Category, Type_packaging, ImageProduct, \
+from ..models import Product, MainUser, Category, ImageProduct, \
     Type_weight, BasketItem, ProductItem, FavoriteItem
 
 
@@ -21,7 +21,6 @@ class ServicesUser:
     @classmethod
     def getBasket(cls, user: MainUser) -> list[Product]:
         basket = user.basket.prefetch_related(
-            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
             Prefetch('favorite_product', queryset=MainUser.objects.all().only('id')),
             'list_weight',
         )
@@ -36,22 +35,18 @@ class ServicesUser:
     def addFavoriteProduct(cls, request, id: int):
         user: MainUser = request.user
         if user.favorite_product.filter(product=id,
-                              weight=request.data['type_weight'],
-                              type_packaging=request.data['packaging']).exists():
+                              weight=request.data['type_weight']).exists():
             return Response({'data': 'данный продукт уже в списке избранных'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             ProductItemList = ProductItem.objects.filter(product=id,
-                              weight=request.data['type_weight'],
-                              type_packaging=request.data['packaging'])
+                              weight=request.data['type_weight'])
             if ProductItemList.count():
                 FavoriteAddItem = FavoriteItem.objects.create(user=user, productItem=ProductItemList[0])
             else:
                 product = Product.objects.filter(id=id)
                 weight = Type_weight.objects.filter(id=request.data['type_weight'])
-                type_packaging = Type_packaging.objects.filter(id=request.data['packaging'])
                 productItem = ProductItem.objects.create(product=product[0],
-                                                         weight=weight[0],
-                                                         type_packaging=type_packaging[0])
+                                                         weight=weight[0])
                 FavoriteAddItem = FavoriteItem.objects.create(user=user, productItem=productItem)
             return Response({'data': 'success', 'favoriteItem': FavoriteSerializer(FavoriteAddItem).data})
 
@@ -69,22 +64,18 @@ class ServicesUser:
     def addBasketProduct(cls, request, id: int):
         user: MainUser = request.user
         if user.basket.filter(product=id,
-                              weight=request.data['type_weight'],
-                              type_packaging=request.data['packaging']).exists():
+                              weight=request.data['type_weight']).exists():
             return Response({'data': 'данный продукт уже в списке корзины'}, status=status.HTTP_400_BAD_REQUEST)
         else:
             ProductItemList = ProductItem.objects.filter(product=id,
-                                                         weight=request.data['type_weight'],
-                                                         type_packaging=request.data['packaging'])
+                                                         weight=request.data['type_weight'])
             if ProductItemList.count():
                 BasketAddItem = BasketItem.objects.create(user=user, productItem=ProductItemList[0])
             else:
                 product = Product.objects.filter(id=id)
                 weight = Type_weight.objects.filter(id=request.data['type_weight'])
-                type_packaging = Type_packaging.objects.filter(id=request.data['packaging'])
                 productItem = ProductItem.objects.create(product=product[0],
-                                                         weight=weight[0],
-                                                         type_packaging=type_packaging[0])
+                                                         weight=weight[0])
                 BasketAddItem = BasketItem.objects.create(user=user, productItem=productItem)
 
             return Response({'data': 'success', 'basketItem': BasketSerializer(BasketAddItem).data})
@@ -123,7 +114,6 @@ class ProductServises():
     def getPopular(self, size):
         return Product.objects.all().order_by('count_purchase')[:size].prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
-            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
             'ImageProductList', 'list_weight'
         ).annotate(Avg('rating_product__rating'))
 
@@ -131,7 +121,6 @@ class ProductServises():
     def getProductList(self, size):
         return Product.objects.all()[:size].prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
-            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
             'ImageProductList', 'list_weight'
         ).annotate(Avg('rating_product__rating'))
 
@@ -140,7 +129,6 @@ class ProductServises():
     def getProduct(self, pk):
         return Product.objects.filter(pk=pk).prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
-            Prefetch('type_packaging', queryset=Type_packaging.objects.all().only('name')),
             'ImageProductList', 'list_weight'
         ).annotate(Avg('rating_product__rating'))
 
@@ -151,9 +139,3 @@ class CategoryServises():
     def getCategoryList(self):
         return Category.objects.all()
 
-
-class Type_packagingServises():
-
-    @classmethod
-    def getCategoryList(self):
-        return Type_packaging.objects.all()

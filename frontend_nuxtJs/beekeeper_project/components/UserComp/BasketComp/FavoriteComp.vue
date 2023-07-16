@@ -56,7 +56,7 @@ export default {
   methods: {
     
     async addFavoriteBtn() {
-      let response_add = await addFavorite(this.ProductItem.product.id, this.ProductItem.type_packaging.id,this.ProductItem.weight.id);
+      let response_add = await addFavorite(this.ProductItem.product.id,this.ProductItem.weight.id);
       if (response_add.status == 200) {
         this.isFavorite = true;
       }

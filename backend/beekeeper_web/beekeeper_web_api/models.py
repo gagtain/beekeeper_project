@@ -46,11 +46,6 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
         return self.username
 
 
-class Type_packaging(models.Model):
-    name = models.CharField(max_length=100, verbose_name="Название типа упаковки")
-
-    def __str__(self):
-        return self.name
 
 
 class Category(models.Model):
@@ -87,7 +82,6 @@ class Product(models.Model):
     count_purchase = models.IntegerField(default=0, verbose_name="кол-во покупок")
     category = models.ManyToManyField(Category, related_name='category_list', blank=True)
     list_weight = models.ManyToManyField(Type_weight, null=True, related_name='list_weight')
-    type_packaging = models.ManyToManyField(Type_packaging, related_name='type_packaging_list', blank=True)
     objects = models.Manager()
 
     def __str__(self):
@@ -98,10 +92,9 @@ class ProductItem(models.Model):
     """Объект продукта с определенными параметрами"""
     product: Product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='productItemList')
     weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE)  # ожидание в ТЗ информации о кастомном весе.
-    type_packaging = models.ForeignKey('Type_packaging', on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.product.name} {self.weight} {self.type_packaging}"
+        return f"{self.product.name} {self.weight}"
 
 
 class BasketItem(models.Model):

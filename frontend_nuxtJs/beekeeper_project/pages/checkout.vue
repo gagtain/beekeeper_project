@@ -8,7 +8,7 @@
                     <div class="w-sto kor" id="kor">
     <p class="small-big VAG">Оформление</p>
     <div class="w-sto flex kor_block jus-sp">
-        <div style="width: 50%; padding-top: 20px; padding-left: 2%;">
+        <div class="w-sto-1000px checkout">
 
             <client-only>
             <checkout v-on:delivery="delivery_price_select($event)" ref="checkout_form"></checkout>
@@ -18,7 +18,7 @@
             
             <order-product-list :orderList="$store.getUser.basket"></order-product-list>
         </div>
-            <div style="width: 40%;" class="register_zakaz">
+            <div class="w-sto-1000px register_zakaz">
                 <Submit_order :delivery_price="delivery_price" v-on:forms_validate_met="forms_validate_met" :items="$store.getUser.basket" :forms_validate="forms_validate"></Submit_order>
                 <ProductListInfo :ordered="true" :items="$store.getUser.basket" :delivery_price="delivery_price"></ProductListInfo>
             </div>
@@ -48,6 +48,12 @@
 .order_description{
     text-align: left;
 }
+.checkout{
+    width: 50%; padding-top: 20px; padding-left: 2%;
+}
+.register_zakaz{
+    width: 40%;
+}
 @media (max-width: 1000px) {
     .order{
         display: block;
@@ -61,6 +67,11 @@
         width: 100%;
     }
     
+}
+@media (max-width: 1000px) {
+    .w-sto-1000px{
+        width: 100%;
+    }
 }
 </style>
 <style lang="css" src="../assets/css/account.css" scoped></style>

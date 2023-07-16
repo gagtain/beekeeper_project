@@ -5,8 +5,8 @@ import sys
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 sys.path.append('.')
-from .models import Product, MainUser, Category, Type_packaging, ImageProduct, \
-    Type_weight, BasketItem, ProductItem, FavoriteItem, Order, RatingProductReview
+from .models import Product, MainUser, Category, ImageProduct, \
+    BasketItem, ProductItem, FavoriteItem, Order, RatingProductReview, Type_weight
 
 
 class RatingProductReviewSerializer(serializers.ModelSerializer):
@@ -59,11 +59,6 @@ class RetrieveProduct(serializers.ModelSerializer):
         return settings.MEDIA_URL + str(instance.image)
     
 
-class Type_packagingRetriveSerializers(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Type_packaging
-        fields = ['id','name']
 
 
 class CategoryRetriveSerializers(serializers.ModelSerializer):
@@ -86,14 +81,13 @@ class Type_weightSerializers(serializers.ModelSerializer):
         
 class RetrieveProductRemoveToProdachen(serializers.ModelSerializer):
     category = CategoryRetriveSerializers(many=True)
-    type_packaging = Type_packagingRetriveSerializers(many=True)
     ImageProductList = PhotoItemSerializers(many=True)
     list_weight = Type_weightSerializers(many=True)
     rating = serializers.FloatField(source='rating_product__rating__avg')
     class Meta:
         model = Product
         fields = ['id', 'name', 'image', 'price', 'description',
-                  'price_currency', 'category', 'type_packaging',
+                  'price_currency', 'category',
                   'ImageProductList', 'list_weight', 'rating']
 
 
