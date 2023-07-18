@@ -2,11 +2,11 @@ from django.db.models import QuerySet, Prefetch, Avg
 from rest_framework.views import APIView
 
 from ..models import Product, Category
-from .custom_mixins import Filter
+from .custom_mixins import Filter, FilterFieldsCustom
 from ..serializers import RetrieveClearAllOptionalProduct, RetrieveProductRemoveToProdachen
 
 
-class ProductFilterName(APIView, Filter):
+class ProductFilterName(APIView, FilterFieldsCustom):
     models = Product
     filter_options = {
         'name': 'name__icontains',

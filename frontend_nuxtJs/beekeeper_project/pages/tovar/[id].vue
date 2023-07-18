@@ -34,20 +34,10 @@
                           </li>
                         </ul>
                       </div>
-                      <h3>Тип упаковки</h3>
-                      <div class="flex">
-                        <ul class="variant-ul">
-                          <li  @click="select_type_pack(ty_pck.id)" :class="type_pack_id == ty_pck.id ? 'active' : ''" v-for="ty_pck, index in tovar.type_packaging" :key="index" class="photo-album-li">
-                            <div class="h_sto">
-                              <p>{{ ty_pck.name }}</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
                     </div>
                         <div class="flex tovar_two jus-sp but but-b">
-                            <AddBasket :id="tovar.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></AddBasket>
-                            <FavoriteComp :id="tovar.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></FavoriteComp>
+                            <AddBasket :id="tovar.id" :wei_id="type_weigth_id"></AddBasket>
+                            <FavoriteComp :id="tovar.id" :wei_id="type_weigth_id" ></FavoriteComp>
                         </div>
                         <div class="tovar_two">
                             <p class="black malenkii">Подробности</p>
@@ -55,7 +45,7 @@
                         <div class="tovar_two vib">
                             <div class="flex jus-sp op_contex" @click="open_descrip()">
                                 <p class="black malenkii vib_">Описание</p>
-                                <div class="contex material-symbols-outlined"> expand_more </div>
+                                <div class="contex material-symbols-outlined"> - </div>
 
                             </div>
                             <div v-if="isDescription" class="context_text">
@@ -66,7 +56,7 @@
                         <div class="tovar_two vib">
                             <div class="flex jus-sp op_contex" @click="open_sostav()">
                                 <p class="black malenkii vib_">Состав</p>
-                                <div class="contex material-symbols-outlined"><span  class="material-symbols-outlined"> expand_more </span></div>
+                                <div class="contex material-symbols-outlined"><span  class="material-symbols-outlined"> - </span></div>
 
                             </div>
                             <div v-if="isSostav" class="context_text">
@@ -141,7 +131,6 @@ export default {
             isDescription: false,
             isSostav: false,
       type_weigth_id: null,
-      type_pack_id: null
         }
     },
     async created(){
@@ -151,7 +140,6 @@ export default {
             this.tovar = response_tovar.data
         }
     this.type_weigth_id = this.tovar.list_weight[0].id
-    this.type_pack_id = this.tovar.type_packaging[0].id
     },
     methods: {
         getCategoryList(){

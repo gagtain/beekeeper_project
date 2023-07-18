@@ -50,3 +50,8 @@ dialog {
 		}
 	}
 }
+@media (max-width: 800px) {
+	dialog{
+		width: 100%;
+	}
+}

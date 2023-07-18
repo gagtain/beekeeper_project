@@ -21,7 +21,10 @@ from payments.views import PaymentAPI
 from . import views
 
 urlpatterns = [
-    path('create/', views.DeliveryAPI.as_view({'post':'delivery_create'})),
-    path('get/<str:uuid>', views.DeliveryAPI.as_view({'get':'delivery_get'})),
-
+    path('create/', views.DeliveryAPI.as_view({'post': 'delivery_create'})),
+    path('sdek/<str:uuid>', views.DeliveryAPI.as_view({'get': 'delivery_sdek_get'})),
+    path('<int:pk>', views.DeliveryAPI.as_view({'get': 'delivery_get'})),
+    path('<int:pk>/submit/waiting', views.DeliveryAPI.as_view({'post': 'delivery_submit_waiting'})),
+    path('<int:pk>/track_number', views.DeliveryAPI.as_view({'post': 'delivery_track_add'})),
+    path('search', views.DeliveryAPI.as_view({'get': 'search'})),
 ]

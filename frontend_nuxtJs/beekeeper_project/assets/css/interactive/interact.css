@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 .flex{
     display: flex;
 }
 * {
     font-family: 'Roboto';
+    font-display: swap;
 }
 .auto{
     margin: auto;
@@ -58,7 +61,8 @@
 @font-face {
     font-family: 'VAG';
     src: 
-    url('../fonts/1/fonts/vag_world_bold.woff') format('woff')
+    url('../fonts/1/fonts/vag_world_bold.woff') format('woff');
+    font-display: swap;
 
 }
 .VAG{

@@ -38,9 +38,8 @@
                           </div>
                     </div>
 
-                    <div class="w-sto h_sto flex jus-sp">
+                    <div class="order_warp w-sto h_sto flex jus-sp">
                         <div class="product_order m-2">
-                
                             <order-product-list :orderList="order.product_list_transaction"></order-product-list>
 
               </div><div class="order_description">
@@ -102,6 +101,16 @@
                             <div class="w-50">
 
                                 <p>* в разработке *</p>
+                            </div>
+                        </div>
+                        <div class="flex w-sto m-2">
+                            <div class="w-50 ">
+
+                                <p>Статус доставки</p>
+                            </div>
+                            <div class="w-50">
+
+                                <p>{{ order.delivery.status }}</p>
                             </div>
                         </div>
               </div>
@@ -174,6 +183,7 @@
 @media (max-width: 1000px) {
     .order{
         display: block;
+        width: 100%;
     }
     .order_description, .product_order{
         width: 100%;
@@ -182,6 +192,9 @@
 @media (max-width: 500px) {
     .order{
         width: 100%;
+    }
+    .order_warp{
+        display: block;
     }
     
 }

@@ -21,15 +21,14 @@
               <span  :class="is_menu_mobile ? 'menu_pop_mob_active' : ''"></span>
             </div>
             <div class="menu_items" id="deks_hed">
-              <NuxtLink to="/"
+              <NuxtLink to="/" no-prefetch
                 ><p class="menu_items_text">Главная</p></NuxtLink
               >
             </div>
             <div class="menu_items flex relative" id="deks_hed">
-              <NuxtLink to="/catalog"
+              <NuxtLink to="/catalog" no-prefetch
                 ><p class="menu_items_text">Товары</p></NuxtLink
               >
-              <span class="material-symbols-outlined"> expand_more </span>
             </div>
             <div class="menu_items no_b_border">
                 <SeacrhComp></SeacrhComp>
@@ -52,41 +51,41 @@
               </div>
               <div class="context_menu_ absolute">
                 <ul>
-                  <NuxtLink to="/profile">
+                  <NuxtLink no-prefetch to="/profile">
                   <li class="flex">
                       <p class="normal-small auto">Аккаунт</p>
                   </li>
                 </NuxtLink>
-                    <NuxtLink to="/basket">
+                    <NuxtLink no-prefetch to="/basket">
                   <li class="flex">
                       <p class="normal-small auto">Корзина</p>
                   </li>
                 </NuxtLink>
-                    <NuxtLink to="/orders">
+                    <NuxtLink no-prefetch to="/orders">
                   <li class="flex">
                       <p class="normal-small auto">Заказы</p>
                   </li>
                 </NuxtLink>
-                  <NuxtLink to="/favorite">
+                  <NuxtLink no-prefetch to="/favorite">
                   <li class="flex">
-                    <NuxtLink to="/favorite" class="normal-small auto"
+                    <NuxtLink no-prefetch to="/favorite" class="normal-small auto"
                       >Избранное</NuxtLink
                     >
                   </li></NuxtLink>
                 </ul>
               </div>
-              <span class="material-symbols-outlined auto"> expand_more </span>
+            <!--  <span class="material-symbols-outlined auto"> expand_more </span> -->
             </div>
             <div v-else class="flex context_menu jus-sp user_in relative" style="min-width: 50%;">
                     <p>Войти</p>
               <div style="bottom: -60px;" class="context_menu_ absolute">
                 <ul>
-                  <NuxtLink to="/register">
+                  <NuxtLink no-prefetch to="/register">
                   <li class="flex">
                       <p class="normal-small auto">Регистрация</p>
                   </li>
                 </NuxtLink>
-                    <NuxtLink to="/login">
+                    <NuxtLink no-prefetch to="/login">
                   <li class="flex">
                       <p class="normal-small auto">Вход</p>
                   </li>
@@ -111,12 +110,12 @@
         </div>
         <p class="VAG menu_mob_p_org_name small">Пчелиная артель</p>
         <ul>
-          <NuxtLink to="/"
+          <NuxtLink to="/" no-prefetch
                       ><li>Главная</li></NuxtLink>
-          <NuxtLink to="/additional"><li>О нас</li></NuxtLink>
-          <NuxtLink to="/zakaz_list"><li>Заказы</li></NuxtLink>
-          <NuxtLink to="/polit"><li>Политика соглашения</li></NuxtLink>
-          <NuxtLink to="/add_money"><li>Пополнить счет</li></NuxtLink>
+          <NuxtLink to="/additional" no-prefetch><li>О нас</li></NuxtLink>
+          <NuxtLink to="/zakaz_list" no-prefetch><li>Заказы</li></NuxtLink>
+          <NuxtLink to="/polit" no-prefetch><li>Политика соглашения</li></NuxtLink>
+          <NuxtLink to="/add_money" no-prefetch><li>Пополнить счет</li></NuxtLink>
         </ul>
       </div>
     </div>

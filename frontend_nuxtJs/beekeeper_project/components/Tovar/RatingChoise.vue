@@ -83,7 +83,34 @@ text-shadow: 1px 1px goldenrod;
 position: relative;
 
 }
-
+@media (max-width: 500px) {
+    .rating-area:not(:checked) > span::before {
+        font-size: 44px;
+    }
+    .rating-area span{
+        width: 44px;
+    }
+    .rating-area:not(:checked) > span{
+        width: 44px;
+    }
+    .rating-area{
+        width: auto;
+    }
+}
+@media (max-width: 320px) {
+    .rating-area:not(:checked) > span::before {
+        font-size: 28px;
+    }
+    .rating-area span{
+        width: 28px;
+    }
+    .rating-area:not(:checked) > span{
+        width: 28px;
+    }
+    .rating-area{
+        width: auto;
+    }
+}
 </style>
 <script>
 import addRatingProduct from '~/additional_func/addRatingProduct'

@@ -6,7 +6,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 sys.path.append('.')
 from .models import Product, MainUser, Category, ImageProduct, \
-    BasketItem, ProductItem, FavoriteItem, Order, RatingProductReview, Type_weight
+    BasketItem, ProductItem, FavoriteItem, Order, RatingProductReview, Type_weight, OrderItem
 
 
 class RatingProductReviewSerializer(serializers.ModelSerializer):
@@ -146,10 +146,16 @@ class UserRegisterSerializers(serializers.ModelSerializer):
 
         return user
 
+class OrderItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = OrderItem
+        depth = 3
+        fields = ['id','productItem','count']
 
 class OrderSerializers(serializers.ModelSerializer):
-    product_list_transaction = BasketSerializer(many=True)
+    product_list_transaction = OrderItemSerializer(many=True)
     class Meta:
         model = Order
-        depth = 3
-        fields = ['id','amount', 'user', 'product_list_transaction', 'datetime']
+        depth = 2
+        fields = ['id','amount', 'user', 'product_list_transaction', 'datetime', 'delivery']

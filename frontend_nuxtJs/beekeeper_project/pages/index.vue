@@ -135,18 +135,18 @@
             <img :src="this.$api_root + new_obj.main_image" />
         </div>
         <div class="info">
-            <NuxtLink :to="`/news/${new_obj.id}`"><h2 class="VAG">{{ new_obj.title }}</h2></NuxtLink>
+            <NuxtLink no-prefetch :to="`/news/${new_obj.id}`"><h2 class="VAG">{{ new_obj.title }}</h2></NuxtLink>
             <div class="info-text">
                 <p>{{ new_obj.main_text }}</p>
             </div>
             <div class="button-wrap">
-              <NuxtLink class="atuin-btn" :to="`/news/${new_obj.id}`">Подробнее</NuxtLink>
+              <NuxtLink no-prefetch class="atuin-btn" :to="`/news/${new_obj.id}`">Подробнее</NuxtLink>
             </div>
         </div>
     </article>
     
 </section>
-<NuxtLink :to="`/news`"><button style="background: rgb(160,166,62);; cursor: pointer;width: 100%;border: none;border-radius: 6px; padding: 2% 3%;"><div class="w-sto h_sto flex"><p class="auto small-big">Все новости</p></div></button>
+<NuxtLink no-prefetch :to="`/news`"><button style="background: rgb(160,166,62);; cursor: pointer;width: 100%;border: none;border-radius: 6px; padding: 2% 3%;"><div class="w-sto h_sto flex"><p class="auto small-big">Все новости</p></div></button>
 </NuxtLink>
         </div>
         </div>
