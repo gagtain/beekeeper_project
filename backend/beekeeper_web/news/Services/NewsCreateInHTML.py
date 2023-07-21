@@ -22,6 +22,7 @@ class Image:
         else:
             self.format = format
 
+
 class NewsCreateInHTML:
     soap: BeautifulSoup
     main_image: str = ''
@@ -33,7 +34,7 @@ class NewsCreateInHTML:
     def getListImage(self):
         return self.soap.findAll('img', class_='img_news')
 
-    def createFile(self, image:Image):
+    def createFile(self, image: Image):
         if not os.path.exists(self.dirs_upload_to()):
             os.mkdir(self.dirs_upload_to())
         with open(self.upload_to(image), 'wb') as f:
@@ -48,14 +49,11 @@ class NewsCreateInHTML:
         if count == 0:
             self.main_image = image['src']
 
-
-
-    def upload_to(self, image:Image):
+    def upload_to(self, image: Image):
         return os.path.join(settings.MEDIA_ROOT, 'news', self.dirs, f'{image.name}.{image.format}')
 
     def dirs_upload_to(self):
         return os.path.join(settings.MEDIA_ROOT, 'news', self.dirs)
-
 
     def get_image(self, image):
         return image.get
@@ -66,5 +64,3 @@ class NewsCreateInHTML:
             for index, image in enumerate(listImage):
                 self.image_init(image, index)
         return str(self.soap)
-
-

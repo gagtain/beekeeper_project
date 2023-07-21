@@ -1,0 +1,1 @@
+import{a as o}from"./index.681804e1.js";import{a as t}from"./main.d4fb522b.js";async function c(r){try{var a=await o({url:`${t}api/v0.1/delivery/search?${r}`,method:"get",headers:{}});return a}catch(e){return e.response}}export{c as s};

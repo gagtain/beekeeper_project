@@ -18,9 +18,9 @@ class Configuration(object):
     @classmethod
     def get_auth_params(cls):
         return {
-            'grant_type':cls.grant_type,
-            'client_id':cls.client_id,
-            'client_secret':cls.client_secret
+            'grant_type': cls.grant_type,
+            'client_id': cls.client_id,
+            'client_secret': cls.client_secret
         }
 
     @classmethod
@@ -29,6 +29,8 @@ class Configuration(object):
         token_response = requests.post(url=f'{Configuration.api_url}oauth/token', params=query_params)
         json = token_response.json()
         Configuration.token = json.get('access_token')
+
+
 def token_verif(token, time):
     def decorator(func):
         if Configuration.token != "" and Configuration.time != "":
@@ -36,6 +38,7 @@ def token_verif(token, time):
         else:
             Configuration.set_token()
             return func
+
     return decorator
 
 
@@ -44,6 +47,3 @@ class Client:
     @token_verif(token=Configuration.token, time=Configuration.time)
     def request(self, func):
         return func()
-
-
-

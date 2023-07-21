@@ -48,6 +48,21 @@ services:
     depends_on:
         database:
           condition: service_healthy
+
+
+  online_store_admin:
+    build: 
+      context: ../frontend_nuxtJs/admin_docker
+    container_name: online_store_admin
+    
+    
+    ports:
+        - 8081:3000
+    networks: 
+      - forwebapi
+    depends_on:
+        database:
+          condition: service_healthy
   nginx:
     build: ../nginx
     container_name: nginx

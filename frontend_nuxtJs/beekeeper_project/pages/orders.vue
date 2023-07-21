@@ -102,8 +102,8 @@
 
                                 <p>* в разработке *</p>
                             </div>
-                        </div>
-                        <div class="flex w-sto m-2">
+                        </div> 
+                        <div v-if="order.delivery != null" class="flex w-sto m-2">
                             <div class="w-50 ">
 
                                 <p>Статус доставки</p>
@@ -113,9 +113,23 @@
                                 <p>{{ order.delivery.status }}</p>
                             </div>
                         </div>
+                        <div class="flex w-sto m-2">
+                            <div class="w-50 ">
+
+                                <p>Статус оплаты</p>
+                            </div>
+                            <div class="w-50">
+
+                                <p>{{ order.payment.status }}</p>
+                            </div>
+                        </div>
               </div>
-                    </div>
-                    
+                    </div><button onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                              Отследить
+                            </button>
+                            <button v-if="order.delivery.status == 'На проверке'" onclick="alert('В разработке')" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                              Отменить
+                            </button>
                     
                 </div>
             </div>

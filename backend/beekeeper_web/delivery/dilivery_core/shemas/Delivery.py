@@ -20,7 +20,7 @@ class PackagesItems:
     cost: float
     weight: int
     amount: int
-    
+
 
 @dataclass_json
 @dataclass
@@ -31,6 +31,7 @@ class Packages:
     width: int
     height: int
     items: list[PackagesItems]
+
 
 @dataclass_json
 @dataclass
@@ -50,11 +51,13 @@ class Recipient:
     name: str
     phones: list[SenderPhones]
 
+
 @dataclass_json
 @dataclass
 class DefaultRecipient:
     name: str = 'asd asd asd'
-    phones: list[SenderPhones] = DefaultSenderPhones()
+    phones: list[SenderPhones] = field(default_factory=DefaultSenderPhones)
+
 
 @dataclass_json
 @dataclass
@@ -90,9 +93,9 @@ class DeliveryAdd:
     type: TypeOrder
     packages: Packages
     shipment_point: str = settings.SDEK_SHIPMENT_POINT
-    recipient: Recipient = DefaultRecipient()
+    recipient: Recipient = field(default_factory=DefaultRecipient)
     additional_order_type: list[AdditionalTypeOrder] = field(default_factory=list)
-    sender: Sender = DefaultSender()
+    sender: Sender = field(default_factory=DefaultSender)
 
 
 @dataclass_json

@@ -10,6 +10,7 @@
 <script>
 import createOrderPayment from '~/additional_func/OrderAssept/createOrderPayment';
 import addOrder from '~/additional_func/addOrder';
+import createDeliveryLait from '~/additional_func/Delivery/createDeliveryLait';
 export default {
     el: '#sub_order',
   props: ['items', 'forms_validate', 'delivery_price'],
@@ -27,8 +28,14 @@ async submin_order(){
     let response_order = await addOrder(this.delivery_price)
     console.log(2132, response_order)
     this.order_create = response_order.data
+    let created_delivery = await this.create_delivery_lait()
  // if (response_order.status == 200){
-    this.create_payment()
+    
+    if (created_delivery){
+      await this.create_payment()
+    }else{
+      alert('С доставкой произошла проблема, попробуйте перезагрузить страницу')
+    }
     
 //  }
   }
@@ -43,6 +50,14 @@ async submin_order(){
     "currency": "RUB"
     })
     document.location.href = response_payment.data.payment_url
+  },
+  async create_delivery_lait(){
+    let response_delivery = await createDeliveryLait(this.order_create.id)
+    if (response_delivery.status == 200){
+      return true
+    }else{
+      return false
+    }
   }
 }
 }

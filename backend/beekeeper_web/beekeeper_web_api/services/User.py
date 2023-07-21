@@ -91,7 +91,7 @@ class ServicesUser:
 
     @classmethod
     def getBasketInfo(cls, user: MainUser):
-        """ кол-во товаров, общая сумма  """
+        """ количество товаров, общая сумма  """
         basket_info = user.basket.only('price').aggregate(summ=Sum('price'), count=Count('basket'))
         return basket_info
 
@@ -111,14 +111,14 @@ class ServicesUser:
 class ProductServises():
 
     @classmethod
-    def getPopular(self, size):
+    def getPopular(cls, size):
         return Product.objects.all().order_by('count_purchase')[:size].prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
             'ImageProductList', 'list_weight'
         ).annotate(Avg('rating_product__rating'))
 
     @classmethod
-    def getProductList(self, size):
+    def getProductList(cls, size):
         return Product.objects.all()[:size].prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
             'ImageProductList', 'list_weight'
@@ -126,7 +126,7 @@ class ProductServises():
 
     # 'id', 'name', 'image', 'price', 'description', 'price_currency', 'category', 'type_packaging', 'ImageProductList'
     @classmethod
-    def getProduct(self, pk):
+    def getProduct(cls, pk):
         return Product.objects.filter(pk=pk).prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
             'ImageProductList', 'list_weight'
@@ -136,6 +136,6 @@ class ProductServises():
 class CategoryServises():
 
     @classmethod
-    def getCategoryList(self):
+    def getCategoryList(cls):
         return Category.objects.all()
 

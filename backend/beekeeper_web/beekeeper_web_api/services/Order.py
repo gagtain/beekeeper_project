@@ -1,12 +1,7 @@
 import sys
-from _decimal import Decimal
-
-from django.db.models import DecimalField
-from django.template.loader import render_to_string
 from rest_framework.exceptions import NotFound, ValidationError
 
 from ..tasks import order_email_send
-from .Email import EmailOrder
 
 sys.path.append('.')
 from ..models import Order, MainUser, BasketItem, OrderItem
@@ -31,16 +26,15 @@ class OrderServices():
 
         for i in BasketItemList:
             print(i.productItem.product.price.amount)
-            total_amount += i.count * i.productItem.product.price.amount # добавить наценку за упаковку и скидки
+            total_amount += i.count * i.productItem.product.price.amount  # добавить наценку за упаковку и скидки
         total_amount = float(total_amount) + float(request.data['delivery_price'])
         order = Order.objects.create(user=request.user, amount=total_amount)
         for basket_item in BasketItemList:
             OrderItem.objects.create(user=request.user, productItem=basket_item.productItem,
                                      count=basket_item.count, order=order)
 
-
         request.user.basket.clear()
-        order_email_send(order.id, request.user.id)
+        order_email_send.delay(order.id, request.user.id)
 
         return order
 
@@ -48,6 +42,7 @@ class OrderServices():
     def compare_order_product_and_real_price(cls, user: MainUser, ):
         """Проверка стоимости товара в базе и стоимости товара у пользователя"""
         pass
+
     @classmethod
     def getOrderList(cls, user):
         return user.user_order.all().order_by('-id')

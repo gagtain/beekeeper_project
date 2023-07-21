@@ -15,8 +15,6 @@ class AccountAdmin(admin.ModelAdmin):
     inlines = (BasketItemInline,)
 
 
-
-
 admin.site.register(MainUser, AccountAdmin)
 admin.site.register(Product)
 admin.site.register(BasketItem)

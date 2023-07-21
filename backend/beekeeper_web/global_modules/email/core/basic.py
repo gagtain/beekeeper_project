@@ -3,6 +3,8 @@ from email.mime.text import MIMEText
 
 SENDER_MAIL = 'gagtain@gmail.com'
 PASSWORD_MAIL = 'wmwqtejviqtydtsp'
+
+
 class Email:
     sender = SENDER_MAIL
     password = PASSWORD_MAIL
@@ -37,7 +39,3 @@ class Email:
         self.__server.sendmail(self.sender, client, msg.as_string())
 
 
-if __name__ == '__main__':
-    email = Email("smtp.gmail.com", 587)
-    email.text_in_string('asd')
-    email.send_message("gagtain@gmail.com")

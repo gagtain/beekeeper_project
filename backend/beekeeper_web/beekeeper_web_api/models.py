@@ -46,8 +46,6 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
         return self.username
 
 
-
-
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название категории")
 

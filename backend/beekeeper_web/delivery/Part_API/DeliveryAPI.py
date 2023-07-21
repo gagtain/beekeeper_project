@@ -1,3 +1,4 @@
+from django.db.models import QuerySet
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -22,6 +23,12 @@ class DeliveryCreate(APIView):
         DeliveryService.add_delivery_in_order(delivery, order)
         return Response({'sdek': a.json()})
 
+    def delivery_create_lait(self, request):
+        """Заглушка, будет удалено при дальнейшем рефакторе"""
+        delivery = DeliveryService.create_delivery(uuid='122')
+        order = Order.objects.get(id=request.data['order_id'])
+        DeliveryService.add_delivery_in_order(delivery, order)
+        return Response(status=200)
 
 
 class DeliverySdekGet(APIView):
@@ -30,10 +37,12 @@ class DeliverySdekGet(APIView):
         a = SdekDelivery.SDEKDelivery.get_delivery(uuid)
         return Response({'sdek': a.json()})
 
+
 class DeliveryGet(APIView):
 
     def delivery_get(self, request, pk):
         return Response(DeliveryTransactionSerializer(DeliveryTransaction.objects.get(pk=pk)).data)
+
 
 class DeliverySubmitWaiting(APIView):
 
@@ -42,6 +51,7 @@ class DeliverySubmitWaiting(APIView):
         delivery.status = DeliveryTransaction.DeliveryStatus.Waiting_for_dispatch
         delivery.save()
         return Response(DeliveryTransactionSerializer(instance=delivery).data)
+
 
 class DeliveryTrackAdd(APIView):
 

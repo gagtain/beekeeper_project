@@ -20,5 +20,6 @@ from . import views
 
 urlpatterns = [
     path('create/', views.PaymentAPI.as_view({'post': 'create_payments'})),
+    path('yookassa/notification', views.YookassaAPI.as_view({'post': 'payment_notifications'}))
 
 ]

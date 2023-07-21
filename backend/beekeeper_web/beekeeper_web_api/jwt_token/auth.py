@@ -1,6 +1,5 @@
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-
 """
 class CustomAuthentication(JWTAuthentication):
     def authenticate(self, request):
@@ -17,6 +16,7 @@ class CustomAuthentication(JWTAuthentication):
         return self.get_user(validated_token), validated_token
 
 """
+
 
 class CustomAuthentication(JWTAuthentication):
     def authenticate(self, request):

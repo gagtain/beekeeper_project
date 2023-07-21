@@ -8,7 +8,6 @@ class AbstractPaymentService(ABC):
     def create_payment(cls, data):
         pass
 
-
     @classmethod
     @abstractmethod
     def get_initial_data(cls, data, order):

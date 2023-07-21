@@ -35,7 +35,6 @@ class NewsCreateAPI(APIView):
 class NewsListAPI(APIView):
 
     def news_list(self, request):
-
         instance = News.objects.all()[int(request.GET['from']):int(request.GET['size'])]
         serializer = NewsSerializersRetrieve(instance=instance, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
@@ -44,7 +43,6 @@ class NewsListAPI(APIView):
 class NewsRetrieveAPI(APIView):
 
     def retrieve(self, request, pk):
-
         instance = get_object_or_404(News, pk=pk)
         serializer = NewsSerializersRetrieve(instance=instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
