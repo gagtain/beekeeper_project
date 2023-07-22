@@ -87,7 +87,7 @@
     transition: .5s;
 }
 .context_menu_info{
-    width: 45%;
+    width: 50%;
 }
 .user_in{
     margin: auto;
@@ -98,7 +98,8 @@
     cursor: pointer;
 }
 .user_context{
-    width: 30%;
+    width: auto;
+    padding: 0 3%;
 }
 .context_menu_{
     bottom: -80px;
@@ -125,6 +126,11 @@
         bottom: -80px;
         padding: 9% 20%;
         width: auto;
+    }
+}
+@media (max-width: 600px) {
+    .user_context{
+        display: none;
     }
 }
 .user_context:hover .context_menu_{
@@ -175,6 +181,15 @@
 #mob_mob_block{
     display: none;
 }
+.menu_items.search_item{
+    width: 300px;
+}
+@media (min-width: 600px) {
+    
+    .mob_men{
+        display: none;
+    }
+}
 @media (max-width: 1025px) {
     .menu_{
         padding: 0% 2%;
@@ -184,6 +199,9 @@
     }
     #mob_hed{
         display: block;
+    }
+    .menu_items.search_item{
+        width: 100%;
     }
 }
 .mob_men{
@@ -253,13 +271,7 @@
 @media (max-width: 600px) {
     
     .no_b_border{
-        margin-left: 5%;
-    }
-    #mob_mob_block{
-        display: flex;
-    }
-    .logo{
-        display: none;
+        padding: 0 5%;
     }
     .user_name{
         display: block;
@@ -267,17 +279,11 @@
     .user_img{
         display: none;
     }
-    .menu_items{
-        margin-top: 2%;
-    }
     .context_menu_info{
         width: 80%;
     }
     .no_b_border{
         width: 100%;
-    }
-    .menu_{
-        height: auto;
     }
     
 }

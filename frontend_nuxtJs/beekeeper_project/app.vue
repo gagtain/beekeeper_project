@@ -3,6 +3,7 @@
   <headersBase></headersBase>
     <NuxtPage/>
   <FooterBase></FooterBase>
+  <MainMobailMenu></MainMobailMenu>
   </div>
 </template>
 <style src="assets/css/interactive/interact.css"></style>

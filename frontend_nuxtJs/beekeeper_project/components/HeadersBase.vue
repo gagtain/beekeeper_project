@@ -17,9 +17,7 @@
             </div>
           </div>
           <div class="context_menu context_menu_info">
-            <div  @click="mob_menu_click()" :class="is_menu_mobile ? 'menu_active' : ''" class="menu_items mob_men relative" id="mob_hed">
-              <span  :class="is_menu_mobile ? 'menu_pop_mob_active' : ''"></span>
-            </div>
+            
             <div class="menu_items" id="deks_hed">
               <NuxtLink to="/" no-prefetch
                 ><p class="menu_items_text">Главная</p></NuxtLink
@@ -30,8 +28,11 @@
                 ><p class="menu_items_text">Товары</p></NuxtLink
               >
             </div>
-            <div class="menu_items no_b_border">
+            <div class="menu_items search_item no_b_border">
                 <SeacrhComp></SeacrhComp>
+            </div>
+            <div  @click="mob_menu_click()" :class="is_menu_mobile ? 'menu_active' : ''" class="menu_items mob_men relative">
+              <span  :class="is_menu_mobile ? 'menu_pop_mob_active' : ''"></span>
             </div>
           </div>
           <div class="context_menu user_context">
