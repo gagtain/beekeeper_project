@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'payments',
     'delivery',
-    'news'
+    'news',
+    'orders'
 ]
 
 MIDDLEWARE = [

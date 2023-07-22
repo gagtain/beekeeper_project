@@ -16,10 +16,13 @@
         <h3>Admin</h3>
       </li>
       <li>
-        <nuxt-link to="/orders"><span>Заказы</span></nuxt-link>
+        <nuxt-link to="/admin"><span>Главная</span></nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/delivery"><span>Доставки</span></nuxt-link>
+        <nuxt-link to="/admin/orders"><span>Заказы</span></nuxt-link>
+      </li>
+      <li>
+        <nuxt-link to="/admin/delivery"><span>Доставки</span></nuxt-link>
       </li>
       <li>
         <a href="#0">

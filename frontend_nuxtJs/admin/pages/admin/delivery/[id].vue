@@ -12,9 +12,9 @@
             <order-item-list  :orderList="delivery.order_delivery_transaction[0].product_list_transaction"></order-item-list>
         </div>
         <div style="width: 46%; padding: 3%; background: #fff;">
-            <button v-if="delivery.status == 'На проверке'" class="btn" @click="submit_waiting">Подтвердить заказ</button>
+            <button v-if="delivery.status == 'На проверке'&& delivery.order_delivery_transaction[0].status == 'Одобрен'" class="btn" @click="submit_waiting">Подтвердить доставку</button>
             <delivery-info-submit v-on:delivery_info_submit="delivery_info_submit($event)" :delivery="delivery" v-else-if="delivery.status == 'Ожидание доставки'" style="margin-top: 2%;"></delivery-info-submit>
-            <button class="btn">Отменить заказ</button>
+            <button v-if="delivery.status == 'На проверке'&& delivery.order_delivery_transaction[0].status != 'Одобрен'" class="btn">Отменить заказ</button>
             <button class="btn" v-if="delivery.status == 'Отправлен'">Отследить заказ</button>
         </div>
     </div>

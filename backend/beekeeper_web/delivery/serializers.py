@@ -36,11 +36,21 @@ class OrderSerializers(serializers.ModelSerializer):
     amount = MoneyField(max_digits=14, decimal_places=2)
     class Meta:
         model = Order
-        fields = ['id', 'product_list_transaction', 'datetime', 'user', 'amount', 'amount_currency']
+        fields = ['id', 'product_list_transaction', 'datetime', 'user', 'amount', 'amount_currency', 'status']
 
 
 class DeliveryTransactionSerializer(serializers.ModelSerializer):
     order_delivery_transaction = OrderSerializers(many=True)
     class Meta:
         model = DeliveryTransaction
-        fields = ['id','uuid', 'track_number', 'order_delivery_transaction', 'status']
+        fields = ['id', 'uuid', 'track_number',
+                  'order_delivery_transaction', 'status', 'delivery_method', 'where']
+
+
+class CountSerializer(serializers.Serializer):
+    count = serializers.CharField()
+
+    class Meta:
+        fields = ['count']
+    def get_count(self, instance):
+        print(instance, 213)

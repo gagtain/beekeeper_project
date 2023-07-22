@@ -28,6 +28,7 @@ urlpatterns = [
     path('api/v0.1/payments/', include('payments.urls')),
     path('api/v0.1/delivery/', include('delivery.urls')),
     path('api/v0.1/news/', include('news.urls')),
+    path('api/v0.1/orders/', include('orders.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('api/token/', MyObtainTokenPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', CookieTokenRefreshView.as_view(), name='token_refresh'),

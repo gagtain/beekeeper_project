@@ -115,6 +115,11 @@ class FavoriteItem(models.Model):
 
 
 class Order(models.Model):
+
+    class StatusChoice(models.TextChoices):
+        approved = "Одобрен"
+        not_approved = "Не одобренный"
+
     user: MainUser = models.ForeignKey(MainUser, related_name='user_order', on_delete=models.CASCADE)
     amount = MoneyField(default=0, max_digits=14, decimal_places=2,
                         verbose_name="Сумма транзакции", default_currency='RUB')
@@ -125,6 +130,8 @@ class Order(models.Model):
     delivery = models.ForeignKey(DeliveryTransaction,
                                  related_name='order_delivery_transaction',
                                  on_delete=models.CASCADE, blank=True, null=True)
+
+    status = models.CharField(choices=StatusChoice.choices, default=StatusChoice.not_approved)
 
 
 class OrderItem(models.Model):

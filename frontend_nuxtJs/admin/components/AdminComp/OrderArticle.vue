@@ -5,7 +5,7 @@
                 <img class="auto" src="https://cdekpromo.ru/chto-daet-dogovor-cdek.jpg" alt="">
                 <div class="order_all_info auto">
                     <p>Всего заказов</p>
-                    <p class="videl">100</p>
+                    <p class="videl">{{ orders_count }}</p>
                 </div>
             </div>
             <div class="flex">
@@ -13,7 +13,7 @@
                 <img class="auto" src="https://cdekpromo.ru/chto-daet-dogovor-cdek.jpg" alt="">
                 <div class="order_all_info auto">
                     <p>Общая сумма заказов</p>
-                    <p class="videl">2000 руб</p>
+                    <p class="videl">{{ orders_sum }} руб</p>
                 </div>
             </div>
         </div>
@@ -56,9 +56,23 @@
 </style>
 
 <script>
+import SearchCountOrders from '~/http/orders/SearchCountOrders'
+import SearchSumOrders from '~/http/orders/SearchSumOrders.js'
 export default {
     setup() {
         
     },
+    data(){
+        return{
+            orders_sum: null,
+            orders_count: null
+        }
+    }, 
+    async mounted(){
+        let r = await SearchCountOrders("")
+        this.orders_count = r.data.count
+        r = await  SearchSumOrders("")
+        this.orders_sum = r.data.sum
+    }
 }
 </script>

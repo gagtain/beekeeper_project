@@ -12,6 +12,7 @@ class ProductFilterName(APIView, FilterFieldsCustom):
         'name': 'name__icontains',
         'price': 'price__icontains',
     }
+    type_obj = 'model'
     serializers_retrieve = RetrieveClearAllOptionalProduct
 
     def search__name(self, request):
@@ -30,6 +31,7 @@ class ProductFilter(APIView, Filter):
         'name': 'name__icontains',
         'price': 'price__icontains',
     }
+    type_obj = 'model'
     serializers_retrieve = RetrieveProductRemoveToProdachen
 
     def search__default(self, request):
