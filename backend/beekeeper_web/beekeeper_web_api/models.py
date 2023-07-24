@@ -116,9 +116,11 @@ class FavoriteItem(models.Model):
 
 class Order(models.Model):
 
+
     class StatusChoice(models.TextChoices):
         approved = "Одобрен"
         not_approved = "Не одобренный"
+        closed = "Закрытый"
 
     user: MainUser = models.ForeignKey(MainUser, related_name='user_order', on_delete=models.CASCADE)
     amount = MoneyField(default=0, max_digits=14, decimal_places=2,
@@ -132,6 +134,8 @@ class Order(models.Model):
                                  on_delete=models.CASCADE, blank=True, null=True)
 
     status = models.CharField(choices=StatusChoice.choices, default=StatusChoice.not_approved)
+
+    description = models.CharField(max_length=300, default='')
 
 
 class OrderItem(models.Model):

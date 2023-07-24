@@ -1,4 +1,4 @@
-import { version, getCurrentInstance, inject, ref, watchEffect, watch, defineComponent, computed, h, resolveComponent, useSSRContext, createApp, reactive, unref, hasInjectionContext, provide, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, shallowReactive, isReadonly, mergeProps, withCtx, defineAsyncComponent, isRef, isShallow, isReactive, toRaw, nextTick, Suspense, Transition } from 'vue';
+import { version, getCurrentInstance, inject, ref, watchEffect, watch, defineComponent, computed, h, resolveComponent, useSSRContext, createApp, reactive, unref, hasInjectionContext, provide, onErrorCaptured, onServerPrefetch, createVNode, resolveDynamicComponent, toRef, shallowRef, shallowReactive, isReadonly, mergeProps, withCtx, openBlock, createBlock, defineAsyncComponent, isRef, isShallow, isReactive, toRaw, nextTick, Suspense, Transition } from 'vue';
 import { $fetch } from 'ofetch';
 import { createHooks } from 'hookable';
 import { getContext, executeAsync } from 'unctx';
@@ -320,7 +320,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-93e9f1e5.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-8ea07c31.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-delivery",
@@ -328,7 +328,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-e84cfa37.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-feb06f2d.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-delivery-not-active",
@@ -336,7 +336,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/not-active-4f4b7344.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/not-active-8c6a5e35.mjs').then((m) => m.default || m)
   },
   {
     name: "admin",
@@ -344,7 +344,15 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-b32a9d20.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-6808c5a8.mjs').then((m) => m.default || m)
+  },
+  {
+    name: "admin-news-create",
+    path: "/admin/news/create",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/index-a72eda0a.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-news",
@@ -352,7 +360,31 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-60d893d4.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-6fc8d842.mjs').then((m) => m.default || m)
+  },
+  {
+    name: "admin-orders-id",
+    path: "/admin/orders/:id()",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/_id_-1ca99786.mjs').then((m) => m.default || m)
+  },
+  {
+    name: "admin-orders",
+    path: "/admin/orders",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/index-82cfb2f8.mjs').then((m) => m.default || m)
+  },
+  {
+    name: "index",
+    path: "/",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/index-36d4b01a.mjs').then((m) => m.default || m)
   }
 ];
 const appHead = { "meta": [{ "name": "viewport", "content": "width=device-width, initial-scale=1" }, { "charset": "utf-8" }], "link": [], "style": [], "script": [], "noscript": [] };
@@ -908,11 +940,11 @@ function defineNuxtLink(options) {
     }
   });
 }
-const __nuxt_component_0$1 = /* @__PURE__ */ defineNuxtLink({ componentName: "NuxtLink" });
+const __nuxt_component_0$2 = /* @__PURE__ */ defineNuxtLink({ componentName: "NuxtLink" });
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "http://localhost:8000/"
+      api_root: "https://owa.gagtain.ru/"
     }
   };
 });
@@ -930,7 +962,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$4 = {
+const _sfc_main$5 = {
   setup() {
   },
   mounted() {
@@ -981,13 +1013,26 @@ const _sfc_main$4 = {
     });
   }
 };
-function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_nuxt_link = __nuxt_component_0$1;
-  _push(`<header${ssrRenderAttrs(mergeProps({ class: "page-header" }, _attrs))}><nav><a href="#0" aria-label="forecastr logo" class="logo"><svg width="140" height="49"><use xlink:href="#logo"></use></svg></a><button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu"><svg width="20" height="20" aria-hidden="true"><use xlink:href="#down"></use></svg></button><ul class="admin-menu"><li class="menu-heading"><h3>Admin</h3></li><li>`);
-  _push(ssrRenderComponent(_component_nuxt_link, { to: "/orders" }, {
+function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_nuxt_link = __nuxt_component_0$2;
+  _push(`<header${ssrRenderAttrs(mergeProps({ class: "page-header" }, _attrs))} data-v-82af0edc><nav data-v-82af0edc><a href="#0" aria-label="forecastr logo" class="logo" data-v-82af0edc><svg width="140" height="49" data-v-82af0edc><use xlink:href="#logo" data-v-82af0edc></use></svg></a><button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu" data-v-82af0edc><svg width="20" height="20" aria-hidden="true" data-v-82af0edc><use xlink:href="#down" data-v-82af0edc></use></svg></button><ul class="admin-menu" data-v-82af0edc><li class="menu-heading" data-v-82af0edc><h3 data-v-82af0edc>Admin</h3></li><li data-v-82af0edc>`);
+  _push(ssrRenderComponent(_component_nuxt_link, { to: "/admin" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<span${_scopeId}>Заказы</span>`);
+        _push2(`<span data-v-82af0edc${_scopeId}>Главная</span>`);
+      } else {
+        return [
+          createVNode("span", null, "Главная")
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li data-v-82af0edc>`);
+  _push(ssrRenderComponent(_component_nuxt_link, { to: "/admin/orders" }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<span data-v-82af0edc${_scopeId}>Заказы</span>`);
       } else {
         return [
           createVNode("span", null, "Заказы")
@@ -996,11 +1041,11 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li>`);
-  _push(ssrRenderComponent(_component_nuxt_link, { to: "/delivery" }, {
+  _push(`</li><li data-v-82af0edc>`);
+  _push(ssrRenderComponent(_component_nuxt_link, { to: "/admin/delivery" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<span${_scopeId}>Доставки</span>`);
+        _push2(`<span data-v-82af0edc${_scopeId}>Доставки</span>`);
       } else {
         return [
           createVNode("span", null, "Доставки")
@@ -1009,15 +1054,47 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li><a href="#0"><svg><use xlink:href="#trends"></use></svg><span>Trends</span></a></li><li><a href="#0"><svg><use xlink:href="#collection"></use></svg><span>Collection</span></a></li><li><a href="#0"><svg><use xlink:href="#comments"></use></svg><span>Comments</span></a></li><li><a href="#0"><svg><use xlink:href="#appearance"></use></svg><span>Appearance</span></a></li><li class="menu-heading"><h3>Settings</h3></li><li><a href="#0"><svg><use xlink:href="#settings"></use></svg><span>Settings</span></a></li><li><a href="#0"><svg><use xlink:href="#options"></use></svg><span>Options</span></a></li><li><a href="#0"><svg><use xlink:href="#charts"></use></svg><span>Charts</span></a></li><li><div class="switch"><input type="checkbox" id="mode" checked><label for="mode"><span></span><span>Dark</span></label></div><button class="collapse-btn" aria-expanded="true" aria-label="collapse menu"><svg aria-hidden="true"><use xlink:href="#collapse"></use></svg><span>Collapse</span></button></li></ul></nav></header>`);
+  _push(`</li><li data-v-82af0edc>`);
+  _push(ssrRenderComponent(_component_nuxt_link, { to: "/admin/news" }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<span data-v-82af0edc${_scopeId}>Новости</span>`);
+      } else {
+        return [
+          createVNode("span", null, "Новости")
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li data-v-82af0edc>`);
+  _push(ssrRenderComponent(_component_nuxt_link, {
+    "no-prefetch": "",
+    to: "/admin/news/create"
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<svg data-v-82af0edc${_scopeId}><use xlink:href="#trends" data-v-82af0edc${_scopeId}></use></svg><span data-v-82af0edc${_scopeId}>Создать новость</span>`);
+      } else {
+        return [
+          (openBlock(), createBlock("svg", null, [
+            createVNode("use", { "xlink:href": "#trends" })
+          ])),
+          createVNode("span", null, "Создать новость")
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li data-v-82af0edc><a href="#0" data-v-82af0edc><svg data-v-82af0edc><use xlink:href="#collection" data-v-82af0edc></use></svg><span data-v-82af0edc>Collection</span></a></li><li data-v-82af0edc><a href="#0" data-v-82af0edc><svg data-v-82af0edc><use xlink:href="#comments" data-v-82af0edc></use></svg><span data-v-82af0edc>Comments</span></a></li><li data-v-82af0edc><a href="#0" data-v-82af0edc><svg data-v-82af0edc><use xlink:href="#appearance" data-v-82af0edc></use></svg><span data-v-82af0edc>Appearance</span></a></li><li class="menu-heading" data-v-82af0edc><h3 data-v-82af0edc>Settings</h3></li><li data-v-82af0edc><a href="#0" data-v-82af0edc><svg data-v-82af0edc><use xlink:href="#settings" data-v-82af0edc></use></svg><span data-v-82af0edc>Settings</span></a></li><li data-v-82af0edc><a href="#0" data-v-82af0edc><svg data-v-82af0edc><use xlink:href="#options" data-v-82af0edc></use></svg><span data-v-82af0edc>Options</span></a></li><li data-v-82af0edc><a href="#0" data-v-82af0edc><svg data-v-82af0edc><use xlink:href="#charts" data-v-82af0edc></use></svg><span data-v-82af0edc>Charts</span></a></li><li data-v-82af0edc><div class="switch" data-v-82af0edc><input type="checkbox" id="mode" checked data-v-82af0edc><label for="mode" data-v-82af0edc><span data-v-82af0edc></span><span data-v-82af0edc>Dark</span></label></div><button class="collapse-btn" aria-expanded="true" aria-label="collapse menu" data-v-82af0edc><svg aria-hidden="true" data-v-82af0edc><use xlink:href="#collapse" data-v-82af0edc></use></svg><span data-v-82af0edc>Collapse</span></button></li></ul></nav></header>`);
 }
-const _sfc_setup$4 = _sfc_main$4.setup;
-_sfc_main$4.setup = (props, ctx) => {
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/new_header.vue");
-  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2]]);
+const __nuxt_component_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-82af0edc"]]);
 const interpolatePath = (route, match) => {
   return match.path.replace(/(:\w+)\([^)]+\)/g, "$1").replace(/(:\w+)[?+*]/g, "$1").replace(/:\w+/g, (r) => {
     var _a;
@@ -1072,7 +1149,7 @@ const _wrapIf = (component, props, slots) => {
     return props ? h(component, props, slots) : (_a = slots.default) == null ? void 0 : _a.call(slots);
   } };
 };
-const __nuxt_component_1 = /* @__PURE__ */ defineComponent({
+const __nuxt_component_0 = /* @__PURE__ */ defineComponent({
   name: "NuxtPage",
   inheritAttrs: false,
   props: {
@@ -1159,6 +1236,20 @@ function _mergeTransitionProps(routeProps) {
   }));
   return defu(..._props);
 }
+const _sfc_main$4 = {};
+function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_NuxtPage = __nuxt_component_0;
+  _push(`<section${ssrRenderAttrs(mergeProps({ class: "page-content" }, _attrs))} data-v-3b66033b><section class="search-and-user" data-v-3b66033b><form data-v-3b66033b><input type="search" placeholder="Search Pages..." data-v-3b66033b><button type="submit" aria-label="submit form" data-v-3b66033b><svg aria-hidden="true" data-v-3b66033b><use xlink:href="#search" data-v-3b66033b></use></svg></button></form><div class="admin-profile" data-v-3b66033b><span class="greeting" data-v-3b66033b>Hello admin</span><div class="notifications" data-v-3b66033b><span class="badge" data-v-3b66033b>1</span><svg data-v-3b66033b><use xlink:href="#users" data-v-3b66033b></use></svg></div></div></section>`);
+  _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
+  _push(`</section>`);
+}
+const _sfc_setup$4 = _sfc_main$4.setup;
+_sfc_main$4.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/page_contend.vue");
+  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+};
+const __nuxt_component_1 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-3b66033b"]]);
 const _sfc_main$3 = {};
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<nav${ssrRenderAttrs(mergeProps({ class: "navbar navbar-expand-lg navbar-light bg-light" }, _attrs))}><div class="container-fluid"><a class="navbar-brand" href="#">Панель навигации</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="navbarSupportedContent"><ul class="navbar-nav me-auto mb-2 mb-lg-0"><li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Главная</a></li><li class="nav-item"><a class="nav-link" href="#">Ссылка</a></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Выпадающий список </a><ul class="dropdown-menu" aria-labelledby="navbarDropdown"><li><a class="dropdown-item" href="#">Действие</a></li><li><a class="dropdown-item" href="#">Другое действие</a></li><li><hr class="dropdown-divider"></li><li><a class="dropdown-item" href="#">Что-то еще здесь</a></li></ul></li><li class="nav-item"><a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Отключенная</a></li></ul><form class="d-flex"><input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск"><button class="btn btn-outline-success" type="submit">Поиск</button></form></div></div></nav>`);
@@ -1171,16 +1262,15 @@ _sfc_main$3.setup = (props, ctx) => {
 };
 const headers = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$1]]);
 const _sfc_main$2 = {
-  components: { headers, new_header: __nuxt_component_0 }
+  components: { headers, new_header: __nuxt_component_0$1, Page_contend: __nuxt_component_1 }
 };
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_new_header = __nuxt_component_0;
-  const _component_NuxtPage = __nuxt_component_1;
+  const _component_new_header = __nuxt_component_0$1;
+  const _component_page_contend = __nuxt_component_1;
   _push(`<div${ssrRenderAttrs(_attrs)}>`);
   _push(ssrRenderComponent(_component_new_header, null, null, _parent));
-  _push(`<section class="page-content"><section class="search-and-user"><form><input type="search" placeholder="Search Pages..."><button type="submit" aria-label="submit form"><svg aria-hidden="true"><use xlink:href="#search"></use></svg></button></form><div class="admin-profile"><span class="greeting">Hello admin</span><div class="notifications"><span class="badge">1</span><svg><use xlink:href="#users"></use></svg></div></div></section>`);
-  _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
-  _push(`</section></div>`);
+  _push(ssrRenderComponent(_component_page_contend, null, null, _parent));
+  _push(`</div>`);
 }
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
@@ -1296,5 +1386,5 @@ let entry;
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { _export_sfc as _, __nuxt_component_0$1 as a, createError as c, entry$1 as default, useHead as u };
+export { _export_sfc as _, __nuxt_component_0$2 as a, createError as c, entry$1 as default, useHead as u };
 //# sourceMappingURL=server.mjs.map

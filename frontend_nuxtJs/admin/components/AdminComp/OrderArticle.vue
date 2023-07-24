@@ -20,7 +20,9 @@
     </article>
 </template>
 
-<style>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
+<style scoped>
 
 .order_article{
     display: flex;

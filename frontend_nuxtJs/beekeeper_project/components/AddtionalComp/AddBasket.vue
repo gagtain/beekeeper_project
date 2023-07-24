@@ -1,7 +1,7 @@
 <template>
     <div id="addBasket">
-  <button v-if="isBasket" @click="removeBasketBtn" class="btn au">Убрать из корзины</button>
-  <button v-else @click="addBasketBtn" class="btn au">Добавить в корзину</button>
+  <button v-if="isBasket" @click="removeBasketBtn" class="w-sto btn au">Из корзины</button>
+  <button v-else @click="addBasketBtn" class="w-sto btn au">В корзину</button>
     </div>
 </template>
 <style>

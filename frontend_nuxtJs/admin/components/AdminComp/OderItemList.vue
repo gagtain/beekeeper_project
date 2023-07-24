@@ -20,7 +20,9 @@
     </div>
 </template>
 
-<style>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
+<style scoped>
 .img_order_product_div{
     width: 80px;
 }

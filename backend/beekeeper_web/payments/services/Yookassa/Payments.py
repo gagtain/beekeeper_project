@@ -16,7 +16,7 @@ class PaymentsYookassaServices(AbstractPaymentService):
 
     @classmethod
     def create_model_payment(cls, data: shemas.PaymentsResponseCreate, order):
-        payment = PaymentTransaction.objects.create(id_payment=data.id, status=data.status)
+        payment = PaymentTransaction.objects.create(id_payment=data.id, status=data.status, url=data.confirmation.confirmation_url)
         order.payment = payment
         order.save()
 

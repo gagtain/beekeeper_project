@@ -1,7 +1,7 @@
 <template>
-    <dialog id="dialog" class="absolute auto" style="pointer-events: auto;">
+    <dialog :id="ids" class="absolute auto" style="pointer-events: auto;">
         <slot></slot>
-        <button onclick="window.dialog.close();" aria-label="close" class="x">
+        <button @click="closed" aria-label="close" class="x">
           ❌
         </button>
       </dialog>
@@ -11,6 +11,22 @@
 <script>
 
 export default{
-    el: '#dialog'
+  props:['id'],
+  data(){
+    return {ids: null}
+  },
+  mounted(){
+    if (!this.id){
+      this.ids = 'dialog'
+    }else{
+      this.ids = this.id
+    }
+  },
+  methods:{
+    closed(){
+      let a = document.getElementById(this.ids)
+      a.close()
+    }
+  }
 }
 </script>

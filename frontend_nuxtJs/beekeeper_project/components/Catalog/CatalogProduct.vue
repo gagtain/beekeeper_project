@@ -42,9 +42,8 @@
                       </div>
                     </div>
                     <div class="product__text">
-                      <p class="small">{{ pr.description }}</p>
                     </div>
-                    <div class="flex">
+                    <div class="flex jus-sp">
                       <AddBasket :id="pr.id" :wei_id="type_weigth_id"></AddBasket>
                       <FavoriteComp :id="pr.id" :wei_id="type_weigth_id"></FavoriteComp>
                     </div>

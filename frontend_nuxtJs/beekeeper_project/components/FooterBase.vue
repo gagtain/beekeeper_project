@@ -41,8 +41,8 @@
 
                 <div class="foo_mobile flex jus-sp" id="mobs">
                     <p class="foo_p">Компания</p>
-                    <div class="foo_mobile_butt" onclick="active_footer_mob($(this))">
-                        <span class="material-symbols-outlined">expand_more</span>
+                    <div class="foo_mobile_butt" @click="active_footer_mob(0)">
+                        <img src="~/assets/images/892498.png" alt="">
                     </div>
                 </div>
                 <div class="auto foo_mobile_contect" id="mob">
@@ -54,9 +54,9 @@
 
                 <div class="foo_mobile flex jus-sp" id="mobs">
                     <p class="foo_p">Компания</p>
-                    <div class="foo_mobile_butt" onclick="active_footer_mob($(this))">
+                    <div class="foo_mobile_butt" @click="active_footer_mob(1)">
 
-                        <span class="material-symbols-outlined">expand_more</span>
+                        <img src="~/assets/images/892498.png" alt="">
                     </div>
                 </div>
                 <div class="auto foo_mobile_contect" id="mob">
@@ -68,9 +68,9 @@
 
                 <div class="foo_mobile flex jus-sp" id="mobs">
                     <p class="foo_p">Компания</p>
-                    <div class="foo_mobile_butt" onclick="active_footer_mob($(this))">
+                    <div class="foo_mobile_butt" @click="active_footer_mob(2)">
 
-                        <span class="material-symbols-outlined">expand_more</span>
+                        <img src="~/assets/images/892498.png" alt="">
                     </div>
                 </div>
                 <div class="auto foo_mobile_contect" id="mob">
@@ -82,9 +82,9 @@
 
                 <div class="foo_mobile flex jus-sp" id="mobs">
                     <p class="foo_p">Компания</p>
-                    <div class="foo_mobile_butt" onclick="active_footer_mob($(this))">
+                    <div class="foo_mobile_butt" @click="active_footer_mob(3)">
 
-                        <span class="material-symbols-outlined">expand_more</span>
+                        <img src="~/assets/images/892498.png" alt="">
                     </div>
                 </div>
                 <div class="auto foo_mobile_contect" id="mob">
@@ -107,5 +107,12 @@ export default defineNuxtComponent({
     setup() {
         
     },
+    methods:{
+        active_footer_mob(id){
+           let list_footer_mobail_menu_item = document.getElementsByClassName('foo_mobile_contect')
+           let item = list_footer_mobail_menu_item[id]
+           item.classList.toggle("active")
+        }
+    }
 })
 </script>

@@ -1,12 +1,13 @@
 import sys
 
+from django.db.models import Q
 from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from ..services.Order import OrderServices
 sys.path.append('.')
-from ..models import MainUser, BasketItem
+from ..models import MainUser, BasketItem, Order
 
 from ..serializers import OrderSerializers
 

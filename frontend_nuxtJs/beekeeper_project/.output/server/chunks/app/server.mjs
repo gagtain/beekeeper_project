@@ -1251,7 +1251,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/catalog-c7f02a87.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/catalog-e9f85de3.mjs').then((m) => m.default || m)
   },
   {
     name: "checkout",
@@ -1275,7 +1275,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-6d01b074.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-8f13e5ba.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1307,7 +1307,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/orders-8360ac1c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/orders-4ec87944.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -1331,7 +1331,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-5c89fcb4.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-fc8ef5d7.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1918,7 +1918,7 @@ _sfc_main$5.setup = (props, ctx) => {
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
 const __nuxt_component_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$4], ["__scopeId", "data-v-906d4ac1"]]);
-const _imports_0$1 = "" + __publicAssetsURL("favicon.ico");
+const _imports_0$2 = "" + __publicAssetsURL("favicon.ico");
 const _sfc_main$4 = /* @__PURE__ */ defineNuxtComponent({
   name: "HeadersBase",
   el: "#header",
@@ -1936,7 +1936,8 @@ const _sfc_main$4 = /* @__PURE__ */ defineNuxtComponent({
         active: false,
         scroll_top: 0
       },
-      is_menu_mobile: false
+      is_menu_mobile: false,
+      is_menu_mobile_user: false
     };
   },
   methods: {
@@ -1967,14 +1968,14 @@ const _sfc_main$4 = /* @__PURE__ */ defineNuxtComponent({
 function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_NuxtLink = __nuxt_component_0$1;
   const _component_SeacrhComp = __nuxt_component_1$1;
-  _push(`<div${ssrRenderAttrs(mergeProps({ id: "header" }, _attrs))} data-v-850f156e><div class="menu" style="${ssrRenderStyle({ "background": "linear-gradient(45deg, yellow, orange)" })}" data-v-850f156e><div class="absolute w-sto h_sto g" data-v-850f156e></div><div class="interactiv h_sto" data-v-850f156e><div class="w-sto name_org flex" id="mob_mob_block" data-v-850f156e><p class="auto" data-v-850f156e>Пчелиная артель</p></div><div class="menu_" data-v-850f156e><div class="logo relative" data-v-850f156e><div class="logo-page flex absolute" data-v-850f156e><img${ssrRenderAttr("src", _imports_0$1)} class="logo_img auto" alt="" data-v-850f156e></div></div><div class="context_menu context_menu_info" data-v-850f156e><div class="menu_items" id="deks_hed" data-v-850f156e>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ id: "header" }, _attrs))} data-v-b6eb5f43><div class="menu" style="${ssrRenderStyle({ "background": "linear-gradient(45deg, yellow, orange)" })}" data-v-b6eb5f43><div class="absolute w-sto h_sto g" data-v-b6eb5f43></div><div class="interactiv h_sto" data-v-b6eb5f43><div class="w-sto name_org flex" id="mob_mob_block" data-v-b6eb5f43><p class="auto" data-v-b6eb5f43>Пчелиная артель</p></div><div class="menu_" data-v-b6eb5f43><div class="logo relative" data-v-b6eb5f43><div class="logo-page flex absolute" data-v-b6eb5f43><img${ssrRenderAttr("src", _imports_0$2)} class="logo_img auto" alt="" data-v-b6eb5f43></div></div><div class="context_menu context_menu_info" data-v-b6eb5f43><div class="flex" id="deks_hed" data-v-b6eb5f43><div class="menu_items" id="deks_hed" data-v-b6eb5f43>`);
   _push(ssrRenderComponent(_component_NuxtLink, {
     to: "/",
     "no-prefetch": ""
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<p class="menu_items_text" data-v-850f156e${_scopeId}>Главная</p>`);
+        _push2(`<p class="menu_items_text" data-v-b6eb5f43${_scopeId}>Главная</p>`);
       } else {
         return [
           createVNode("p", { class: "menu_items_text" }, "Главная")
@@ -1983,14 +1984,14 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><div class="menu_items flex relative" id="deks_hed" data-v-850f156e>`);
+  _push(`</div><div class="menu_items flex relative" id="deks_hed" data-v-b6eb5f43>`);
   _push(ssrRenderComponent(_component_NuxtLink, {
     to: "/catalog",
     "no-prefetch": ""
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<p class="menu_items_text" data-v-850f156e${_scopeId}>Товары</p>`);
+        _push2(`<p class="menu_items_text" data-v-b6eb5f43${_scopeId}>Товары</p>`);
       } else {
         return [
           createVNode("p", { class: "menu_items_text" }, "Товары")
@@ -1999,152 +2000,164 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><div class="menu_items search_item no_b_border" data-v-850f156e>`);
+  _push(`</div></div><div class="menu_items search_item no_b_border" data-v-b6eb5f43>`);
   _push(ssrRenderComponent(_component_SeacrhComp, null, null, _parent));
-  _push(`</div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_active" : "", "menu_items mob_men relative"])}" data-v-850f156e><span class="${ssrRenderClass(_ctx.is_menu_mobile ? "menu_pop_mob_active" : "")}" data-v-850f156e></span></div></div><div class="context_menu user_context" data-v-850f156e>`);
+  _push(`</div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_active" : "", "menu_items mob_men relative"])}" data-v-b6eb5f43><span class="${ssrRenderClass(_ctx.is_menu_mobile ? "menu_pop_mob_active" : "")}" data-v-b6eb5f43></span></div></div><div class="context_menu user_context" data-v-b6eb5f43>`);
   if (_ctx.$store.getUser.username != null && typeof _ctx.$store.getUser.username !== "undefined") {
-    _push(`<div class="flex jus-sp user_in relative" data-v-850f156e><img class="user_img"${ssrRenderAttr("src", _ctx.$api_root + _ctx.$store.getUser.image)} alt="" data-v-850f156e><div class="flex w-sto h-sto from_name" data-v-850f156e><p class="menu_items_text user_name auto" data-v-850f156e>${ssrInterpolate(_ctx.$store.getUser.username)}</p></div><div class="context_menu_ absolute" data-v-850f156e><ul data-v-850f156e>`);
-    _push(ssrRenderComponent(_component_NuxtLink, {
-      "no-prefetch": "",
-      to: "/profile"
-    }, {
-      default: withCtx((_, _push2, _parent2, _scopeId) => {
-        if (_push2) {
-          _push2(`<li class="flex" data-v-850f156e${_scopeId}><p class="normal-small auto" data-v-850f156e${_scopeId}>Аккаунт</p></li>`);
-        } else {
-          return [
-            createVNode("li", { class: "flex" }, [
-              createVNode("p", { class: "normal-small auto" }, "Аккаунт")
-            ])
-          ];
-        }
-      }),
-      _: 1
-    }, _parent));
-    _push(ssrRenderComponent(_component_NuxtLink, {
-      "no-prefetch": "",
-      to: "/basket"
-    }, {
-      default: withCtx((_, _push2, _parent2, _scopeId) => {
-        if (_push2) {
-          _push2(`<li class="flex" data-v-850f156e${_scopeId}><p class="normal-small auto" data-v-850f156e${_scopeId}>Корзина</p></li>`);
-        } else {
-          return [
-            createVNode("li", { class: "flex" }, [
-              createVNode("p", { class: "normal-small auto" }, "Корзина")
-            ])
-          ];
-        }
-      }),
-      _: 1
-    }, _parent));
-    _push(ssrRenderComponent(_component_NuxtLink, {
-      "no-prefetch": "",
-      to: "/orders"
-    }, {
-      default: withCtx((_, _push2, _parent2, _scopeId) => {
-        if (_push2) {
-          _push2(`<li class="flex" data-v-850f156e${_scopeId}><p class="normal-small auto" data-v-850f156e${_scopeId}>Заказы</p></li>`);
-        } else {
-          return [
-            createVNode("li", { class: "flex" }, [
-              createVNode("p", { class: "normal-small auto" }, "Заказы")
-            ])
-          ];
-        }
-      }),
-      _: 1
-    }, _parent));
-    _push(ssrRenderComponent(_component_NuxtLink, {
-      "no-prefetch": "",
-      to: "/favorite"
-    }, {
-      default: withCtx((_, _push2, _parent2, _scopeId) => {
-        if (_push2) {
-          _push2(`<li class="flex" data-v-850f156e${_scopeId}>`);
-          _push2(ssrRenderComponent(_component_NuxtLink, {
-            "no-prefetch": "",
-            to: "/favorite",
-            class: "normal-small auto"
-          }, {
-            default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-              if (_push3) {
-                _push3(`Избранное`);
-              } else {
-                return [
-                  createTextVNode("Избранное")
-                ];
-              }
-            }),
-            _: 1
-          }, _parent2, _scopeId));
-          _push2(`</li>`);
-        } else {
-          return [
-            createVNode("li", { class: "flex" }, [
-              createVNode(_component_NuxtLink, {
-                "no-prefetch": "",
-                to: "/favorite",
-                class: "normal-small auto"
-              }, {
-                default: withCtx(() => [
-                  createTextVNode("Избранное")
-                ]),
-                _: 1
-              })
-            ])
-          ];
-        }
-      }),
-      _: 1
-    }, _parent));
-    _push(`</ul></div></div>`);
+    _push(`<div class="flex jus-sp user_in relative" data-v-b6eb5f43><img class="user_img"${ssrRenderAttr("src", _ctx.$api_root + _ctx.$store.getUser.image)} alt="" data-v-b6eb5f43><div class="flex w-sto h-sto from_name" data-v-b6eb5f43><p class="menu_items_text user_name auto" data-v-b6eb5f43>${ssrInterpolate(_ctx.$store.getUser.username)}</p></div>`);
+    if (_ctx.is_menu_mobile_user) {
+      _push(`<div class="context_menu_ absolute" data-v-b6eb5f43><ul data-v-b6eb5f43>`);
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        "no-prefetch": "",
+        to: "/profile"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<li class="flex" data-v-b6eb5f43${_scopeId}><p class="normal-small auto" data-v-b6eb5f43${_scopeId}>Аккаунт</p></li>`);
+          } else {
+            return [
+              createVNode("li", { class: "flex" }, [
+                createVNode("p", { class: "normal-small auto" }, "Аккаунт")
+              ])
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        "no-prefetch": "",
+        to: "/basket"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<li class="flex" data-v-b6eb5f43${_scopeId}><p class="normal-small auto" data-v-b6eb5f43${_scopeId}>Корзина</p></li>`);
+          } else {
+            return [
+              createVNode("li", { class: "flex" }, [
+                createVNode("p", { class: "normal-small auto" }, "Корзина")
+              ])
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        "no-prefetch": "",
+        to: "/orders"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<li class="flex" data-v-b6eb5f43${_scopeId}><p class="normal-small auto" data-v-b6eb5f43${_scopeId}>Заказы</p></li>`);
+          } else {
+            return [
+              createVNode("li", { class: "flex" }, [
+                createVNode("p", { class: "normal-small auto" }, "Заказы")
+              ])
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        "no-prefetch": "",
+        to: "/favorite"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<li class="flex" data-v-b6eb5f43${_scopeId}>`);
+            _push2(ssrRenderComponent(_component_NuxtLink, {
+              "no-prefetch": "",
+              to: "/favorite",
+              class: "normal-small auto"
+            }, {
+              default: withCtx((_2, _push3, _parent3, _scopeId2) => {
+                if (_push3) {
+                  _push3(`Избранное`);
+                } else {
+                  return [
+                    createTextVNode("Избранное")
+                  ];
+                }
+              }),
+              _: 1
+            }, _parent2, _scopeId));
+            _push2(`</li>`);
+          } else {
+            return [
+              createVNode("li", { class: "flex" }, [
+                createVNode(_component_NuxtLink, {
+                  "no-prefetch": "",
+                  to: "/favorite",
+                  class: "normal-small auto"
+                }, {
+                  default: withCtx(() => [
+                    createTextVNode("Избранное")
+                  ]),
+                  _: 1
+                })
+              ])
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`</ul></div>`);
+    } else {
+      _push(`<!---->`);
+    }
+    _push(`</div>`);
   } else {
-    _push(`<div class="flex context_menu jus-sp user_in relative" style="${ssrRenderStyle({ "min-width": "50%" })}" data-v-850f156e><p data-v-850f156e>Войти</p><div style="${ssrRenderStyle({ "bottom": "-60px" })}" class="context_menu_ absolute" data-v-850f156e><ul data-v-850f156e>`);
-    _push(ssrRenderComponent(_component_NuxtLink, {
-      "no-prefetch": "",
-      to: "/register"
-    }, {
-      default: withCtx((_, _push2, _parent2, _scopeId) => {
-        if (_push2) {
-          _push2(`<li class="flex" data-v-850f156e${_scopeId}><p class="normal-small auto" data-v-850f156e${_scopeId}>Регистрация</p></li>`);
-        } else {
-          return [
-            createVNode("li", { class: "flex" }, [
-              createVNode("p", { class: "normal-small auto" }, "Регистрация")
-            ])
-          ];
-        }
-      }),
-      _: 1
-    }, _parent));
-    _push(ssrRenderComponent(_component_NuxtLink, {
-      "no-prefetch": "",
-      to: "/login"
-    }, {
-      default: withCtx((_, _push2, _parent2, _scopeId) => {
-        if (_push2) {
-          _push2(`<li class="flex" data-v-850f156e${_scopeId}><p class="normal-small auto" data-v-850f156e${_scopeId}>Вход</p></li>`);
-        } else {
-          return [
-            createVNode("li", { class: "flex" }, [
-              createVNode("p", { class: "normal-small auto" }, "Вход")
-            ])
-          ];
-        }
-      }),
-      _: 1
-    }, _parent));
-    _push(`</ul></div></div>`);
+    _push(`<div class="flex context_menu jus-sp user_in relative" style="${ssrRenderStyle({ "min-width": "50%" })}" data-v-b6eb5f43><p data-v-b6eb5f43>Войти</p>`);
+    if (_ctx.is_menu_mobile_user) {
+      _push(`<div style="${ssrRenderStyle({ "bottom": "-60px" })}" class="context_menu_ absolute" data-v-b6eb5f43><ul data-v-b6eb5f43>`);
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        "no-prefetch": "",
+        to: "/register"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<li class="flex" data-v-b6eb5f43${_scopeId}><p class="normal-small auto" data-v-b6eb5f43${_scopeId}>Регистрация</p></li>`);
+          } else {
+            return [
+              createVNode("li", { class: "flex" }, [
+                createVNode("p", { class: "normal-small auto" }, "Регистрация")
+              ])
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        "no-prefetch": "",
+        to: "/login"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`<li class="flex" data-v-b6eb5f43${_scopeId}><p class="normal-small auto" data-v-b6eb5f43${_scopeId}>Вход</p></li>`);
+          } else {
+            return [
+              createVNode("li", { class: "flex" }, [
+                createVNode("p", { class: "normal-small auto" }, "Вход")
+              ])
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`</ul></div>`);
+    } else {
+      _push(`<!---->`);
+    }
+    _push(`</div>`);
   }
-  _push(`</div></div></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_active" : "", "absolute menu_pop_mob"])}" data-v-850f156e><div class="h_sto w-sto sote" data-v-850f156e><div class="logo-sote auto" data-v-850f156e><div class="logo-page flex auto" data-v-850f156e><img${ssrRenderAttr("src", _ctx.$api_root + "static/online_store/images/logo.png")} class="logo_img auto" alt="" data-v-850f156e></div></div><p class="VAG menu_mob_p_org_name small" data-v-850f156e>Пчелиная артель</p><ul data-v-850f156e>`);
+  _push(`</div></div></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_active" : "", "absolute menu_pop_mob"])}" data-v-b6eb5f43><div class="h_sto w-sto sote" data-v-b6eb5f43><div class="logo-sote auto" data-v-b6eb5f43><div class="logo-page flex auto" data-v-b6eb5f43><img${ssrRenderAttr("src", _ctx.$api_root + "static/online_store/images/logo.png")} class="logo_img auto" alt="" data-v-b6eb5f43></div></div><p class="VAG menu_mob_p_org_name small" data-v-b6eb5f43>Пчелиная артель</p><ul data-v-b6eb5f43>`);
   _push(ssrRenderComponent(_component_NuxtLink, {
     to: "/",
     "no-prefetch": ""
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-850f156e${_scopeId}>Главная</li>`);
+        _push2(`<li data-v-b6eb5f43${_scopeId}>Главная</li>`);
       } else {
         return [
           createVNode("li", null, "Главная")
@@ -2159,7 +2172,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-850f156e${_scopeId}>О нас</li>`);
+        _push2(`<li data-v-b6eb5f43${_scopeId}>О нас</li>`);
       } else {
         return [
           createVNode("li", null, "О нас")
@@ -2174,7 +2187,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-850f156e${_scopeId}>Заказы</li>`);
+        _push2(`<li data-v-b6eb5f43${_scopeId}>Заказы</li>`);
       } else {
         return [
           createVNode("li", null, "Заказы")
@@ -2189,7 +2202,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-850f156e${_scopeId}>Политика соглашения</li>`);
+        _push2(`<li data-v-b6eb5f43${_scopeId}>Политика соглашения</li>`);
       } else {
         return [
           createVNode("li", null, "Политика соглашения")
@@ -2204,7 +2217,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<li data-v-850f156e${_scopeId}>Пополнить счет</li>`);
+        _push2(`<li data-v-b6eb5f43${_scopeId}>Пополнить счет</li>`);
       } else {
         return [
           createVNode("li", null, "Пополнить счет")
@@ -2213,7 +2226,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</ul></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_zatem_active" : "", "absolute menu_pop_mob_zatem"])}" data-v-850f156e></div></div>`);
+  _push(`</ul></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_zatem_active" : "", "absolute menu_pop_mob_zatem"])}" data-v-b6eb5f43></div></div>`);
 }
 const _sfc_setup$4 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
@@ -2221,7 +2234,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/HeadersBase.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-850f156e"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-b6eb5f43"]]);
 const interpolatePath = (route, match) => {
   return match.path.replace(/(:\w+)\([^)]+\)/g, "$1").replace(/(:\w+)[?+*]/g, "$1").replace(/:\w+/g, (r) => {
     var _a;
@@ -2335,14 +2348,22 @@ const RouteProvider = /* @__PURE__ */ defineComponent({
     };
   }
 });
+const _imports_0$1 = "" + __buildAssetsURL("892498.d01e5868.png");
 const _sfc_main$3 = /* @__PURE__ */ defineNuxtComponent({
   el: "#footer",
   name: "FooterBase",
   setup() {
+  },
+  methods: {
+    active_footer_mob(id) {
+      let list_footer_mobail_menu_item = document.getElementsByClassName("foo_mobile_contect");
+      let item = list_footer_mobail_menu_item[id];
+      item.classList.toggle("active");
+    }
   }
 }, "$JTAA5RZwID");
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ id: "footer" }, _attrs))}><footer class="flex" id="deks"><div class="interactiv flex jus-sp auto"><div class="foo"><p class="foo_p">Компания</p><p class="foo_p_li foo_p_li_perv">О нас</p><p class="foo_p_li">Контакты</p></div><div class="foo"><p class="foo_p">ПОЛЕЗНОЕ</p><p class="foo_p_li foo_p_li_perv">Оплата и доставка</p><p class="foo_p_li">Условия возврата</p><p class="foo_p_li">Бонусная система</p></div><div class="foo"><p class="foo_p">ПОКУПАТЕЛЮ</p><p class="foo_p_li foo_p_li_perv">Избранное</p><p class="foo_p_li">Публичная оферта</p><p class="foo_p_li">Политика конфиденциальности</p></div><div class="foo"><p class="foo_p">КОНТАКТЫ</p><div class="foo_img"><span class="material-symbols-outlined"> expand_more </span><span class="material-symbols-outlined"> expand_more </span></div><p class="foo_p_li">О нас</p><p class="foo_p_li">Контакты</p></div></div></footer><footer id="mobs"><div class="interactiv auto"><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt" onclick="active_footer_mob($(this))"><span class="material-symbols-outlined">expand_more</span></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt" onclick="active_footer_mob($(this))"><span class="material-symbols-outlined">expand_more</span></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt" onclick="active_footer_mob($(this))"><span class="material-symbols-outlined">expand_more</span></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt" onclick="active_footer_mob($(this))"><span class="material-symbols-outlined">expand_more</span></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div></div></footer></div>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ id: "footer" }, _attrs))}><footer class="flex" id="deks"><div class="interactiv flex jus-sp auto"><div class="foo"><p class="foo_p">Компания</p><p class="foo_p_li foo_p_li_perv">О нас</p><p class="foo_p_li">Контакты</p></div><div class="foo"><p class="foo_p">ПОЛЕЗНОЕ</p><p class="foo_p_li foo_p_li_perv">Оплата и доставка</p><p class="foo_p_li">Условия возврата</p><p class="foo_p_li">Бонусная система</p></div><div class="foo"><p class="foo_p">ПОКУПАТЕЛЮ</p><p class="foo_p_li foo_p_li_perv">Избранное</p><p class="foo_p_li">Публичная оферта</p><p class="foo_p_li">Политика конфиденциальности</p></div><div class="foo"><p class="foo_p">КОНТАКТЫ</p><div class="foo_img"><span class="material-symbols-outlined"> expand_more </span><span class="material-symbols-outlined"> expand_more </span></div><p class="foo_p_li">О нас</p><p class="foo_p_li">Контакты</p></div></div></footer><footer id="mobs"><div class="interactiv auto"><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div></div></footer></div>`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {

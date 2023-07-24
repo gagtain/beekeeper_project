@@ -11,6 +11,7 @@ class DeliveryTransaction(models.Model):
         Sent = "Отправлен"
         Waiting_at_the_pickup_point = "Ожидает в пункте выдачи"
         Accepted = "Принят"
+        closed = "Отменен"
 
     class DeliveryMethod(models.TextChoices):
         Courier = "Курьер"

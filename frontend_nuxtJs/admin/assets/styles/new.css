@@ -2,26 +2,6 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 
-:root {
-  --page-header-bgColor: #242e42;
-  --page-header-bgColor-hover: #1d2636;
-  --page-header-txtColor: #dde9f8;
-  --page-header-headingColor: #7889a4;
-  --page-header-width: 220px;
-  --page-content-bgColor: #f0f1f6;
-  --page-content-txtColor: #171616;
-  --page-content-blockColor: #fff;
-  --white: #fff;
-  --black: #333;
-  --blue: #00b9eb;
-  --red: #ec1848;
-  --border-radius: 4px;
-  --box-shadow: 0 0 10px -2px rgba(0, 0, 0, 0.075);
-  --switch-bgLightModeColor: #87cefa;
-  --switch-sunColor: gold;
-  --switch-moonColor: #f4f4f4;
-  --switch-bgDarkModeColor: #1f1f27;
-}
 
 * {
   padding: 0;
@@ -91,9 +71,14 @@ input {
 svg {
   display: block;
 }
-
-body {
-  font: 16px/1.5 "Lato", sans-serif;
+.btn{
+  margin-top: 5%;
+  padding: 2%;
+  color: var(--page-header-txtColor);
+  font-size: 24px;
+  background: var(--page-header-bgColor);
+  border-radius: 4px;
+  width: 100%;
 }
 
 

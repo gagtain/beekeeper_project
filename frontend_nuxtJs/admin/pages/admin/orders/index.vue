@@ -1,25 +1,25 @@
 <template>
-    <section v-if="delivery_list" class="grid">
+    <section v-if="order_list" class="grid">
     <article style="padding: 3%; display: flex; height: auto; min-height: 300px;">
         <div class="filter">
             <p>Фильрация</p>
             <div class="flex jus-sp">
 
-            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">На проверке</button>
-            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Ожидание доставки</button>
-            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Отправлен</button>
-            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Ожидает в пункте выдачи</button>
-            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Принят</button>
+            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Одобрен</button>
+            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Не одобренный</button>
+            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Закрытый</button>
             </div>
         </div>
     </article>
-    <article  style="display: block; padding: 3%;" v-for="delivery in delivery_list"  :key="delivery.id">
-    <delivery-info :delivery="delivery"></delivery-info>
-    <nuxt-link :to="'/admin/delivery/'+delivery.id"><button class="btn"><span>Подробнее</span></button></nuxt-link>
+    <article  style="display: block; padding: 3%;" v-for="order in order_list"  :key="order.id">
+    <order-info :order="order"></order-info>
+    <nuxt-link :to="'/admin/orders/'+order.id"><button class="btn"><span>Подробнее</span></button></nuxt-link>
     </article>
   </section>
 </template>
-<style>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
+<style scoped>
 
 .btn{
     margin-top: 5%;
@@ -49,23 +49,27 @@
 
 </style>
 <script>
-import SearchDelivery from '~/http/delivery/SearchDelivery'
-import DeliveryInfo from '~/components/AdminComp/DeliveryInfo.vue'
+import SearchOrders from '~/http/orders/SearchOrders'
+import OrderInfo from '../../../components/AdminComp/OrderInfo.vue'
 export default {
-  components: { DeliveryInfo },
+  components: { OrderInfo },
     data(){
         return{
-            delivery_list: null
+            order_list: null
         }
     },
     async mounted(){
-        let r = await SearchDelivery('')
-        this.delivery_list = r.data
+        let filter = ''
+        if (this.$route.query.status){
+            filter = `status=${this.$route.query.status}`
+        }
+        let r = await SearchOrders(filter)
+        this.order_list = r.data
     },
     methods: {
         async filter(param_filter){
-            let r = await SearchDelivery(param_filter)
-            this.delivery_list = r.data
+            let r = await SearchOrders(param_filter)
+            this.order_list = r.data
         }
     }
 }

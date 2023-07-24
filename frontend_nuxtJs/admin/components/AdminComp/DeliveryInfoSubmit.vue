@@ -5,6 +5,8 @@
     <button @click.prevent="submit()" style="margin-top: 2%;" class="btn">Добавить данные доставки</button>
   </form>
 </template>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
 <style scoped>
 input {
 		outline: 0;

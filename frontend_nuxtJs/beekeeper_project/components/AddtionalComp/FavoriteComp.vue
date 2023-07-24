@@ -3,7 +3,7 @@
     v-if="isFavorite"
     @click="removeFavoriteBtn()"
     id="favorite"
-    class="fav-btn flex auto"
+    class="fav-btn flex"
   >
     <img
       class="auto"
@@ -15,7 +15,7 @@
     v-else
     id="favorite"
     @click="addFavoriteBtn()"
-    class="fav-btn flex auto"
+    class="fav-btn flex"
   >
     <img
       class="auto"
@@ -39,6 +39,9 @@
 .fav-btn img {
   height: 25px;
   width: 25px;
+}
+#favorite img{
+  margin: auto;
 }
 </style>
 <script>

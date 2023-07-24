@@ -17,8 +17,9 @@
             </div>
           </div>
           <div class="context_menu context_menu_info">
-            
-            <div class="menu_items" id="deks_hed">
+            <div class="flex" id="deks_hed">
+
+              <div class="menu_items" id="deks_hed">
               <NuxtLink to="/" no-prefetch
                 ><p class="menu_items_text">Главная</p></NuxtLink
               >
@@ -28,6 +29,7 @@
                 ><p class="menu_items_text">Товары</p></NuxtLink
               >
             </div>
+            </div>
             <div class="menu_items search_item no_b_border">
                 <SeacrhComp></SeacrhComp>
             </div>
@@ -35,7 +37,7 @@
               <span  :class="is_menu_mobile ? 'menu_pop_mob_active' : ''"></span>
             </div>
           </div>
-          <div class="context_menu user_context">
+          <div class="context_menu user_context" @click="is_menu_mobile_user = !is_menu_mobile_user">
             <div
               v-if="($store.getUser.username != null && typeof $store.getUser.username !== 'undefined')"
               class="flex jus-sp user_in relative"
@@ -50,7 +52,7 @@
                   {{ $store.getUser.username }}
                 </p>
               </div>
-              <div class="context_menu_ absolute">
+              <div v-if="is_menu_mobile_user" class="context_menu_ absolute">
                 <ul>
                   <NuxtLink no-prefetch to="/profile">
                   <li class="flex">
@@ -79,7 +81,7 @@
             </div>
             <div v-else class="flex context_menu jus-sp user_in relative" style="min-width: 50%;">
                     <p>Войти</p>
-              <div style="bottom: -60px;" class="context_menu_ absolute">
+              <div v-if="is_menu_mobile_user" style="bottom: -60px;" class="context_menu_ absolute">
                 <ul>
                   <NuxtLink no-prefetch to="/register">
                   <li class="flex">
@@ -148,7 +150,8 @@ export default defineNuxtComponent({
         active: false,
         scroll_top: 0
       },
-        is_menu_mobile: false
+        is_menu_mobile: false,
+        is_menu_mobile_user: false
     };
   },
   methods: {
@@ -174,7 +177,7 @@ export default defineNuxtComponent({
     mob_menu_click(){
       console.log(this.is_menu_mobile)
       this.is_menu_mobile = !this.is_menu_mobile
-    }
+    },
   },
 });
 </script>

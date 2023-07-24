@@ -256,12 +256,17 @@ margin-left: 2%;
     .sorted-p {
         font-size: 18px;
     }
-
+    #addBasket{
+        width: 100px;
+    }
+    
     .product {
         width: 48%;
 
     }
-
+    .btn{
+        padding-inline: 10px;
+    }
     .photo-album-li .h_sto img {
         display: none;
     }
@@ -269,10 +274,12 @@ margin-left: 2%;
     .photo-album-li {
         height: auto;
     }
-
+    .product-list{
+        padding: 0;
+    }
     .photo-container {
         height: 120px;
-        width: 120px;
+        width: 100%;
         margin: auto;
     }
     .photo-main{

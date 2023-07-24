@@ -7,7 +7,9 @@
     </div>
   </article>
 </template>
-<style>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
+<style  scoped>
 .order-not-active{
     padding: 3%;
     width: 100%;

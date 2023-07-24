@@ -1,7 +1,7 @@
 <template>
   <div class="sot-ob">
     <div class="wrapper flex">
-        <DialogWindow>
+        <DialogWindow :id="'product_rating'">
             <OrderProductList v-if="rating_list" :orderList="rating_list_obj">
                 <template v-slot:default="slotProps">
                     <button @click="select_rating_product(slotProps.orderItem.productItem.product.id)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
@@ -22,13 +22,18 @@
             
         
         </DialogWindow>
+        <DialogWindow :id="'order_canceled'" style="width: fit-content; max-width: none;">
+            <OrdersCanceled :order_id="select_order"></OrdersCanceled>
+        </DialogWindow>
       <div class="user_card flex auto">
         <div class="interactiv user_card_div auto" id="orders_main">
           <div class="kor w-sto relative">
     <p class="small-big VAG">Заказы</p>
     <div class="w-sto h_sto">
         <div v-if="!list_order[0].loading" class="product_order_list ">
-                <div v-for="order in list_order" :key="order.id" class="order m-2">
+                <div v-for="order in list_order" :key="order.id" class="order m-2" >
+                    <div :class="order.status == 'Закрытый' ? 'not-active' : ''">
+
                     <div class="flex w-sto jus-sp">
                     <p align="left">Заказ номер {{ order.id }}</p>
                         <div class="select_size" >
@@ -124,14 +129,30 @@
                             </div>
                         </div>
               </div>
-                    </div><button onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                    </div>
+                    <div class="order_menu m-2">
+                        
+                    <button v-if="order.status == 'Одобрен'" onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
                               Отследить
                             </button>
-                            <button v-if="order.delivery.status == 'На проверке'" onclick="alert('В разработке')" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
-                              Отменить
+                            <div v-if="order.payment.status == 'pending'">
+
+                                <p>Заказ будет отменен через 30 минут, в случае если он не будет оплачен</p>
+                            <button @click="order_redirect_payments(order.payment.url)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                              Оплатить
                             </button>
+                            </div>
+                    </div>
                     
                 </div>
+                    <button
+                     v-if="order.status == 'Закрытый'" 
+                     style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" 
+                     @click="order_restart(order.id)"
+                     >
+                              Повторить заказ
+                            </button>
+                    </div>
             </div>
             <div v-else-if="list_order[0].no_order" class="w-sto h_sto flex auto">
                 <div class="auto">
@@ -212,6 +233,10 @@
     }
     
 }
+.not-active{
+    opacity: .8;
+    pointer-events: none;
+}
 </style>
 <script>
 import getListOrder from '~/additional_func/getListOrder';
@@ -219,8 +244,10 @@ import LoadingComp from '../components/AddtionalComp/LoadingComp.vue';
 import OrderProductList from '~/components/AddtionalComp/OrderProductList.vue';
 import DialogWindow from '../components/AddtionalComp/Dialog.vue';
 import RatingChoise from '~/components/Tovar/RatingChoise.vue';
+import OrdersCanceled from '~/components/Orders/OrdersCanceled.vue';
+import OrderRestart from '~/additional_func/Orders/RestartOrder'
 export default {
-  components: { LoadingComp, OrderProductList, DialogWindow, RatingChoise },
+  components: { LoadingComp, OrderProductList, DialogWindow, RatingChoise, OrdersCanceled },
   el: "orders_main",
   name: "BasketBase",
   data(){
@@ -267,7 +294,8 @@ export default {
         ],
         rating_list: true,
         select_rating_product_id: null,
-        rating_list_obj: []
+        rating_list_obj: [],
+        select_order: null
     }
   },
   async mounted(){
@@ -298,7 +326,20 @@ export default {
     },
     ratingDialog(rating_list_obj){
         this.rating_list_obj = rating_list_obj
-        window.dialog.showModal();
+        let a = document.getElementById('product_rating')
+        a.showModal();
+    },
+    order_canceled(order_id){
+        this.select_order = order_id
+        let a = document.getElementById('order_canceled')
+        a.showModal();
+    },
+    async order_restart(id){
+        await OrderRestart(id)
+        this.$router.push('/basket')
+    },
+    order_redirect_payments(url){
+        window.location.href = url
     }
   }
 };

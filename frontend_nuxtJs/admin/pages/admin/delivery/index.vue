@@ -10,6 +10,7 @@
             <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Отправлен</button>
             <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Ожидает в пункте выдачи</button>
             <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Принят</button>
+            <button @click="filter(`status=${$event.srcElement.innerHTML}`)" class="btn min">Отменен</button>
             </div>
         </div>
     </article>
@@ -19,7 +20,9 @@
     </article>
   </section>
 </template>
-<style>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
+<style scoped>
 
 .btn{
     margin-top: 5%;
@@ -39,7 +42,7 @@
     width: auto;
 }
 .filter{
-    width: 60%;
+    width: 70%;
 }
 @media (max-width: 1000px) {
     .filter{

@@ -1,13 +1,16 @@
 <template>
     <section v-if="delivery_not_active" class="grid">
     <article>*В разработке*</article>
-    <article  style="display: block; padding: 3%;" v-for="delivery in delivery_not_active"  :key="delivery.id">
+    <article  style="display: block; padding: 3%; height: auto;" v-for="delivery in delivery_not_active"  :key="delivery.id">
     <delivery-info :delivery="delivery"></delivery-info>
+    <order-info :order="delivery.order_delivery_transaction[0]"></order-info>
     <nuxt-link :to="'/admin/delivery/'+delivery.id"><button class="btn">Подробнее</button></nuxt-link>
     </article>
   </section>
 </template>
-<style>
+<style src="~/assets/styles/new.css"  scoped>
+</style>
+<style scoped>
 
 .btn{
     margin-top: 5%;
@@ -23,8 +26,9 @@
 <script>
 import SearchDelivery from '~/http/delivery/SearchDelivery'
 import DeliveryInfo from '~/components/AdminComp/DeliveryInfo.vue'
+import OrderInfo from '../../../components/AdminComp/OrderInfo.vue'
 export default {
-  components: { DeliveryInfo },
+  components: { DeliveryInfo, OrderInfo },
     data(){
         return{
             delivery_not_active: null
