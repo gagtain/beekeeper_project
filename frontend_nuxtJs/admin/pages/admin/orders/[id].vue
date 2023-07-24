@@ -60,6 +60,7 @@ import getOrder from '~/http/orders/getOrder'
 import OrderItemList from "~/components/AdminComp/OderItemList.vue";
 import OrderInfo from "~/components/AdminComp/OrderInfo.vue";
 import OrderSettings from '../../../components/AdminComp/OrderSettings.vue';
+import SubmitOrder from '~/http/orders/SubmitOrder'
 export default {
   components: { DeliveryInfo, OrderItemList, OrderInfo, OrderSettings },
   data() {
