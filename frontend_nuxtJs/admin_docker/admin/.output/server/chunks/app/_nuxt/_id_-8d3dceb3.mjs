@@ -1,7 +1,7 @@
 import { D as DeliveryInfo } from './DeliveryInfo-bad117ec.mjs';
 import axios from 'axios';
 import { a as api_root } from './main-cf4969ae.mjs';
-import { O as OrderItemList, a as OrderSettings } from './OrderSettings-370292aa.mjs';
+import { O as OrderItemList, a as OrderSettings, s as searchCountOrders } from './SubmitOrder-eacd6b06.mjs';
 import { O as OrderInfo } from './OrderInfo-39aa70cf.mjs';
 import { resolveComponent, mergeProps, toHandlers, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrRenderStyle, ssrRenderComponent } from 'vue/server-renderer';
@@ -62,7 +62,7 @@ const _sfc_main = {
       this.order.delivery = data;
     },
     async submit_order() {
-      let r = await SubmitOrder(this.order.id);
+      let r = await searchCountOrders(this.order.id);
       this.order = r.data;
     },
     async submit_waiting() {
@@ -76,9 +76,9 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   const _component_order_info = resolveComponent("order-info");
   const _component_order_item_list = resolveComponent("order-item-list");
   const _component_order_settings = resolveComponent("order-settings");
-  _push(`<section${ssrRenderAttrs(mergeProps({ class: "grid" }, _attrs))} data-v-77622ae6><article style="${ssrRenderStyle({ "height": "auto", "min-height": "300px" })}" class="flex" data-v-77622ae6>`);
+  _push(`<section${ssrRenderAttrs(mergeProps({ class: "grid" }, _attrs))} data-v-7a7214e3><article style="${ssrRenderStyle({ "height": "auto", "min-height": "300px" })}" class="flex" data-v-7a7214e3>`);
   if ($data.order != null) {
-    _push(`<div style="${ssrRenderStyle({ "width": "40%" })}" class="delivery_info auto flex jus-sp" data-v-77622ae6>`);
+    _push(`<div style="${ssrRenderStyle({ "width": "40%" })}" class="delivery_info auto flex jus-sp" data-v-7a7214e3>`);
     _push(ssrRenderComponent(_component_delivery_info, {
       delivery: $data.order.delivery
     }, null, _parent));
@@ -89,11 +89,11 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   }
   _push(`</article>`);
   if ($data.order != null) {
-    _push(`<div style="${ssrRenderStyle({ "grid-column": "1 / -1", "min-height": "300px", "justify-content": "space-between" })}" class="flex" data-v-77622ae6><div style="${ssrRenderStyle({ "width": "46%", "padding": "3%", "background": "#fff" })}" data-v-77622ae6><p align="center" data-v-77622ae6>\u0422\u043E\u0432\u0430\u0440\u044B \u0437\u0430\u043A\u0430\u0437\u0430</p>`);
+    _push(`<div style="${ssrRenderStyle({ "grid-column": "1 / -1", "min-height": "300px", "justify-content": "space-between" })}" class="flex" data-v-7a7214e3><div style="${ssrRenderStyle({ "width": "46%", "padding": "3%", "background": "#fff" })}" data-v-7a7214e3><p align="center" data-v-7a7214e3>\u0422\u043E\u0432\u0430\u0440\u044B \u0437\u0430\u043A\u0430\u0437\u0430</p>`);
     _push(ssrRenderComponent(_component_order_item_list, {
       orderList: $data.order.product_list_transaction
     }, null, _parent));
-    _push(`</div><div style="${ssrRenderStyle({ "width": "46%", "padding": "3%", "background": "#fff" })}" data-v-77622ae6>`);
+    _push(`</div><div style="${ssrRenderStyle({ "width": "46%", "padding": "3%", "background": "#fff" })}" data-v-7a7214e3>`);
     _push(ssrRenderComponent(_component_order_settings, mergeProps({
       onDelivery_info_submit: $options.delivery_info_submit,
       onSubmit_order: $options.submit_order
@@ -113,7 +113,7 @@ _sfc_main.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/admin/orders/[id].vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const _id_ = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-77622ae6"]]);
+const _id_ = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-7a7214e3"]]);
 
 export { _id_ as default };
-//# sourceMappingURL=_id_-1ca99786.mjs.map
+//# sourceMappingURL=_id_-8d3dceb3.mjs.map

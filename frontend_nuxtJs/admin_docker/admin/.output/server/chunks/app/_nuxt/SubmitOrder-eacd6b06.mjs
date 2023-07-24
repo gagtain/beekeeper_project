@@ -67,7 +67,7 @@ _sfc_main$2.setup = (props, ctx) => {
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
 const DeliveryInfoSubmit = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-c0ccb281"]]);
-async function searchCountOrders(id, description) {
+async function searchCountOrders$1(id, description) {
   try {
     var response = await axios({
       url: `${api_root}api/v0.1/orders/${id}/closed`,
@@ -97,7 +97,7 @@ const _sfc_main$1 = {
     },
     async closed_order() {
       if (this.closed_order_s) {
-        let r = await searchCountOrders(this.order.id, this.cause);
+        let r = await searchCountOrders$1(this.order.id, this.cause);
         this.$emit("order_status_closed", r.data);
       } else {
         this.closed_order_s = true;
@@ -188,6 +188,20 @@ _sfc_main.setup = (props, ctx) => {
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 const OrderSettings = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-a2f3b552"]]);
+async function searchCountOrders(id) {
+  try {
+    var response = await axios({
+      url: `${api_root}api/v0.1/orders/${id}/approved`,
+      method: "post",
+      headers: {
+        //     "Authorization": `Bearer ${useCookie('assess').value}`
+      }
+    });
+    return response;
+  } catch (error) {
+    return error.response;
+  }
+}
 
-export { OrderItemList as O, OrderSettings as a };
-//# sourceMappingURL=OrderSettings-370292aa.mjs.map
+export { OrderItemList as O, OrderSettings as a, searchCountOrders as s };
+//# sourceMappingURL=SubmitOrder-eacd6b06.mjs.map

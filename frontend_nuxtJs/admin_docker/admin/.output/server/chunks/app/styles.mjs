@@ -7,11 +7,11 @@ const styles = {
   "pages/admin/index.vue": () => import('./_nuxt/index-styles.8a4e0376.mjs').then(interopDefault),
   "pages/admin/news/create/index.vue": () => import('./_nuxt/index-styles.c495ecd5.mjs').then(interopDefault),
   "pages/admin/news/index.vue": () => import('./_nuxt/index-styles.0d84db8b.mjs').then(interopDefault),
-  "pages/admin/orders/[id].vue": () => import('./_nuxt/_id_-styles.02e1789c.mjs').then(interopDefault),
+  "pages/admin/orders/[id].vue": () => import('./_nuxt/_id_-styles.6b2ce335.mjs').then(interopDefault),
   "pages/admin/orders/index.vue": () => import('./_nuxt/index-styles.59926dbc.mjs').then(interopDefault),
   "pages/index.vue": () => import('./_nuxt/index-styles.bc89a44f.mjs').then(interopDefault),
-  "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": () => import('./_nuxt/error-500-styles.a001b7ed.mjs').then(interopDefault),
-  "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": () => import('./_nuxt/error-404-styles.cf00f4cc.mjs').then(interopDefault)
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": () => import('./_nuxt/error-404-styles.cf00f4cc.mjs').then(interopDefault),
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": () => import('./_nuxt/error-500-styles.a001b7ed.mjs').then(interopDefault)
 };
 
 export { styles as default };

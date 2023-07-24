@@ -1,7 +1,7 @@
 import { D as DeliveryInfo } from './DeliveryInfo-bad117ec.mjs';
 import axios from 'axios';
 import { a as api_root } from './main-cf4969ae.mjs';
-import { O as OrderItemList, a as OrderSettings } from './OrderSettings-370292aa.mjs';
+import { O as OrderItemList, a as OrderSettings, s as searchCountOrders } from './SubmitOrder-eacd6b06.mjs';
 import { O as OrderInfo } from './OrderInfo-39aa70cf.mjs';
 import { resolveComponent, mergeProps, toHandlers, useSSRContext } from 'vue';
 import { ssrRenderAttrs, ssrRenderStyle, ssrRenderComponent } from 'vue/server-renderer';
@@ -37,20 +37,6 @@ async function getDelivery(id) {
     var response = await axios({
       url: `${api_root}api/v0.1/delivery/${id}`,
       method: "get",
-      headers: {
-        //     "Authorization": `Bearer ${useCookie('assess').value}`
-      }
-    });
-    return response;
-  } catch (error) {
-    return error.response;
-  }
-}
-async function searchCountOrders(id) {
-  try {
-    var response = await axios({
-      url: `${api_root}api/v0.1/orders/${id}/approved`,
-      method: "post",
       headers: {
         //     "Authorization": `Bearer ${useCookie('assess').value}`
       }
@@ -131,4 +117,4 @@ _sfc_main.setup = (props, ctx) => {
 const _id_ = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-cf8eeda0"]]);
 
 export { _id_ as default };
-//# sourceMappingURL=_id_-8ea07c31.mjs.map
+//# sourceMappingURL=_id_-34c35220.mjs.map
