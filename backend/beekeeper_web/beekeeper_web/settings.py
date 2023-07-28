@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'payments',
     'delivery',
     'news',
-    'orders'
+    'orders',
+    'user'
 ]
 
 MIDDLEWARE = [
@@ -162,7 +163,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'beekeeper_web_api.MainUser'
+AUTH_USER_MODEL = 'user.MainUser'
 
 # money
 

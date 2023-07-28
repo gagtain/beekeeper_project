@@ -34,60 +34,39 @@ class ServicesUser:
     @classmethod
     def addFavoriteProduct(cls, request, id: int):
         user: MainUser = request.user
-        if user.favorite_product.filter(product=id,
-                              weight=request.data['type_weight']).exists():
+        if user.favorite_product.filter(productItem_id=id).exists():
             return Response({'data': 'данный продукт уже в списке избранных'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            ProductItemList = ProductItem.objects.filter(product=id,
-                              weight=request.data['type_weight'])
-            if ProductItemList.count():
-                FavoriteAddItem = FavoriteItem.objects.create(user=user, productItem=ProductItemList[0])
-            else:
-                product = Product.objects.filter(id=id)
-                weight = Type_weight.objects.filter(id=request.data['type_weight'])
-                productItem = ProductItem.objects.create(product=product[0],
-                                                         weight=weight[0])
-                FavoriteAddItem = FavoriteItem.objects.create(user=user, productItem=productItem)
+            FavoriteAddItem = FavoriteItem.objects.create(user_id=user.id, productItem_id=id)
             return Response({'data': 'success', 'favoriteItem': FavoriteSerializer(FavoriteAddItem).data})
 
     @classmethod
-    def removeFavoriteProduct(cls, user: MainUser, **kwargs):
-        basketFilterList = user.favorite_product.filter(**kwargs)
-        print(kwargs)
-        if not basketFilterList:
-            return Response({'data': 'данный продукт не в списке избранных'}, status=status.HTTP_400_BAD_REQUEST)
+    def removeFavoriteProduct(cls, request, id: int):
+        user: MainUser = request.user
+        favorite_item = user.favorite_product.filter(productItem_id=id)
+        if favorite_item:
+            favorite_item.delete()
+            return Response({'data': 'success', 'id': id})
         else:
-            user.favorite_product.remove(basketFilterList[0])
-            return Response({'data': 'success', 'id': basketFilterList[0].id})
+            return Response({'data': 'данный продукт уже в списке избранных'}, status=status.HTTP_400_BAD_REQUEST)
 
     @classmethod
     def addBasketProduct(cls, request, id: int):
         user: MainUser = request.user
-        if user.basket.filter(product=id,
-                              weight=request.data['type_weight']).exists():
+        if user.basket.filter(productItem_id=id).exists():
             return Response({'data': 'данный продукт уже в списке корзины'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            ProductItemList = ProductItem.objects.filter(product=id,
-                                                         weight=request.data['type_weight'])
-            if ProductItemList.count():
-                BasketAddItem = BasketItem.objects.create(user=user, productItem=ProductItemList[0])
-            else:
-                product = Product.objects.filter(id=id)
-                weight = Type_weight.objects.filter(id=request.data['type_weight'])
-                productItem = ProductItem.objects.create(product=product[0],
-                                                         weight=weight[0])
-                BasketAddItem = BasketItem.objects.create(user=user, productItem=productItem)
-
+            BasketAddItem = BasketItem.objects.create(user_id=user.id, productItem_id=id)
             return Response({'data': 'success', 'basketItem': BasketSerializer(BasketAddItem).data})
 
     @classmethod
-    def removeBasketProduct(cls, user: MainUser, **kwargs):
-        basketFilterList = user.basket.filter(**kwargs)
+    def removeBasketProduct(cls, user: MainUser, pk):
+        basketFilterList = user.basket.filter(productItem_id=pk)
         if not basketFilterList:
             return Response({'data': 'данный продукт не в списке корзины'}, status=status.HTTP_400_BAD_REQUEST)
         else:
-            user.basket.remove(basketFilterList[0])
-            return Response({'data': 'success', 'id': basketFilterList[0].id})
+            basketFilterList[0].delete()
+            return Response({'data': 'success', 'id': pk})
 
     @classmethod
     def getBasketInfo(cls, user: MainUser):
@@ -114,14 +93,14 @@ class ProductServises():
     def getPopular(cls, size):
         return Product.objects.all().order_by('count_purchase')[:size].prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
-            'ImageProductList', 'list_weight'
+            'ImageProductList'
         ).annotate(Avg('rating_product__rating'))
 
     @classmethod
     def getProductList(cls, size):
         return Product.objects.all()[:size].prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
-            'ImageProductList', 'list_weight'
+            'ImageProductList'
         ).annotate(Avg('rating_product__rating'))
 
     # 'id', 'name', 'image', 'price', 'description', 'price_currency', 'category', 'type_packaging', 'ImageProductList'
@@ -129,7 +108,7 @@ class ProductServises():
     def getProduct(cls, pk):
         return Product.objects.filter(pk=pk).prefetch_related(
             Prefetch('category', queryset=Category.objects.all().only('name')),
-            'ImageProductList', 'list_weight'
+            'ImageProductList'
         ).annotate(Avg('rating_product__rating'))
 
 

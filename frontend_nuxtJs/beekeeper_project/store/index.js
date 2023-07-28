@@ -4,15 +4,9 @@ export const useMainStore = defineStore('main', {
   state: () => ({
     counter: 0,
     user: {
-      basket:[{
-        productItem:{
-          
-        }
-        
-      }],
-      favorite_product:[{
-
-      }]
+      image: '',
+      basket:[],
+      favorite_product:[]
     },
     catalog_list: [],
     assess_token: ''
@@ -45,6 +39,9 @@ export const useMainStore = defineStore('main', {
       if (Number.isInteger(obj_basketId_count.count)){
         this.user.basket.filter(b => b.id == obj_basketId_count.basket_id)[0].count = obj_basketId_count.count
       }
+    },
+    REFACTOR_USER_IMAGE(image){
+      this.user.image = image
     },
     REFACTOR_CATALOG_LIST(catalog_list){
         this.catalog_list = catalog_list

@@ -6,7 +6,7 @@
         Цена:
         {{
           items.reduce(function (sum, elem) {
-            return sum + parseFloat(elem.productItem.product.price);
+            return sum + parseFloat(elem.productItem.price);
           }, 0)
         }}
       </p>
@@ -59,7 +59,7 @@ export default {
     },
     getSumm() {
       let summ = this.items.reduce(function (sum, elem) {
-        return sum + parseFloat(elem.productItem.product.price * elem.count);
+        return sum + parseFloat(elem.productItem.price * elem.count);
       }, 0);
       if (this.ordered){
         summ += parseFloat(this.delivery_price)

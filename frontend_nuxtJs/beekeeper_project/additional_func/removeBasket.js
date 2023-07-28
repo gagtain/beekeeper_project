@@ -2,7 +2,7 @@ import axios from "axios";
 import { api_root } from '@/main'
 
 
-export default async function removeBasket(pk, type_weight_id, productItemId){
+export default async function removeBasket(pk){
     try {
         var response = await axios({url: `${api_root}api/v0.1/beekeeper_web_api/basket/${pk}`,
         method: "delete",
@@ -10,10 +10,6 @@ export default async function removeBasket(pk, type_weight_id, productItemId){
             "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
-        data:{
-          id: productItemId,
-          weight:type_weight_id
-        }
       })
       return response
       } catch (error) {

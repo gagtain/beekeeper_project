@@ -1,6 +1,6 @@
 import base64
 import os
-
+from urllib.parse import urlparse
 from django.conf import settings
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
@@ -24,7 +24,6 @@ class NewsCreateAPI(APIView):
         new_data['context'] = newsCreate.genereteNews()
         if not new_data.get('main_image'):
             new_data['main_image'] = newsCreate.main_image
-        print(new_data['main_image'])
         serializer = NewsSerializersCreate(data=new_data)
         serializer.is_valid(raise_exception=True)
         serializer.save()

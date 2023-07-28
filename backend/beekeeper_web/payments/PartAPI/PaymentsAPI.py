@@ -14,7 +14,7 @@ class CreatePaymentsAPI(APIView):
         """
         data:
             сумма
-            платежная система
+            платежная система yookassa
             у кого купить (online_store, forum)
             номер заказа
         """

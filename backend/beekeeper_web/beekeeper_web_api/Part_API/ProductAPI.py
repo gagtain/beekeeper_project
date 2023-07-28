@@ -24,7 +24,6 @@ class ProductFilterName(APIView, FilterFieldsCustom):
         return queryset
 
 
-
 class ProductFilter(APIView, Filter):
     models = Product
     filter_options = {
@@ -37,10 +36,9 @@ class ProductFilter(APIView, Filter):
     def search__default(self, request):
         return super().search(request)
 
-
     def init_queryset(self, queryset: QuerySet):
         queryset = queryset.order_by('count_purchase').prefetch_related(
-        Prefetch('category', queryset=Category.objects.all().only('name')),
-        'ImageProductList', 'list_weight'
-    ).annotate(Avg('rating_product__rating'))
+            Prefetch('category', queryset=Category.objects.all().only('name')),
+            'ImageProductList',
+        ).annotate(Avg('rating_product__rating'))
         return queryset

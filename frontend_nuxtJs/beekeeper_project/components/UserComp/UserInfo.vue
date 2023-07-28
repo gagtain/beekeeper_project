@@ -1,11 +1,9 @@
 <template>
 <div class="user_info_menu">
   <div class="user_info auto h_sto" id="user_info">
-    <div class="user_img_profile">
-      <img  :src="$api_root + USER_STATE.image" alt="" />
-    </div>
+    <user-image></user-image>
     <p class="small user_name_profile">{{ USER_STATE.username }}</p>
-    <p class="small user_name_profile">{{ USER_STATE.FIO }}</p>
+    <p class="small user_name_profile">Пчелиная артель</p>
     <div class="menu_user flex jus-sp auto">
       <div class="favorite">
         <img
@@ -29,7 +27,9 @@
 }
 </style>
 <script>
+import UserImage from './UserImage.vue';
 export default {
+  components: { UserImage },
     el: '#user_info',
     name: 'UserInfo',
     data(){

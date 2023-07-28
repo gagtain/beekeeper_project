@@ -10,17 +10,13 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
+from user.jwt_token.auth import CustomAuthentication
 from .Part_API.OrderAPI import OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI
 from .Part_API.RatingProductAPI import RatingProductCreate, RatingProductList, RatingProductAVG
 from .Part_API.ProductAPI import ProductFilterName, ProductFilter
-from .jwt_token.auth import CustomAuthentication
-from .serializers import RetrieveProduct, RetrieveUser, RetrieveProductRemoveToProdachen, \
-    UserRegisterSerializers, CategoryRetriveSerializers, BasketInfoSerializer, \
-    BasketSerializer
+from .serializers import RetrieveProduct, RetrieveProductRemoveToProdachen,\
+    CategoryRetriveSerializers, BasketInfoSerializer
 from .services.User import ServicesUser, ProductServises, CategoryServises
-from rest_framework.generics import CreateAPIView
-# Create your views here.
-from .models import MainUser
 sys.path.append('.')
 class UserAPI(viewsets.ViewSet):
     authentication_classes = [CustomAuthentication]
@@ -43,13 +39,14 @@ class UserAPI(viewsets.ViewSet):
         return ServicesUser.addFavoriteProduct(request, pk)
 
     def RemoveFavoriteProduct(self, request, pk):
-        return ServicesUser.removeFavoriteProduct(request.user, product=pk, **request.data)
+        return ServicesUser.removeFavoriteProduct(request=request, id=pk)
+
     def AddBasketProduct(self, request, pk):
 
         return ServicesUser.addBasketProduct(request, pk)
 
     def RemoveBasketProduct(self, request, pk):
-        return ServicesUser.removeBasketProduct(request.user, product=pk, **request.data)
+        return ServicesUser.removeBasketProduct(request.user, pk=pk)
 
     def GetBasketInfo(self, request):
         return Response(BasketInfoSerializer(ServicesUser.getBasketInfo(request.user)).data)
@@ -71,13 +68,6 @@ class setCSRFCookie(APIView):
         return Response("CSRF Cookie set.")
 
 
-
-class tokenVerif(APIView):
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [CustomAuthentication]
-    def post(self, request):
-
-        return Response(RetrieveUser(request.user, context={'user_id':request.user.id}).data)
     
 
 class ProductAPI(viewsets.ViewSet, ProductFilterName):
@@ -107,15 +97,6 @@ class CategoryAPI(viewsets.ViewSet):
     def get_category_list(self, request):
         return Response(CategoryRetriveSerializers(CategoryServises.getCategoryList(), many=True).data)
 
-class UserRegistAPI(CreateAPIView):
-    serializer_class = UserRegisterSerializers
-
-    def create(self, request, *args, **kwargs):
-            serializer = self.get_serializer(data=request.data)
-            serializer.is_valid(raise_exception=True)
-            self.perform_create(serializer)
-            headers = self.get_success_headers(serializer.data)
-            return Response({'data': 'Пользователь создан'}, status=status.HTTP_201_CREATED, headers=headers)
 
 
 class OrderAPI(viewsets.ViewSet, OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI):

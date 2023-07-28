@@ -248,6 +248,12 @@ ul {
     width: 100%;
     display: flex;
   }
+  .tovar_price{
+    margin: auto;
+  }
+  .product_menu{
+    justify-content: center;
+  }
   .max{
     -webkit-box-ordinal-group: 2;
   -webkit-order: 1;

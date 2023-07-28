@@ -17,14 +17,14 @@ Including another URLconf
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from beekeeper_web_api.jwt_token.Views import MyObtainTokenPairView, CookieTokenRefreshView
+from user.jwt_token.Views import MyObtainTokenPairView, CookieTokenRefreshView
 from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v0.1/beekeeper_web_api/', include('beekeeper_web_api.urls')),
+    path('api/v0.1/user/', include('user.urls')),
     path('api/v0.1/payments/', include('payments.urls')),
     path('api/v0.1/delivery/', include('delivery.urls')),
     path('api/v0.1/news/', include('news.urls')),

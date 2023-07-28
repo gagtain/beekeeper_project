@@ -1,10 +1,14 @@
+import decimal
 import sys
+
+from django.db.models import QuerySet
 from rest_framework.exceptions import NotFound, ValidationError
 
+from orders.models import Order, OrderItem
 from ..tasks import order_email_send
 
 sys.path.append('.')
-from ..models import Order, MainUser, BasketItem, OrderItem
+from ..models import MainUser, BasketItem
 
 
 class OrderServices():
@@ -18,23 +22,22 @@ class OrderServices():
             raise NotFound("У пользователя нет заказов")
 
     @classmethod
-    def createOrderInBasket(cls, request, BasketItemList: list[BasketItem], data: dict):
+    def createOrderInBasket(cls, request, basket_item_list: QuerySet[BasketItem], data: dict):
         """Создание заказа"""
-        if BasketItemList.count() == 0:
+        if basket_item_list.count() == 0:
             raise ValidationError(detail='Список товаров пуст')
         total_amount = 0
 
-        for i in BasketItemList:
-            print(i.productItem.product.price.amount)
-            total_amount += i.count * i.productItem.product.price.amount  # добавить наценку за упаковку и скидки
-        total_amount = float(total_amount) + float(request.data['delivery_price'])
+        for i in basket_item_list:
+            total_amount += i.count * i.productItem.price.amount
+        total_amount = total_amount + decimal.Decimal(request.data['delivery_price'])
         order = Order.objects.create(user=request.user, amount=total_amount)
-        for basket_item in BasketItemList:
+        for basket_item in basket_item_list:
             OrderItem.objects.create(user=request.user, productItem=basket_item.productItem,
-                                     count=basket_item.count, order=order)
+                                     count=basket_item.count, order=order, price=basket_item.productItem.price)
 
-        request.user.basket.clear()
-        order_email_send.delay(order.id, request.user.id)
+        basket_item_list.delete()
+        order_email_send(order.id, request.user.id)
 
         return order
 

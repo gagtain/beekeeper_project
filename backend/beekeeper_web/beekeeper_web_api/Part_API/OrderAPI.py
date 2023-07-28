@@ -5,9 +5,10 @@ from rest_framework.exceptions import NotFound
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from orders.tasks import check_order_payment
+from ..models import BasketItem
 from ..services.Order import OrderServices
 sys.path.append('.')
-from ..models import MainUser, BasketItem, Order
 
 from ..serializers import OrderSerializers
 
@@ -17,12 +18,13 @@ class OrderCreateAPI(APIView):
     def createOrder(self, request):
         if request.data.get('basket'):
             BasketItemList = request.data.get('basket')
-            order = OrderServices.createOrderInBasket(request=request.user, BasketItemList=BasketItemList,
+            order = OrderServices.createOrderInBasket(request=request.user, basket_item_list=BasketItemList,
                                                       data=request.data)
         else:
             BasketItemList = BasketItem.objects.filter(user=request.user)
-            order = OrderServices.createOrderInBasket(request=request, BasketItemList=BasketItemList,
+            order = OrderServices.createOrderInBasket(request=request, basket_item_list=BasketItemList,
                                                       data=request.data)
+        check_order_payment.apply_async(kwargs={"order_id": order.id}, countdown=5 * 60)
         return Response(OrderSerializers(order).data)
 
 class OrderGetLastAPI(APIView):

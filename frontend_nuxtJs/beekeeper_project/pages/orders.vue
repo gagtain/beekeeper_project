@@ -135,7 +135,7 @@
                     <button v-if="order.status == 'Одобрен'" onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
                               Отследить
                             </button>
-                            <div v-if="order.payment.status == 'pending'">
+                            <div v-if="order.payment.status == 'pending' && order.status != 'Закрытый'">
 
                                 <p>Заказ будет отменен через 30 минут, в случае если он не будет оплачен</p>
                             <button @click="order_redirect_payments(order.payment.url)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >

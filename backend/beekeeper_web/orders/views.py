@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ViewSet
 
-from beekeeper_web_api.jwt_token.auth import CustomAuthentication
+from user.jwt_token.auth import CustomAuthentication
 from orders.Part_API.OrderApproved import OrderApproved
 from orders.Part_API.OrderClosed import OrderClosed
 from orders.Part_API.OrderRestart import OrderRestart

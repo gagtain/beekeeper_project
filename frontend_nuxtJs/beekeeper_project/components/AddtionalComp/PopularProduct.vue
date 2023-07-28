@@ -23,7 +23,7 @@
                     <rating-comp :rating="pr.rating"></rating-comp>
                     <div class="price">
                       <span class="product__price small-big"
-                        >{{ pr.price }}
+                        >{{ select_productItem.price }}
                         <span class="product__price small">{{
                           pr.price_currency
                         }}</span></span
@@ -33,7 +33,9 @@
                       <h3>Размер</h3>
                       <div class="flex">
                         <ul class="variant-ul">
-                          <li  @click="select_type_weigth(ls_w.id)" :class="type_weigth_id == ls_w.id ? 'active' : ''" v-for="ls_w, index in pr.list_weight" :key="index" class="photo-album-li">
+                          <li  @click="select_type_weigth(ls_w.id)" :class="select_productItem.weight.id == ls_w.id ? 'active' : ''"
+                           v-for="ls_w, index in get_weight_type_list()" :key="index" class="photo-album-li">
+                           
                             <div class="h_sto">
                               <p>{{ ls_w.weight }} гр</p>
                             </div>
@@ -45,8 +47,8 @@
                       <p class="small">{{ pr.description }}</p>
                     </div>
                     <div class="flex">
-                      <AddBasket :id="pr.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></AddBasket>
-                      <FavoriteComp :id="pr.id" :wei_id="type_weigth_id" :pack_id="type_pack_id"></FavoriteComp>
+                      <AddBasket style="width: 30%;" :id="select_productItem.id" ></AddBasket>
+                      <FavoriteComp :id="select_productItem.id" ></FavoriteComp>
                     </div>
                   </div>
                 </section>

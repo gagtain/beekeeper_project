@@ -1,8 +1,9 @@
 from django.contrib import admin
 
 from news.models import News
-from .models import MainUser, Product, Category, ImageProduct, BasketItem, ProductItem, \
-    Order, OrderItem, RatingProductReview, Type_weight
+from orders.models import Order, OrderItem
+from .models import MainUser, Product, Category, ImageProduct, ProductItem, \
+    RatingProductReview, Type_weight, BasketItem
 
 
 # Register your models here.
@@ -14,9 +15,16 @@ class BasketItemInline(admin.TabularInline):
 class AccountAdmin(admin.ModelAdmin):
     inlines = (BasketItemInline,)
 
+class ProductItemInline(admin.TabularInline):
+    model = ProductItem
+    extra = 1
+
+
+class ProductAdmin(admin.ModelAdmin):
+    inlines = (ProductItemInline,)
 
 admin.site.register(MainUser, AccountAdmin)
-admin.site.register(Product)
+admin.site.register(Product, ProductAdmin)
 admin.site.register(BasketItem)
 admin.site.register(ProductItem)
 admin.site.register(Category)

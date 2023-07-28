@@ -1,6 +1,6 @@
 <template>
   <button
-    v-if="isFavorite"
+    v-if="a()"
     @click="removeFavoriteBtn()"
     id="favorite"
     class="fav-btn flex"
@@ -52,12 +52,7 @@ import removeFavorite from "../../additional_func/removeFavorite";
 export default defineNuxtComponent({
   el: "#favorite",
   name: "FavoriteComp",
-  props: ["id", "wei_id"],
-  data() {
-    return {
-      isFavorite: false,
-    };
-  },
+  props: ["id"],
   setup() {
   },
   created() {
@@ -68,23 +63,18 @@ export default defineNuxtComponent({
       let self = this;
       let a = this.$store.getUser.favorite_product.find(function (item) {
         if (
-          self.id == item.productItem.product.id &&
-          self.wei_id == item.productItem.weight.id
+          self.id == item.productItem.id
         ) {
           return true;
         } else {
           return false;
         }
       });
-      if (a) {
-        this.isFavorite = true;
-      } else {
-        this.isFavorite = false;
-      }
+      return a
     },
     async addFavoriteBtn() {
       
-      let response_add = await addFavorite(this.id, this.wei_id);
+      let response_add = await addFavorite(this.id);
       if (response_add.status == 200) {
         this.$store.ADD_FAVORITE_ITEM(
           response_add.data.favoriteItem
@@ -93,12 +83,11 @@ export default defineNuxtComponent({
       }
     },
     async removeFavoriteBtn() {
-      let response_add = await removeFavorite(this.id, this.wei_id);
+      let response_add = await removeFavorite(this.id);
       if (response_add.status == 200) {
         this.$store.REMOVE_FAVORITE_ITEM(
            response_add.data.id
-           ) 
-        this.isFavorite = false;
+           )
       }
     },
   },

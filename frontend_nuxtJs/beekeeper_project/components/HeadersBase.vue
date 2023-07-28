@@ -33,6 +33,26 @@
             <div class="menu_items search_item no_b_border">
                 <SeacrhComp></SeacrhComp>
             </div>
+            <div style="width: 30px;
+height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
+                    <NuxtLink no-prefetch to="/basket">
+                <img style="height: 40px; margin-right: 0;" class="auto" src="~assets/images/shopping-cart_icon-icons.com_69303.svg" alt="">
+            
+    <div class="indicator">
+        <div class="noti_count">{{ $store.getUser.basket.length }}</div>
+    </div>
+    </NuxtLink>
+              </div>
+            <div style="width: 30px;
+height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
+                    <NuxtLink no-prefetch to="/favorite">
+                <img style="height: 40px; margin-right: 0;" class="auto" src="~assets/images/favorite/favorite_add.png" alt="">
+            
+    <div class="indicator">
+        <div class="noti_count">{{ $store.getUser.favorite_product.length }}</div>
+    </div>
+    </NuxtLink>
+              </div>
             <div  @click="mob_menu_click()" :class="is_menu_mobile ? 'menu_active' : ''" class="menu_items mob_men relative">
               <span  :class="is_menu_mobile ? 'menu_pop_mob_active' : ''"></span>
             </div>
@@ -116,9 +136,8 @@
           <NuxtLink to="/" no-prefetch
                       ><li>Главная</li></NuxtLink>
           <NuxtLink to="/additional" no-prefetch><li>О нас</li></NuxtLink>
-          <NuxtLink to="/zakaz_list" no-prefetch><li>Заказы</li></NuxtLink>
+          <NuxtLink to="/orders" no-prefetch><li>Заказы</li></NuxtLink>
           <NuxtLink to="/polit" no-prefetch><li>Политика соглашения</li></NuxtLink>
-          <NuxtLink to="/add_money" no-prefetch><li>Пополнить счет</li></NuxtLink>
         </ul>
       </div>
     </div>

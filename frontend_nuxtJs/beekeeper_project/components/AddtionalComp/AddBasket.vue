@@ -1,6 +1,6 @@
 <template>
     <div id="addBasket">
-  <button v-if="isBasket" @click="removeBasketBtn" class="w-sto btn au">Из корзины</button>
+  <button v-if="a()" @click="removeBasketBtn" class="w-sto btn au">Из корзины</button>
   <button v-else @click="addBasketBtn" class="w-sto btn au">В корзину</button>
     </div>
 </template>
@@ -13,44 +13,37 @@ import removeBasket from '../../additional_func/removeBasket'
 export default{
     el: '#addBasket',
     name: 'AddBasket',
-    props: ['id', 'pack_id', 'wei_id'],
+    props: ['id'],
     data(){
         return {
             isBasket: false,
             }
     },
     created() {
-        this.a()
     },
   setup() {
   },
     methods:{
         a(){
             let self = this
-            console.log(this.$store.getUser.basket)
             let a = this.$store.getUser.basket.find(function(item){
-            if (self.id == item.productItem.product.id && self.wei_id == item.productItem.weight.id){
+            if (self.id == item.productItem.id ){
                 return true
             }else{
                 return false
             }
             })
-            if (a){
-                this.isBasket = true
-            }else{
-                
-                this.isBasket = false
-            }
+            return a
         },
         async addBasketBtn(){
-            let response_add = await addBasket(this.id, this.wei_id)
+            let response_add = await addBasket(this.id)
             if (response_add.status == 200){
                 this.$store.ADD_BASKET_ITEM(response_add.data.basketItem)
                 this.isBasket = true
             }  
         },
         async removeBasketBtn(){
-            let response_add = await removeBasket(this.id, this.wei_id)
+            let response_add = await removeBasket(this.id)
             if (response_add.status == 200){
                 this.$store.REMOVE_BASKET_ITEM(response_add.data.id)
                 this.isBasket = false

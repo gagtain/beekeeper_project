@@ -87,7 +87,7 @@
     transition: .5s;
 }
 .context_menu_info{
-    width: 50%;
+    width: 70%;
 }
 .user_in{
     margin: auto;
@@ -109,6 +109,24 @@
     background-color: #fff;
     border-radius: 10px;
     z-index: 5;
+}
+.indicator {  
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -24%;
+    right: -81%;
+    bottom: 60%;
+    background-color: green;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.noti_count {
+    color: aliceblue;
+    font-weight: 700;
+    font-size: 16px;
 }
 @media (max-width: 600px) {
     .user_context{
@@ -236,7 +254,7 @@
 }
 @media (max-width: 700px) {
     .logo{
-        width: 100px;
+        width: 130px;
     }
     .logo-page{
         width: auto;

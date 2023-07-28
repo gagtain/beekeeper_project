@@ -2,7 +2,7 @@
     <div id="orderProductList">
         <div v-for="(orderItem, index) in orderList" :key="orderItem.id" class="product_order_info">
                 <div class="w-sto flex jus-sp">
-                    <p class="VAG">{{ index+1 }}</p> <p class="VAG">{{ orderItem.productItem.product.price *  orderItem.count}} {{ orderItem.productItem.product.price_currency }}</p>
+                    <p class="VAG">{{ index+1 }}</p> <p class="VAG">{{ orderItem.productItem.price *  orderItem.count}} {{ orderItem.productItem.price_currency }}</p>
                 </div>
                 <div class="flex">
                     <div class="img_order_product_div">
@@ -11,7 +11,7 @@
                   <div class="info_order_product_div">
 
                     <div class="name_order_product">{{ orderItem.productItem.product.name }} [{{ orderItem.productItem.weight.weight }} гр]</div>
-                <p>{{ orderItem.productItem.product.price }} {{ orderItem.productItem.product.price_currency }}</p>
+                <p>{{ orderItem.productItem.price }} {{ orderItem.productItem.price_currency }}</p>
                 <p>{{ orderItem.count }} шт</p>
                   </div>
                 </div>

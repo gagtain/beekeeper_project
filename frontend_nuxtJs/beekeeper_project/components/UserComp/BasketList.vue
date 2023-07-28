@@ -13,11 +13,11 @@
         <p class="normal-small tovar_kor_name">{{ b.productItem.product.name }} [{{ b.productItem.weight.weight }} гр]</p>
 
         <p class="normal-small info_in_tovar_kor">
-          {{ b.productItem.product.price }} {{ b.productItem.product.price_currency }}
+          {{ b.productItem.price }} {{ b.productItem.price_currency }}
         </p>
         <div class="btn_tovar_kor flex">
-          <FavoriteComp :ProductItem="b.productItem" ></FavoriteComp>
-          <AddBasket :ProductItem="b.productItem" ></AddBasket>
+          <FavoriteComp :id="b.productItem.id" ></FavoriteComp>
+          <AddBasket :id="b.productItem.id" ></AddBasket>
         </div>
       </div>
       <div class="size_tovar_div">

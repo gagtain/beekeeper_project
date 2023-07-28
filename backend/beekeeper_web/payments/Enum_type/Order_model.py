@@ -1,6 +1,6 @@
 import enum
 
-from beekeeper_web_api.models import Order
+from orders.models import Order
 
 
 class OrderModel(enum.Enum):

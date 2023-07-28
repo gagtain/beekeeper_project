@@ -3,13 +3,14 @@
     <article style="height: auto; min-height: 300px" class="flex">
       <div
         v-if="delivery != null"
-        style="width: 40%"
+        style="width: 70%"
         class="delivery_info auto flex jus-sp"
       >
         <delivery-info :delivery="delivery"></delivery-info>
         <order-info
           :order="delivery.order_delivery_transaction[0]"
         ></order-info>
+        <payment-info :payment="delivery.order_delivery_transaction[0].payment"></payment-info>
       </div>
     </article>
     <div
@@ -61,8 +62,9 @@ import OrderItemList from "~/components/AdminComp/OderItemList.vue";
 import OrderInfo from "~/components/AdminComp/OrderInfo.vue";
 import OrderSettings from '../../../components/AdminComp/OrderSettings.vue';
 import SubmitOrder from '~/http/orders/SubmitOrder'
+import PaymentInfo from '../../../components/AdminComp/PaymentInfo.vue';
 export default {
-  components: { DeliveryInfo, OrderItemList, OrderInfo, OrderSettings },
+  components: { DeliveryInfo, OrderItemList, OrderInfo, OrderSettings, PaymentInfo },
   data() {
     return {
       delivery: null
@@ -79,8 +81,8 @@ export default {
       this.delivery = data;
     },
     async submit_order(){
-        let r = await SubmitOrder(this.order_delivery_transaction[0].id)
-        this.order_delivery_transaction[0] = r.data
+        let r = await SubmitOrder(this.delivery.order_delivery_transaction[0].id)
+        this.delivery.order_delivery_transaction[0] = r.data
     },
     async submit_waiting() {
       let r = await deliverySubmitWaiting(this.delivery.id);

@@ -22,7 +22,7 @@
                     </div>
                     <div class="price">
                       <span class="product__price small-big"
-                        >{{ pr.price }}
+                        >{{ select_productItem.price }}
                         <span class="product__price small">{{
                           pr.price_currency
                         }}</span></span
@@ -33,7 +33,9 @@
                       <h3>Размер</h3>
                       <div class="flex">
                         <ul class="variant-ul">
-                          <li  @click="select_type_weigth(ls_w.id)" :class="type_weigth_id == ls_w.id ? 'active' : ''" v-for="ls_w, index in pr.list_weight" :key="index" class="photo-album-li">
+                          <li  @click="select_type_weigth(ls_w.id)" :class="select_productItem.weight.id == ls_w.id ? 'active' : ''"
+                           v-for="ls_w, index in get_weight_type_list()" :key="index" class="photo-album-li">
+                           
                             <div class="h_sto">
                               <p>{{ ls_w.weight }} гр</p>
                             </div>
@@ -44,8 +46,8 @@
                     <div class="product__text">
                     </div>
                     <div class="flex jus-sp">
-                      <AddBasket :id="pr.id" :wei_id="type_weigth_id"></AddBasket>
-                      <FavoriteComp :id="pr.id" :wei_id="type_weigth_id"></FavoriteComp>
+                      <AddBasket style="width: 40%;" :id="select_productItem.id" ></AddBasket>
+                      <FavoriteComp :id="select_productItem.id" ></FavoriteComp>
                     </div>
                   </div>
                 </section>
@@ -85,20 +87,25 @@ export default{
   data(){
     return {
       type_weigth_id: null,
+      select_productItem: null
     }
   },
   created(){
-    this.type_weigth_id = this.pr.list_weight[0].id
+    this.select_productItem = this.pr.productItemList[0]
     
   },
   methods:{
     select_type_weigth(pk){
-      console.log(pk)
-      this.type_weigth_id = pk
+      let a = this.pr.productItemList.slice()
+      this.select_productItem = a.filter(ob => ob.weight.id == pk)[0]
+      console.log(this.select_productItem)
     },
-    select_type_pack(pk){
-      console.log(pk)
-      this.type_pack_id = pk
+    get_weight_type_list(){
+      let list = []
+      this.pr.productItemList.forEach(element => {
+        list.push(element.weight)
+      });
+      return list
     }
   }
 }

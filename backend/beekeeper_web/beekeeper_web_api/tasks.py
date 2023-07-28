@@ -2,10 +2,11 @@ import sys
 
 from celery import shared_task
 
+from orders.models import Order
 from .services.Email import EmailOrder
 
 sys.path.append('.')
-from .models import MainUser, Order
+from .models import MainUser
 
 @shared_task()
 def order_email_send(order_id, user_id):

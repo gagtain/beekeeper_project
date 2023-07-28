@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 
-from beekeeper_web_api.models import Order
+from orders.models import Order
 from beekeeper_web_api.serializers import OrderSerializers
 
 

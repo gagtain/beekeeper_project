@@ -1,7 +1,7 @@
 from django.db.models import QuerySet, Prefetch, Count, Sum
 from rest_framework.views import APIView
 
-from beekeeper_web_api.models import Order
+from orders.models import Order
 from beekeeper_web_api.Part_API.custom_mixins import Filter
 from beekeeper_web_api.serializers import OrderSerializers
 from delivery.serializers import CountSerializer

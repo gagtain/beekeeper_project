@@ -144,26 +144,26 @@
 
 .btn {
     display: inline-block;
-    padding: 1.5em 3.1em;
+    padding: 2% 3%;
     border: none;
     border-radius: 12px;
-    font-size: 0.8em;
+    font-size: 16px;
     font-weight: 700;
     color: #000;
-    background-color: rgb(245, 173, 40);
+    background-color: #4CAF50;
     box-shadow: 2px 2px 25px -7px black;
     height: 53px;
     cursor: pointer;
 }
 
 .btn:active {
-    background-color: rgb(245, 173, 40);
+    background-color: #43A047;
     scale: 0.96;
     color: #000;
 }
 
 .btn:hover {
-    background-color: rgb(255, 188, 65);
+    background-color: #43A047;
 
 }
 .open_filter_mob{

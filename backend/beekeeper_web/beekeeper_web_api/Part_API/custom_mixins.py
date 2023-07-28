@@ -20,6 +20,7 @@ class Filter:
         return queryset
 
     def search(self, request):
+
         filters = self.filter_req(request.GET)
         try:
             q = self.init_queryset(self.models.objects.filter(**filters))

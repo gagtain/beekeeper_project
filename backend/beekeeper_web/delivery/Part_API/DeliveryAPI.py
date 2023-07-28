@@ -2,7 +2,7 @@ from django.db.models import QuerySet
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from beekeeper_web_api.models import Order
+from orders.models import Order
 from delivery.dilivery_core.Client import Configuration
 from delivery.dilivery_core.core import SdekDelivery
 from delivery.dilivery_core.shemas.Delivery import DeliveryAdd, DeliveryResponseAdd

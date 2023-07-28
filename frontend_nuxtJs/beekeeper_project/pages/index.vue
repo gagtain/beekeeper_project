@@ -137,7 +137,7 @@
         <div class="info">
             <NuxtLink no-prefetch :to="`/news/${new_obj.id}`"><h2 class="VAG">{{ new_obj.title }}</h2></NuxtLink>
             <div class="info-text">
-                <p>{{ new_obj.main_text }}</p>
+                <p>{{ new_obj.main_text.slice(40) }}...</p>
             </div>
             <div class="button-wrap">
               <NuxtLink no-prefetch class="atuin-btn" :to="`/news/${new_obj.id}`">Подробнее</NuxtLink>

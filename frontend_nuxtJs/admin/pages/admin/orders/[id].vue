@@ -10,6 +10,7 @@
         <order-info
           :order="order"
         ></order-info>
+        <payment-info :payment="order.payment"></payment-info>
       </div>
     </article>
     <div
@@ -61,8 +62,9 @@ import OrderItemList from "~/components/AdminComp/OderItemList.vue";
 import OrderInfo from "~/components/AdminComp/OrderInfo.vue";
 import OrderSettings from '../../../components/AdminComp/OrderSettings.vue';
 import SubmitOrder from '~/http/orders/SubmitOrder'
+import PaymentInfo from '../../../components/AdminComp/PaymentInfo.vue';
 export default {
-  components: { DeliveryInfo, OrderItemList, OrderInfo, OrderSettings },
+  components: { DeliveryInfo, OrderItemList, OrderInfo, OrderSettings, PaymentInfo },
   data() {
     return {
       order: null

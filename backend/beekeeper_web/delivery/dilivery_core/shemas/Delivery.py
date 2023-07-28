@@ -30,7 +30,7 @@ class Packages:
     length: int
     width: int
     height: int
-    items: list[PackagesItems]
+    items: list[PackagesItems] = field(default_factory=list)
 
 
 @dataclass_json
@@ -89,9 +89,9 @@ class AdditionalTypeOrder(enum.Enum):
 @dataclass
 class DeliveryAdd:
     tariff_code: int
-    delivery_point: int
-    type: TypeOrder
-    packages: Packages
+    delivery_point: str
+    packages: list[Packages]
+    type: TypeOrder = TypeOrder.online_shop.value
     shipment_point: str = settings.SDEK_SHIPMENT_POINT
     recipient: Recipient = field(default_factory=DefaultRecipient)
     additional_order_type: list[AdditionalTypeOrder] = field(default_factory=list)

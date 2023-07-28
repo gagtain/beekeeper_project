@@ -29,11 +29,11 @@
                       </p>
                       <div style="width: 45%;" class=" flex">
                         <FavoriteComp
-                        :id="b.id" :ProductItem="b.productItem"
+                        :id="b.productItem.id"
                         ></FavoriteComp>
                         
                         <AddBasket
-                          :id="b.id" :ProductItem="b.productItem"
+                        :id="b.productItem.id"
                         ></AddBasket>
                       </div>
                     </div>

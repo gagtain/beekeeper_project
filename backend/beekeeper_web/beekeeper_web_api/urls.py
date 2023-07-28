@@ -18,8 +18,6 @@ urlpatterns = [
     path('product/search/', views.ProductFilterAPI.as_view({'get': 'search__default'})),
     path('category', views.CategoryAPI.as_view({'get': 'get_category_list'})),
     path('get_csrf', views.setCSRFCookie.as_view()),
-    path('token/verif', views.tokenVerif.as_view()),
-    path('register', views.UserRegistAPI.as_view()),
     path('get_basket_info', views.UserAPI.as_view({'get': 'GetBasketInfo'})),
     path('order/create', views.OrderAPI.as_view({'post': 'createOrder'})),
     path('order/last', views.OrderAPI.as_view({'get': 'getLastOrder'})),
