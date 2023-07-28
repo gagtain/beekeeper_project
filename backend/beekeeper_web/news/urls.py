@@ -22,5 +22,6 @@ urlpatterns = [
     path('create', views.NewsAPI.as_view({'post':'news_create'})),
     path('list', views.NewsAPI.as_view({'get':'news_list'})),
     path('<int:pk>', views.NewsAPI.as_view({'get':'retrieve'})),
+    path('search/count', views.NewsAPI.as_view({'get': 'search'}))
 
 ]
