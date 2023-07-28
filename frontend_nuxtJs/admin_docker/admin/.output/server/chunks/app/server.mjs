@@ -320,7 +320,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-34c35220.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-44a1a3e6.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-delivery",
@@ -347,6 +347,14 @@ const _routes = [
     component: () => import('./_nuxt/index-6808c5a8.mjs').then((m) => m.default || m)
   },
   {
+    name: "admin-news-id",
+    path: "/admin/news/:id()",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import('./_nuxt/_id_-77943725.mjs').then((m) => m.default || m)
+  },
+  {
     name: "admin-news-create",
     path: "/admin/news/create",
     meta: {},
@@ -360,7 +368,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-6fc8d842.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-1c5dd9ee.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-orders-id",
@@ -368,7 +376,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-8d3dceb3.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-9f41f599.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-orders",
