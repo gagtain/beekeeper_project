@@ -2,7 +2,7 @@
 export default defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: 'http://localhost:8000/',
+      api_root: 'https://owa.gagtain.ru/',
       
     }
   }

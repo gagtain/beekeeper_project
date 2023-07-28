@@ -15,9 +15,13 @@
             <img :src="this.$api_root + new_obj.main_image" />
         </div>
         <div class="info">
-            <NuxtLink :to="`/news/${new_obj.id}`"><h2>{{ new_obj.title }}</h2></NuxtLink>
+            <NuxtLink :to="`/news/${new_obj.id}`"><h2 style="
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;">{{ new_obj.title }}</h2></NuxtLink>
             <div class="info-text">
-                <p>{{ new_obj.main_text }}</p>
+                <p>{{ new_obj.main_text.slice(0, 80) }}...</p>
             </div>
             <div class="button-wrap">
               <NuxtLink class="atuin-btn" :to="`/news/${new_obj.id}`">Подробнее</NuxtLink>
@@ -76,7 +80,6 @@ export default{
    async created(){
        let r = await newsList(0, 20)
        this.news = r.data
-       console.log(this.news)
    }
 }
 

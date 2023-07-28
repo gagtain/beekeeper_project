@@ -1299,7 +1299,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-127d62fa.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-e4384085.mjs').then((m) => m.default || m)
   },
   {
     name: "orders",
@@ -1307,7 +1307,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/orders-4f566e77.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/orders-3b2a7338.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -1403,7 +1403,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "http://localhost:8000/";
+let api_root = "https://owa.gagtain.ru/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -1425,10 +1425,8 @@ const useMainStore = defineStore("main", {
     counter: 0,
     user: {
       image: "",
-      basket: [{
-        productItem: {}
-      }],
-      favorite_product: [{}]
+      basket: [],
+      favorite_product: []
     },
     catalog_list: [],
     assess_token: ""
@@ -1811,7 +1809,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "http://localhost:8000/"
+      api_root: "https://owa.gagtain.ru/"
     }
   };
 });
