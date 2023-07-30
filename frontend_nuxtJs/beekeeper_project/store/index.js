@@ -9,7 +9,8 @@ export const useMainStore = defineStore('main', {
       favorite_product:[]
     },
     catalog_list: [],
-    assess_token: ''
+    assess_token: '',
+    catalog_params: []
   }),
   actions: {
     increment() {
@@ -46,6 +47,21 @@ export const useMainStore = defineStore('main', {
     REFACTOR_CATALOG_LIST(catalog_list){
         this.catalog_list = catalog_list
     },
+    ADD_ORDER_BY_CATALOG_PARAMS(params, not_params){
+      let r = this.catalog_params.slice().filter(e => !not_params.includes(e))
+      r.push(params)
+      this.catalog_params.length = 0
+      this.catalog_params.push(...r)
+      console.log(this.catalog_params)
+    },
+    ADD_CATALOG_PARAMS(params){
+      this.catalog_params.push(params)
+    },
+    REMOVE_CATALOG_PARAMS(params){
+
+      let index = this.catalog_params.indexOf(params)
+      this.catalog_params.splice(index, 1)
+    }
   },
   getters: {
     getCount(state){
@@ -59,6 +75,9 @@ export const useMainStore = defineStore('main', {
     },
     getCatalog_list(state){
       return state.catalog_list
+    },
+    getCatalog_params(state){
+      return state.catalog_params
     }
   }
 })

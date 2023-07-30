@@ -3,7 +3,7 @@ from django.contrib import admin
 from news.models import News
 from orders.models import Order, OrderItem
 from .models import MainUser, Product, Category, ImageProduct, ProductItem, \
-    RatingProductReview, Type_weight, BasketItem
+    RatingProductReview, Type_weight, BasketItem, DimensionsProduct
 
 
 # Register your models here.
@@ -23,6 +23,8 @@ class ProductItemInline(admin.TabularInline):
 class ProductAdmin(admin.ModelAdmin):
     inlines = (ProductItemInline,)
 
+
+admin.site.register(DimensionsProduct)
 admin.site.register(MainUser, AccountAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(BasketItem)

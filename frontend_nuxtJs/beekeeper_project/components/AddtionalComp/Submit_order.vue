@@ -13,7 +13,7 @@ import addOrder from '~/additional_func/addOrder';
 import createDeliveryLait from '~/additional_func/Delivery/createDeliveryLait';
 export default {
     el: '#sub_order',
-  props: ['items', 'forms_validate', 'delivery_price'],
+  props: ['items', 'forms_validate', 'delivery_info'],
   data(){
     return{
       order_create: null
@@ -24,9 +24,7 @@ export default {
 async submin_order(){
     await this.$emit('forms_validate_met')
   if (this.forms_validate.status){
-    console.log(213)
-    let response_order = await addOrder(this.delivery_price)
-    console.log(2132, response_order)
+    let response_order = await addOrder(this.delivery_info.price)
     this.order_create = response_order.data
     let created_delivery = await this.create_delivery_lait()
  // if (response_order.status == 200){
@@ -52,7 +50,12 @@ async submin_order(){
     document.location.href = response_payment.data.payment_url
   },
   async create_delivery_lait(){
-    let response_delivery = await createDeliveryLait(this.order_create.id)
+    let response_delivery = await createDeliveryLait({
+      order_id: this.order_create.id,
+      PVZ: this.delivery_info.id,
+      price: this.delivery_info.price
+      
+    })
     if (response_delivery.status == 200){
       return true
     }else{

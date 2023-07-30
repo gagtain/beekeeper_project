@@ -38,6 +38,7 @@
 }
 </style>
 <script>
+import getSearchProduct from '~/additional_func/getSearchProduct';
 export default {
   el: "#sorted",
   name: "SortedCatalog",
@@ -51,27 +52,24 @@ export default {
   },
     props: ["catalog_list"],
   methods: {
-      sorteredAlfFunc() {
-          let a = this.$store.getCatalog_list.sort((x, y) => x.name.localeCompare(y.name));
+      async sorteredAlfFunc() {
+          this.$store.ADD_ORDER_BY_CATALOG_PARAMS("order_by=name", ["order_by=price_min", "order_by=pk"])
           this.sorteredAlf = !this.sorteredAlf
           this.sorteredMonet = false
           this.sorteredNew = false
-          this.$store.REFACTOR_CATALOG_LIST(a);
         },
-      sorteredMoneyFUnc() {
-          let a = this.$store.getCatalog_list.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
+      async sorteredMoneyFUnc() {
+          this.$store.ADD_ORDER_BY_CATALOG_PARAMS("order_by=price_min", ["order_by=name", "order_by=pk"])
           this.sorteredMonet = !this.sorteredMonet
           this.sorteredAlf = false
           this.sorteredNew = false
-          this.$store.REFACTOR_CATALOG_LIST(a);
       },
-      sorteredNewFUnc() {
+      async sorteredNewFUnc() {
 
-          let a = this.$store.getCatalog_list.sort((a, b) => parseFloat(b.id) - parseFloat(a.id));
+          this.$store.ADD_ORDER_BY_CATALOG_PARAMS("order_by=pk", ["order_by=name", "order_by=price_min"])
           this.sorteredNew = !this.sorteredNew
           this.sorteredMonet = false
           this.sorteredAlf = false
-          this.$store.REFACTOR_CATALOG_LIST(a);
       },
       },
   setup() {},

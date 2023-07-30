@@ -22,6 +22,7 @@ class DeliveryTransaction(models.Model):
     status = models.CharField(choices=DeliveryStatus.choices, default='На проверке')
     delivery_method = models.CharField(choices=DeliveryMethod.choices, default=DeliveryMethod.To_pickup_point)
     where = models.CharField(max_length=200, default='Уварово ПМЗ UVA01')
+    price = models.FloatField(verbose_name="Цена доставки", default=0)
 
     class Meta:
         verbose_name = u"Транзакция доставки"

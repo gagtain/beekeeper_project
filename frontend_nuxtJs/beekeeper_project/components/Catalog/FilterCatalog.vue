@@ -3,14 +3,12 @@
     <p class="filter-p small">Категория</p>
     <ul class="filter-ul">
       <li
-        @click="addClassFilter($event)"
+        @click.stop="add($event, `category__name=${cat.name}`)"
         v-for="(cat, index) in category_list"
         :key="index"
-        class="filter-li"
+        class="filter-li normal-small"
       >
-        <p @click.stop="addClassFilter($event)" class="normal-small">
           {{ cat.name }}
-        </p>
       </li>
     </ul>
   </div>
@@ -18,6 +16,8 @@
 
 <style lang="scss" src="../../assets/css/katalog/filter.scss" scoped></style>
 <script>
+import getCategoryList from '~/additional_func/getCategoryList';
+
 export default {
   el: "#filter",
   name: "FilterCatalog",
@@ -27,48 +27,32 @@ export default {
       filter_class_name: [],
       filter_packaging_name: [],
       cat_list: [],
+      category_list: []
     };
   },
-  props: ["catalog_list", "category_list"],
+  async mounted(){
+    let r = await getCategoryList()
+    this.category_list = r.data
+  },
   methods: {
-    addClassFilter(event) {
-      event = event?.srcElement?.children[0] ? event.srcElement : event.target.parentNode
-      this.addClassActive(event);
+    add(event, params){
+      if (this.addClassActive(event.srcElement)){
 
-      let index = this.filter_class_name.indexOf(
-        event.children[0].innerHTML
-      );
-      if (index >= 0) {
-        this.filter_class_name.splice(index, 1);
-        console.log(this.filter_class_name);
-        this.c();
-      } else {
-        this.filter_class_name.push(event.children[0].innerHTML);
-        this.c();
+        this.$store.ADD_CATALOG_PARAMS(params)
+      }else{
+        
+      this.$store.REMOVE_CATALOG_PARAMS(params)
       }
-    },
-    c() {
-      let list = this.a();
-      
-      this.$store.REFACTOR_CATALOG_LIST(list);
-    },
-    a() {
-      
-      let sortered = this.catalog_list.slice();
-      this.filter_class_name.forEach((element) => {
-        console.log(element)
-        sortered = sortered.filter((x) =>
-          x.category.find((x) => x.name == element)
-        );
-      });
-      return sortered;
+
     },
     addClassActive(event) {
       console.log(event)
       if (event.classList.contains("active")) {
         event.classList.remove("active");
+        return false
       } else {
         event.classList.add("active");
+        return true
       }
     },
   },

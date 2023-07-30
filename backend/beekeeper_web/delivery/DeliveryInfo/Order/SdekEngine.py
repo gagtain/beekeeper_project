@@ -16,14 +16,13 @@ class SdekOnlineStoreEngine(AbstractOrderSdekEngine):
         super().__init__(*args, order=Order.objects.get(id=order_id), **kwargs)
 
     def get_packages(self) -> list[Packages]:
-        packages: list[Packages] = []
-        packages.append(Packages(
+        packages: list[Packages] = [Packages(
             height=0,
             length=0,
             weight=0,
             width=0,
             number=f"Упаковка №1"
-        ))
+        )]
         for package in packages:
             """Необходимо указать механизм распределения товаров по разным упаковкам"""
             for i in self._order.product_list_transaction.all():

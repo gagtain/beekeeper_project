@@ -14,6 +14,7 @@ class Filter:
     fields_params = 'fields'
     fields: str = []
     type_obj = ''
+    skip_params = []
 
     def init_queryset(self, queryset):
         """Функция для промежуточных действий с обьектом, например сортировки, выбор полей и т.д"""
@@ -40,7 +41,7 @@ class Filter:
         for key, value in req.items():
             if key in list(self.filter_options):
                 filters[self.filter_options[key]] = req[key]
-            else:
+            elif key not in self.skip_params:
                 filters[key] = value
         return filters
 

@@ -1,7 +1,7 @@
 from djmoney.contrib.django_rest_framework import MoneyField
 from rest_framework import serializers
 
-from beekeeper_web_api.models import MainUser, ProductItem, Product
+from beekeeper_web_api.models import MainUser, ProductItem, Product, DimensionsProduct
 from orders.models import Order, OrderItem
 from beekeeper_web_api.serializers import Type_weightSerializers
 from delivery.models import DeliveryTransaction
@@ -11,12 +11,19 @@ class DeliveryProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = ['name', 'image']
 
+class DimensionsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DimensionsProduct
+        fields = ['length', 'width', 'height']
+
 class DeliveryProductItemSerializer(serializers.ModelSerializer):
     product = DeliveryProductSerializer()
     weight = Type_weightSerializers()
+    dimensions = DimensionsSerializer()
     class Meta:
         model = ProductItem
-        fields = ['weight', 'product']
+        fields = ['weight', 'product', 'dimensions']
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
@@ -34,6 +41,7 @@ class DeliveryUserSerializer(serializers.ModelSerializer):
 class OrderSerializers(serializers.ModelSerializer):
     product_list_transaction = OrderItemSerializer(many=True)
     amount = MoneyField(max_digits=14, decimal_places=2)
+    user = DeliveryUserSerializer()
 
     class Meta:
         model = Order

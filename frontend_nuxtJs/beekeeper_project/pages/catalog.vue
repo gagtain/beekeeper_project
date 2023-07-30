@@ -27,10 +27,10 @@
                   <img onclick="window.dialog.showModal();" class="open_filter_mob auto" src="~assets/images/filter.png" alt="">
                 </div>
               </div>
+              
               <div
-                  v-if="$store.getCatalog_list.length" class="w-sto product-list flex">
-                  
-                <CatalogProduct v-for="pr in $store.getCatalog_list" :key="pr.id" :pr="pr" ></CatalogProduct>
+                  v-if="catalog_list.length" class="w-sto product-list flex">
+                <CatalogProduct v-for="pr in catalog_list" :key="pr.id" :pr="pr" ></CatalogProduct>
               </div>
               <LoadingComp v-else-if="!catalog_loads"></LoadingComp>
               <div v-else style="width: 50%;margin: auto;margin-top: 10%;">
@@ -88,32 +88,18 @@ export default {
   },
   data() {
     return {
-      catalog_list: [
-        {
-          id: 0,
-          name: "",
-          image: "",
-          price: "",
-          price_currency: "",
-          description: "",
-          category: [
-            {
-              name: "",
-            },
-          ],
-        }
-      ],
+      catalog_list: [],
       filter_teleport: false,
       category_list: [],
       type_packaging: [],
       CATALOG_LIST_STATE: this.$store.getCatalog_list,
       filters: false,
-      catalog_loads: false
+      catalog_loads: false,
+      data: this.$store.getCatalog_params
     };
   },
   async mounted() {
-    this.restartCatalog()
-    this.filterReg()
+    this.getCatalog()
   },
 
   methods:{
@@ -145,13 +131,27 @@ export default {
     
     let category_response = await getCategorylist();
     this.category_list = category_response.data
+  },
+   async getCatalog(){
+      this.catalog_loads = false
+    
+    let r = await getSearchProduct(this.$store.getCatalog_params.join("&"))
+    this.catalog_list = r.data
+      this.catalog_loads = true
   }
   },
   setup() {},
   watch:{
     '$route.query': async function () {
       this.restartCatalog()
-    }
+    },
+    'data': {
+    async handler(val, oldVal) {
+      console.log(1234)
+      this.getCatalog()
+    },
+    deep: true
+  },
   }
 };
 </script>

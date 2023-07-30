@@ -42,6 +42,12 @@ class Type_weight(models.Model):
         verbose_name = u"Тип веса товара"
         verbose_name_plural = u"Типы веса товара"
 
+
+class DimensionsProduct(models.Model):
+    length = models.FloatField(verbose_name='Длина')
+    width = models.FloatField(verbose_name='Ширина')
+    height = models.FloatField(verbose_name='Высота')
+
 class Product(models.Model):
     """"Модель продукта"""
     name = models.CharField(max_length=100, blank=False, verbose_name="Название продукта")
@@ -66,6 +72,7 @@ class ProductItem(models.Model):
     weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE)
     price = MoneyField(default=0, max_digits=14, decimal_places=2,
                        verbose_name="Цена варианта", default_currency='RUB')
+    dimensions = models.ForeignKey(DimensionsProduct, verbose_name='Габариты', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f"{self.product.name} {self.weight}"

@@ -19,8 +19,8 @@
             <order-product-list :orderList="$store.getUser.basket"></order-product-list>
         </div>
             <div class="w-sto-1000px register_zakaz">
-                <Submit_order :delivery_price="delivery_price" v-on:forms_validate_met="forms_validate_met" :items="$store.getUser.basket" :forms_validate="forms_validate"></Submit_order>
-                <ProductListInfo :ordered="true" :items="$store.getUser.basket" :delivery_price="delivery_price"></ProductListInfo>
+                <Submit_order :delivery_info="delivery_info" v-on:forms_validate_met="forms_validate_met" :items="$store.getUser.basket" :forms_validate="forms_validate"></Submit_order>
+                <ProductListInfo :ordered="true" :items="$store.getUser.basket" :delivery_price="delivery_info.price"></ProductListInfo>
             </div>
                     
                 </div>
@@ -93,16 +93,18 @@ export default {
 data(){
     return{
         forms_validate: false,
-        delivery_price: 0
+        delivery_info: {
+            price: null
+        }
     }
 },
     methods:{
     forms_validate_met(){
         this.forms_validate = this.$refs.checkout_form.order_info_select()
     },
-    async delivery_price_select(delivery_price){
+    async delivery_price_select(delivery_info){
 
-        this.delivery_price = await delivery_price
+        this.delivery_info = await delivery_info
     }
 },
 

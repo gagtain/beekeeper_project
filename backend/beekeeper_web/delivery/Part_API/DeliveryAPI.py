@@ -25,7 +25,10 @@ class DeliveryCreate(APIView):
 
     def delivery_create_lait(self, request):
         """Заглушка, будет удалено при дальнейшем рефакторе"""
-        delivery = DeliveryService.create_delivery(uuid='122')
+        delivery = DeliveryService.create_delivery(uuid='122',
+                                                   where=request.data['PVZ'],
+                                                   price=request.data['price'])
+
         order = Order.objects.get(id=request.data['order_id'])
         DeliveryService.add_delivery_in_order(delivery, order)
         return Response(status=200)

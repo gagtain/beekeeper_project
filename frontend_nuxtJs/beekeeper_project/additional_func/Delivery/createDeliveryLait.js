@@ -1,7 +1,7 @@
 import axios from "axios";
 import { api_root } from '@/main'
 
-export default async function createDeliveryLait(order_id){
+export default async function createDeliveryLait(data){
     try {
         var response = await axios({url: `${api_root}api/v0.1/delivery/create/lait`,
         method: "post",
@@ -9,9 +9,7 @@ export default async function createDeliveryLait(order_id){
             "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
-        data:{
-          order_id: order_id
-        }
+        data: data
       })
       return response
       } catch (error) {

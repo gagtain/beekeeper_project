@@ -26,7 +26,7 @@
                   </div>
                 </div>
             </div>
-           <SDEKcart v-on:onChoise="onChoise($event)"></SDEKcart>
+           <SDEKcart :products="this.$store.getUser.basket" v-on:onChoise="onChoise($event)"></SDEKcart>
   </div>
 </template>
 
@@ -119,9 +119,8 @@ export default {
       }
     },
     async onChoise(info){
-      console.log(info)
       this.delivery_info = await info
-      this.$emit('delivery', this.delivery_info.price)
+      this.$emit('delivery', this.delivery_info)
     }
   },
 setup(){
