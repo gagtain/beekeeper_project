@@ -15,13 +15,14 @@ class Filter:
     fields: str = []
     type_obj = ''
     skip_params = []
+    request = {}
 
     def init_queryset(self, queryset):
         """Функция для промежуточных действий с обьектом, например сортировки, выбор полей и т.д"""
         return queryset
 
     def search(self, request):
-
+        self.request = request
         filters = self.filter_req(request.GET)
         try:
             q = self.init_queryset(self.models.objects.filter(**filters))

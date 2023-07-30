@@ -11,12 +11,19 @@ class DeliveryTransactionFilter(APIView, Filter):
     models = DeliveryTransaction
     serializers_retrieve = DeliveryTransactionSerializer
     type_obj = 'model'
-
+    skip_params = ['size', 'from']
     filter_options = {}
 
     def init_queryset(self, queryset: QuerySet):
         """Оптимизация запроса"""
-
+        size = 10
+        from_ = 0
+        try:
+            size = int(self.request.GET['size'])
+            print(size)
+            from_ = int(self.request.GET['from'])
+        except:
+            pass
         return queryset.only('id', 'uuid', 'track_number',
                              'order_delivery_transaction', 'status',
                              'delivery_method', 'where').prefetch_related(
@@ -35,7 +42,7 @@ class DeliveryTransactionFilter(APIView, Filter):
 
                                   )
                      )
-                     ))
+                     ))[from_:from_+size]
 
 
 class DeliveryTransactionFilterCount(Filter):

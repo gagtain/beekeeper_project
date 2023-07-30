@@ -12,13 +12,22 @@ class OrderFilter(APIView, Filter):
     models = Order
     serializers_retrieve = OrderSerializers
     type_obj = 'model'
+    skip_params = ['size', 'from']
 
     filter_options = {}
 
     def init_queryset(self, queryset: QuerySet):
         """Оптимизация запроса"""
 
-        return queryset
+        size = 10
+        from_ = 0
+        try:
+            size = int(self.request.GET['size'])
+            print(size)
+            from_ = int(self.request.GET['from'])
+        except:
+            pass
+        return queryset[from_:from_+size]
 
 
 class OrderFilterCount(Filter):
