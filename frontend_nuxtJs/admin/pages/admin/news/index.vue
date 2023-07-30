@@ -6,10 +6,8 @@
         <div class="container">
             <h4 class="main_news_title">{{ news[0].title }} </h4>
             <br>
-            <p class="main_element">{{ news[0].main_text }}</p>
-            <div class="button">
+            <p class="main_element">{{ news[0].main_text.slice(0, 300) }}</p>
             <nuxt-link :to="'/admin/news/'+ news[0].id"><button class="btn"><span>Подробнее</span></button></nuxt-link>
-            </div>
         </div>
         
         </article>
@@ -18,13 +16,19 @@
             <h4 class="news_title">{{ news_item.title }} </h4>
             <br>
             <p class="element">{{ news_item.main_text.slice(0, 300) }}...</p> 
-            <div class="button">
             <nuxt-link :to="'/admin/news/'+ news_item.id"><button class="btn"><span>Подробнее</span></button></nuxt-link>
-            </div>
-            
         </div>
     </article>
         </section>
+    <div class="paginator">
+        <button v-if="page > 1" @click="page -= 1" class="button">Назад</button>
+        <button  :class="{active: page==1}" @click="page = 1" class="button">{{ 1 }}</button>
+        <template v-for="t in total - 1" :key="t">
+            <button v-if="t <= page + 2 && t >= page - 2 && t != 1"  :class="{active: page==t}" @click="page = t" class="button">{{ t }}</button>
+        </template>
+        <button :class="{active: page==total}" @click="page = total" class="button">{{ total }}</button>
+            <button v-if="page !== total" @click="page += 1" class="button">Вперед</button>
+    </div>
     </div>
 </template>
 
@@ -40,7 +44,7 @@
     overflow: hidden;
     width: 100%;
     line-height: 20px;
-    height: 20px;
+    height: 22px;
 }
 
 .main_element{
@@ -57,26 +61,77 @@
 }
 .container{
     overflow: hidden;
+    width: 100%;
+}
+.paginator{
+    margin: 15px 0 0 30%;
+    position: absolute;
+    bottom: 2%;
+}
+.paginator button{
+    background: #0000008c;
+    color: #f7f7f7;
+    text-decoration: none;
+    padding: 8px 16px;
+}
+.paginator button.active{
+    background: #240086;
+}
+.paginator button:hover{
+    background: #0099ff;
 }
 </style>
 
 <script>
 
 import newsGetList from '~/http/news/newsGetList'
+import getNewsCount from '~/http/news/getNewsCount'
+
 export default {
     data(){
         return{
             news: null,
             maxLength: 30,
+            page: null,
+            total: null,
 
         }
     },
+
+
+    watch: {
+        page() {
+            window.history.pushState(
+                null,
+                document.title,
+                `${window.location.pathname}?page=${this.page}`
+            )
+                this.getPageNewsList(this.page)
+        }
+    }, 
+
     async mounted(){
-        let r = await newsGetList(0, 10)
+        let r = await newsGetList(0, 2)
         this.news = r.data
+        if (this.$route.query.page == null) {
+            this.page = 1
+        } else {
+            this.page = this.$route.query.page
+        }
+        let countNews = await getNewsCount()
+        console.log(countNews.data.count)
+        this.total = Math.ceil(countNews.data.count/2)
+          
 
     },
-     
+    methods: {
+        async getPageNewsList(number) {
+            let ne = await newsGetList(number*2 - 2, 2)
+            this.news = ne.data
+            
+            
+        }
+    },
 }   
 
 </script>

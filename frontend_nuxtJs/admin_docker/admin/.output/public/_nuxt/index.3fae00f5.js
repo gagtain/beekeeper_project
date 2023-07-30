@@ -1,1 +1,0 @@
-import{_ as e}from"./entry.1da352be.js";const _={mounted(){this.$router.push("/admin/")}};function s(t,n,o,c,r,a){return null}const p=e(_,[["render",s],["__scopeId","data-v-3e92b94b"]]);export{p as default};

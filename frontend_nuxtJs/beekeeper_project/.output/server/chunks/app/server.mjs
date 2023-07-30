@@ -1251,7 +1251,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/catalog-875586ce.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/catalog-ed62ba46.mjs').then((m) => m.default || m)
   },
   {
     name: "checkout",
@@ -1259,7 +1259,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/checkout-f2b657dd.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout-d9301de4.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1403,7 +1403,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "https://owa.gagtain.ru/";
+let api_root = "http://localhost:8000/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -1429,7 +1429,8 @@ const useMainStore = defineStore("main", {
       favorite_product: []
     },
     catalog_list: [],
-    assess_token: ""
+    assess_token: "",
+    catalog_params: []
   }),
   actions: {
     increment() {
@@ -1463,6 +1464,20 @@ const useMainStore = defineStore("main", {
     },
     REFACTOR_CATALOG_LIST(catalog_list) {
       this.catalog_list = catalog_list;
+    },
+    ADD_ORDER_BY_CATALOG_PARAMS(params, not_params) {
+      let r = this.catalog_params.slice().filter((e) => !not_params.includes(e));
+      r.push(params);
+      this.catalog_params.length = 0;
+      this.catalog_params.push(...r);
+      console.log(this.catalog_params);
+    },
+    ADD_CATALOG_PARAMS(params) {
+      this.catalog_params.push(params);
+    },
+    REMOVE_CATALOG_PARAMS(params) {
+      let index = this.catalog_params.indexOf(params);
+      this.catalog_params.splice(index, 1);
     }
   },
   getters: {
@@ -1477,6 +1492,9 @@ const useMainStore = defineStore("main", {
     },
     getCatalog_list(state) {
       return state.catalog_list;
+    },
+    getCatalog_params(state) {
+      return state.catalog_params;
     }
   }
 });
@@ -1809,7 +1827,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "https://owa.gagtain.ru/"
+      api_root: "http://localhost:8000/"
     }
   };
 });

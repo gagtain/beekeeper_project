@@ -368,7 +368,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-1c5dd9ee.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-79342c99.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-orders-id",

@@ -48,6 +48,9 @@ class DimensionsProduct(models.Model):
     width = models.FloatField(verbose_name='Ширина')
     height = models.FloatField(verbose_name='Высота')
 
+    class Meta:
+        verbose_name = u"Габариты"
+        verbose_name_plural = u"Габариты"
 class Product(models.Model):
     """"Модель продукта"""
     name = models.CharField(max_length=100, blank=False, verbose_name="Название продукта")

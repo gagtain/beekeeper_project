@@ -1,0 +1,1 @@
+import{a as s,b as t}from"./main.2c26a49b.js";async function i(r){try{var e=await s({url:`${t}api/v0.1/delivery/search?${r}`,method:"get",headers:{}});return e}catch(a){return a.response}}export{i as s};
