@@ -2208,7 +2208,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "http://localhost:8000/";
+let api_root = "https://owa.gagtain.ru/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -2632,7 +2632,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "http://localhost:8000/"
+      api_root: "https://owa.gagtain.ru/"
     }
   };
 });
