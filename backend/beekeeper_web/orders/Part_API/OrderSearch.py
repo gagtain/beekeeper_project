@@ -19,14 +19,8 @@ class OrderFilter(APIView, Filter):
     def init_queryset(self, queryset: QuerySet):
         """Оптимизация запроса"""
 
-        size = 10
-        from_ = 0
-        try:
-            size = int(self.request.GET['size'])
-            print(size)
-            from_ = int(self.request.GET['from'])
-        except:
-            pass
+        size = int(self.request.GET.get('size', 10))
+        from_ = int(self.request.GET.get('from', 0))
         return queryset[from_:from_+size]
 
 

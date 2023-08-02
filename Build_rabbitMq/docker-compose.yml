@@ -3,6 +3,67 @@ version: '3.9'
 
 
 services:
+
+
+  database:    
+    image: postgres:latest
+    environment:
+    - POSTGRES_DB=beekeeper
+    - POSTGRES_USER=gagtain
+    - POSTGRES_PASSWORD=13576422
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gagtain -d beekeeper"]
+      interval: 10s
+      timeout: 5s
+      retries: 80
+      start_period: 10s
+    networks: 
+      - forwebapi
+
+  webapi:
+    build: 
+      context: ../backend/
+    container_name: webapi-
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD=13
+      - DEBUG=False
+      - DATABASE_HOST=database
+    command: ["sh", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+    
+    
+    ports:
+        - 8001:8000
+    networks: 
+      - forwebapi
+    depends_on:
+        database:
+          condition: service_healthy
+          
+  worker_2:
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD=13
+      - DEBUG=False
+      - DATABASE_HOST=database
+    build: 
+      context: ../backend/
+    container_name: worker_2
+    command: ["sh", "-c", "celery -A beekeeper_web beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler"]
+   
+    networks: 
+      - forwebapi
+  worker:
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD=13
+      - DEBUG=False
+      - DATABASE_HOST=database
+    build: 
+      context: ../backend/
+    container_name: worker
+    command: ["sh", "-c", "celery -A celery_app.app worker --loglevel=info"]
+   
+    networks: 
+      - forwebapi
+
   rabbitmq:
     image: rabbitmq:3.10.7-management
     hostname: rabbitmq
@@ -16,23 +77,6 @@ services:
       - 15672:15672
     networks: 
       - forwebapi
-
-
-  worker:
-    build: 
-      context: ../backend/
-    container_name: worker
-    environment:
-      - DJANGO_SUPERUSER_PASSWORD=13
-      - DEBUG=False
-      - DATABASE_HOST=database
-    entrypoint: celery
-    command: -A celery_app.app worker --loglevel=info
-    depends_on:
-      - rabbitmq
-    networks: 
-      - forwebapi
-
 
   
 networks:

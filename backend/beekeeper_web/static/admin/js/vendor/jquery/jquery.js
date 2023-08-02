@@ -1486,7 +1486,7 @@ setDocument = Sizzle.setDocument = function( node ) {
 			// IE doesn't have `contains` on `document` so we need to check for
 			// `documentElement` presence.
 			// We need to fall back to `a` when `documentElement` is missing
-			// as `ownerDocument` of elements within `<template/>` may have
+			// as `ownerDocument` of elements within `<templates/>` may have
 			// a null one - a default behavior of all modern browsers.
 			var adown = a.nodeType === 9 && a.documentElement || a,
 				bup = b && b.parentNode;
@@ -3419,7 +3419,7 @@ jQuery.each( {
 		}
 
 		// Support: IE 9 - 11 only, iOS 7 only, Android Browser <=4.3 only
-		// Treat the template element as a regular one in browsers that
+		// Treat the templates element as a regular one in browsers that
 		// don't support it.
 		if ( nodeName( elem, "template" ) ) {
 			elem = elem.content || elem;

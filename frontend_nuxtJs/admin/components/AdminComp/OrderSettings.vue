@@ -6,13 +6,13 @@
             order.status == 'Одобрен'
           "
           class="btn"
-          @click="submit_waiting"
+          @click="submit_waiting()"
         >
           Подтвердить доставку
         </button>
         <button
           v-if="
-            order.status == 'Не одобренный' && order.payment == 'succeeded'
+            order.status == 'Не одобренный' && order.payment.status == 'succeeded'
           "
           class="btn"
           @click="submit_order()"
@@ -30,7 +30,8 @@
         v-on:order_status_closed="order_status_closed"
           v-if="
             delivery.status == 'На проверке' &&
-            order.status != 'Одобрен'
+            order.status != 'Одобрен' &&
+            order.payment.status != 'succeeded'
           " :order="order">
           </order-status-closed>
         <button class="btn" v-if="delivery.status == 'Отправлен'">

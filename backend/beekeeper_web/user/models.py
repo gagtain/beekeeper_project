@@ -31,6 +31,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
         ),
     )
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
+    is_sending = models.BooleanField(default=False, blank=True)
 
     objects = UserManager()
 
