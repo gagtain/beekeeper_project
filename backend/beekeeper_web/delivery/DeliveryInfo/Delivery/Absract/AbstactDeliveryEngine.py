@@ -16,14 +16,14 @@ class AbstractDeliveryEngine(ABC):
     _order_engine = None
     _delivery: QuerySet
     _delivery_model: models.Model
-    _order_engine_enum: enum.Enum # возможные движки
+    _order_engine_enum: enum.Enum.__class__ # возможные движки
 
     def __init__(self, data):
         self._data = data
 
     def _get_order_engine(self, order_engine):
-
-        return getattr(self._order_engine_enum, order_engine).value
+        print(self._order_engine_enum.get('__dict__'))
+        return self._order_engine_enum.get(order_engine)
 
     def _set_delivery(self, pk):
         try:

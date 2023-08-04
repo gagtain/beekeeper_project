@@ -1,0 +1,1 @@
+import{i as o,j as t,k as i}from"./entry.4d3c4b43.js";async function u(r,e){try{var s=await o({url:`${t}api/v0.1/news/list?from=${r}&size=${e}`,method:"get",headers:{Authorization:`Bearer ${i("assess").value}`}});return s}catch(a){return a.response}}export{u as n};

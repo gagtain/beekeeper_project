@@ -149,7 +149,7 @@
 <NuxtLink no-prefetch :to="`/news`"><button style="background: rgb(160,166,62);; cursor: pointer;width: 100%;border: none;border-radius: 6px; padding: 2% 3%;"><div class="w-sto h_sto flex"><p class="auto small-big">Все новости</p></div></button>
 </NuxtLink>
         </div>
-          <div class="interactiv auto">
+          <div v-if="!$store.getUser.is_sending" class="interactiv auto">
             <div class="flex w-sto text_in_sot">
             <p class="big auto main-text">Рассылка</p>
           </div>

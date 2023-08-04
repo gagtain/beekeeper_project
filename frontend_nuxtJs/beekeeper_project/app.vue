@@ -1,6 +1,7 @@
 <template>
   <div id="app">
   <headersBase></headersBase>
+    <tooltip></tooltip>
     <NuxtPage/>
   <FooterBase></FooterBase>
   <MainMobailMenu></MainMobailMenu>
@@ -25,12 +26,14 @@
 import headersBase from './components/HeadersBase.vue'
 import FooterBase from './components/FooterBase.vue'
 import { useMainStore } from '@/store/index'
+import Tooltip from './components/AddtionalComp/Tooltip.vue'
 export default defineNuxtComponent({
   name: "App",
   el: "#app",
   components:{
     headersBase,
-    FooterBase
+    FooterBase,
+    Tooltip
   },
   async asyncData() {
     const stores = useMainStore()

@@ -2,7 +2,7 @@ import base64
 import os
 from urllib.parse import urlparse
 from django.conf import settings
-from rest_framework import status
+from rest_framework import status, mixins
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -36,7 +36,7 @@ class NewsListAPI(APIView):
     def news_list(self, request):
         size = int(self.request.GET.get('size', 10))
         from_ = int(self.request.GET.get('from', 0))
-        instance = News.objects.all()[from_:from_+size]
+        instance = News.objects.all()[from_:from_ + size]
         serializer = NewsSerializersRetrieve(instance=instance, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
@@ -47,3 +47,10 @@ class NewsRetrieveAPI(APIView):
         instance = get_object_or_404(News, pk=pk)
         serializer = NewsSerializersRetrieve(instance=instance)
         return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class NewsDelete(APIView):
+    def remove(self, request, pk):
+        instance = News.objects.get(pk=pk)
+        instance.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)

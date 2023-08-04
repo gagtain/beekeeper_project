@@ -23,6 +23,9 @@ class Email:
         except:
             raise "Проверьте логин/пароль"
 
+    def close(self):
+        self.__server.close()
+
     def text_in_file(self, file):
         try:
             with open(file) as f:

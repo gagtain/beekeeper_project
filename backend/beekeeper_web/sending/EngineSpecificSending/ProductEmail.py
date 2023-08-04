@@ -2,10 +2,10 @@ from django.db.models import Min
 from django.template.loader import render_to_string
 
 from beekeeper_web_api.models import Product
-from global_modules.email.core.basic import Email
+from global_modules.email.EmailDjangoRender import EmailDjangoRender
 
 
-class ProductEmail(Email):
+class ProductEmail(EmailDjangoRender):
 
     def get_new_product(self):
         """Необходимо получить продукты, добавленный сегодня"""
@@ -14,7 +14,8 @@ class ProductEmail(Email):
 
     def text_in_render_django_file(self, context):
         base_context = {
-            'productList': self.get_new_product()
+            'productList': self.get_new_product(),
+            'href': 'https://gagtain.ru/catalog'
         }
         context = base_context | context
         self.text = render_to_string(template_name='Specific_Sending.html', context=context)

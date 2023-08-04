@@ -71,9 +71,15 @@ export default {
       this.$emit('submit_order')
     },
     order_status_closed(event){
-      console.log(event)
-      this.delivery.order_delivery_transaction[0] = event
+      try{
+
+        console.log(event)
+      this.order = event
       this.delivery.status = "Отменен"
+      }catch{
+        
+      this.$emit('order_status_closed', event)
+      }
     }
     },
 }

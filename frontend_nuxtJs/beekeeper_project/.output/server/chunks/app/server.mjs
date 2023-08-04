@@ -1275,7 +1275,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-b627e794.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-d2f41122.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1403,7 +1403,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "https://owa.gagtain.ru/";
+let api_root = "http://localhost:8000/";
 async function verifAssessToken(assess_token) {
   try {
     var response = await axios({
@@ -1430,7 +1430,11 @@ const useMainStore = defineStore("main", {
     },
     catalog_list: [],
     assess_token: "",
-    catalog_params: []
+    catalog_params: [],
+    tooltip: {
+      status: false,
+      title: ""
+    }
   }),
   actions: {
     increment() {
@@ -1478,6 +1482,9 @@ const useMainStore = defineStore("main", {
     REMOVE_CATALOG_PARAMS(params) {
       let index = this.catalog_params.indexOf(params);
       this.catalog_params.splice(index, 1);
+    },
+    REFACTOR_TOOLTIP(tooltip) {
+      this.tooltip = tooltip;
     }
   },
   getters: {
@@ -1495,6 +1502,9 @@ const useMainStore = defineStore("main", {
     },
     getCatalog_params(state) {
       return state.catalog_params;
+    },
+    getTooltip(state) {
+      return state.tooltip;
     }
   }
 });
@@ -1827,7 +1837,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "https://owa.gagtain.ru/"
+      api_root: "http://localhost:8000/"
     }
   };
 });
@@ -1872,7 +1882,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$5 = /* @__PURE__ */ defineNuxtComponent({
+const _sfc_main$6 = /* @__PURE__ */ defineNuxtComponent({
   el: "search",
   name: "SearchComp",
   data() {
@@ -1915,7 +1925,7 @@ const _sfc_main$5 = /* @__PURE__ */ defineNuxtComponent({
     }
   }
 }, "$fGsKM8u89Z");
-function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({
     class: "container relative",
     id: "search"
@@ -1931,17 +1941,17 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</div></div>`);
 }
-const _sfc_setup$5 = _sfc_main$5.setup;
-_sfc_main$5.setup = (props, ctx) => {
+const _sfc_setup$6 = _sfc_main$6.setup;
+_sfc_main$6.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/SeacrhComp.vue");
-  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
+  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
-const __nuxt_component_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$4], ["__scopeId", "data-v-906d4ac1"]]);
+const __nuxt_component_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-906d4ac1"]]);
 const _imports_0$2 = "" + __publicAssetsURL("favicon.ico");
 const _imports_2$1 = "" + __buildAssetsURL("shopping-cart_icon-icons.com_69303.65d78e34.svg");
 const _imports_2 = "" + __buildAssetsURL("favorite_add.076c9a6b.png");
-const _sfc_main$4 = /* @__PURE__ */ defineNuxtComponent({
+const _sfc_main$5 = /* @__PURE__ */ defineNuxtComponent({
   name: "HeadersBase",
   el: "#header",
   async asyncData() {
@@ -1987,7 +1997,7 @@ const _sfc_main$4 = /* @__PURE__ */ defineNuxtComponent({
     }
   }
 }, "$TBXt0gpp6A");
-function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_NuxtLink = __nuxt_component_0$1;
   const _component_SeacrhComp = __nuxt_component_1$1;
   _push(`<div${ssrRenderAttrs(mergeProps({ id: "header" }, _attrs))} data-v-edbb9945><div class="menu" style="${ssrRenderStyle({ "background": "linear-gradient(45deg, yellow, orange)" })}" data-v-edbb9945><div class="absolute w-sto h_sto g" data-v-edbb9945></div><div class="interactiv h_sto" data-v-edbb9945><div class="w-sto name_org flex" id="mob_mob_block" data-v-edbb9945><p class="auto" data-v-edbb9945>Пчелиная артель</p></div><div class="menu_" data-v-edbb9945><div class="logo relative" data-v-edbb9945><div class="logo-page flex absolute" data-v-edbb9945><img${ssrRenderAttr("src", _imports_0$2)} class="logo_img auto" alt="" data-v-edbb9945></div></div><div class="context_menu context_menu_info" data-v-edbb9945><div class="flex" id="deks_hed" data-v-edbb9945><div class="menu_items" id="deks_hed" data-v-edbb9945>`);
@@ -2283,13 +2293,13 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</ul></div></div><div class="${ssrRenderClass([_ctx.is_menu_mobile ? "menu_pop_mob_zatem_active" : "", "absolute menu_pop_mob_zatem"])}" data-v-edbb9945></div></div>`);
 }
-const _sfc_setup$4 = _sfc_main$4.setup;
-_sfc_main$4.setup = (props, ctx) => {
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/HeadersBase.vue");
-  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-edbb9945"]]);
+const __nuxt_component_0 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$4], ["__scopeId", "data-v-edbb9945"]]);
 const interpolatePath = (route, match) => {
   return match.path.replace(/(:\w+)\([^)]+\)/g, "$1").replace(/(:\w+)[?+*]/g, "$1").replace(/:\w+/g, (r) => {
     var _a;
@@ -2404,7 +2414,7 @@ const RouteProvider = /* @__PURE__ */ defineComponent({
   }
 });
 const _imports_0$1 = "" + __buildAssetsURL("892498.d01e5868.png");
-const _sfc_main$3 = /* @__PURE__ */ defineNuxtComponent({
+const _sfc_main$4 = /* @__PURE__ */ defineNuxtComponent({
   el: "#footer",
   name: "FooterBase",
   setup() {
@@ -2417,21 +2427,21 @@ const _sfc_main$3 = /* @__PURE__ */ defineNuxtComponent({
     }
   }
 }, "$JTAA5RZwID");
-function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({ id: "footer" }, _attrs))}><footer class="flex" id="deks"><div class="interactiv flex jus-sp auto"><div class="foo"><p class="foo_p">Компания</p><p class="foo_p_li foo_p_li_perv">О нас</p><p class="foo_p_li">Контакты</p></div><div class="foo"><p class="foo_p">ПОЛЕЗНОЕ</p><p class="foo_p_li foo_p_li_perv">Оплата и доставка</p><p class="foo_p_li">Условия возврата</p><p class="foo_p_li">Бонусная система</p></div><div class="foo"><p class="foo_p">ПОКУПАТЕЛЮ</p><p class="foo_p_li foo_p_li_perv">Избранное</p><p class="foo_p_li">Публичная оферта</p><p class="foo_p_li">Политика конфиденциальности</p></div><div class="foo"><p class="foo_p">КОНТАКТЫ</p><div class="foo_img"><span class="material-symbols-outlined"> expand_more </span><span class="material-symbols-outlined"> expand_more </span></div><p class="foo_p_li">О нас</p><p class="foo_p_li">Контакты</p></div></div></footer><footer id="mobs"><div class="interactiv auto"><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0$1)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div></div></footer></div>`);
 }
-const _sfc_setup$3 = _sfc_main$3.setup;
-_sfc_main$3.setup = (props, ctx) => {
+const _sfc_setup$4 = _sfc_main$4.setup;
+_sfc_main$4.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/FooterBase.vue");
-  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$2]]);
+const __nuxt_component_2 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$3]]);
 const _imports_0 = "" + __buildAssetsURL("roof_house_home_opening_icon-icons.com_75451.5a6c3c3f.svg");
 const _imports_1 = "" + __buildAssetsURL("catalog_icon_215654.7a90f4ca.svg");
 const _imports_3 = "" + __buildAssetsURL("pngwing.com.4e9aa2ec.png");
-const _sfc_main$2 = {};
-function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+const _sfc_main$3 = {};
+function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_NuxtLink = __nuxt_component_0$1;
   _push(`<div${ssrRenderAttrs(mergeProps({ id: "main_mobail_menu" }, _attrs))}><div class="main_mobail_menu_item">`);
   _push(ssrRenderComponent(_component_NuxtLink, {
@@ -2511,19 +2521,51 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div>`);
 }
+const _sfc_setup$3 = _sfc_main$3.setup;
+_sfc_main$3.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/MainMobailMenu.vue");
+  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+};
+const __nuxt_component_3 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$2]]);
+const _sfc_main$2 = {
+  mounted() {
+    console.log("tooltip");
+  },
+  watch: {
+    "$store.getTooltip.status"(n, p) {
+      if (n) {
+        setTimeout(() => {
+          this.$store.REFACTOR_TOOLTIP({
+            status: false,
+            title: ""
+          });
+        }, 3e3);
+      }
+    }
+  }
+};
+function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  if (_ctx.$store.getTooltip.status) {
+    _push(`<div${ssrRenderAttrs(mergeProps({ class: "fixed tooltip w-sto h_sto flex" }, _attrs))}><div class="interactiv relative h_sto"><div class="tooltip_div absolute"><p class="auto">${ssrInterpolate(_ctx.$store.getTooltip.title)}</p></div></div></div>`);
+  } else {
+    _push(`<!---->`);
+  }
+}
 const _sfc_setup$2 = _sfc_main$2.setup;
 _sfc_main$2.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/MainMobailMenu.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/AddtionalComp/Tooltip.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const __nuxt_component_3 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$1]]);
+const Tooltip = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$1]]);
 const _sfc_main$1 = /* @__PURE__ */ defineNuxtComponent({
   name: "App",
   el: "#app",
   components: {
     headersBase: __nuxt_component_0,
-    FooterBase: __nuxt_component_2
+    FooterBase: __nuxt_component_2,
+    Tooltip
   },
   async asyncData() {
     const stores = useMainStore();
@@ -2541,11 +2583,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineNuxtComponent({
 }, "$E3KxD8SGyR");
 function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_headersBase = __nuxt_component_0;
+  const _component_tooltip = resolveComponent("tooltip");
   const _component_NuxtPage = __nuxt_component_1;
   const _component_FooterBase = __nuxt_component_2;
   const _component_MainMobailMenu = __nuxt_component_3;
   _push(`<div${ssrRenderAttrs(mergeProps({ id: "app" }, _attrs))}>`);
   _push(ssrRenderComponent(_component_headersBase, null, null, _parent));
+  _push(ssrRenderComponent(_component_tooltip, null, null, _parent));
   _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
   _push(ssrRenderComponent(_component_FooterBase, null, null, _parent));
   _push(ssrRenderComponent(_component_MainMobailMenu, null, null, _parent));

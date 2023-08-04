@@ -103,7 +103,24 @@ services:
       - rabbitmq
     networks: 
       - forwebapi
-      
+    
+  worker_2:
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD=13
+      - DEBUG=False
+      - DATABASE_HOST=database
+    entrypoint: celery
+    build: 
+      context: ../backend/
+    container_name: worker_2
+    command: -A beekeeper_web beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+    depends_on:
+      - rabbitmq
+      - webapi
+    networks: 
+      - forwebapi
+
 networks:
   forwebapi:
     name: forwebapi

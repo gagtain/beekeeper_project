@@ -3,7 +3,7 @@
       <div class="order-not-active">
           <p class="small">Всего не одобренных заказов: <span style="color: blue;">{{ count_orders }}</span> </p>
           
-          <NuxtLink to="/admin/orders/?status=Не одобренный" no-prefetch><button class="btn">Посмотреть</button></NuxtLink>
+          <NuxtLink to="/admin/orders/?filter=status=Не одобренный" no-prefetch><button class="btn">Посмотреть</button></NuxtLink>
       </div>
     </article>
   </template>

@@ -10,10 +10,8 @@ class ContextEmail(Email):
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-
-        self.__server.close()
+        super().close()
 
     def __init__(self, server, port):
-        self.__server = smtplib.SMTP(server, port)
-        self.__server.starttls()
+        super().__init__(server, port)
 

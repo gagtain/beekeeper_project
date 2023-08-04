@@ -1,14 +1,31 @@
 <template>
 <form class="email_sending auto m2">
 <p class="normal-small">Подпишитесь на рассылку, чтобы получать актуальные новости первыми</p>
-<input placeholder="email" type="email" name="" id="">
-<button type="submit">Подтвердить</button>
+<input v-model="email" placeholder="email" type="email" name="" id="">
+<button @click.prevent="add_sending()" type="submit"><div class="w-sto h_sto flex"><p class="auto small-big">Подтвердить</p></div></button>
 </form>  
 </template>
 
 <script>
+import addSending from '~/additional_func/Sending/addSending'
 export default {
+	data(){
+		return{
+			email: ''
+		}
+	},
+	methods:{
+		async add_sending(){
+			let r = await addSending(this.email)
+			if (r.status == 200){
 
+				this.$store.REFACTOR_TOOLTIP({
+			status: true,
+			title: 'Успешно'
+		})
+			}
+		}
+	}
 }
 </script>
 <style scoped>
@@ -29,17 +46,6 @@ input {
 		font-size: 14px;
 	}
 	button {
-		text-transform: uppercase;
-		outline: 0;
-		background: rgb(160,166,62);
-		width: 100%;
-		border: 0;
-		border-radius: 5px;
-		padding: 15px;
-		color: #000;
-		font-size: 14px;
-		-webkit-transition: all 0.3 ease;
-		transition: all 0.3 ease;
-		cursor: pointer;
+		background: rgb(160,166,62);; cursor: pointer;width: 100%;border: none;border-radius: 6px; padding: 2% 3%;
 	}
 </style>

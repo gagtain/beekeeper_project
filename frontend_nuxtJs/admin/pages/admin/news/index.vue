@@ -2,7 +2,7 @@
     <div v-if="news">
 
         <section class="grid">
-    <article style="padding: 3%; display: flex; height: auto; min-height: 300px;">
+    <article v-if="news[0]" style="padding: 3%; display: flex; height: auto; min-height: 300px;">
         <div class="container">
             <h4 class="main_news_title">{{ news[0].title }} </h4>
             <br>
@@ -20,7 +20,7 @@
         </div>
     </article>
         </section>
-    <div class="paginator">
+    <div class="paginator" v-if="total > 1">
         <button v-if="page > 1" @click="page -= 1" class="button">Назад</button>
         <button  :class="{active: page==1}" @click="page = 1" class="button">{{ 1 }}</button>
         <template v-for="t in total - 1" :key="t">
@@ -65,20 +65,21 @@
 }
 .paginator{
     margin: 15px 0 0 30%;
-    position: absolute;
-    bottom: 2%;
 }
 .paginator button{
-    background: #0000008c;
-    color: #f7f7f7;
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #337ab7;;
     text-decoration: none;
     padding: 8px 16px;
 }
 .paginator button.active{
-    background: #240086;
+    background: #337ab7;
+    color: #fff;
+    border-color: #337ab7;
 }
 .paginator button:hover{
-    background: #0099ff;
+    background: #ddd;
 }
 </style>
 

@@ -34,7 +34,8 @@
         <order-settings
          v-on:delivery_info_submit="delivery_info_submit"
          v-on:submit_order="submit_order"
-         v-on="submit_waiting"
+         v-on:submit_waiting="submit_waiting"
+         v-on:order_status_closed="order_status_closed"
           :delivery="order.delivery"
            :order="order"></order-settings>
       </div>
@@ -60,6 +61,7 @@ import DeliveryInfo from "~/components/AdminComp/DeliveryInfo.vue";
 import getOrder from '~/http/orders/getOrder'
 import OrderItemList from "~/components/AdminComp/OderItemList.vue";
 import OrderInfo from "~/components/AdminComp/OrderInfo.vue";
+import deliverySubmitWaiting from "~/http/delivery/deliverySubmitWaiting";
 import OrderSettings from '../../../components/AdminComp/OrderSettings.vue';
 import SubmitOrder from '~/http/orders/SubmitOrder'
 import PaymentInfo from '../../../components/AdminComp/PaymentInfo.vue';
@@ -84,9 +86,14 @@ export default {
         this.order = r.data
     },
     async submit_waiting() {
+      console.log(123)
       let r = await deliverySubmitWaiting(this.order.delivery.id);
       this.order.delivery = r.data;
     },
+    order_status_closed(event){
+      
+      this.order = event
+    }
   },
 };
 </script>

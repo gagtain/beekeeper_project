@@ -10,7 +10,11 @@ export const useMainStore = defineStore('main', {
     },
     catalog_list: [],
     assess_token: '',
-    catalog_params: []
+    catalog_params: [],
+    tooltip: {
+      status: false,
+      title: ''
+    }
   }),
   actions: {
     increment() {
@@ -61,6 +65,9 @@ export const useMainStore = defineStore('main', {
 
       let index = this.catalog_params.indexOf(params)
       this.catalog_params.splice(index, 1)
+    },
+    REFACTOR_TOOLTIP(tooltip){
+      this.tooltip = tooltip
     }
   },
   getters: {
@@ -78,6 +85,9 @@ export const useMainStore = defineStore('main', {
     },
     getCatalog_params(state){
       return state.catalog_params
+    },
+    getTooltip(state){
+      return state.tooltip
     }
   }
 })

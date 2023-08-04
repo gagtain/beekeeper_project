@@ -1,5 +1,11 @@
 <template>
  <div class="news_container" style="padding: 3%;" v-if="news">
+    <div style="  width: 100%;
+  display: flex;
+  justify-content: end;">
+
+        <button @click="delete_news()" style="width: auto; margin: 0; background: var(--red);" class="btn">Удалить</button>
+    </div>
     <h1 class="news_title">{{ news.title }} </h1>
     <br>
     <p class="news_text" v-html="news.context"></p>
@@ -8,6 +14,7 @@
 
 <script>
 import getNews from '~/http/news/getNews'
+import deleteNew from '~/http/news/deleteNew'
 export default {
     async mounted () {
         let r = await getNews(this.$route.params.id)
@@ -24,6 +31,12 @@ export default {
     }
         this.news = data
         console.log(this.news)
+    },
+    methods:{
+        async delete_news(){
+            await deleteNew(this.news.id)
+            this.$router.push('/admin/news')
+        }
     },
     data () {
         return {

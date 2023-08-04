@@ -12,7 +12,7 @@ class RetrieveUser(serializers.ModelSerializer):
     class Meta:
         depth = 2  # исправить
         model = MainUser
-        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product']
+        fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'is_sending']
 
     def get_basket(self, instance):
         return BasketSerializer(BasketItem.objects.filter(user=self.context['user_id']), many=True).data

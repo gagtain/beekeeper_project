@@ -14,3 +14,6 @@ class News(models.Model):
     class Meta:
         verbose_name = u"Новость"
         verbose_name_plural = u"Новости"
+
+    def get_url(self):
+        return f'news/{self.id}'

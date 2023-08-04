@@ -10,6 +10,9 @@
 .auto{
     margin: auto;
 }
+.fixed{
+    position: fixed;
+}
 .green{
     color: green;
 }
