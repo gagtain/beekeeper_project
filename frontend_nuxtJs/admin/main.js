@@ -1,5 +1,5 @@
 
-export let api_root = 'http://localhost:8000/'
+export let api_root = 'https://owa.gagtain.ru/'
 
 
 
