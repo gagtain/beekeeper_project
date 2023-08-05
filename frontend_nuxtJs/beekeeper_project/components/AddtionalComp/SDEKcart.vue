@@ -27,9 +27,6 @@ export default{
     insertScript.setAttribute('src', 'https://widget.cdek.ru/widget/scripts/ipjq.js')
     document.body.appendChild(insertScript)
     insertScript = document.createElement('script')
-    insertScript.setAttribute('src', 'https://api-maps.yandex.ru/2.1/?apikey=f4e034c2-8c37-4168-8b97-99b6b3b268d7&amp;lang=ru_RU')
-    document.body.appendChild(insertScript)
-    insertScript = document.createElement('script')
     insertScript.setAttribute('src', 'https://widget.cdek.ru/widget/scripts/jquery.mCustomScrollbar.concat.min.js')
     document.body.appendChild(insertScript)
     },

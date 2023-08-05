@@ -9,7 +9,7 @@ from user.models import MainUser
 class SendingAdd:
 
     def add_user_sending(self, request):
-        user: MainUser = MainUser.objects.get(id=1)
+        user: MainUser = request.user
         serializer = EmailSendingSerializer(data={
             'user': user.id,
             'email': request.data.get('email')
@@ -27,7 +27,7 @@ class SendingAdd:
 class SendingRemove:
 
     def remove_user_sending(self, request):
-        user: MainUser = MainUser.objects.get(id=1)
+        user: MainUser = request.user
         try:
             user.user_sending.delete()
             user.is_sending = False

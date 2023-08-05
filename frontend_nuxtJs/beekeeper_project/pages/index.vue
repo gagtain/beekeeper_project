@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="padding-top: 50px;">
       <div class="wrapper">
         <div
           class="absolute main-nak"
@@ -18,13 +18,13 @@
                   </button>
                 </div>
               </div>
-              <div class="main_img_div">
+              <div v-if="!$device.isMobile" class="main_img_div">
                 <img
                   :src="`${$api_root}static/online_store/images/phel.png`"
                   class="phel"
                   alt=""
                 />
-                <div class="slider-produtos-wrap h_sto">
+                <div  class="slider-produtos-wrap h_sto">
                   <swiper
                     :slidesPerView="1"
                     :spaceBetween="500"

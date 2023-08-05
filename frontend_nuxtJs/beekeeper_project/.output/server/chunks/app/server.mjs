@@ -1259,7 +1259,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/checkout-d9301de4.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout-c64a753d.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1275,7 +1275,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-d2f41122.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-93ad4cfe.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1283,7 +1283,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/login-fc2dc9e2.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/login-36a9be4e.mjs').then((m) => m.default || m)
   },
   {
     name: "news-id",
@@ -1323,7 +1323,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/register-a702af9b.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/register-f9b14298.mjs').then((m) => m.default || m)
   },
   {
     name: "tovar-id",

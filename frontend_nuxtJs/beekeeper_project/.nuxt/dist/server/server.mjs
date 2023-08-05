@@ -2064,7 +2064,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/checkout-d9301de4.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/checkout-c64a753d.js").then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -2080,7 +2080,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-d2f41122.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-93ad4cfe.js").then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2088,7 +2088,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/login-fc2dc9e2.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/login-36a9be4e.js").then((m) => m.default || m)
   },
   {
     name: "news-id",
@@ -2128,7 +2128,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/register-a702af9b.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/register-f9b14298.js").then((m) => m.default || m)
   },
   {
     name: "tovar-id",

@@ -991,6 +991,7 @@ export default function ISDEKWidjet(params) {
 
 		parsePVZFile: function (data) {
 			if (typeof(data.pvz) === 'undefined') {
+				console.log(data)
 				var sign = 'Unable to load list of PVZ : ';
 				if (typeof(data.pvz) === 'undefined') {
 					for (var i in data.error) {
