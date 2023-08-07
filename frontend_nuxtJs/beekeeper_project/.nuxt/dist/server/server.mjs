@@ -2048,7 +2048,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/basket-05936cc9.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/basket-5cd5c801.js").then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -2056,7 +2056,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/catalog-ed62ba46.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/catalog-8840fa1d.js").then((m) => m.default || m)
   },
   {
     name: "checkout",
@@ -2064,7 +2064,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/checkout-c64a753d.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/checkout-ad44cf9c.js").then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -2072,7 +2072,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/favorite-0ac19040.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/favorite-93fc12ef.js").then((m) => m.default || m)
   },
   {
     name: "index",
@@ -2080,7 +2080,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-93ad4cfe.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-b9c11210.js").then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2112,7 +2112,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/orders-3b2a7338.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/orders-40220cbd.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -2120,7 +2120,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import("./_nuxt/profile-0b102a57.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/profile-1a5814f7.js").then((m) => m.default || m)
   },
   {
     name: "register",
@@ -2136,7 +2136,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/_id_-12d3ae7e.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_id_-4c357363.js").then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {

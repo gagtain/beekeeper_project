@@ -10,7 +10,7 @@
                   </div>
                   <div class="info_order_product_div">
 
-                    <div class="name_order_product">{{ orderItem.productItem.product.name }} [{{ orderItem.productItem.weight.weight }} гр]</div>
+                    <div class="name_order_product">{{ orderItem.productItem.product.name }} {{ orderItem.productItem.weight ? '[' + orderItem.productItem.weight.weight + 'гр]' : '' }} </div>
                 <p>{{ orderItem.productItem.price }} {{ orderItem.productItem.price_currency }}</p>
                 <p>{{ orderItem.count }} шт</p>
                   </div>

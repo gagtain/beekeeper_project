@@ -11,18 +11,19 @@ from delivery.DeliveryInfo.Order.Abstract.AbstractOrderEngine import AbstractOrd
 
 
 class AbstractDeliveryEngine(ABC):
+    """Абстрактный класс для всех движков доставок"""
+
     _info = {}
     _data = {}
     _order_engine = None
     _delivery: QuerySet
     _delivery_model: models.Model
-    _order_engine_enum: enum.Enum.__class__ # возможные движки
+    _order_engine_enum: enum.Enum.__class__
 
     def __init__(self, data):
         self._data = data
 
     def _get_order_engine(self, order_engine):
-        print(self._order_engine_enum.get('__dict__'))
         return self._order_engine_enum.get(order_engine)
 
     def _set_delivery(self, pk):
@@ -37,6 +38,6 @@ class AbstractDeliveryEngine(ABC):
         """Точка входа для изменения __info"""
         pass
 
-    def __dir__(self):
+    def get_info(self):
         self._initial_data()
         return self._info

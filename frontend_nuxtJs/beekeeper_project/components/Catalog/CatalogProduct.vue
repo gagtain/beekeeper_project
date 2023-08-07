@@ -29,23 +29,11 @@
                       >
                     </div>
                     <rating-comp :rating="pr.rating"></rating-comp>
-                    <div class="variant">
-                      <h3>Размер</h3>
-                      <div class="flex">
-                        <ul class="variant-ul">
-                          <li  @click="select_type_weigth(ls_w.id)" :class="select_productItem.weight.id == ls_w.id ? 'active' : ''"
-                           v-for="ls_w, index in get_weight_type_list()" :key="index" class="photo-album-li">
-                           
-                            <div class="h_sto">
-                              <p>{{ ls_w.weight }} гр</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="product__text">
-                    </div>
-                    <div class="flex jus-sp">
+                    <select-variant-menu :select_productItem="select_productItem"
+                     :pr="pr"
+                     v-on:select_product="select_product"
+                     ></select-variant-menu>
+                    <div :style="select_productItem.weight ? 'margin-top: 8px' : 'margin-top: 56px'" class="flex jus-sp">
                       <AddBasket style="width: 40%;" :id="select_productItem.id" ></AddBasket>
                       <FavoriteComp :id="select_productItem.id" ></FavoriteComp>
                     </div>
@@ -74,6 +62,8 @@ import AddBasket from '../AddtionalComp/AddBasket.vue';
 import TovarMinImageList from "../AddtionalComp/TovarMinImageList.vue";
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
 import RatingComp from '../Tovar/RatingComp.vue';
+import SelectVariantMenu from '../Product/SelectVariantMenu.vue';
+import SelectVariantMixin from '../Product/SelectVariantMixin.vue';
 export default{
     el:'#product_catalog',
     name:'CatalogProduct',
@@ -83,31 +73,18 @@ export default{
     AddBasket,
     FavoriteComp,
     RatingComp,
+    SelectVariantMenu,
   },
+  mixins: [ SelectVariantMixin ],
   data(){
     return {
       type_weigth_id: null,
-      select_productItem: null
     }
   },
   created(){
     this.select_productItem = this.pr.productItemList[0]
     
   },
-  methods:{
-    select_type_weigth(pk){
-      let a = this.pr.productItemList.slice()
-      this.select_productItem = a.filter(ob => ob.weight.id == pk)[0]
-      console.log(this.select_productItem)
-    },
-    get_weight_type_list(){
-      let list = []
-      this.pr.productItemList.forEach(element => {
-        list.push(element.weight)
-      });
-      return list
-    }
-  }
 }
 
 </script>

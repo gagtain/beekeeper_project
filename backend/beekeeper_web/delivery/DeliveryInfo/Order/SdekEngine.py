@@ -1,6 +1,6 @@
 from delivery.DeliveryInfo.Order.Abstract.AbstractOrderSdekEngine import AbstractOrderSdekEngine
 from delivery.DeliveryInfo.Order.enum.Pred_Payment import PrePayment
-from delivery.dilivery_core.shemas.Delivery import Packages, PackagesItems, Payment
+from delivery.dilivery_core.shemas.Delivery import Packages, PackagesItems, Payment, Recipient, SenderPhones
 from orders.models import Order, OrderItem
 
 
@@ -30,6 +30,12 @@ class SdekOnlineStoreEngine(AbstractOrderSdekEngine):
                     self._get_package_info(i)
                 )
         return packages
+
+
+    def get_recipient(self):
+        return Recipient(name=self._order.user.FIO, phones=[SenderPhones(
+            number='1324'
+        )])
 
     def _get_package_info(self, order_item: OrderItem) -> PackagesItems:
         return PackagesItems(

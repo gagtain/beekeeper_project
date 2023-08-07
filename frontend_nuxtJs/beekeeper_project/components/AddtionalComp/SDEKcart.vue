@@ -58,12 +58,13 @@ export default{
         get_goods(){
             let list = []
             this.products.forEach(element => {
-                
-                list.push({ length : element.productItem.dimensions.length,
+                for(let i; i<=this.products.count; i++){
+
+                    list.push({ length : element.productItem.dimensions.length,
                      width : element.productItem.dimensions.width,
-                      height : element.productItem.dimensions.height, weight : element.productItem.weight.weight/1000 })
-            });
-            console.log(list)
+                      height : element.productItem.dimensions.height, weight : element.productItem.dimensions.weight/1000 })
+            };
+                })
             return list
         }
     }

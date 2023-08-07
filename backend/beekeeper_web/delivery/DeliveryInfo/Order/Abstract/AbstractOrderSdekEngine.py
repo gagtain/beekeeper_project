@@ -5,12 +5,18 @@ from abc import abstractmethod
 
 
 class AbstractOrderSdekEngine(AbstractOrderEngine):
+    """ Типовой абстрактный класс для заказов для доставки СДЭК  """
+
     pred_payment: PrePayment
 
-    def __init__(self, pred_payment, *args, **kwargs):
-        self.pred_payment = pred_payment
+    def __init__(self, pred_payment: str, *args, **kwargs):
+        self.pred_payment = getattr(PrePayment, pred_payment)
         super().__init__(*args, **kwargs)
 
     @abstractmethod
     def get_packages(self) -> list[Packages]:
+        pass
+
+    @abstractmethod
+    def get_recipient(self):
         pass

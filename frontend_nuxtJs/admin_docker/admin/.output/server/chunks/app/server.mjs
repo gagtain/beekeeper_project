@@ -320,7 +320,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-d96850e7.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-99e6901d.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-delivery",
@@ -368,7 +368,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-bd8edd41.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-d52d9ffe.mjs').then((m) => m.default || m)
   },
   {
     name: "admin-orders",

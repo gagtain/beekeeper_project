@@ -1,0 +1,1 @@
+import{a as o,b as s}from"./main.ddb459a7.js";async function n(r){try{var a=await o({url:`${s}api/v0.1/orders/search/count?${r}`,method:"get",headers:{}});return a}catch(e){return e.response}}export{n as s};

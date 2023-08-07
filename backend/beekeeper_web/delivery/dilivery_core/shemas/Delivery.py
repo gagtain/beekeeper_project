@@ -1,5 +1,6 @@
 import enum
 from dataclasses import dataclass, field
+from typing import Optional
 
 from dataclasses_json import dataclass_json
 from django.conf import settings
@@ -37,6 +38,7 @@ class Packages:
 @dataclass
 class SenderPhones:
     number: str
+    desk: str | None = None
 
 
 @dataclass_json
@@ -49,7 +51,7 @@ class DefaultSenderPhones:
 @dataclass
 class Recipient:
     name: str
-    phones: list[SenderPhones]
+    phones: list[SenderPhones, ]
 
 
 @dataclass_json
@@ -94,7 +96,7 @@ class DeliveryAdd:
     type: TypeOrder = TypeOrder.online_shop.value
     shipment_point: str = settings.SDEK_SHIPMENT_POINT
     recipient: Recipient = field(default_factory=DefaultRecipient)
-    additional_order_type: list[AdditionalTypeOrder] = field(default_factory=list)
+    additional_order_types: list[AdditionalTypeOrder] = field(default_factory=list)
     sender: Sender = field(default_factory=DefaultSender)
 
 

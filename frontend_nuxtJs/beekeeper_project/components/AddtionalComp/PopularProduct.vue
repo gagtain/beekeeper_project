@@ -29,24 +29,15 @@
                         }}</span></span
                       >
                     </div>
-                    <div class="variant">
-                      <h3>Размер</h3>
-                      <div class="flex">
-                        <ul class="variant-ul">
-                          <li  @click="select_type_weigth(ls_w.id)" :class="select_productItem.weight.id == ls_w.id ? 'active' : ''"
-                           v-for="ls_w, index in get_weight_type_list()" :key="index" class="photo-album-li">
-                           
-                            <div class="h_sto">
-                              <p>{{ ls_w.weight }} гр</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+                    
+                    <select-variant-menu :select_productItem="select_productItem"
+                     :pr="pr"
+                     v-on:select_product="select_product"
+                     ></select-variant-menu>
                     <div class="product__text">
-                      <p class="small">{{ pr.description }}</p>
+                      <p class="small">{{ pr.description.slice(15) }}...</p>
                     </div>
-                    <div class="flex">
+                    <div :style="select_productItem.weight ? 'margin-top: 8px' : 'margin-top: 56px'"  class="flex">
                       <AddBasket style="width: 30%;" :id="select_productItem.id" ></AddBasket>
                       <FavoriteComp :id="select_productItem.id" ></FavoriteComp>
                     </div>
@@ -69,6 +60,7 @@ import TovarMinImageList from "../AddtionalComp/TovarMinImageList.vue";
 import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
 import CatalogProduct from '../Catalog/CatalogProduct.vue';
 import RatingComp from '../Tovar/RatingComp.vue';
+import SelectVariantMenu from '../Product/SelectVariantMenu.vue';
 export default {
     el:'#product_catalog',
     name:'CatalogProduct',
@@ -78,7 +70,8 @@ export default {
     TovarMinImageList,
     AddBasket,
     FavoriteComp,
-    RatingComp
+    RatingComp,
+    SelectVariantMenu
   },
   created(){
   }

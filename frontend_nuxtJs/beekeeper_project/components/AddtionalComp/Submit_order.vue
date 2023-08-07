@@ -36,6 +36,8 @@ async submin_order(){
     }
     
 //  }
+  }else{
+    alert('Не выбрана доставка')
   }
   
   

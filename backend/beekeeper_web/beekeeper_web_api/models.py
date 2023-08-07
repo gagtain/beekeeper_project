@@ -8,7 +8,6 @@ from user.models import MainUser
 # Create your models here.
 
 
-
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name="Название категории")
 
@@ -18,6 +17,7 @@ class Category(models.Model):
     class Meta:
         verbose_name = u"Категория продукта"
         verbose_name_plural = u"Категории товаров"
+
 
 class ImageProduct(models.Model):
 
@@ -31,6 +31,7 @@ class ImageProduct(models.Model):
     class Meta:
         verbose_name = u"Дополнительное изображение продукта"
         verbose_name_plural = u"Дополнительные изображения продуктов"
+
 
 class Type_weight(models.Model):
     weight = models.FloatField(verbose_name="Вес в граммах")
@@ -47,10 +48,13 @@ class DimensionsProduct(models.Model):
     length = models.FloatField(verbose_name='Длина')
     width = models.FloatField(verbose_name='Ширина')
     height = models.FloatField(verbose_name='Высота')
+    weight = models.FloatField(verbose_name='Вес')
 
     class Meta:
         verbose_name = u"Габариты"
         verbose_name_plural = u"Габариты"
+
+
 class Product(models.Model):
     """"Модель продукта"""
     name = models.CharField(max_length=100, blank=False, verbose_name="Название продукта")
@@ -59,7 +63,6 @@ class Product(models.Model):
                               default="admin")
     count_purchase = models.IntegerField(default=0, verbose_name="кол-во покупок")
     category = models.ManyToManyField(Category, related_name='category_list', blank=True)
-    objects = models.Manager()
 
     def __str__(self):
         return self.name
@@ -72,7 +75,7 @@ class Product(models.Model):
 class ProductItem(models.Model):
     """Объект продукта с определенными параметрами"""
     product: Product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='productItemList')
-    weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE)
+    weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE, blank=True, null=True)
     price = MoneyField(default=0, max_digits=14, decimal_places=2,
                        verbose_name="Цена варианта", default_currency='RUB')
     dimensions = models.ForeignKey(DimensionsProduct, verbose_name='Габариты', on_delete=models.CASCADE, null=True)
@@ -83,8 +86,6 @@ class ProductItem(models.Model):
     class Meta:
         verbose_name = u"Вариант продукта"
         verbose_name_plural = u"Варианты продуктов"
-
-
 
 
 class RatingProductReview(models.Model):

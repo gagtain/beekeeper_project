@@ -12,8 +12,14 @@ class DeliveryInfo:
         serializer = DeliveryEngineChoiceSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)
         delivery_engine_enum = getattr(DeliveryEngine, request.data['delivery_engine']).value
-        delivery_engine: AbstractDeliveryEngine = delivery_engine_enum(data=request.data, delivery_pk=pk)
-        pprint(delivery_engine.__dir__().to_dict())
-        return Response(data=delivery_engine.__dir__().to_dict(), status=200)
-
-
+        delivery_engine: AbstractDeliveryEngine = delivery_engine_enum(data=request.data, delivery_pk=pk,
+                                                                           request=request)
+        try:
+            data = delivery_engine.get_info().to_dict()
+            print(data)
+            return Response(data=data, status=200)
+        except AttributeError as e:
+            return Response(data={'errors': {
+                'descriptions': 'Неверно указан атрибут',
+                'original_errors': str(e)
+            }})

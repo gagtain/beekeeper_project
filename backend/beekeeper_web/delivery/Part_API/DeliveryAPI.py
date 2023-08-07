@@ -13,14 +13,14 @@ from delivery.services.Delivery import DeliveryService
 
 class DeliveryCreate(APIView):
 
-    def delivery_create(self, request):
-        delivery = DeliveryAdd(**request.data['delivery'])
+    def delivery_initial_in_data(self, request):
+        delivery = DeliveryAdd(**request.data['delivery_info'])
         a = SdekDelivery.SDEKDelivery.create_delivery(delivery)
         delivery_class = DeliveryResponseAdd(**a.json())
-        delivery = DeliveryTransaction.objects.create(uuid=delivery_class.entity['uuid'])
+        delivery = DeliveryTransaction.objects.get(id=request.data['delivery_id'])
+        delivery.uuid = delivery_class.entity['uuid']
         """Необходимо добавить выбор модели заказа и сервиса как в приложении payments"""
-        order = Order.objects.get(id=request.data['order_id'])
-        DeliveryService.add_delivery_in_order(delivery, order)
+        delivery.save()
         return Response({'sdek': a.json()})
 
     def delivery_create_lait(self, request):

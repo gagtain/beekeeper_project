@@ -19,18 +19,11 @@
                         }}</span></span
                       >
                     </div>
-                        <div class="variant tovar_two">
-                      <h3>Размер</h3>
-                      <div class="flex">
-                        <ul class="variant-ul">
-                          <li  @click="select_type_weigth(ls_w.id)" :class="select_productItem.weight.id == ls_w.id ? 'active' : ''" v-for="ls_w, index in pr.list_weight" :key="index" class="photo-album-li">
-                            <div class="h_sto">
-                              <p>{{ ls_w.weight }} гр</p>
-                            </div>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
+                        
+                    <select-variant-menu :select_productItem="select_productItem"
+                     :pr="pr"
+                     v-on:select_product="select_product"
+                     ></select-variant-menu>
                         <div class="flex tovar_two jus-sp but but-b product_menu">
                       <AddBasket style="  width: 40%;" :id="select_productItem.id" ></AddBasket>
                       <FavoriteComp :id="select_productItem.id" ></FavoriteComp>
@@ -103,6 +96,7 @@ import AddBasket from '~/components/AddtionalComp/AddBasket.vue'
 import FavoriteComp from '~/components/AddtionalComp/FavoriteComp.vue'
 import TovarImage from '~/components/Tovar/TovarImage.vue'
 import RatingComp from "~/components/Tovar/RatingComp.vue"
+import SelectVariantMenu from '../Product/SelectVariantMenu.vue'
 import CatalogProduct from '../Catalog/CatalogProduct.vue'
 export default {
 
@@ -118,7 +112,8 @@ export default {
         AddBasket,
         FavoriteComp,
         TovarImage,
-        RatingComp
+        RatingComp,
+        SelectVariantMenu
     },
     extends: CatalogProduct,
     

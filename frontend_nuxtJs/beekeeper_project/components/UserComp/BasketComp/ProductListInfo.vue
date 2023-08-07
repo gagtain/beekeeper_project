@@ -10,7 +10,7 @@
           }, 0)
         }}
       </p>
-      <p v-if="ordered" class="m2">Цена доставки {{ delivery_price }}</p>
+      <p v-if="ordered" class="m2">Цена доставки: {{ delivery_price ? delivery_price : 'Не выбранно' }}</p>
       <p class="m2">скидки:</p>
       <ul>
         <li>*в разработке*</li>
@@ -45,7 +45,7 @@ export default {
     },
     getWeight(){
       let weight = this.items.reduce(function (weight_s, elem) {
-        return weight_s + parseFloat(elem.productItem.weight.weight * elem.count);
+        return weight_s + parseFloat(elem.productItem.dimensions.weight * elem.count);
       }, 0);
       let str_weight = ``
       if (weight >= 1000){
@@ -62,7 +62,7 @@ export default {
         return sum + parseFloat(elem.productItem.price * elem.count);
       }, 0);
       if (this.ordered){
-        summ += parseFloat(this.delivery_price)
+        summ += parseFloat(this.delivery_price ? this.delivery_price : 0)
       }
       return summ
     },
