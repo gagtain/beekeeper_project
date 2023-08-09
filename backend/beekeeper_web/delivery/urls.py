@@ -27,7 +27,7 @@ urlpatterns = [
     path('<int:pk>', views.DeliveryAPI.as_view({'get': 'delivery_get'})),
     path('<int:pk>/submit/waiting', views.DeliveryAPI.as_view({'post': 'delivery_submit_waiting'})),
     path('<int:pk>/track_number', views.DeliveryAPI.as_view({'post': 'delivery_track_add'})),
-    path('<int:pk>/get_info_in_order', views.DeliveryInfoAPI.as_view({'get': 'get_info_in_order'})),
+    path('<int:pk>/get_info_in_order', views.DeliveryInfoAPI.as_view({'post': 'get_info_in_order'})),
     path('search', views.DeliveryAPI.as_view({'get': 'search'})),
     path('search/count', views.DeliverySearchCountAPI.as_view({'get': 'search__count'})),
 ]

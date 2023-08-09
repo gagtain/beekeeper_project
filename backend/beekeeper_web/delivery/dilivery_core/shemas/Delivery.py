@@ -38,7 +38,6 @@ class Packages:
 @dataclass
 class SenderPhones:
     number: str
-    desk: str | None = None
 
 
 @dataclass_json

@@ -1,4 +1,5 @@
 from django.db.models import QuerySet
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -7,11 +8,13 @@ from delivery.dilivery_core.Client import Configuration
 from delivery.dilivery_core.core import SdekDelivery
 from delivery.dilivery_core.shemas.Delivery import DeliveryAdd, DeliveryResponseAdd
 from delivery.models import DeliveryTransaction
-from delivery.serializers import DeliveryTransactionSerializer
+from delivery.serializers import DeliveryTransactionSerializer, DeliveryTransactionCreateSerializer
 from delivery.services.Delivery import DeliveryService
 
 
 class DeliveryCreate(APIView):
+
+
 
     def delivery_initial_in_data(self, request):
         delivery = DeliveryAdd(**request.data['delivery_info'])
@@ -23,15 +26,19 @@ class DeliveryCreate(APIView):
         delivery.save()
         return Response({'sdek': a.json()})
 
-    def delivery_create_lait(self, request):
+    def delivery_create_lait(self, request: Request):
         """Заглушка, будет удалено при дальнейшем рефакторе"""
-        delivery = DeliveryService.create_delivery(uuid='122',
-                                                   where=request.data['PVZ'],
-                                                   price=request.data['price'])
-
         order = Order.objects.get(id=request.data['order_id'])
-        DeliveryService.add_delivery_in_order(delivery, order)
-        return Response(status=200)
+        serializer = DeliveryTransactionCreateSerializer(data={
+            'uuid': '122',
+            'where': request.data.get('PVZ'),
+            'price': request.data.get('price'),
+            'number': request.data.get('user_number', order.user.number),
+            'order_delivery_transaction': [order.id]
+        },)
+        serializer.is_valid(raise_exception=True)
+        delivery = serializer.save()
+        return Response(data=DeliveryTransactionSerializer(delivery).data, status=200)
 
 
 class DeliverySdekGet(APIView):

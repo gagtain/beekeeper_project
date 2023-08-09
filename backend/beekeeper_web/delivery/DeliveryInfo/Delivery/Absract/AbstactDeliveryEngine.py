@@ -41,3 +41,7 @@ class AbstractDeliveryEngine(ABC):
     def get_info(self):
         self._initial_data()
         return self._info
+
+    @abstractmethod
+    def get_additional_delivery_info(self) -> dict:
+        ...

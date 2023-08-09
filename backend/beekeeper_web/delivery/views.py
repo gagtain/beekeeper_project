@@ -14,8 +14,8 @@ from rest_framework.viewsets import ViewSet
 # Create your views here.
 
 
-class DeliveryAPI(ViewSet, DeliveryCreate, DeliverySdekGet,
-                  DeliveryTransactionFilter, DeliveryGet, DeliverySubmitWaiting, DeliveryTrackAdd):
+class DeliveryAPI(ViewSet, DeliveryTrackAdd, DeliverySdekGet,
+                  DeliveryTransactionFilter, DeliveryGet, DeliverySubmitWaiting, DeliveryCreate):
     pass
 
 

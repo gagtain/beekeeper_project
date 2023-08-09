@@ -5,7 +5,7 @@ from orders.models import Order, OrderItem
 
 
 def get_weight_product(order_item: OrderItem) -> int:
-    return int(order_item.productItem.weight.weight)
+    return int(order_item.productItem.dimensions.weight)
 
 
 class SdekOnlineStoreEngine(AbstractOrderSdekEngine):
@@ -26,15 +26,17 @@ class SdekOnlineStoreEngine(AbstractOrderSdekEngine):
         for package in packages:
             """Необходимо указать механизм распределения товаров по разным упаковкам"""
             for i in self._order.product_list_transaction.all():
+                new_item = self._get_package_info(i)
                 package.items.append(
-                    self._get_package_info(i)
+                    new_item
                 )
+                package.weight += new_item.weight
         return packages
 
 
     def get_recipient(self):
         return Recipient(name=self._order.user.FIO, phones=[SenderPhones(
-            number='1324'
+            number=f'+{self._order.delivery.number}'
         )])
 
     def _get_package_info(self, order_item: OrderItem) -> PackagesItems:

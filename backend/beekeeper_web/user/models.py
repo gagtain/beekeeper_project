@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from user.validators import number_validator
 
 
 # Create your models here.
@@ -15,6 +16,8 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(blank=False, default='asd@asd.ru')
     image = models.ImageField(upload_to="images/%Y/%m/%d/", verbose_name="Изображение пользователя",
                               blank=True, default="images/ds.png")
+    number = models.CharField(max_length=11, validators=[number_validator], verbose_name="Номер пользователя",
+                              blank=True, null=True)
 
     USERNAME_FIELD = 'username'
     is_staff = models.BooleanField(

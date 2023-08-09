@@ -5,7 +5,7 @@ from abc import abstractmethod
 
 
 class AbstractOrderSdekEngine(AbstractOrderEngine):
-    """ Типовой абстрактный класс для заказов для доставки СДЭК  """
+    """ Типовой абстрактный класс у заказов для доставки СДЭК  """
 
     pred_payment: PrePayment
 

@@ -63,8 +63,24 @@ class OrderSerializers(serializers.ModelSerializer):
                   'payment']
 
 
+class OrderRetrieveSerializers(serializers.ModelSerializer):
+
+    class Meta:
+        model = Order
+        depth = 2
+        fields = ['id', 'product_list_transaction', 'datetime', 'user', 'amount', 'amount_currency', 'status',
+                  'payment']
+
+
+class DeliveryTransactionCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DeliveryTransaction
+        fields = ['id', 'uuid', 'track_number',
+                  'order_delivery_transaction', 'status', 'delivery_method', 'where']
+
 class DeliveryTransactionSerializer(serializers.ModelSerializer):
-    order_delivery_transaction = OrderSerializers(many=True)
+    order_delivery_transaction = OrderRetrieveSerializers(many=True, read_only=True)
 
     class Meta:
         model = DeliveryTransaction

@@ -23,7 +23,6 @@ class Order(models.Model):
     delivery = models.ForeignKey(DeliveryTransaction,
                                  related_name='order_delivery_transaction',
                                  on_delete=models.CASCADE, blank=True, null=True)
-
     status = models.CharField(choices=StatusChoice.choices, default=StatusChoice.not_approved)
 
     description = models.CharField(max_length=300, default='')
