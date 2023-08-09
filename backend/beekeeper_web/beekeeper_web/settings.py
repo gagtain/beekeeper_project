@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-tlr9d(mc+d8k7%dwly0rlb3v8w)lb1#lih%-sj1*stk$zg05gp'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", True)
+DEBUG = os.environ.get("DEBUG", 'True') == 'True'
 
 ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'shop.gagtain.online', 'webapi']
 CSRF_TRUSTED_ORIGINS = ['https://owa.gagtain.ru', 'https://gagtain.ru']
@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'beekeeper_web.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if DEBUG == True:
+if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -114,7 +114,7 @@ else:
             'PORT': '5432'
         }
     }
-
+print(DATABASES)
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
