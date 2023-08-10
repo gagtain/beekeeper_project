@@ -1,3 +1,6 @@
+from pprint import pprint
+from time import sleep
+
 from django.db.models import QuerySet
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -9,7 +12,7 @@ from delivery.dilivery_core.core import SdekDelivery
 from delivery.dilivery_core.shemas.Delivery import DeliveryAdd, DeliveryResponseAdd
 from delivery.models import DeliveryTransaction
 from delivery.serializers import DeliveryTransactionSerializer, DeliveryTransactionCreateSerializer
-from delivery.services.Delivery import DeliveryService
+from delivery.services.Delivery import DeliveryService, Sent_Status
 
 
 class DeliveryCreate(APIView):
@@ -17,11 +20,23 @@ class DeliveryCreate(APIView):
 
 
     def delivery_initial_in_data(self, request):
-        delivery = DeliveryAdd(**request.data['delivery_info'])
-        a = SdekDelivery.SDEKDelivery.create_delivery(delivery)
-        delivery_class = DeliveryResponseAdd(**a.json())
         delivery = DeliveryTransaction.objects.get(id=request.data['delivery_id'])
-        delivery.uuid = delivery_class.entity['uuid']
+        print(delivery.status, Sent_Status)
+        if delivery.status in Sent_Status:
+            return Response(data={'error': 'Доставка уже отправлена'}, status=400)
+        elif delivery.status == DeliveryTransaction.DeliveryStatus.Under_review:
+            return Response(data={'error': 'Доставка еще не подтверждена'}, status=400)
+        elif delivery.status == DeliveryTransaction.DeliveryStatus.closed:
+            return Response(data={'error': 'Доставка отменена'}, status=400)
+        delivery_add = DeliveryAdd(**request.data['delivery_info'])
+        a = SdekDelivery.SDEKDelivery.create_delivery(delivery_add)
+        delivery_response_class = DeliveryResponseAdd(**a.json())
+        sleep(1)
+        delivery_sdek = SdekDelivery.SDEKDelivery.get_delivery(uuid=delivery_response_class.entity['uuid'])
+        pprint(delivery_sdek.json())
+        delivery.track_number = delivery_sdek.json()['entity']['cdek_number']
+        delivery.uuid = delivery_response_class.entity['uuid']
+        delivery.status = DeliveryTransaction.DeliveryStatus.Sent
         """Необходимо добавить выбор модели заказа и сервиса как в приложении payments"""
         delivery.save()
         return Response({'sdek': a.json()})

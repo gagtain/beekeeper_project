@@ -1,0 +1,5 @@
+const checkbox_scss_vue_type_style_index_1_src_fc1773fb_scoped_fc1773fb_lang = "[data-v-fc1773fb]:root{--vs-primary:29 92 255}dialog[data-v-fc1773fb]{animation:fadeIn 1s ease both;background:#fff;border:0;border-radius:20px;box-shadow:0 5px 30px 0 rgba(0,0,0,.1);max-width:400px;padding:2rem 3rem 1rem;width:50%}dialog[data-v-fc1773fb]::backdrop{animation:fadeIn 1s ease both;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);background:hsla(0,0%,100%,.4);z-index:2}dialog .x[data-v-fc1773fb]{background:none;border:none;cursor:pointer;filter:grayscale(1);position:absolute;right:10px;top:15px;transform-origin:center;transition:filter ease,transform .3s}dialog .x[data-v-fc1773fb]:hover{filter:grayscale(0);transform:scale(1.1)}dialog h2[data-v-fc1773fb]{font-size:2rem;font-weight:600;padding-bottom:1rem}dialog p[data-v-fc1773fb]{font-size:1rem;line-height:1.3rem;padding:.5rem 0}dialog p a[data-v-fc1773fb]:visited{color:rgb(var(--vs-primary))}@media (max-width:800px){dialog[data-v-fc1773fb]{width:100%}}";
+export {
+  checkbox_scss_vue_type_style_index_1_src_fc1773fb_scoped_fc1773fb_lang as default
+};
+//# sourceMappingURL=catalog-styles-2.mjs-8115e6fd.js.map

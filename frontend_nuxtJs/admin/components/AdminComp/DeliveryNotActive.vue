@@ -3,7 +3,7 @@
     <div class="order-not-active">
         <p class="small">Всего неактивных доставок: <span style="color: blue;">{{ count_delivery }}</span> </p>
         
-        <NuxtLink to="/admin/delivery?filter=status=Отменен" no-prefetch><button class="btn">Посмотреть</button></NuxtLink>
+        <NuxtLink to="/admin/delivery?filter=status=На проверке" no-prefetch><button class="btn">Посмотреть</button></NuxtLink>
     </div>
   </article>
 </template>

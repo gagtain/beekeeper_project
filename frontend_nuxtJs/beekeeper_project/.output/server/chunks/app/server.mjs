@@ -1243,7 +1243,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/basket-5cd5c801.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/basket-b2564dde.mjs').then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -1251,7 +1251,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/catalog-8840fa1d.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/catalog-789c1bd7.mjs').then((m) => m.default || m)
   },
   {
     name: "checkout",
@@ -1259,7 +1259,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/checkout-ad44cf9c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout-b7c1c602.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1267,7 +1267,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/favorite-93fc12ef.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/favorite-9a07836b.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -1275,7 +1275,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-b9c11210.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-4a4f0e53.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1283,7 +1283,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/login-36a9be4e.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/login-db32bbd7.mjs').then((m) => m.default || m)
   },
   {
     name: "news-id",
@@ -1315,7 +1315,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/profile-1a5814f7.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/profile-72f616e4.mjs').then((m) => m.default || m)
   },
   {
     name: "register",
@@ -1331,7 +1331,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-4c357363.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-7787e0c8.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1896,10 +1896,10 @@ const _sfc_main$6 = /* @__PURE__ */ defineNuxtComponent({
   methods: {
     submin_src() {
       this.zone();
-      redirect(this, { name: "catalog", query: { filter: `{"name": "${this.search_text}"}` } });
+      redirect(this, { name: "catalog", query: { filter: JSON.stringify({ "name": `${this.search_text}` }) } });
     },
     submit_src_but(product) {
-      redirect(this, { name: "catalog", query: { filter: `{"name": "${product.name}"}` } });
+      redirect(this, { name: "catalog", query: { filter: JSON.stringify({ "name": `${product.name}` }) } });
       this.zone();
     },
     zone() {
@@ -1929,11 +1929,11 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<div${ssrRenderAttrs(mergeProps({
     class: "container relative",
     id: "search"
-  }, _attrs))} data-v-906d4ac1><input style="${ssrRenderStyle({ "z-index": "11" })}" class="input relative" type="text"${ssrRenderAttr("value", _ctx.search_text)} placeholder="Search" data-v-906d4ac1><div style="${ssrRenderStyle({ "z-index": "11" })}" class="relative zone_search absolute" data-v-906d4ac1></div><div class="zone" data-v-906d4ac1></div><div class="absolute src_comp w-sto" style="${ssrRenderStyle({ "z-index": "11" })}" data-v-906d4ac1>`);
+  }, _attrs))} data-v-b5d48206><input style="${ssrRenderStyle({ "z-index": "11" })}" class="input relative" type="text"${ssrRenderAttr("value", _ctx.search_text)} placeholder="Search" data-v-b5d48206><div style="${ssrRenderStyle({ "z-index": "11" })}" class="relative zone_search absolute" data-v-b5d48206></div><div class="zone" data-v-b5d48206></div><div class="absolute src_comp w-sto" style="${ssrRenderStyle({ "z-index": "11" })}" data-v-b5d48206>`);
   if (_ctx.search_product.length) {
-    _push(`<div class="w-sto h_sto" data-v-906d4ac1><!--[-->`);
+    _push(`<div class="w-sto h_sto" data-v-b5d48206><!--[-->`);
     ssrRenderList(_ctx.search_product, (pop) => {
-      _push(`<div class="w-sto src_el" data-v-906d4ac1><p class="m2 normal-small" data-v-906d4ac1>${ssrInterpolate(pop.name)}</p></div>`);
+      _push(`<div class="w-sto src_el" data-v-b5d48206><p class="m2 normal-small" data-v-b5d48206>${ssrInterpolate(pop.name)}</p></div>`);
     });
     _push(`<!--]--></div>`);
   } else {
@@ -1947,7 +1947,7 @@ _sfc_main$6.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("components/SeacrhComp.vue");
   return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
-const __nuxt_component_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-906d4ac1"]]);
+const __nuxt_component_1$1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-b5d48206"]]);
 const _imports_0$2 = "" + __publicAssetsURL("favicon.ico");
 const _imports_2$1 = "" + __buildAssetsURL("shopping-cart_icon-icons.com_69303.65d78e34.svg");
 const _imports_2 = "" + __buildAssetsURL("favorite_add.076c9a6b.png");
