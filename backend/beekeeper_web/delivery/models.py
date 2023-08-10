@@ -26,7 +26,7 @@ class DeliveryTransaction(models.Model):
     where = models.CharField(max_length=200, default='Уварово ПМЗ UVA01')
     price = models.FloatField(verbose_name="Цена доставки", default=0)
     number = models.CharField(max_length=11, validators=[number_validator],
-                              verbose_name="Номер телефона заказчика", default="")
+                              verbose_name="Номер телефона заказчика")
 
     class Meta:
         verbose_name = u"Транзакция доставки"

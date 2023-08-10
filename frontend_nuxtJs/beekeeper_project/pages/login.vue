@@ -68,9 +68,7 @@ export default {
       console.log(response);
       if (response.status == 200) {
         this.set_cookie(response);
-        redirect(this, {
-          path: "/profile",
-        });
+        this.$router.push('/profile')
       } else if (response.status == 401) {
         console.log("asd");
         this.login_401 = true;

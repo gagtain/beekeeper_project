@@ -57,6 +57,7 @@
 }
 .product__photo{
     height: auto;
+    width: 100%;
 }
 .photo-main{
     height: 250px;
@@ -67,6 +68,9 @@
 
 .product_osnov {
     width: 85%;
+}
+.product__info{
+    width: 100%;
 }
 .product__text p{
     overflow: hidden;

@@ -1,6 +1,19 @@
 <template>
   <div id="check_form">
     <p class="VAG" align="left">Доставка</p>
+                  <div class="relative">
+
+                    <input v-if="user_default_number" disabled type="text" v-model="user_default_field_number" />
+                    <div v-else>
+
+                      <p style="color: brown" v-if="!user_number_val">Неверно указан номер, пример: 79111111111</p>
+                    <input type="text" v-model="user_number" />
+                    </div>
+  <span class="floating-label active">Номер телефона</span>
+                  </div>
+                  <button v-if="user_default_number" @click="user_default_number = !user_default_number" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;" >
+                              Изменить телефон
+                            </button>
             <div class=" h_sto">
               
                 <div v-if="delivery_info">
@@ -94,6 +107,7 @@ cursor: pointer;
 import { helpers, required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 import SDEKcart from './SDEKcart.vue';
+import getNumber from "~/additional_func/User/getNumber";
 export default {
   components: { SDEKcart },
     el: '#check_form',
@@ -101,8 +115,16 @@ export default {
     data(){
     return {
       USER_STATE: this.$store.getUser,
-      delivery_info: null
+      delivery_info: null,
+      user_default_field_number: '',
+      user_number: '',
+      user_default_number: true,
+      user_number_val: true
     }
+  },
+  async mounted(){
+    let r = await getNumber()
+    this.user_default_field_number = r.data.number
   },
   methods:{
 
@@ -111,10 +133,36 @@ export default {
       if (this.delivery_info == null){
         return {
           status: false,
+          message: 'Не указана доставка'
         }
       }else{
-        return {
+        if (this.user_default_number){
+
+          return {
           status: true,
+          number:{
+            default: true,
+            number: ''
+          }
+        }
+        }else{
+          if (this.user_number.match(/79[0-9]{9}/)){
+
+            this.user_number_val = true
+          return {
+          status: true,
+          number:{
+            default: false,
+            number: this.user_number
+          }
+        }
+          }else{
+this.user_number_val = false
+          return {
+          status: false,
+          message: 'Не верно указан номер'
+        }
+          }
         }
       }
     },

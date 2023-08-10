@@ -77,7 +77,7 @@ class DeliveryTransactionCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeliveryTransaction
         fields = ['id', 'uuid', 'track_number',
-                  'order_delivery_transaction', 'status', 'delivery_method', 'where']
+                  'order_delivery_transaction', 'status', 'delivery_method', 'where', 'number']
 
 class DeliveryTransactionSerializer(serializers.ModelSerializer):
     order_delivery_transaction = OrderRetrieveSerializers(many=True, read_only=True)

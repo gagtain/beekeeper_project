@@ -55,6 +55,18 @@
   border-radius: 5px;  
   min-height: 833px;
 }
+.product__name{
+  overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+transition: .5s;
+
+}
+.product__name:hover{
+  overflow: auto;
+  white-space:normal;
+transition: .5s;
+}
 </style>
 
 <script>

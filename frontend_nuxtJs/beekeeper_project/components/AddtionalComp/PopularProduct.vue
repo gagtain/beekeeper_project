@@ -53,6 +53,18 @@
   width: 100%;
 height: 100%;
 }
+.product__name{
+  overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+transition: .5s;
+
+}
+.product__name:hover{
+  overflow: auto;
+  white-space:normal;
+transition: .5s;
+}
 </style>
 <script>
 import AddBasket from '../AddtionalComp/AddBasket.vue';

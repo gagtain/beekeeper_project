@@ -16,6 +16,7 @@
                     </div>
 </template>
 
+<style lang="css" src="~/assets/css/main/hex-tovar.css" scoped></style>
 <script>
 export default {
     props:['select_productItem', 'pr'],

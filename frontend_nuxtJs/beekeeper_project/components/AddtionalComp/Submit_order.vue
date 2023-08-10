@@ -37,7 +37,7 @@ async submin_order(){
     
 //  }
   }else{
-    alert('Не выбрана доставка')
+    alert(this.forms_validate.message)
   }
   
   
@@ -55,7 +55,8 @@ async submin_order(){
     let response_delivery = await createDeliveryLait({
       order_id: this.order_create.id,
       PVZ: this.delivery_info.id,
-      price: this.delivery_info.price
+      price: this.delivery_info.price,
+      user_number: this.forms_validate.number.default ? undefined : this.forms_validate.number.number
       
     })
     if (response_delivery.status == 200){

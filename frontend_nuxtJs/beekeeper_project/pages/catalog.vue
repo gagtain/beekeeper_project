@@ -134,7 +134,9 @@ export default {
   },
    async getCatalog(){
       this.catalog_loads = false
-    
+      if (this.$route.query?.filter){
+        this.$store.ADD_CATALOG_PARAMS(`name=${JSON.parse(this.$route.query.filter).name}`)
+      }
     let r = await getSearchProduct(this.$store.getCatalog_params.join("&"))
     this.catalog_list = r.data
       this.catalog_loads = true
@@ -145,13 +147,6 @@ export default {
     '$route.query': async function () {
       this.restartCatalog()
     },
-    'data': {
-    async handler(val, oldVal) {
-      console.log(1234)
-      this.getCatalog()
-    },
-    deep: true
-  },
   }
 };
 </script>

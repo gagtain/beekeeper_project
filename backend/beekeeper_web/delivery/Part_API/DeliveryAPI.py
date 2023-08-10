@@ -29,6 +29,8 @@ class DeliveryCreate(APIView):
     def delivery_create_lait(self, request: Request):
         """Заглушка, будет удалено при дальнейшем рефакторе"""
         order = Order.objects.get(id=request.data['order_id'])
+        print(request.data)
+        print(request.data.get('user_number', order.user.number))
         serializer = DeliveryTransactionCreateSerializer(data={
             'uuid': '122',
             'where': request.data.get('PVZ'),

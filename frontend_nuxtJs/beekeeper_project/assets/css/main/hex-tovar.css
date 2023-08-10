@@ -5,8 +5,7 @@
 
 /* ----- Product Section ----- */
 .product {
-  display: grid;
-  grid-template-columns: 0.9fr 1fr;
+  display: flex;
   margin: auto;
   padding: 2.5em 0;
   width: 100%;
@@ -18,6 +17,7 @@
 /* ----- Photo Section ----- */
 .product__photo {
   position: relative;
+  width: 50%;
 }
 
 .photo-container {
@@ -45,6 +45,7 @@
 
 /* ----- Informations Section ----- */
 .product__info {
+  width: 50%;
   padding: 0.8em 0;
 }
 .product__price {
@@ -130,6 +131,7 @@
   }
   .product__photo {
     height: 400px;
+    width: 100%;
   }
   .slider-product .swiper-wrapper .swiper-slide {
     height: 1000px;
@@ -140,6 +142,7 @@
   }
   .product__info {
     text-align: center;
+    width: 100%;
   }
   .photo-album {
     display: none;

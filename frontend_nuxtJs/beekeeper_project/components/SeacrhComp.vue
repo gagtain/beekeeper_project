@@ -65,10 +65,10 @@ export default defineNuxtComponent({
     methods:{
         submin_src(){
             this.zone()
-            redirect(this,{ name: 'catalog', query: { filter:`{"name": "${this.search_text}"}` } })
+            redirect(this,{ name: 'catalog', query: { filter:JSON.stringify({"name": `${this.search_text}`}) } })
         },
         submit_src_but(product){
-            redirect(this,{ name: 'catalog', query: { filter:`{"name": "${product.name}"}` } })
+            redirect(this,{ name: 'catalog', query: { filter:JSON.stringify({"name": `${product.name}`}) } })
             this.zone()
         },
         zone(){
