@@ -2056,7 +2056,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/catalog-789c1bd7.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/catalog-9f6d97ac.js").then((m) => m.default || m)
   },
   {
     name: "checkout",
@@ -2287,6 +2287,9 @@ const useMainStore = defineStore("main", {
     REMOVE_CATALOG_PARAMS(params) {
       let index = this.catalog_params.indexOf(params);
       this.catalog_params.splice(index, 1);
+    },
+    CLEAR_CATALOG_PARAMS() {
+      this.catalog_params = [];
     },
     REFACTOR_TOOLTIP(tooltip) {
       this.tooltip = tooltip;

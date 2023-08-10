@@ -12,7 +12,7 @@
     <div class="sot-ob">
       <div class="wrapper-product w-sto flex">
         <div class="interactiv auto back">
-        <p style="margin-left: 5%;" class="small" v-if="filters">{{JSON.parse(this.$route.query.filter).name}}</p>
+        <p style="margin-left: 5%;" class="small" v-if="$route.query.filter">{{JSON.parse($route.query.filter).name}}</p>
           <div class="flex w-sto product_div">
             <div class="block filter_div">
               <div class="filter-product" id="filter_desk">
@@ -99,16 +99,20 @@ export default {
     };
   },
   async mounted() {
-    this.getCatalog()
+    if (this.$route.query.filter){
+      this.$store.ADD_CATALOG_PARAMS(`name=${JSON.parse(this.$route.query.filter).name}`)
+    }else{
+
+      this.getCatalog()
+    }
   },
 
   methods:{
     async clear_filter(){
       await this.$router.replace({'query': null});
-      
-      setInterval(()=>{if (!this.$route.query?.filter){
-        this.$router.go()
-      }},100)
+      this.$store.CLEAR_CATALOG_PARAMS()
+      this.getCatalog()
+      this.data = this.$store.getCatalog_params
       
     },
     async restartCatalog(){
@@ -134,9 +138,6 @@ export default {
   },
    async getCatalog(){
       this.catalog_loads = false
-      if (this.$route.query?.filter){
-        this.$store.ADD_CATALOG_PARAMS(`name=${JSON.parse(this.$route.query.filter).name}`)
-      }
     let r = await getSearchProduct(this.$store.getCatalog_params.join("&"))
     this.catalog_list = r.data
       this.catalog_loads = true
@@ -145,8 +146,18 @@ export default {
   setup() {},
   watch:{
     '$route.query': async function () {
-      this.restartCatalog()
+      if(this.$route.query.filter){
+
+        this.$store.ADD_CATALOG_PARAMS(`name=${JSON.parse(this.$route.query.filter).name}`)
+      }
     },
+    data: {
+    handler(val, oldVal) {
+      console.log(213)
+      this.getCatalog()
+    },
+    deep: true
+  },
   }
 };
 </script>

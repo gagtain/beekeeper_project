@@ -66,6 +66,9 @@ export const useMainStore = defineStore('main', {
       let index = this.catalog_params.indexOf(params)
       this.catalog_params.splice(index, 1)
     },
+    CLEAR_CATALOG_PARAMS(){
+      this.catalog_params = []
+    },
     REFACTOR_TOOLTIP(tooltip){
       this.tooltip = tooltip
     }
