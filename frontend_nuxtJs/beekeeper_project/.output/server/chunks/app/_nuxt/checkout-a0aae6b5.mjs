@@ -29,6 +29,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 const __nuxt_component_0 = /* @__PURE__ */ defineComponent({
   name: "ClientOnly",

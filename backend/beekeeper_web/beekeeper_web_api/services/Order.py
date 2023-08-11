@@ -37,7 +37,7 @@ class OrderServices():
                                      count=basket_item.count, order=order, price=basket_item.productItem.price)
 
         basket_item_list.delete()
-        # order_email_send.delay(order.id, request.user.id)
+        order_email_send.delay(order.id, request.user.id)
 
         return order
 

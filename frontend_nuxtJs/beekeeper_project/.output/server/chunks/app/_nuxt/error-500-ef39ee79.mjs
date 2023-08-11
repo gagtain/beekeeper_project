@@ -27,6 +27,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 const _sfc_main = {
   __name: "error-500",

@@ -30,6 +30,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 async function register$1(data) {
   try {

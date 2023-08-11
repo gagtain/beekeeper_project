@@ -29,6 +29,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 import './BasketInfo-c3e99e9d.mjs';
 import './FavoriteComp-ed45f3a2.mjs';
 import './FavoriteComp-5b75aa9c.mjs';

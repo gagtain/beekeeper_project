@@ -6,4 +6,5 @@ export { injectHead, useHead, useSeoMeta, useHeadSafe, useServerHead, useServerS
 export { default as useDeviceD } from '../node_modules/@nuxtjs/device/dist/runtime/composables/useDevice.d';
 export { default as useDevice } from '../node_modules/@nuxtjs/device/dist/runtime/composables/useDevice';
 export { usePinia } from '../node_modules/@pinia/nuxt/dist/runtime/composables';
+export { useImage } from '../node_modules/@nuxt/image/dist/runtime/composables';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';

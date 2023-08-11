@@ -29,6 +29,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 async function searchCountOrders(id, description) {
   try {

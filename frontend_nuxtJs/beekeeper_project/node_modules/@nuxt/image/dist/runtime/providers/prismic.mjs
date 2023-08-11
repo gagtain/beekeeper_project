@@ -1,0 +1,14 @@
+import { joinURL, parseQuery, parseURL, stringifyQuery } from "ufo";
+import { operationsGenerator } from "./imgix.mjs";
+const PRISMIC_IMGIX_BUCKET = "https://images.prismic.io";
+export const getImage = (src, { modifiers = {}, baseURL = PRISMIC_IMGIX_BUCKET } = {}) => {
+  const operations = operationsGenerator(modifiers);
+  const parsedURL = parseURL(src);
+  return {
+    url: joinURL(
+      baseURL,
+      parsedURL.pathname + "?" + // Remove duplicated keys, prioritizing override from developers
+      stringifyQuery(Object.assign(parseQuery(parsedURL.search), parseQuery(operations)))
+    )
+  };
+};

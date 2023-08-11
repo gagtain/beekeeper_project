@@ -4,6 +4,7 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt',
     '@nuxtjs/device', 
+    '@nuxt/image',
   ],
   plugins: [
     { src: '@/plugins/myPlug.js' },

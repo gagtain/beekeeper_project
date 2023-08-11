@@ -2056,7 +2056,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/catalog-79c1d0b6.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/catalog-fbec74e3.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) ?? "checkout",
@@ -2080,7 +2080,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-fc3a4131.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-1eb61b9a.js").then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2104,7 +2104,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-fe123ba5.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-39cb3de4.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) ?? "orders",
@@ -2136,7 +2136,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/_id_-0fd48504.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_id_-76465b0a.js").then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -2348,7 +2348,7 @@ const globalMiddleware = [
   auth_45global
 ];
 const namedMiddleware = {
-  "is-auth": () => import("./_nuxt/isAuth-ca9b6e06.js")
+  "is-auth": () => import("./_nuxt/isAuth-9eaf0961.js")
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
@@ -3424,7 +3424,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-component-ab76d990.js").then((r) => r.default || r));
+    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-component-1712b1ed.js").then((r) => r.default || r));
     const IslandRenderer = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/island-renderer-a128d128.js").then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
@@ -3492,12 +3492,15 @@ const entry$1 = (ctx) => entry(ctx);
 export {
   _export_sfc as _,
   api_root as a,
-  useCookie as b,
+  __nuxt_component_0$1 as b,
   createError as c,
   defineNuxtComponent as d,
   entry$1 as default,
-  __nuxt_component_0$1 as e,
-  useMainStore as f,
+  useRequestEvent as e,
+  useNuxtApp as f,
+  useRuntimeConfig as g,
+  useMainStore as h,
+  useCookie as i,
   navigateTo as n,
   redirect as r,
   useHead as u,

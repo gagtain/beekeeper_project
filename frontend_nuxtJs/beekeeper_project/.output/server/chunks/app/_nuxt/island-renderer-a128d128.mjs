@@ -27,6 +27,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 const components_islands = {};
 const islandComponents = /* @__PURE__ */ Object.freeze({

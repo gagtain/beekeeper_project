@@ -25,7 +25,7 @@ class OrderCreateAPI(APIView):
             BasketItemList = BasketItem.objects.filter(user=request.user)
             order = OrderServices.createOrderInBasket(request=request, basket_item_list=BasketItemList,
                                                       )
-        # check_order_payment.apply_async(kwargs={"order_id": order.id}, countdown=30 * 60)
+        check_order_payment.apply_async(kwargs={"order_id": order.id}, countdown=30 * 60)
         return Response(OrderSerializers(order).data)
 
 

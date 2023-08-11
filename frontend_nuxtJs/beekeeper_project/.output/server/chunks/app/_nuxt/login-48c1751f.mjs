@@ -28,6 +28,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 async function login$1(data) {
   try {

@@ -29,6 +29,7 @@ import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';
+import 'ipx';
 
 const __default__ = {
   el: "#favorite_main",
