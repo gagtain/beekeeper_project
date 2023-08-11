@@ -21,8 +21,8 @@ class MyObtainTokenPairView(TokenObtainPairView):
         # build your response and set cookie
         if access is not None:
             response = Response({"access": access, "refresh": refresh}, status=200)
-            response.set_cookie('assess', access, domain='localhost', max_age=36000, httponly=True)
-            response.set_cookie('refresh', refresh, domain='localhost', max_age=36000, httponly=True)
+            response.set_cookie('assess', access, domain='.gagtain.ru', max_age=36000, httponly=True)
+            response.set_cookie('refresh', refresh, domain='.gagtain.ru', max_age=36000, httponly=True)
             print('1223')
             return response
 
