@@ -8,7 +8,7 @@ from orders.models import Order, OrderItem
 from ..tasks import order_email_send
 
 sys.path.append('.')
-from ..models import MainUser, BasketItem
+from ..models import MainUser, BasketItem, ProductItem
 
 
 class OrderServices():
@@ -22,7 +22,7 @@ class OrderServices():
             raise NotFound("У пользователя нет заказов")
 
     @classmethod
-    def createOrderInBasket(cls, request, basket_item_list: QuerySet[BasketItem], data: dict):
+    def createOrderInBasket(cls, request, basket_item_list: QuerySet[BasketItem]):
         """Создание заказа"""
         if basket_item_list.count() == 0:
             raise ValidationError(detail='Список товаров пуст')
@@ -37,14 +37,22 @@ class OrderServices():
                                      count=basket_item.count, order=order, price=basket_item.productItem.price)
 
         basket_item_list.delete()
-        order_email_send.delay(order.id, request.user.id)
+        # order_email_send.delay(order.id, request.user.id)
 
         return order
 
     @classmethod
-    def compare_order_product_and_real_price(cls, user: MainUser, ):
-        """Проверка стоимости товара в базе и стоимости товара у пользователя"""
-        pass
+    def createOrderInList(cls, request, data: list):
+        """ Создание заказа из списка идентификаторов вариантов продукта"""
+
+        ProductItemList = ProductItem.objects.filter(pk__in=data)
+        BasketItemList = BasketItem.objects.bulk_create(
+            [
+                BasketItem(user=request.user, productItem=x) for x in ProductItemList
+            ]
+        )
+        request.user.basket.add(*BasketItemList)
+        cls.createOrderInBasket(request=request, basket_item_list=request.user.basket.all())
 
     @classmethod
     def getOrderList(cls, user):

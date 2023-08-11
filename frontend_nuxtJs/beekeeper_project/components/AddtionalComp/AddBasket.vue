@@ -10,6 +10,7 @@
 <script>
 import addBasket from '../../additional_func/addBasket'
 import removeBasket from '../../additional_func/removeBasket'
+import DefaultTooltipVue from './DefaultTooltip.vue'
 export default{
     el: '#addBasket',
     name: 'AddBasket',
@@ -21,6 +22,7 @@ export default{
     },
     created() {
     },
+    mixins: [DefaultTooltipVue],
   setup() {
   },
     methods:{
@@ -40,6 +42,9 @@ export default{
             if (response_add.status == 200){
                 this.$store.ADD_BASKET_ITEM(response_add.data.basketItem)
                 this.isBasket = true
+                this.tooltip()
+            }else if(response_add.status == 401){
+                this.$router.push('/login?message=Для данного действия необходимо авторизоваться')
             }  
         },
         async removeBasketBtn(){
@@ -47,6 +52,9 @@ export default{
             if (response_add.status == 200){
                 this.$store.REMOVE_BASKET_ITEM(response_add.data.id)
                 this.isBasket = false
+                this.tooltip()
+            }  else if(response_add.status == 401){
+                this.$router.push('/login?message=Для данного действия необходимо авторизоваться')
             }  
         },
     },

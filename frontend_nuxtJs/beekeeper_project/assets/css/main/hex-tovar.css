@@ -87,6 +87,7 @@
   background-color: rgb(255, 188, 65);
 }
 .variant-ul {
+  display: flex;
   list-style: none;
   padding: 0;
   width: 100%;

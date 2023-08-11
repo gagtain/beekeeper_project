@@ -34,7 +34,7 @@
                      v-on:select_product="select_product"
                      ></select-variant-menu>
                     <div :style="select_productItem.weight ? 'margin-top: 8px' : 'margin-top: 56px'" class="flex jus-sp">
-                      <AddBasket style="width: 40%;" :id="select_productItem.id" ></AddBasket>
+                      <AddBasket :id="select_productItem.id" ></AddBasket>
                       <FavoriteComp :id="select_productItem.id" ></FavoriteComp>
                     </div>
                   </div>

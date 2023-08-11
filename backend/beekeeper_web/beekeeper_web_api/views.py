@@ -73,6 +73,7 @@ class setCSRFCookie(APIView):
 class ProductAPI(viewsets.ViewSet, ProductFilterName):
 
     def get_popular(self, request):
+        print(213)
         size = int(request.GET['size'])
         return Response(RetrieveProductRemoveToProdachen(ProductServises.getPopular(size), many=True).data)
     
@@ -91,7 +92,6 @@ class ProductFilterAPI(viewsets.ViewSet, ProductFilter):
 
 
 class CategoryAPI(viewsets.ViewSet):
-    permission_classes = [IsAuthenticated]
     authentication_classes = [CustomAuthentication]
 
     def get_category_list(self, request):

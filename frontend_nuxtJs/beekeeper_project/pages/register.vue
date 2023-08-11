@@ -74,6 +74,7 @@ import { useVuelidate } from "@vuelidate/core";
 import { helpers, required, minLength, sameAs, email } from "@vuelidate/validators";
 import redirect from '~/additional_func/redirect'
 import register from '~/additional_func/register'
+import { useHead } from "nuxt/app";
 export default {
   el: "#registry",
   data() {
@@ -83,6 +84,12 @@ export default {
     };
   },
   setup(){
+      useHead({
+    title: 'Пчелиная артель - Регистрация',
+    meta: [
+      { name: 'description', content: 'My amazing site.' }
+    ],
+      })
     const state = reactive({
       username: {
         label: "Логин",
@@ -172,7 +179,7 @@ export default {
 
     this.width = window.innerWidth;
     }
-  },
+  }
 
 };
 </script>

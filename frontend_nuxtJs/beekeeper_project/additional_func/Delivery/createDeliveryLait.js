@@ -6,9 +6,9 @@ export default async function createDeliveryLait(data){
         var response = await axios({url: `${api_root}api/v0.1/delivery/create/lait`,
         method: "post",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true,
         data: data
       })
       return response

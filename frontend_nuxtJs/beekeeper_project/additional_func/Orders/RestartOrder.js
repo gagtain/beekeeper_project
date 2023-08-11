@@ -6,9 +6,9 @@ export default async function restartOrder(id){
         var response = await axios({url: `${api_root}api/v0.1/orders/${id}/restart`,
         method: "post",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true,
       })
       return response
       } catch (error) {

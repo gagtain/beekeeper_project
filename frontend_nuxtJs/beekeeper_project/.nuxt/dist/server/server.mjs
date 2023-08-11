@@ -9,7 +9,7 @@ import "devalue";
 import "klona";
 import { sanitizeStatusCode, createError as createError$1, setCookie, getCookie, deleteCookie } from "h3";
 import { renderSSRHead } from "@unhead/ssr";
-import { createServerHead as createServerHead$1, getActiveHead, composableNames } from "unhead";
+import { getActiveHead, createServerHead as createServerHead$1, composableNames } from "unhead";
 import { defineHeadPlugin } from "@unhead/shared";
 import { createMemoryHistory, createRouter, START_LOCATION, RouterView } from "vue-router";
 import { hasProtocol, parseURL, joinURL, parseQuery, withTrailingSlash, withoutTrailingSlash } from "ufo";
@@ -2029,26 +2029,26 @@ const unhead_KgADcZ0jPj = /* @__PURE__ */ defineNuxtPlugin({
     }
   }
 });
+const __nuxt_page_meta$2 = {
+  middleware: ["is-auth"]
+  // or middleware: 'auth'
+};
+const __nuxt_page_meta$1 = {
+  middleware: ["is-auth"]
+  // or middleware: 'auth'
+};
 const __nuxt_page_meta = {
   middleware: ["is-auth"]
   // or middleware: 'auth'
 };
 const _routes = [
   {
-    name: "admin-news",
-    path: "/admin/news",
-    meta: {},
-    alias: [],
-    redirect: void 0,
-    component: () => import("./_nuxt/news-20520874.js").then((m) => m.default || m)
-  },
-  {
     name: "basket",
     path: "/basket",
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/basket-b2564dde.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/basket-e94243f7.js").then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -2056,15 +2056,15 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/catalog-9f6d97ac.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/catalog-79c1d0b6.js").then((m) => m.default || m)
   },
   {
-    name: "checkout",
-    path: "/checkout",
-    meta: {},
-    alias: [],
-    redirect: void 0,
-    component: () => import("./_nuxt/checkout-b7c1c602.js").then((m) => m.default || m)
+    name: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) ?? "checkout",
+    path: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.path) ?? "/checkout",
+    meta: __nuxt_page_meta$2 || {},
+    alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
+    redirect: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect) || void 0,
+    component: () => import("./_nuxt/checkout-a0aae6b5.js").then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -2072,7 +2072,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/favorite-9a07836b.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/favorite-842db731.js").then((m) => m.default || m)
   },
   {
     name: "index",
@@ -2080,7 +2080,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-4a4f0e53.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-fc3a4131.js").then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2088,7 +2088,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/login-db32bbd7.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/login-48c1751f.js").then((m) => m.default || m)
   },
   {
     name: "news-id",
@@ -2096,7 +2096,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/_id_-44d8e2a4.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_id_-9fda4313.js").then((m) => m.default || m)
   },
   {
     name: "news",
@@ -2104,15 +2104,15 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-e4384085.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-fe123ba5.js").then((m) => m.default || m)
   },
   {
-    name: "orders",
-    path: "/orders",
-    meta: {},
-    alias: [],
-    redirect: void 0,
-    component: () => import("./_nuxt/orders-40220cbd.js").then((m) => m.default || m)
+    name: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) ?? "orders",
+    path: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.path) ?? "/orders",
+    meta: __nuxt_page_meta$1 || {},
+    alias: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.alias) || [],
+    redirect: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.redirect) || void 0,
+    component: () => import("./_nuxt/orders-a170e008.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -2120,7 +2120,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import("./_nuxt/profile-72f616e4.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/profile-93adb594.js").then((m) => m.default || m)
   },
   {
     name: "register",
@@ -2128,7 +2128,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/register-f9b14298.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/register-170338a3.js").then((m) => m.default || m)
   },
   {
     name: "tovar-id",
@@ -2136,7 +2136,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/_id_-7787e0c8.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_id_-0fd48504.js").then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -2209,19 +2209,19 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
   }
 });
 let api_root = "https://owa.gagtain.ru/";
-async function verifAssessToken(assess_token) {
+async function verifAssessToken(token) {
   try {
     var response = await axios({
       url: `${api_root}api/v0.1/user/token/verif`,
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${assess_token}`
-      }
+        "Authorization": token != void 0 ? `Bearer ${token}` : void 0
+      },
+      withCredentials: true
     });
     return response;
   } catch (error) {
-    console.log(error);
     return error.response;
   }
 }
@@ -2231,7 +2231,8 @@ const useMainStore = defineStore("main", {
     user: {
       image: "",
       basket: [],
-      favorite_product: []
+      favorite_product: [],
+      is_sending: false
     },
     catalog_list: [],
     assess_token: "",
@@ -2270,6 +2271,9 @@ const useMainStore = defineStore("main", {
     },
     REFACTOR_USER_IMAGE(image) {
       this.user.image = image;
+    },
+    REFACTOR_USER_SENDING(sending) {
+      this.user.is_sending = sending;
     },
     REFACTOR_CATALOG_LIST(catalog_list) {
       this.catalog_list = catalog_list;
@@ -2319,25 +2323,23 @@ const useMainStore = defineStore("main", {
 const auth_45global = async (event) => {
   const stores = useMainStore();
   if (useCookie("assess").value || useCookie("refresh").value) {
-    console.log("Есть токен");
     stores.assess_token = useCookie("assess");
     let assess_response = await verifAssessToken(stores.assess_token);
-    console.log(assess_response);
     if (!(assess_response.status == 200)) {
       if (useCookie("refresh")) {
         console.log("Есть рефреш");
         return;
-      } else {
-        if (event.href != "/login" && event.href != "/register") {
-          return navigateTo("/login");
-        }
       }
     } else {
       stores.userSet(assess_response.data);
     }
   } else {
-    if (event.href != "/login" && event.href != "/register") {
-      return navigateTo("/login");
+    let assess_response = await verifAssessToken();
+    console.log(assess_response.status);
+    if (!(assess_response.status == 200))
+      ;
+    else {
+      stores.userSet(assess_response.data);
     }
   }
 };
@@ -2346,7 +2348,7 @@ const globalMiddleware = [
   auth_45global
 ];
 const namedMiddleware = {
-  "is-auth": () => import("./_nuxt/isAuth-935396ea.js")
+  "is-auth": () => import("./_nuxt/isAuth-ca9b6e06.js")
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
@@ -2671,9 +2673,8 @@ async function getSearchNameproduct(params) {
     var response = await axios({
       url: `${api_root}api/v0.1/beekeeper_web_api/product/search/name?${params}`,
       method: "get",
-      headers: {
-        "Authorization": `Bearer ${useCookie("assess").value}`
-      }
+      headers: {},
+      withCredentials: true
     });
     return response;
   } catch (error) {
@@ -3355,7 +3356,7 @@ const _sfc_main$2 = {
             status: false,
             title: ""
           });
-        }, 3e3);
+        }, 1e3);
       }
     }
   }
@@ -3423,7 +3424,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-component-f285ff64.js").then((r) => r.default || r));
+    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-component-ab76d990.js").then((r) => r.default || r));
     const IslandRenderer = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/island-renderer-a128d128.js").then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
@@ -3491,15 +3492,15 @@ const entry$1 = (ctx) => entry(ctx);
 export {
   _export_sfc as _,
   api_root as a,
-  __nuxt_component_0$1 as b,
+  useCookie as b,
   createError as c,
   defineNuxtComponent as d,
   entry$1 as default,
-  useMainStore as e,
-  useHead as f,
+  __nuxt_component_0$1 as e,
+  useMainStore as f,
   navigateTo as n,
   redirect as r,
-  useCookie as u,
+  useHead as u,
   verifAssessToken as v
 };
 //# sourceMappingURL=server.mjs.map

@@ -6,7 +6,8 @@ export const useMainStore = defineStore('main', {
     user: {
       image: '',
       basket:[],
-      favorite_product:[]
+      favorite_product:[],
+      is_sending: false
     },
     catalog_list: [],
     assess_token: '',
@@ -47,6 +48,9 @@ export const useMainStore = defineStore('main', {
     },
     REFACTOR_USER_IMAGE(image){
       this.user.image = image
+    },
+    REFACTOR_USER_SENDING(sending){
+      this.user.is_sending = sending
     },
     REFACTOR_CATALOG_LIST(catalog_list){
         this.catalog_list = catalog_list

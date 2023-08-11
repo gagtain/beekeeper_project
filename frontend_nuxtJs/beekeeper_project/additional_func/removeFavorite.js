@@ -7,9 +7,9 @@ export default async function removeFavorite(pk){
     var response = await axios({url: `${api_root}api/v0.1/beekeeper_web_api/favorite/${pk}`,
     method: "delete",
     headers:{
-        "Authorization": `Bearer ${useCookie('assess').value}`
 
     },
+    withCredentials: true
   })
   return response
   } catch (error) {

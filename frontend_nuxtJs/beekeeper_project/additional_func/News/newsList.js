@@ -6,9 +6,9 @@ export default async function newsList(from, size){
         var response = await axios({url: `${api_root}api/v0.1/news/list?from=${from}&size=${size}`,
         method: "get",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true
       })
       return response
       } catch (error) {

@@ -3,6 +3,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     'AddtionalCompAddBasket': typeof import("../components/AddtionalComp/AddBasket.vue")['default']
     'AddtionalCompCheckout': typeof import("../components/AddtionalComp/Checkout.vue")['default']
+    'AddtionalCompDefaultTooltip': typeof import("../components/AddtionalComp/DefaultTooltip.vue")['default']
     'AddtionalCompDialog': typeof import("../components/AddtionalComp/Dialog.vue")['default']
     'AddtionalCompFavoriteComp': typeof import("../components/AddtionalComp/FavoriteComp.vue")['default']
     'AddtionalCompLoadingComp': typeof import("../components/AddtionalComp/LoadingComp.vue")['default']
@@ -59,6 +60,7 @@ declare module 'vue' {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'LazyAddtionalCompAddBasket': typeof import("../components/AddtionalComp/AddBasket.vue")['default']
     'LazyAddtionalCompCheckout': typeof import("../components/AddtionalComp/Checkout.vue")['default']
+    'LazyAddtionalCompDefaultTooltip': typeof import("../components/AddtionalComp/DefaultTooltip.vue")['default']
     'LazyAddtionalCompDialog': typeof import("../components/AddtionalComp/Dialog.vue")['default']
     'LazyAddtionalCompFavoriteComp': typeof import("../components/AddtionalComp/FavoriteComp.vue")['default']
     'LazyAddtionalCompLoadingComp': typeof import("../components/AddtionalComp/LoadingComp.vue")['default']
@@ -118,6 +120,7 @@ declare module 'vue' {
 
 export const AddtionalCompAddBasket: typeof import("../components/AddtionalComp/AddBasket.vue")['default']
 export const AddtionalCompCheckout: typeof import("../components/AddtionalComp/Checkout.vue")['default']
+export const AddtionalCompDefaultTooltip: typeof import("../components/AddtionalComp/DefaultTooltip.vue")['default']
 export const AddtionalCompDialog: typeof import("../components/AddtionalComp/Dialog.vue")['default']
 export const AddtionalCompFavoriteComp: typeof import("../components/AddtionalComp/FavoriteComp.vue")['default']
 export const AddtionalCompLoadingComp: typeof import("../components/AddtionalComp/LoadingComp.vue")['default']
@@ -174,6 +177,7 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const LazyAddtionalCompAddBasket: typeof import("../components/AddtionalComp/AddBasket.vue")['default']
 export const LazyAddtionalCompCheckout: typeof import("../components/AddtionalComp/Checkout.vue")['default']
+export const LazyAddtionalCompDefaultTooltip: typeof import("../components/AddtionalComp/DefaultTooltip.vue")['default']
 export const LazyAddtionalCompDialog: typeof import("../components/AddtionalComp/Dialog.vue")['default']
 export const LazyAddtionalCompFavoriteComp: typeof import("../components/AddtionalComp/FavoriteComp.vue")['default']
 export const LazyAddtionalCompLoadingComp: typeof import("../components/AddtionalComp/LoadingComp.vue")['default']

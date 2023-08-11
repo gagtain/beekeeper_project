@@ -6,9 +6,9 @@ export default async function addOrder(delivery_price){
         var response = await axios({url: `${api_root}api/v0.1/beekeeper_web_api/order/create`,
         method: "post",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true,
         data:{
           delivery_price
         }

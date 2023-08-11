@@ -6,9 +6,9 @@ export default async function getNumber(data){
     var response = await axios({url: `${api_root}api/v0.1/user/number`,
     method: "get",
     headers:{
-        "Authorization": `Bearer ${useCookie('assess').value}`
 
     },
+    withCredentials: true,
     data: data
   })
   return response

@@ -10,6 +10,7 @@ export default async function login(data){
         headers: {
           "Content-Type": "application/json",
         },
+        withCredentials: true
       })
       return response
       } catch (error) {

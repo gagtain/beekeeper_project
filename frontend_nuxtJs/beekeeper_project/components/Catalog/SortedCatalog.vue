@@ -32,13 +32,27 @@
 }
 .sorted-p{
   cursor: pointer;
+        padding: 2px;
+}
+@media (max-width: 460px) {
+  .sorted-p{
+    font-size: 20px;
+  }
+    .sorted-p{
+        padding: 2px;
+    }
+}
+@media (max-width: 350px) {
+  .sorted{
+    justify-content:baseline;
+  }
 }
 .sorted-product{
   width: 100%;
 }
+
 </style>
 <script>
-import getSearchProduct from '~/additional_func/getSearchProduct';
 export default {
   el: "#sorted",
   name: "SortedCatalog",

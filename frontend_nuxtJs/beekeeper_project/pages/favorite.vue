@@ -85,6 +85,11 @@
   min-height: 80vh;
 }
 </style>
+<script setup>
+import { useHead } from "nuxt/app";
+useHead({
+    title: 'Пчелиная артель - Избранное',})
+</script>
 <script>
 import AddBasket from "~/components/UserComp/BasketComp/AddBasket.vue";
 import FavoriteComp from "~//components/UserComp/BasketComp/FavoriteComp.vue";

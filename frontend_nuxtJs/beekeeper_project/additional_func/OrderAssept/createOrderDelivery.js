@@ -6,9 +6,9 @@ export default async function createOrderDelivery(delivery_data){
         var response = await axios({url: `${api_root}api/v0.1/delivery/create/`,
         method: "post",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true,
         data:{
           delivery: delivery_data
         }

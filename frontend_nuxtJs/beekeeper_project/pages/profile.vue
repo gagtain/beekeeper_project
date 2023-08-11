@@ -16,10 +16,13 @@
 
 <style lang="css" src="../assets/css/account.css" scoped></style>
 <script setup>
+import { useHead } from "nuxt/app";
 definePageMeta({
   middleware: ["is-auth"]
   // or middleware: 'auth'
 })
+useHead({
+    title: 'Пчелиная артель - Профиль',})
 </script>
 <script>
 import UserInfoRen from '~/components/UserComp/UserInfoRen.vue';
@@ -33,6 +36,5 @@ export default {
     },
   el: "#user_wrap",
   name: "WrapperUser",
-  setup() {},
 };
 </script>

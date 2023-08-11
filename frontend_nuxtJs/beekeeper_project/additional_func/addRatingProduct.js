@@ -6,9 +6,9 @@ export default async function addRatingProduct(product_id, rating){
         var response = await axios({url: `${api_root}api/v0.1/beekeeper_web_api/product/${product_id}/rating/create`,
         method: "post",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true,
         data:{
             rating
         }

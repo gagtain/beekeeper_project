@@ -3,6 +3,10 @@
 .flex{
     display: flex;
 }
+:root {
+    --default-padding-btn: 5px 15px;
+  }
+  
 * {
     font-family: 'Roboto';
     font-display: swap;

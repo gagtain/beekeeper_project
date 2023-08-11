@@ -6,9 +6,9 @@ export default async function createOrderPayment(payment_data){
         var response = await axios({url: `${api_root}api/v0.1/payments/create/`,
         method: "post",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true,
         data:{
           ...payment_data
         }

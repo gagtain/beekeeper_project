@@ -47,12 +47,14 @@
 <script>
 import addFavorite from "../../additional_func/addFavorite";
 import removeFavorite from "../../additional_func/removeFavorite";
+import DefaultTooltipVue from "./DefaultTooltip.vue";
 
 
 export default defineNuxtComponent({
   el: "#favorite",
   name: "FavoriteComp",
   props: ["id"],
+    mixins: [DefaultTooltipVue],
   setup() {
   },
   created() {
@@ -80,7 +82,10 @@ export default defineNuxtComponent({
           response_add.data.favoriteItem
         ); 
         this.isFavorite = true;
-      }
+        this.tooltip()
+      }else if(response_add.status == 401){
+                this.$router.push('/login?message=Для данного действия необходимо авторизоваться')
+            }  
     },
     async removeFavoriteBtn() {
       let response_add = await removeFavorite(this.id);
@@ -88,7 +93,10 @@ export default defineNuxtComponent({
         this.$store.REMOVE_FAVORITE_ITEM(
            response_add.data.id
            )
-      }
+        this.tooltip()
+      }else if(response_add.status == 401){
+                this.$router.push('/login?message=Для данного действия необходимо авторизоваться')
+            }  
     },
   },
   watch: {

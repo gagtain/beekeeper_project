@@ -23,7 +23,6 @@
       <div class="size_tovar_div">
         <div class="size_tovar_kor">
           <div class="select_size">
-            <button style="background: rgb(76, 175, 80); cursor: pointer;width: 100%;height: 32px;border: none;border-radius: 6px;" onclick="alert('в разработке')">Изменить</button>
             
 <p class="normal-small kolvo">количество</p>
 <CountProduct :item="b"></CountProduct>

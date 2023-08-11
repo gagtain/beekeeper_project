@@ -69,6 +69,11 @@
   min-height: 833px;
 }
 </style>
+<script setup>
+import { useHead } from "nuxt/app";
+useHead({
+    title: 'Пчелиная артель - Каталог',})
+</script>
 <script>
 import getProductList from "~/additional_func/getProductlist";
 import FilterCatalog from "~/components/Catalog/FilterCatalog.vue";
@@ -143,7 +148,6 @@ export default {
       this.catalog_loads = true
   }
   },
-  setup() {},
   watch:{
     '$route.query': async function () {
       if(this.$route.query.filter){

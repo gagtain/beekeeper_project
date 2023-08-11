@@ -11,7 +11,7 @@
               <div class="main_text_div auto">
                 <p class="main_text">Наш мед имеет ряд преимуществ!</p>
                 <div class="bt">
-                  <button class="main_bt">
+                  <button @click="$router.push('/catalog')" class="main_bt">
                     <div class="flex sto">
                       <p class="main_bt_p">Попробовать!</p>
                     </div>
@@ -76,6 +76,7 @@
           </div>
           <div class="block_info sliders big-block">
             <div class="slider-produtos-wrap">
+              
               <swiper
                 :slidesPerView="1"
                 :spaceBetween="30"
@@ -221,6 +222,7 @@
   }
   </style>
   <script>
+  import { useHead } from "nuxt/app";
   import { Swiper, SwiperSlide } from "swiper/vue";
   import "swiper/css";
   import { Autoplay, Navigation } from "swiper";
@@ -233,6 +235,9 @@
     Swiper,
     SwiperSlide,
     LoadingComp
+},
+head: {
+    title: 'my website title'
 },
     data() {
       return {
@@ -253,15 +258,14 @@
       method: "get",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${this.$store.assess_token}`,
+        Authorization: this.$store.assess_token != '' ? `Bearer ${this.$store.assess_token}` : undefined,
       },
     })
-      .then(function (response) {
-        self.popular_product = response.data;
-      })
+      .then(response => (this.popular_product = response.data))
       .catch(function (error) {
         console.log(error);
       });
+      console.log(this.popular_product)
       this.wrapper_active = true;
       let recaptchaScript = document.createElement("script");
       recaptchaScript.setAttribute(
@@ -281,6 +285,12 @@
       }},
   
     setup() {
+      useHead({
+    title: 'Пчелиная артель - Главная',
+    meta: [
+      { name: 'description', content: 'My amazing site.' }
+    ],
+      })
       return {
         modules: [Autoplay, Navigation],
       };
@@ -288,4 +298,3 @@
   
   };
   </script>
-  

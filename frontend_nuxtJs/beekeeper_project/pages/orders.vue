@@ -246,6 +246,7 @@ import DialogWindow from '../components/AddtionalComp/Dialog.vue';
 import RatingChoise from '~/components/Tovar/RatingChoise.vue';
 import OrdersCanceled from '~/components/Orders/OrdersCanceled.vue';
 import OrderRestart from '~/additional_func/Orders/RestartOrder'
+import { useHead } from "nuxt/app";
 export default {
   components: { LoadingComp, OrderProductList, DialogWindow, RatingChoise, OrdersCanceled },
   el: "orders_main",
@@ -341,6 +342,18 @@ export default {
     order_redirect_payments(url){
         window.location.href = url
     }
-  }
+  },
+    setup() {
+definePageMeta({
+  middleware: ["is-auth"]
+  // or middleware: 'auth'
+})
+      useHead({
+    title: 'Пчелиная артель - Заказы',
+    meta: [
+      { name: 'description', content: 'My amazing site.' }
+    ],
+      })
+    }
 };
 </script>

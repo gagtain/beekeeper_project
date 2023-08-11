@@ -23,7 +23,7 @@ export default {
                         status: false,
                         title: ''
                     })
-                }, 3000)
+                }, 1000)
                 
             }                
             }        

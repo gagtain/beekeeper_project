@@ -15,6 +15,11 @@
 
 <style lang="css" src="../assets/css/account.css" scoped></style>
 
+<script setup>
+import { useHead } from "nuxt/app";
+useHead({
+    title: 'Пчелиная артель - Корзина',})
+</script>
 <script>
 import UserBasket from '~/components/UserComp/UserBasket.vue';
 export default {

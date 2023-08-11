@@ -6,9 +6,9 @@ export default async function addSending(email){
         var response = await axios({url: `${api_root}api/v0.1/sending/manager`,
         method: "post",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
         },
+        withCredentials: true,
         data:{
           email
         }

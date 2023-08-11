@@ -38,7 +38,7 @@
                       <p class="small">{{ pr.description.slice(15) }}...</p>
                     </div>
                     <div :style="select_productItem.weight ? 'margin-top: 8px' : 'margin-top: 56px'"  class="flex">
-                      <AddBasket style="width: 30%;" :id="select_productItem.id" ></AddBasket>
+                      <AddBasket :id="select_productItem.id" ></AddBasket>
                       <FavoriteComp :id="select_productItem.id" ></FavoriteComp>
                     </div>
                   </div>

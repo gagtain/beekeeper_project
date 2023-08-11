@@ -13,6 +13,9 @@
                   <div v-if="login_401">
                     Нету учетной записи с введенными данными
                   </div>
+                  <div v-if="message">
+                    {{ message }}
+                  </div>
                 </div>
                 <input type="text" placeholder="username" v-model="username" />
                 <input
@@ -35,56 +38,45 @@
 <style lang="scss" src="../assets/css/login.scss" scoped></style>
 <script>
 import login from "@/additional_func/login";
-import redirect from "@/additional_func/redirect";
+import { useHead } from "nuxt/app";
 export default {
   el: "#login_main",
   methods: {
-    set_cookie(response) {
-      var now = new Date();
-      var time = now.getTime();
-      var expireTime = time + 1000 * 3600;
-      now.setTime(expireTime);
-      (document.cookie =
-        "assess=" +
-        response.data.access +
-        ";expires=" +
-        now.toUTCString() +
-        ";path=/"),
-        (document.cookie =
-          "refresh=" +
-          response.data.refresh +
-          ";expires=" +
-          now.toUTCString() +
-          ";path=/");
-    },
 
     async login_request(event) {
-      event.preventDefault;
       let obj = {
         username: this.username,
         password: this.password,
       };
       let response = await login(JSON.stringify(obj));
-      console.log(response);
       if (response.status == 200) {
-        this.set_cookie(response);
-        this.$router.push('/profile')
+        await this.$router.push('/profile')
       } else if (response.status == 401) {
-        console.log("asd");
         this.login_401 = true;
       } else if (response == 404) {
         alert("сайт на проверке, подождите 5 минут");
       }
-      return false;
     },
 
+  },
+  mounted(){
+    this.message = this.$route.query.message
   },
   data() {
     return {
       username: "gag",
       password: "13",
       login_401: false,
+      message: null
     };
   },
+    setup() {
+      useHead({
+    title: 'Пчелиная артель - Вход',
+    meta: [
+      { name: 'description', content: 'My amazing site.' }
+    ],
+      })
+    }
 };
 </script>

@@ -6,9 +6,9 @@ export default async function image_edit(data){
     var response = await axios({url: `${api_root}api/v0.1/user/image_edit`,
     method: "post",
     headers:{
-        "Authorization": `Bearer ${useCookie('assess').value}`
 
     },
+    withCredentials: true,
     data: data
   })
   return response

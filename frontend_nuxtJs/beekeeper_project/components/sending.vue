@@ -22,8 +22,12 @@ export default {
 				this.$store.REFACTOR_TOOLTIP({
 			status: true,
 			title: 'Успешно'
-		})
+		})  
+		this.$store.REFACTOR_USER_SENDING(true)
 			}
+		else if(r.status == 401){
+                this.$router.push('/login?message=Для данного действия необходимо авторизоваться')
+            }  
 		}
 	}
 }

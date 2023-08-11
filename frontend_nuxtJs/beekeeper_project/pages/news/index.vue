@@ -67,10 +67,15 @@ border-radius: 5px;
 min-height: 833px;
 }
 </style>
+<script setup>
+import { useHead } from "nuxt/app";
+useHead({
+    title: 'Пчелиная артель - Новости',})
+</script>
 <script>
-import newsList from '~/additional_func/News/newsList'
-import LoadingComp from '../../components/AddtionalComp/LoadingComp.vue'
-export default{
+import newsList from '~/additional_func/News/newsList';
+import LoadingComp from '../../components/AddtionalComp/LoadingComp.vue';
+export default {
  components: { LoadingComp },
    data(){
        return{
@@ -82,5 +87,4 @@ export default{
        this.news = r.data
    }
 }
-
 </script>

@@ -10,7 +10,13 @@
 </template>
 
 <style lang="css" src="../../assets/css/tovar.css" scoped></style>
+<script setup>
+import { useHead } from "nuxt/app";
+useHead({
+    title: 'Пчелиная артель - Товар',})
+</script>
 <script>
+import { useHead } from "nuxt/app";
 import getTovar from "../../additional_func/getTovar"
 import Tovar from '../../components/Tovar/Tovar.vue'
 export default {
@@ -30,6 +36,8 @@ export default {
         console.log(response_tovar)
         if (response_tovar.status == 200){
             this.tovar = response_tovar.data
+useHead({
+    title: `Пчелиная артель - Товар ${this.tovar.name}`,})
         }
     },
 }

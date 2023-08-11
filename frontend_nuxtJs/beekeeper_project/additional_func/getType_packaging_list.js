@@ -7,9 +7,9 @@ export default async function getType_packaging_list(){
         var response = await axios({url: `${api_root}api/v0.1/beekeeper_web_api/type_packaging`,
         method: "get",
         headers:{
-            "Authorization": `Bearer ${useCookie('assess').value}`
 
-        }
+        },
+        withCredentials: true
       })
       return response
       } catch (error) {
