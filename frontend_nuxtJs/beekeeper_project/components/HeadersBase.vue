@@ -124,7 +124,9 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
       <div class="h_sto w-sto sote">
         <div class="logo-sote auto">
           <div class="logo-page flex auto">
-            <img
+            <nuxt-img
+             format="webp"
+             
               :src="$api_root + 'static/online_store/images/logo.png'"
               class="logo_img auto"
               alt=""

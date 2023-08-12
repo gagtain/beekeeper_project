@@ -6,7 +6,7 @@ const client_manifest = {
   },
   "CatalogProduct.css": {
     "resourceType": "style",
-    "file": "CatalogProduct.23c601cf.css",
+    "file": "CatalogProduct.0b692491.css",
     "src": "CatalogProduct.css"
   },
   "FavoriteComp.css": {
@@ -29,7 +29,7 @@ const client_manifest = {
     "file": "UserBasket.bb90dbb3.css",
     "src": "UserBasket.css"
   },
-  "_BasketInfo.18ea738f.js": {
+  "_BasketInfo.79ddf31f.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -38,7 +38,7 @@ const client_manifest = {
     "css": [
       "BasketInfo.e95b7f46.css"
     ],
-    "file": "BasketInfo.18ea738f.js",
+    "file": "BasketInfo.79ddf31f.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -52,26 +52,26 @@ const client_manifest = {
     "resourceType": "image",
     "mimeType": "image/png"
   },
-  "_CatalogProduct.0d535777.js": {
+  "_CatalogProduct.de5c7e19.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
       "sot.416737b6.png"
     ],
     "css": [
-      "CatalogProduct.23c601cf.css"
+      "CatalogProduct.0b692491.css"
     ],
-    "file": "CatalogProduct.0d535777.js",
+    "file": "CatalogProduct.de5c7e19.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.bcdf6576.js"
+      "_FavoriteComp.ec3163c1.js"
     ]
   },
-  "CatalogProduct.23c601cf.css": {
-    "file": "CatalogProduct.23c601cf.css",
+  "CatalogProduct.0b692491.css": {
+    "file": "CatalogProduct.0b692491.css",
     "resourceType": "style"
   },
-  "_FavoriteComp.9efbd1d9.js": {
+  "_FavoriteComp.1647dc34.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -80,9 +80,9 @@ const client_manifest = {
     "css": [
       "FavoriteComp.6d5f3a81.css"
     ],
-    "file": "FavoriteComp.9efbd1d9.js",
+    "file": "FavoriteComp.1647dc34.js",
     "imports": [
-      "_FavoriteComp.bcdf6576.js",
+      "_FavoriteComp.ec3163c1.js",
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
@@ -90,7 +90,7 @@ const client_manifest = {
     "file": "FavoriteComp.6d5f3a81.css",
     "resourceType": "style"
   },
-  "_FavoriteComp.bcdf6576.js": {
+  "_FavoriteComp.ec3163c1.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -99,7 +99,7 @@ const client_manifest = {
     "css": [
       "FavoriteComp.8f62df88.css"
     ],
-    "file": "FavoriteComp.bcdf6576.js",
+    "file": "FavoriteComp.ec3163c1.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -108,21 +108,21 @@ const client_manifest = {
     "file": "FavoriteComp.8f62df88.css",
     "resourceType": "style"
   },
-  "_ImageForm.b68d6e17.js": {
+  "_ImageForm.b7ae6833.js": {
     "resourceType": "script",
     "module": true,
-    "file": "ImageForm.b68d6e17.js",
+    "file": "ImageForm.b7ae6833.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_LoadingComp.4ff287fc.js": {
+  "_LoadingComp.7b31d636.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "LoadingComp.c9d2ab2a.css"
     ],
-    "file": "LoadingComp.4ff287fc.js",
+    "file": "LoadingComp.7b31d636.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -131,13 +131,13 @@ const client_manifest = {
     "file": "LoadingComp.c9d2ab2a.css",
     "resourceType": "style"
   },
-  "_OrderProductList.6ba3f141.js": {
+  "_OrderProductList.ced268ee.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "OrderProductList.3f4db4df.css"
     ],
-    "file": "OrderProductList.6ba3f141.js",
+    "file": "OrderProductList.ced268ee.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -146,7 +146,7 @@ const client_manifest = {
     "file": "OrderProductList.3f4db4df.css",
     "resourceType": "style"
   },
-  "_UserBasket.67e9f0bf.js": {
+  "_UserBasket.b096dac3.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -155,10 +155,10 @@ const client_manifest = {
     "css": [
       "UserBasket.bb90dbb3.css"
     ],
-    "file": "UserBasket.67e9f0bf.js",
+    "file": "UserBasket.b096dac3.js",
     "imports": [
-      "_BasketInfo.18ea738f.js",
-      "_FavoriteComp.9efbd1d9.js",
+      "_BasketInfo.79ddf31f.js",
+      "_FavoriteComp.1647dc34.js",
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
@@ -166,18 +166,18 @@ const client_manifest = {
     "file": "UserBasket.bb90dbb3.css",
     "resourceType": "style"
   },
-  "_index.f03f59b6.js": {
+  "_index.bfc3d640.js": {
     "resourceType": "script",
     "module": true,
-    "file": "index.f03f59b6.js",
+    "file": "index.bfc3d640.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_newsList.6eb7e959.js": {
+  "_newsList.c931be35.js": {
     "resourceType": "script",
     "module": true,
-    "file": "newsList.6eb7e959.js",
+    "file": "newsList.c931be35.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -200,12 +200,6 @@ const client_manifest = {
     "file": "892498.d01e5868.png",
     "src": "assets/images/892498.png"
   },
-  "assets/images/catalog_icon_215654.svg": {
-    "resourceType": "image",
-    "mimeType": "image/svg+xml",
-    "file": "catalog_icon_215654.7a90f4ca.svg",
-    "src": "assets/images/catalog_icon_215654.svg"
-  },
   "assets/images/favorite/favorite_add.png": {
     "resourceType": "image",
     "mimeType": "image/png",
@@ -217,18 +211,6 @@ const client_manifest = {
     "mimeType": "image/png",
     "file": "filter.b252e476.png",
     "src": "assets/images/filter.png"
-  },
-  "assets/images/pngwing.com.png": {
-    "resourceType": "image",
-    "mimeType": "image/png",
-    "file": "pngwing.com.4e9aa2ec.png",
-    "src": "assets/images/pngwing.com.png"
-  },
-  "assets/images/roof_house_home_opening_icon-icons.com_75451.svg": {
-    "resourceType": "image",
-    "mimeType": "image/svg+xml",
-    "file": "roof_house_home_opening_icon-icons.com_75451.5a6c3c3f.svg",
-    "src": "assets/images/roof_house_home_opening_icon-icons.com_75451.svg"
   },
   "assets/images/shopping-cart_icon-icons.com_69303.svg": {
     "resourceType": "image",
@@ -245,7 +227,7 @@ const client_manifest = {
   "middleware/isAuth.js": {
     "resourceType": "script",
     "module": true,
-    "file": "isAuth.15358f88.js",
+    "file": "isAuth.b7dbb9e7.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -261,7 +243,7 @@ const client_manifest = {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "error-404.01bcb42f.js",
+    "file": "error-404.5e3cd9d0.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -281,7 +263,7 @@ const client_manifest = {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "error-500.bbca1d67.js",
+    "file": "error-500.cb826d4f.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -294,7 +276,7 @@ const client_manifest = {
   },
   "node_modules/nuxt/dist/app/entry.css": {
     "resourceType": "style",
-    "file": "entry.ac96172a.css",
+    "file": "entry.272e06cb.css",
     "src": "node_modules/nuxt/dist/app/entry.css"
   },
   "node_modules/nuxt/dist/app/entry.js": {
@@ -304,25 +286,22 @@ const client_manifest = {
       "shopping-cart_icon-icons.com_69303.65d78e34.svg",
       "favorite_add.076c9a6b.png",
       "892498.d01e5868.png",
-      "roof_house_home_opening_icon-icons.com_75451.5a6c3c3f.svg",
-      "catalog_icon_215654.7a90f4ca.svg",
-      "pngwing.com.4e9aa2ec.png",
       "sot.416737b6.png",
       "vag_world_bold.a8b3128a.woff"
     ],
     "css": [
-      "entry.ac96172a.css"
+      "entry.272e06cb.css"
     ],
     "dynamicImports": [
       "middleware/isAuth.js",
       "virtual:nuxt:/media/gagtain/9C804AA4804A84AC/beekeeper_project/frontend_nuxtJs/beekeeper_project/.nuxt/error-component.mjs"
     ],
-    "file": "entry.e0c8763d.js",
+    "file": "entry.5c7fb126.js",
     "isEntry": true,
     "src": "node_modules/nuxt/dist/app/entry.js"
   },
-  "entry.ac96172a.css": {
-    "file": "entry.ac96172a.css",
+  "entry.272e06cb.css": {
+    "file": "entry.272e06cb.css",
     "resourceType": "style"
   },
   "shopping-cart_icon-icons.com_69303.65d78e34.svg": {
@@ -337,21 +316,6 @@ const client_manifest = {
   },
   "892498.d01e5868.png": {
     "file": "892498.d01e5868.png",
-    "resourceType": "image",
-    "mimeType": "image/png"
-  },
-  "roof_house_home_opening_icon-icons.com_75451.5a6c3c3f.svg": {
-    "file": "roof_house_home_opening_icon-icons.com_75451.5a6c3c3f.svg",
-    "resourceType": "image",
-    "mimeType": "image/svg+xml"
-  },
-  "catalog_icon_215654.7a90f4ca.svg": {
-    "file": "catalog_icon_215654.7a90f4ca.svg",
-    "resourceType": "image",
-    "mimeType": "image/svg+xml"
-  },
-  "pngwing.com.4e9aa2ec.png": {
-    "file": "pngwing.com.4e9aa2ec.png",
     "resourceType": "image",
     "mimeType": "image/png"
   },
@@ -372,13 +336,13 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "basket.0e7250ee.js",
+    "file": "basket.1718992f.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_UserBasket.67e9f0bf.js",
-      "_BasketInfo.18ea738f.js",
-      "_FavoriteComp.9efbd1d9.js",
-      "_FavoriteComp.bcdf6576.js"
+      "_UserBasket.b096dac3.js",
+      "_BasketInfo.79ddf31f.js",
+      "_FavoriteComp.1647dc34.js",
+      "_FavoriteComp.ec3163c1.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/basket.vue"
@@ -400,12 +364,12 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "catalog.957d99d1.js",
+    "file": "catalog.2e40bba2.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_CatalogProduct.0d535777.js",
-      "_LoadingComp.4ff287fc.js",
-      "_FavoriteComp.bcdf6576.js"
+      "_CatalogProduct.de5c7e19.js",
+      "_LoadingComp.7b31d636.js",
+      "_FavoriteComp.ec3163c1.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/catalog.vue"
@@ -431,12 +395,12 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "checkout.0d067fe6.js",
+    "file": "checkout.c401351e.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_BasketInfo.18ea738f.js",
-      "_index.f03f59b6.js",
-      "_OrderProductList.6ba3f141.js"
+      "_BasketInfo.79ddf31f.js",
+      "_index.bfc3d640.js",
+      "_OrderProductList.ced268ee.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/checkout.vue"
@@ -457,11 +421,11 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "favorite.468edf5b.js",
+    "file": "favorite.0b1e8e4d.js",
     "imports": [
-      "_FavoriteComp.9efbd1d9.js",
+      "_FavoriteComp.1647dc34.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.bcdf6576.js"
+      "_FavoriteComp.ec3163c1.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/favorite.vue"
@@ -472,7 +436,7 @@ const client_manifest = {
   },
   "pages/index.css": {
     "resourceType": "style",
-    "file": "index.8fb50de2.css",
+    "file": "index.78f3c85e.css",
     "src": "pages/index.css"
   },
   "pages/index.vue": {
@@ -482,19 +446,19 @@ const client_manifest = {
       "3.de54ba29.jpg"
     ],
     "css": [],
-    "file": "index.01c1aa89.js",
+    "file": "index.81d285e9.js",
     "imports": [
-      "_CatalogProduct.0d535777.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.bcdf6576.js",
-      "_LoadingComp.4ff287fc.js",
-      "_newsList.6eb7e959.js"
+      "_FavoriteComp.ec3163c1.js",
+      "_CatalogProduct.de5c7e19.js",
+      "_LoadingComp.7b31d636.js",
+      "_newsList.c931be35.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/index.vue"
   },
-  "index.8fb50de2.css": {
-    "file": "index.8fb50de2.css",
+  "index.78f3c85e.css": {
+    "file": "index.78f3c85e.css",
     "resourceType": "style"
   },
   "3.de54ba29.jpg": {
@@ -515,9 +479,9 @@ const client_manifest = {
       "3.de54ba29.jpg"
     ],
     "css": [],
-    "file": "login.eaffaf95.js",
+    "file": "login.5e529290.js",
     "imports": [
-      "_ImageForm.b68d6e17.js",
+      "_ImageForm.b7ae6833.js",
       "node_modules/nuxt/dist/app/entry.js"
     ],
     "isDynamicEntry": true,
@@ -539,10 +503,10 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "_id_.f23011f5.js",
+    "file": "_id_.3d367390.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_LoadingComp.4ff287fc.js"
+      "_LoadingComp.7b31d636.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/news/[id].vue"
@@ -563,11 +527,11 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "index.6fc5613d.js",
+    "file": "index.f7cd038a.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_newsList.6eb7e959.js",
-      "_LoadingComp.4ff287fc.js"
+      "_newsList.c931be35.js",
+      "_LoadingComp.7b31d636.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/news/index.vue"
@@ -588,11 +552,11 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "orders.15a3c98e.js",
+    "file": "orders.3c359cab.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_LoadingComp.4ff287fc.js",
-      "_OrderProductList.6ba3f141.js"
+      "_LoadingComp.7b31d636.js",
+      "_OrderProductList.ced268ee.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/orders.vue"
@@ -613,14 +577,14 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "profile.ba3c95bd.js",
+    "file": "profile.7221e0c1.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_LoadingComp.4ff287fc.js",
-      "_UserBasket.67e9f0bf.js",
-      "_BasketInfo.18ea738f.js",
-      "_FavoriteComp.9efbd1d9.js",
-      "_FavoriteComp.bcdf6576.js"
+      "_LoadingComp.7b31d636.js",
+      "_UserBasket.b096dac3.js",
+      "_BasketInfo.79ddf31f.js",
+      "_FavoriteComp.1647dc34.js",
+      "_FavoriteComp.ec3163c1.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/profile.vue"
@@ -642,11 +606,11 @@ const client_manifest = {
       "3.de54ba29.jpg"
     ],
     "css": [],
-    "file": "register.bb19be46.js",
+    "file": "register.157dbff5.js",
     "imports": [
-      "_ImageForm.b68d6e17.js",
+      "_ImageForm.b7ae6833.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_index.f03f59b6.js"
+      "_index.bfc3d640.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/register.vue"
@@ -667,11 +631,11 @@ const client_manifest = {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "_id_.73ab7003.js",
+    "file": "_id_.d8909c69.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.bcdf6576.js",
-      "_CatalogProduct.0d535777.js"
+      "_FavoriteComp.ec3163c1.js",
+      "_CatalogProduct.de5c7e19.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/tovar/[id].vue"
@@ -687,7 +651,7 @@ const client_manifest = {
       "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
       "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
     ],
-    "file": "error-component.e74b62a6.js",
+    "file": "error-component.c805e41a.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],

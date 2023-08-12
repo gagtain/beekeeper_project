@@ -5,7 +5,7 @@
                       <div class="photo-main">
                         <div class="controls"></div>
                         <nuxt-img
-                        loading="lazy"
+                        loading="lazy" format="webp"
                           :src="$api_root + pr.image"
                           alt="green apple slice"
                         />

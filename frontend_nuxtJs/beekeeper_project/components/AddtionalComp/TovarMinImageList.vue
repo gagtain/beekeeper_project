@@ -1,13 +1,13 @@
 <template>
   <div class="photo-album flex" id="photo-album">
                         <nuxt-img
-                        loading="lazy"
+                        loading="lazy" format="webp"
       @click="a($event)"
       class="add-img-tovar"
       :src="$api_root + image"
     />
                         <nuxt-img
-                        loading="lazy"
+                        loading="lazy" format="webp"
       @click="a($event)"
       v-for="(img, index) in ImageProductList"
       :key="index"

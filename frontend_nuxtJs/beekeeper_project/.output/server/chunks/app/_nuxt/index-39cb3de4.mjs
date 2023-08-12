@@ -1,4 +1,4 @@
-import { _ as _export_sfc, u as useHead, b as __nuxt_component_0$1 } from '../server.mjs';
+import { _ as _export_sfc, u as useHead, b as __nuxt_component_0$2 } from '../server.mjs';
 import { useSSRContext, mergeProps, withCtx, createVNode, toDisplayString, createTextVNode } from 'vue';
 import { ssrRenderAttrs, ssrRenderStyle, ssrRenderList, ssrRenderAttr, ssrRenderComponent, ssrInterpolate } from 'vue/server-renderer';
 import { n as newsList } from './newsList-667eb38d.mjs';
@@ -51,7 +51,7 @@ const _sfc_main = /* @__PURE__ */ Object.assign(__default__, {
       title: "\u041F\u0447\u0435\u043B\u0438\u043D\u0430\u044F \u0430\u0440\u0442\u0435\u043B\u044C - \u041D\u043E\u0432\u043E\u0441\u0442\u0438"
     });
     return (_ctx, _push, _parent, _attrs) => {
-      const _component_NuxtLink = __nuxt_component_0$1;
+      const _component_NuxtLink = __nuxt_component_0$2;
       _push(`<div${ssrRenderAttrs(mergeProps({ class: "sot-ob" }, _attrs))} data-v-69845c12><div class="wrapper flex w-sto" data-v-69845c12><div class="interactiv auto back" data-v-69845c12><div class="w-sto product_div" data-v-69845c12><div class="flex w-sto" data-v-69845c12><p class="auto small-big VAG" data-v-69845c12>\u041D\u043E\u0432\u043E\u0441\u0442\u0438</p></div>`);
       if (_ctx.news) {
         _push(`<section style="${ssrRenderStyle({ "padding": "5%" })}" class="grid w-sto" data-v-69845c12><!--[-->`);
