@@ -1,11 +1,13 @@
 <template>
   <div class="photo-album flex" id="photo-album">
-    <img
+                        <nuxt-img
+                        loading="lazy"
       @click="a($event)"
       class="add-img-tovar"
       :src="$api_root + image"
     />
-    <img
+                        <nuxt-img
+                        loading="lazy"
       @click="a($event)"
       v-for="(img, index) in ImageProductList"
       :key="index"

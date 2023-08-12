@@ -4,12 +4,13 @@
                     <div class="photo-container">
                       <div class="photo-main">
                         <div class="controls"></div>
-                        <img
+                        <nuxt-img
+                        loading="lazy"
                           :src="$api_root + pr.image"
                           alt="green apple slice"
                         />
                       </div>
-                      <TovarMinImageList :image="pr.image" :ImageProductList="pr.ImageProductList"></TovarMinImageList>
+                      <TovarMinImageList v-if="!$device.isMobile" :image="pr.image" :ImageProductList="pr.ImageProductList"></TovarMinImageList>
                       
                     </div>
                   </div>

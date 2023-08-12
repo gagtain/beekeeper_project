@@ -1,7 +1,10 @@
 <template>
     <div style="padding-top: 50px;">
       <div class="wrapper">
-        <nuxt-img preload format="webp" class="absolute w-sto h_sto" src="/images/main.webp" alt=""/>
+        <nuxt-img format="webp" 
+  sizes="sm:100vw md:100vw lg:100vw"
+        
+        class="absolute w-sto h_sto" src="/images/main.webp" alt=""/>
         <div
           class="absolute main-nak"
           :class="wrapper_active ? 'actives' : ''"
@@ -198,10 +201,10 @@
 
 @import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css";
 </style>
-  <style lang="css" src="../assets/css/main/main.css" scoped></style>
-  <style lang="css" src="../assets/css/news_min.css" scoped></style>
-  <style lang="css" src="../assets/css/main/hex-tovar.css" scoped></style>
-  <style scoped>
+  <style lang="css" src="../assets/css/main/main.css" ></style>
+  <style lang="css" src="../assets/css/news_min.css" ></style>
+  <style lang="css" src="../assets/css/main/hex-tovar.css" ></style>
+  <style >
   .main_img {
     position: absolute;
     top: 0;

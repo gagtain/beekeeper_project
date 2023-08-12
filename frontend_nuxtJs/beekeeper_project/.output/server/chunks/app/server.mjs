@@ -1252,7 +1252,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/catalog-fbec74e3.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/catalog-31bd8d9d.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) ?? "checkout",
@@ -1276,7 +1276,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-9999fc82.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-56718edd.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1332,7 +1332,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/_id_-76465b0a.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/_id_-8e045277.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
