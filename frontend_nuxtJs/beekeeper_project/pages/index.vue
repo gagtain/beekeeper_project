@@ -110,7 +110,8 @@
             <div class="flex w-sto jus-sp info_kart_div">
               <div class="kart">
               <div class="w-sto h_sto">
-                <img style="border-radius: 40px;" class="w-sto h_sto" src="../assets/images/eco-friend.jpg" alt="">
+                <nuxt-img
+                        loading="lazy" format="webp" style="border-radius: 40px;" class="w-sto h_sto" src="~/assets/images/eco-friend.jpg" alt=""/>
               </div>
             </div>
               <div class="dostav_info flex">
