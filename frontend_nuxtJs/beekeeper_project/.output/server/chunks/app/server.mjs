@@ -2212,7 +2212,9 @@ const imageOptions = {
   },
   "presets": {},
   "provider": "ipx",
-  "domains": [],
+  "domains": [
+    "owa.gagtain.ru"
+  ],
   "alias": {}
 };
 imageOptions.providers = {

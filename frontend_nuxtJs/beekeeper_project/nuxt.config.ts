@@ -13,5 +13,8 @@ export default defineNuxtConfig({
     compressPublicAssets: true
   },
   ssr: true,
+  image: {
+    domains: ['owa.gagtain.ru']
+  }
   
 })
