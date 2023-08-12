@@ -2,6 +2,7 @@
     <div style="padding-top: 50px;">
       <div class="wrapper">
         <nuxt-img format="webp" 
+        rel="preconnect"
   sizes="sm:100vw md:100vw lg:100vw"
         
         class="absolute w-sto h_sto" src="/images/main.webp" alt=""/>

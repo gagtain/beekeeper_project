@@ -3,29 +3,25 @@
     <div class="main_mobail_menu_item">
         <NuxtLink to="/" no-prefetch>
 
-<nuxt-img
-                        loading="lazy" format="webp" src="~assets/images/roof_house_home_opening_icon-icons.com_75451.svg" alt=""/>
+<nuxt-img format="webp" src="/images/roof_house_home_opening_icon-icons.com_75451.svg" alt=""/>
         </NuxtLink>
     </div>
     <div class="main_mobail_menu_item">
         <NuxtLink to="/catalog" no-prefetch>
 
-<nuxt-img
-                        loading="lazy" format="webp" src="~assets/images/catalog_icon_215654.svg" alt=""/>
+<nuxt-img format="webp" src="/images/catalog_icon_215654.svg" alt=""/>
         </NuxtLink>
     </div>
     <div class="main_mobail_menu_item">
         <NuxtLink to="/basket" no-prefetch>
 
-<nuxt-img
-                        loading="lazy" format="webp" src="~assets/images/shopping-cart_icon-icons.com_69303.svg" alt=""/>
+<nuxt-img format="webp" src="/images/shopping-cart_icon-icons.com_69303.svg" alt=""/>
         </NuxtLink>
     </div>
     <div class="main_mobail_menu_item">
         <NuxtLink to="/profile" no-prefetch>
 
-<nuxt-img
-                        loading="lazy" format="webp" src="~assets/images/pngwing.com.png" alt=""/>
+<nuxt-img format="webp" src="/images/pngwing.com.png" alt=""/>
         </NuxtLink>
     </div>
   </div>

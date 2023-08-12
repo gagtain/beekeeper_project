@@ -1276,7 +1276,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-0681186e.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-40e139ac.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2890,17 +2890,15 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(ssrRenderComponent(_component_nuxt_img, {
-          loading: "lazy",
           format: "webp",
-          src: "~assets/images/roof_house_home_opening_icon-icons.com_75451.svg",
+          src: "/images/roof_house_home_opening_icon-icons.com_75451.svg",
           alt: ""
         }, null, _parent2, _scopeId));
       } else {
         return [
           createVNode(_component_nuxt_img, {
-            loading: "lazy",
             format: "webp",
-            src: "~assets/images/roof_house_home_opening_icon-icons.com_75451.svg",
+            src: "/images/roof_house_home_opening_icon-icons.com_75451.svg",
             alt: ""
           })
         ];
@@ -2916,17 +2914,15 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(ssrRenderComponent(_component_nuxt_img, {
-          loading: "lazy",
           format: "webp",
-          src: "~assets/images/catalog_icon_215654.svg",
+          src: "/images/catalog_icon_215654.svg",
           alt: ""
         }, null, _parent2, _scopeId));
       } else {
         return [
           createVNode(_component_nuxt_img, {
-            loading: "lazy",
             format: "webp",
-            src: "~assets/images/catalog_icon_215654.svg",
+            src: "/images/catalog_icon_215654.svg",
             alt: ""
           })
         ];
@@ -2942,17 +2938,15 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(ssrRenderComponent(_component_nuxt_img, {
-          loading: "lazy",
           format: "webp",
-          src: "~assets/images/shopping-cart_icon-icons.com_69303.svg",
+          src: "/images/shopping-cart_icon-icons.com_69303.svg",
           alt: ""
         }, null, _parent2, _scopeId));
       } else {
         return [
           createVNode(_component_nuxt_img, {
-            loading: "lazy",
             format: "webp",
-            src: "~assets/images/shopping-cart_icon-icons.com_69303.svg",
+            src: "/images/shopping-cart_icon-icons.com_69303.svg",
             alt: ""
           })
         ];
@@ -2968,17 +2962,15 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(ssrRenderComponent(_component_nuxt_img, {
-          loading: "lazy",
           format: "webp",
-          src: "~assets/images/pngwing.com.png",
+          src: "/images/pngwing.com.png",
           alt: ""
         }, null, _parent2, _scopeId));
       } else {
         return [
           createVNode(_component_nuxt_img, {
-            loading: "lazy",
             format: "webp",
-            src: "~assets/images/pngwing.com.png",
+            src: "/images/pngwing.com.png",
             alt: ""
           })
         ];
