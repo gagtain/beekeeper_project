@@ -1,0 +1,1 @@
+import{i as a,j as i}from"./entry.2f8588e7.js";async function n(r,e){try{var t=await a({url:`${i}api/v0.1/news/list?from=${r}&size=${e}`,method:"get",headers:{},withCredentials:!0});return t}catch(s){return s.response}}export{n};

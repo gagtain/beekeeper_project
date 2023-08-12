@@ -1,7 +1,7 @@
 <template>
     <div style="padding-top: 50px;">
       <div class="wrapper">
-        <nuxt-img preload class="absolute w-sto h_sto" src="/images/main.jpg" alt=""/>
+        <nuxt-img preload format="webp" class="absolute w-sto h_sto" src="/images/main.webp" alt=""/>
         <div
           class="absolute main-nak"
           :class="wrapper_active ? 'actives' : ''"
