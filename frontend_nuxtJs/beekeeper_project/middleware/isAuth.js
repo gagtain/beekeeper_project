@@ -1,7 +1,8 @@
 import verifAssessToken from "../additional_func/verifAssessToken"
-
+import { defineEventHandler } from 'h3';
 import { useMainStore } from "../store";
-export default async (event) => {
+export default  defineEventHandler( async (event) => {
+  console.log(event)
   /* Попытка авторизовать пользователя на всех переходах  */
   const stores = useMainStore()
     if (useCookie('assess').value || useCookie('refresh').value){
@@ -19,24 +20,26 @@ export default async (event) => {
             }
           }
       }else{
+        console.log(222)
         stores.userSet(assess_response.data)
       }
   }else{
 
     let assess_response = await verifAssessToken()
-    console.log(assess_response.status)
+    console.log(assess_response.status, 123)
       if (!(assess_response.status == 200)){
       // если нет
             if (event.href != '/login' && event.href != '/register'){
               return navigateTo('/login')
             }
       }else{
+        console.log(222)
         stores.userSet(assess_response.data)
       }
-  }
+  } 
 }
 
-
+)
   // import verifAssessToken from "../additional_func/verifAssessToken"
 
   // export default async (event) => {

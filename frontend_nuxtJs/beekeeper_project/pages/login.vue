@@ -5,7 +5,7 @@
         <div class="login-page flex">
           <AuthImageForm></AuthImageForm>
           <div class="form">
-            <p class="small login-p">Войти в аккаунт</p>
+            <p class="small login-p">Войти в аккаунт  </p>
 
             <div class="flex h_sto">
               <div class="login-form auto">

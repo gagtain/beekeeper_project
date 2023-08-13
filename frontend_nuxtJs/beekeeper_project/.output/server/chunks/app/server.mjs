@@ -1549,7 +1549,7 @@ const globalMiddleware = [
   auth_45global
 ];
 const namedMiddleware = {
-  "is-auth": () => import('./_nuxt/isAuth-5556f4c7.mjs')
+  "is-auth": () => import('./_nuxt/isAuth-1863fcbf.mjs')
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
