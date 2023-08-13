@@ -10,6 +10,7 @@ click==8.1.3
 django-celery-beat==2.5.0
 click-didyoumean==0.3.0
 click-plugins==1.1.1
+gunicorn==21.2.0
 click-repl==0.3.0
 dataclasses-json==0.5.9
 Deprecated==1.2.14
