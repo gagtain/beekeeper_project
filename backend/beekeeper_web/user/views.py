@@ -32,7 +32,8 @@ class UserRegistAPI(CreateAPIView):
 class tokenVerif(APIView):
     authentication_classes = [CustomAuthentication]
     permission_classes = {IsAuthenticated}
-    def get(self, request: Request):
+    
+    def post(self, request: Request):
         user = MainUser.objects.only(*default_user_only(), 'basket', 'favorite_product')\
             .prefetch_related(optimize_basket, optimize_favorite).get(id=request.user.id)
         return Response(RetrieveUser(user).data)
