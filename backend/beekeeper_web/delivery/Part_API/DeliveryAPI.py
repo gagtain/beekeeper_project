@@ -1,11 +1,12 @@
 from pprint import pprint
 from time import sleep
 
-from django.db.models import QuerySet
+from django.db.models import QuerySet, Prefetch
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from delivery.services.optimize_orm.collect import default_delivery_optimize
 from orders.models import Order
 from delivery.dilivery_core.Client import Configuration
 from delivery.dilivery_core.core import SdekDelivery
@@ -13,6 +14,7 @@ from delivery.dilivery_core.shemas.Delivery import DeliveryAdd, DeliveryResponse
 from delivery.models import DeliveryTransaction
 from delivery.serializers import DeliveryTransactionSerializer, DeliveryTransactionCreateSerializer
 from delivery.services.Delivery import DeliveryService, Sent_Status
+from orders.services.optimize_orm import default_order_optimize
 
 
 class DeliveryCreate(APIView):
@@ -33,7 +35,6 @@ class DeliveryCreate(APIView):
         delivery_response_class = DeliveryResponseAdd(**a.json())
         sleep(1)
         delivery_sdek = SdekDelivery.SDEKDelivery.get_delivery(uuid=delivery_response_class.entity['uuid'])
-        pprint(delivery_sdek.json())
         delivery.track_number = delivery_sdek.json()['entity']['cdek_number']
         delivery.uuid = delivery_response_class.entity['uuid']
         delivery.status = DeliveryTransaction.DeliveryStatus.Sent
@@ -43,9 +44,8 @@ class DeliveryCreate(APIView):
 
     def delivery_create_lait(self, request: Request):
         """Заглушка, будет удалено при дальнейшем рефакторе"""
-        order = Order.objects.get(id=request.data['order_id'])
-        print(request.data)
-        print(request.data.get('user_number', order.user.number))
+        order = Order.objects.select_related('user').only('user', 'user__number', 'id')\
+            .get(id=request.data.get('order_id'))
         serializer = DeliveryTransactionCreateSerializer(data={
             'uuid': '122',
             'where': request.data.get('PVZ'),
@@ -54,7 +54,8 @@ class DeliveryCreate(APIView):
             'order_delivery_transaction': [order.id]
         },)
         serializer.is_valid(raise_exception=True)
-        delivery = serializer.save()
+        delivery_ = serializer.save()
+        delivery = default_delivery_optimize(DeliveryTransaction.objects).get(id=delivery_.id)
         return Response(data=DeliveryTransactionSerializer(delivery).data, status=200)
 
 
@@ -68,13 +69,14 @@ class DeliverySdekGet(APIView):
 class DeliveryGet(APIView):
 
     def delivery_get(self, request, pk):
-        return Response(DeliveryTransactionSerializer(DeliveryTransaction.objects.get(pk=pk)).data)
+        delivery_obj = default_delivery_optimize(DeliveryTransaction.objects).get(pk=pk)
+        return Response(DeliveryTransactionSerializer(delivery_obj).data)
 
 
 class DeliverySubmitWaiting(APIView):
 
     def delivery_submit_waiting(self, request, pk):
-        delivery: DeliveryTransaction = DeliveryTransaction.objects.get(pk=pk)
+        delivery: DeliveryTransaction = DeliveryTransaction.objects.only('status').get(pk=pk)
         delivery.status = DeliveryTransaction.DeliveryStatus.Waiting_for_dispatch
         delivery.save()
         return Response(DeliveryTransactionSerializer(instance=delivery).data)
@@ -83,7 +85,7 @@ class DeliverySubmitWaiting(APIView):
 class DeliveryTrackAdd(APIView):
 
     def delivery_track_add(self, request, pk):
-        delivery: DeliveryTransaction = DeliveryTransaction.objects.get(pk=pk)
+        delivery: DeliveryTransaction = DeliveryTransaction.objects.only('status', 'track_number', 'id').get(pk=pk)
         delivery.track_number = request.data['track_number']
         delivery.status = DeliveryTransaction.DeliveryStatus.Sent
         delivery.save()

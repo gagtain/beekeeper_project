@@ -4,8 +4,9 @@ from rest_framework import serializers
 from beekeeper_web_api.models import MainUser, ProductItem, Product, DimensionsProduct
 from delivery.DeliveryInfo.Delivery.enum.DeliveryEngine import DeliveryEngine
 from orders.models import Order, OrderItem
-from beekeeper_web_api.serializers import Type_weightSerializers
+from beekeeper_web_api.serializers import Type_weightSerializers, ProductSerializer
 from delivery.models import DeliveryTransaction
+from user.serializers import RetrieveUserDefault
 
 
 class DeliveryEngineChoiceSerializers(serializers.Serializer):
@@ -15,10 +16,6 @@ class DeliveryEngineChoiceSerializers(serializers.Serializer):
         fields = ['delivery_engine']
 
 
-class DeliveryProductSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Product
-        fields = ['name', 'image']
 
 
 class DimensionsSerializer(serializers.ModelSerializer):
@@ -28,7 +25,7 @@ class DimensionsSerializer(serializers.ModelSerializer):
 
 
 class DeliveryProductItemSerializer(serializers.ModelSerializer):
-    product = DeliveryProductSerializer()
+    product = ProductSerializer()
     weight = Type_weightSerializers()
     dimensions = DimensionsSerializer()
 
@@ -64,10 +61,10 @@ class OrderSerializers(serializers.ModelSerializer):
 
 
 class OrderRetrieveSerializers(serializers.ModelSerializer):
-
+    product_list_transaction = OrderItemSerializer(many=True)
+    user = RetrieveUserDefault()
     class Meta:
         model = Order
-        depth = 2
         fields = ['id', 'product_list_transaction', 'datetime', 'user', 'amount', 'amount_currency', 'status',
                   'payment']
 

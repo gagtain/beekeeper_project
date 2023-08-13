@@ -7,6 +7,9 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 from beekeeper_web_api.serializers import BasketSerializer, FavoriteSerializer
+from user.services.optimize_orm import optimize_basket_item, optimize_favorite_item, optimize_ImageProductList, \
+    optimize_category
+from .optimize_orm import optimize_product_item_list
 
 sys.path.append('.')
 from rest_framework.exceptions import NotFound
@@ -20,15 +23,12 @@ class ServicesUser:
 
     @classmethod
     def getBasket(cls, user: MainUser) -> list[Product]:
-        basket = user.basket.prefetch_related(
-            Prefetch('favorite_product', queryset=MainUser.objects.all().only('id')),
-            'list_weight',
-        )
+        basket = optimize_basket_item(user.basket)
         return basket
 
     @classmethod
     def getFavoriteProduct(cls, user: MainUser) -> list[Product]:
-        favorite_product = user.favorite_product
+        favorite_product = optimize_favorite_item(user.favorite_product)
         return favorite_product
 
     @classmethod
@@ -91,24 +91,24 @@ class ProductServises():
 
     @classmethod
     def getPopular(cls, size):
+
         return Product.objects.all().order_by('count_purchase')[:size].prefetch_related(
-            Prefetch('category', queryset=Category.objects.all().only('name')),
-            'ImageProductList'
+            optimize_ImageProductList(), optimize_category(),
+            optimize_product_item_list('productItemList')
         ).annotate(Avg('rating_product__rating'))
 
     @classmethod
     def getProductList(cls, size):
         return Product.objects.all()[:size].prefetch_related(
-            Prefetch('category', queryset=Category.objects.all().only('name')),
-            'ImageProductList'
+            optimize_category(),
+            optimize_ImageProductList(), optimize_product_item_list('productItemList')
         ).annotate(Avg('rating_product__rating'))
 
-    # 'id', 'name', 'image', 'price', 'description', 'price_currency', 'category', 'type_packaging', 'ImageProductList'
     @classmethod
     def getProduct(cls, pk):
         return Product.objects.filter(pk=pk).prefetch_related(
-            Prefetch('category', queryset=Category.objects.all().only('name')),
-            'ImageProductList'
+            optimize_category(),
+            optimize_ImageProductList(), optimize_product_item_list('productItemList')
         ).annotate(Avg('rating_product__rating'))
 
 

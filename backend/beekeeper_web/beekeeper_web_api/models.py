@@ -1,7 +1,9 @@
+import json
 import os
 from django.db import models
 from djmoney.models.fields import MoneyField
 
+from beekeeper_web_api.validate import not_quotation_mark, image_ot_quotation_mark
 from user.models import MainUser
 
 
@@ -24,7 +26,7 @@ class ImageProduct(models.Model):
     def get_galery_item_url(instance, filename):
         return os.path.join(instance.product.name, 'galery', filename)
 
-    photo = models.ImageField(upload_to=get_galery_item_url)
+    photo = models.ImageField(upload_to=get_galery_item_url, validators=[image_ot_quotation_mark])
     product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name="ImageProductList",
                                 verbose_name="Продукт")
 
@@ -57,7 +59,8 @@ class DimensionsProduct(models.Model):
 
 class Product(models.Model):
     """"Модель продукта"""
-    name = models.CharField(max_length=100, blank=False, verbose_name="Название продукта")
+    name = models.CharField(max_length=100, blank=False, verbose_name="Название продукта",
+                            validators=[not_quotation_mark])
     description = models.CharField(max_length=200, blank=True, verbose_name="Описание")
     image = models.ImageField(upload_to="images/%Y/%m/%d/", verbose_name="Изображение товара", blank=False,
                               default="admin")

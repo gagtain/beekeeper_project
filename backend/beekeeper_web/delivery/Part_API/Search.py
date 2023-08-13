@@ -5,6 +5,7 @@ from orders.models import Order, OrderItem
 from ..models import DeliveryTransaction
 from beekeeper_web_api.Part_API.custom_mixins import Filter
 from ..serializers import DeliveryTransactionSerializer, CountSerializer
+from ..services.optimize_orm.collect import default_delivery_optimize
 
 
 class DeliveryTransactionFilter(APIView, Filter):
@@ -18,25 +19,7 @@ class DeliveryTransactionFilter(APIView, Filter):
         """Оптимизация запроса"""
         size = int(self.request.GET.get('size', 10))
         from_ = int(self.request.GET.get('from', 0))
-        return queryset.only('id', 'uuid', 'track_number',
-                             'order_delivery_transaction', 'status',
-                             'delivery_method', 'where').prefetch_related(
-            Prefetch('order_delivery_transaction',
-                     queryset=Order.objects.all().select_related('user', 'payment')
-                     .only('amount', 'amount_currency', 'user__username', 'user__email', 'user__FIO', 'datetime',
-                           'delivery_id', 'user__id', 'status', 'payment')
-                     .prefetch_related(
-                         Prefetch('product_list_transaction',
-                                  queryset=OrderItem.objects.all()
-                                  .select_related('productItem', 'productItem__product', 'productItem__dimensions',
-                                                  'productItem__weight')
-                                  .only('id', 'count', 'order_id', 'productItem__weight', 'productItem__product__name',
-                                        'productItem__product__image', 'price',
-                                        'price_currency', 'productItem__dimensions')
-
-                                  )
-                     )
-                     ))[from_:from_+size]
+        return default_delivery_optimize(queryset.order_by('id')[from_:from_+size])
 
 
 class DeliveryTransactionFilterCount(Filter):

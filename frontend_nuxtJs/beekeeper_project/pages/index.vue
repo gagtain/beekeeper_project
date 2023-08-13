@@ -112,7 +112,7 @@
               <div class="kart">
               <div class="w-sto h_sto">
                 <nuxt-img
-                        loading="lazy" format="webp" style="border-radius: 40px;" class="w-sto h_sto" src="~/assets/images/eco-friend.jpg" alt=""/>
+                        loading="lazy" format="webp" style="border-radius: 40px;" class="w-sto h_sto" src="/images/eco-friend.jpg" alt=""/>
               </div>
             </div>
               <div class="dostav_info flex">

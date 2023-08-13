@@ -11,11 +11,12 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 from user.jwt_token.auth import CustomAuthentication
+from user.models import MainUser
 from .Part_API.OrderAPI import OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI
 from .Part_API.RatingProductAPI import RatingProductCreate, RatingProductList, RatingProductAVG
 from .Part_API.ProductAPI import ProductFilterName, ProductFilter
-from .serializers import RetrieveProduct, RetrieveProductRemoveToProdachen,\
-    CategoryRetriveSerializers, BasketInfoSerializer
+from .serializers import RetrieveProduct, RetrieveProductRemoveToProdachen, \
+    CategoryRetriveSerializers, BasketInfoSerializer, BasketSerializer, FavoriteSerializer
 from .services.User import ServicesUser, ProductServises, CategoryServises
 sys.path.append('.')
 class UserAPI(viewsets.ViewSet):
@@ -23,16 +24,16 @@ class UserAPI(viewsets.ViewSet):
 
 
     def GetBasket(self, request):
-        basket = ServicesUser.getBasket(request.user)
+        basket = ServicesUser.getBasket(MainUser.objects.only('id').get(id=request.user.id))
         # basket = ServicesUser.getBasket(1)
-        serializer = RetrieveProduct(basket, many=True, context={'user_id': request.user.id})
+        serializer = BasketSerializer(basket, many=True)
         return Response(serializer.data)
 
     def GetFavoriteProduct(self, request):
 
-        basket = ServicesUser.getFavoriteProduct(request.user)
+        basket = ServicesUser.getFavoriteProduct(MainUser.objects.only('id').get(id=request.user.id))
         # basket = ServicesUser.getBasket(1)
-        serializer = RetrieveProduct(basket, many=True)
+        serializer = FavoriteSerializer(basket, many=True)
         return Response(serializer.data)
 
     def AddFavoriteProduct(self, request, pk):

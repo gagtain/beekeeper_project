@@ -1,11 +1,11 @@
 from django.db.models import QuerySet, Prefetch, Count, Sum
 from rest_framework.views import APIView
 
-from orders.models import Order
+from orders.models import Order, OrderItem
 from beekeeper_web_api.Part_API.custom_mixins import Filter
-from beekeeper_web_api.serializers import OrderSerializers
 from delivery.serializers import CountSerializer
-from orders.serializers import SumSerializer
+from orders.serializers import SumSerializer, OrderSerializers
+from orders.services.optimize_orm import default_order_optimize
 
 
 class OrderFilter(APIView, Filter):
@@ -21,7 +21,7 @@ class OrderFilter(APIView, Filter):
 
         size = int(self.request.GET.get('size', 10))
         from_ = int(self.request.GET.get('from', 0))
-        return queryset[from_:from_+size]
+        return default_order_optimize(queryset[from_:from_ + size])
 
 
 class OrderFilterCount(Filter):

@@ -5,6 +5,7 @@ from django.db.models import QuerySet
 from rest_framework.exceptions import NotFound, ValidationError
 
 from orders.models import Order, OrderItem
+from orders.services.optimize_orm import default_order_optimize
 from ..tasks import order_email_send
 
 sys.path.append('.')
@@ -15,7 +16,7 @@ class OrderServices():
 
     @classmethod
     def getLastOrder(cls, user_id: int) -> Order:
-        LastOrder = Order.objects.filter(user__id=user_id).last()
+        LastOrder = default_order_optimize(Order.objects.filter(user__id=user_id).last())
         if LastOrder:
             return LastOrder
         else:
@@ -56,4 +57,4 @@ class OrderServices():
 
     @classmethod
     def getOrderList(cls, user):
-        return user.user_order.all().order_by('-id')
+        return default_order_optimize(user.user_order.all().order_by('-id'))

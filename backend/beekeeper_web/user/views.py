@@ -1,14 +1,19 @@
+from django.db.models import Prefetch
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 
+from beekeeper_web_api.models import BasketItem, FavoriteItem, ProductItem, Category, ImageProduct
 from .Part_API.User_Edit import UserImageEdit, GetUserNumber
+from .models import MainUser
 from .serializers import UserRegisterSerializers, RetrieveUser
 from user.jwt_token.auth import CustomAuthentication
+from .services.optimize_orm import optimize_basket, optimize_favorite, default_user_only
 
 
 # Create your views here.
@@ -25,11 +30,12 @@ class UserRegistAPI(CreateAPIView):
 
 
 class tokenVerif(APIView):
-    permission_classes = [IsAuthenticated]
     authentication_classes = [CustomAuthentication]
-
-    def post(self, request):
-        return Response(RetrieveUser(request.user, context={'user_id': request.user.id}).data)
+    permission_classes = {IsAuthenticated}
+    def get(self, request: Request):
+        user = MainUser.objects.only(*default_user_only(), 'basket', 'favorite_product')\
+            .prefetch_related(optimize_basket, optimize_favorite).get(id=request.user.id)
+        return Response(RetrieveUser(user).data)
 
 
 class UserAPI(ViewSet, UserImageEdit, GetUserNumber):

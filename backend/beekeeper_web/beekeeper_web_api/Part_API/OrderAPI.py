@@ -6,12 +6,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from orders.tasks import check_order_payment
+from user.models import MainUser
 from ..models import BasketItem
 from ..services.Order import OrderServices
 
 sys.path.append('.')
 
 from ..serializers import OrderSerializers
+from orders.serializers import OrderSerializers as order_ser
 
 
 class OrderCreateAPI(APIView):
@@ -33,14 +35,14 @@ class OrderGetLastAPI(APIView):
 
     def getLastOrder(self, request):
         order = OrderServices.getLastOrder(user_id=request.user.id)
-        return Response(OrderSerializers(order).data)
+        return Response(order_ser(order).data)
 
 
 class OrderGetListAPI(APIView):
 
     def getOrderList(self, request):
-        order_list = OrderServices.getOrderList(user=request.user)
+        order_list = OrderServices.getOrderList(user=MainUser.objects.get(id=1))
         if order_list.count():
-            return Response(OrderSerializers(order_list, many=True).data)
+            return Response(order_ser(order_list, many=True).data)
         else:
             raise NotFound("У пользователя нет заказов")

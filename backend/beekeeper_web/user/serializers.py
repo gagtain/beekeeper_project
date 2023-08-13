@@ -1,24 +1,20 @@
 from rest_framework import serializers
 
-from beekeeper_web_api.models import BasketItem, FavoriteItem
 from beekeeper_web_api.serializers import BasketSerializer, FavoriteSerializer
 from user.models import MainUser
 
 
-class RetrieveUser(serializers.ModelSerializer):
-    basket = serializers.SerializerMethodField()
-    favorite_product = serializers.SerializerMethodField()
+class RetrieveUserDefault(serializers.ModelSerializer):
 
     class Meta:
-        depth = 2  # исправить
+        model = MainUser
+        fields = ['username', 'FIO', 'image', 'is_sending']
+class RetrieveUser(serializers.ModelSerializer):
+    basket = BasketSerializer(many=True)
+    favorite_product = FavoriteSerializer(many=True)
+    class Meta:
         model = MainUser
         fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'is_sending']
-
-    def get_basket(self, instance):
-        return BasketSerializer(BasketItem.objects.filter(user=self.context['user_id']), many=True).data
-
-    def get_favorite_product(self, instance):
-        return FavoriteSerializer(FavoriteItem.objects.filter(user=self.context['user_id']), many=True).data
 
 
 class UserRegisterSerializers(serializers.ModelSerializer):
