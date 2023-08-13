@@ -1276,7 +1276,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-40e139ac.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-80b1f274.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1405,7 +1405,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
   }
 });
 let api_root = "https://owa.gagtain.ru/";
-async function verifAssessToken(token) {
+async function verifAssessToken(token = void 0) {
   try {
     var response = await axios({
       url: `${api_root}api/v0.1/user/token/verif`,
@@ -1518,9 +1518,12 @@ const useMainStore = defineStore("main", {
 });
 const auth_45global = async (event) => {
   const stores = useMainStore();
+  console.log(124124);
   if (useCookie("assess").value || useCookie("refresh").value) {
     stores.assess_token = useCookie("assess");
+    console.log(1241244);
     let assess_response = await verifAssessToken(stores.assess_token);
+    console.log(1241243);
     if (!(assess_response.status == 200)) {
       if (useCookie("refresh")) {
         console.log("Есть рефреш");
@@ -1530,7 +1533,9 @@ const auth_45global = async (event) => {
       stores.userSet(assess_response.data);
     }
   } else {
+    console.log(1241244);
     let assess_response = await verifAssessToken();
+    console.log(1241243);
     console.log(assess_response.status);
     if (!(assess_response.status == 200))
       ;

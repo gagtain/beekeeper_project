@@ -260,7 +260,7 @@ head: {
     async mounted() {
       self = this
     axios({
-      url: `${this.$api_root}/api/v0.1/beekeeper_web_api/get_popular_product?size=5`,
+      url: `${this.$api_root}api/v0.1/beekeeper_web_api/get_popular_product?size=5`,
       method: "get",
       headers: {
         "Content-Type": "application/json",
