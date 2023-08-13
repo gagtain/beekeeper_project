@@ -16,7 +16,7 @@ export default  defineEventHandler( async (event) => {
               return // установить новый токен
           }else{
             if (event.href != '/login' && event.href != '/register'){
-              return navigateTo('/login')
+              return '/login'
             }
           }
       }else{
@@ -30,7 +30,7 @@ export default  defineEventHandler( async (event) => {
       if (!(assess_response.status == 200)){
       // если нет
             if (event.href != '/login' && event.href != '/register'){
-              return navigateTo('/login')
+              return '/login'
             }
       }else{
         console.log(222)

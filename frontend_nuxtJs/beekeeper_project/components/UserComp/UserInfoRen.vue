@@ -33,7 +33,7 @@
                   <img
                     style="aspect-ratio: 1/1"
                     class="auto w-sto"
-                    :src="$api_root + last_order.product_list_transaction[0].productItem.product.image"
+                    :src="$api_root + last_order.product_list_transaction[0].productItem.product.image.slice(1)"
                     alt=""
                   />
                 </div>

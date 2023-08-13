@@ -139,7 +139,7 @@
             <section style="padding: 5%;" class="auto grid">
     <article v-for="new_obj in news" :key="new_obj.id" class="grid-item">
         <div class="image">
-            <img :src="this.$api_root + new_obj.main_image" />
+            <img :src="this.$api_root + new_obj.main_image.slice(1)" />
         </div>
         <div class="info">
             <NuxtLink no-prefetch :to="`/news/${new_obj.id}`"><h2 class="VAG">{{ new_obj.title }}</h2></NuxtLink>

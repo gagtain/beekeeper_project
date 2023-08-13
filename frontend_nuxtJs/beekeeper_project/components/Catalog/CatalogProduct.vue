@@ -5,7 +5,7 @@
                       <div class="photo-main">
                         <div class="controls"></div>
                         <img
-                          :src="$api_root + pr.image"
+                          :src="$api_root + pr.image.slice(1)"
                           alt="green apple slice"
                         />
                       </div>

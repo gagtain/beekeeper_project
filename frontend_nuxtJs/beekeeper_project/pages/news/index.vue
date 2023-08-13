@@ -12,7 +12,7 @@
 
             <article  v-for="new_obj in news" :key="new_obj.id" class="grid-item" style="max-height: 400px;">
         <div class="image">
-            <img :src="this.$api_root + new_obj.main_image" />
+            <img :src="this.$api_root + new_obj.main_image.slice(1)" />
         </div>
         <div class="info">
             <NuxtLink :to="`/news/${new_obj.id}`"><h2 style="

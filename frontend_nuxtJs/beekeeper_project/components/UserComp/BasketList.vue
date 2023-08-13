@@ -4,7 +4,7 @@
     <div class="tovar_kor_img_div">
       <img
         class="tovar_kor_img"
-        :src="$api_root + b.productItem.product.image"
+        :src="$api_root + b.productItem.product.image.slice(1)"
         alt=""
       />
     </div>

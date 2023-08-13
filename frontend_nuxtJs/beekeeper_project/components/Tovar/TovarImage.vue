@@ -3,15 +3,15 @@
                         <div class="min">
                             <ul class="jus-sp-ar">
                                 <li class="li_min_img">
-                                    <img @click="a($event)" class="tovar_img_the_min" :src="$api_root + image" alt="">
+                                    <img @click="a($event)" class="tovar_img_the_min" :src="$api_root + image.slice(1)" alt="">
                                 </li>
                                 <li class="li_min_img" v-for="im, index in ImageProductList" :key="index">
-                                    <img @click="a($event)" class="tovar_img_the_min" :src="$api_root + im.photo" alt="">
+                                    <img @click="a($event)" class="tovar_img_the_min" :src="$api_root + im.photo.slice(1)" alt="">
                                 </li>
                             </ul>
                         </div>
                         <div class="max">
-                            <img id="main_tovar_img" class="tovar_img_the_max" :src="$api_root + image" alt="">
+                            <img id="main_tovar_img" class="tovar_img_the_max" :src="$api_root + image.slice(1)" alt="">
                         </div>
                     </div>
 </template>

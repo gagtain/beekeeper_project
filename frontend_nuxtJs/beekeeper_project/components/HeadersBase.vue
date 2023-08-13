@@ -64,7 +64,7 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
             >
               <img
                 class="user_img"
-                :src="$api_root + $store.getUser.image"
+                :src="$api_root + $store.getUser.image.slice(1)"
                 alt=""
               />
               <div class="flex w-sto h-sto from_name">

@@ -75,8 +75,16 @@
 }
 </style>
 <style lang="css" src="../assets/css/account.css" scoped></style>
-<script>
+<script setup>
 import { useHead } from "nuxt/app";
+definePageMeta({
+  middleware: ["is-auth"]
+  // or middleware: 'auth'
+})
+useHead({
+    title: 'Пчелиная артель - Оформление заказа',})
+</script>
+<script>
 import BasketInfo from '~/components/UserComp/BasketComp/BasketInfo.vue';
 import Checkout from '../components/AddtionalComp/Checkout.vue';
 import ProductListInfo from '../components/UserComp/BasketComp/ProductListInfo.vue';

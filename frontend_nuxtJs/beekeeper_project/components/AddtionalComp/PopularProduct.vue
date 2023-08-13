@@ -6,7 +6,7 @@
                         <div class="controls"></div>
                         <nuxt-img
                         loading="lazy" format="webp"
-                          :src="$api_root + pr.image"
+                          :src="$api_root + pr.image.slice(1)"
                           alt="green apple slice"
                         />
                       </div>

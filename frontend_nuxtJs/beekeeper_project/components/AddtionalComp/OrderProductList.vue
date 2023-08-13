@@ -6,7 +6,7 @@
                 </div>
                 <div class="flex">
                     <div class="img_order_product_div">
-                    <img class="img_order_product" :src="$api_root + orderItem.productItem.product.image" alt="" />
+                    <img class="img_order_product" :src="$api_root + orderItem.productItem.product.image.slice(1)" alt="" />
                   </div>
                   <div class="info_order_product_div">
 

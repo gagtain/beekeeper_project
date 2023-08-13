@@ -1,7 +1,7 @@
 <template>
   
   <div class="user_img_profile relative">
-      <img  :src="$api_root + $store.getUser.image" alt="" />
+      <img  :src="$api_root + $store.getUser.image.slice(1)" alt="" />
       <div class="absolute w-sto h_sto flex">
         <input @change="image_change()" style="display: none;" type="file" src="" id="user_image_input" accept="image/*" alt="">
         <button
