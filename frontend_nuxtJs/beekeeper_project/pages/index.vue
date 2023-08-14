@@ -203,9 +203,9 @@
 
 @import "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.0/css/swiper.min.css";
 </style>
-  <style lang="css" src="../assets/css/main/main.css" ></style>
-  <style lang="css" src="../assets/css/news_min.css" ></style>
-  <style lang="css" src="../assets/css/main/hex-tovar.css" ></style>
+  <style lang="css" src="../assets/css/main/main.css" scoped></style>
+  <style lang="css" src="../assets/css/news_min.css" scoped></style>
+  <style lang="css" src="../assets/css/main/hex-tovar.css" scoped></style>
   <style >
   .main_img {
     position: absolute;

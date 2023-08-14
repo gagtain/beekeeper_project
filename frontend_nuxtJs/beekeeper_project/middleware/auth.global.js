@@ -15,7 +15,7 @@ export default async (event) => {
               return // установить новый токен
           }
       }else{
-        console.log(222)
+        console.log(2222)
         stores.userSet(assess_response.data)
       }
   }else{

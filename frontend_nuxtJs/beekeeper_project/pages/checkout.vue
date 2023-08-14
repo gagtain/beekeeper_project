@@ -11,7 +11,7 @@
         <div class="w-sto-1000px checkout">
 
             <client-only>
-            <checkout v-on:delivery="delivery_price_select($event)" ref="checkout_form"></checkout>
+            <Checkouts v-on:delivery="delivery_price_select($event)" ref="checkout_form"></Checkouts>
 
             </client-only>
             <p align="left" class="VAG small">Товары</p>
@@ -75,18 +75,9 @@
 }
 </style>
 <style lang="css" src="../assets/css/account.css" scoped></style>
-<script setup>
-import { useHead } from "nuxt/app";
-definePageMeta({
-  middleware: ["is-auth"]
-  // or middleware: 'auth'
-})
-useHead({
-    title: 'Пчелиная артель - Оформление заказа',})
-</script>
 <script>
 import BasketInfo from '~/components/UserComp/BasketComp/BasketInfo.vue';
-import Checkout from '../components/AddtionalComp/Checkout.vue';
+import Checkouts from '../components/AddtionalComp/Checkout.vue';
 import ProductListInfo from '../components/UserComp/BasketComp/ProductListInfo.vue';
 import Submit_order from '~/components/AddtionalComp/Submit_order.vue';
 import OrderProductList from '~/components/AddtionalComp/OrderProductList.vue';
@@ -94,7 +85,7 @@ export default {
     el:"#checkout",
     components:{
     BasketInfo,
-    Checkout,
+    Checkouts,
     ProductListInfo,
     Submit_order,
     OrderProductList

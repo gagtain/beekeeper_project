@@ -5,6 +5,8 @@ export default  defineEventHandler( async (event) => {
   console.log(event)
   /* Попытка авторизовать пользователя на всех переходах  */
   const stores = useMainStore()
+  console.log(useCookie('assess').value, 2132)
+  console.log(useCookie().value)
     if (useCookie('assess').value || useCookie('refresh').value){
       // проверка токена
       stores.assess_token = useCookie('assess')
@@ -35,6 +37,7 @@ export default  defineEventHandler( async (event) => {
       }else{
         console.log(222)
         stores.userSet(assess_response.data)
+        return
       }
   } 
 }

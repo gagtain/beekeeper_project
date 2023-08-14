@@ -2056,7 +2056,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/catalog-95a2ea70.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/catalog-be21ceed.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) ?? "checkout",
@@ -2064,7 +2064,7 @@ const _routes = [
     meta: __nuxt_page_meta$2 || {},
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect) || void 0,
-    component: () => import("./_nuxt/checkout-b274f29c.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/checkout-602c7616.js").then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -2080,7 +2080,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-b225b980.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-356b7ae0.js").then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2136,7 +2136,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/_id_-5ee61a94.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_id_-59715143.js").then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -2331,7 +2331,7 @@ const auth_45global = async (event) => {
         return;
       }
     } else {
-      console.log(222);
+      console.log(2222);
       stores.userSet(assess_response.data);
     }
   } else {
@@ -2350,7 +2350,7 @@ const globalMiddleware = [
   auth_45global
 ];
 const namedMiddleware = {
-  "is-auth": () => import("./_nuxt/isAuth-d5b9643f.js")
+  "is-auth": () => import("./_nuxt/isAuth-4ed2e907.js")
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",

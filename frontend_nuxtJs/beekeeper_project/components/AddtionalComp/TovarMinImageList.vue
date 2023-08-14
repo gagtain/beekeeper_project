@@ -4,7 +4,7 @@
                         loading="lazy" format="webp"
       @click="a($event)"
       class="add-img-tovar"
-      :src="$api_root + image"
+      :src="$api_root + image.slice(1)"
     />
                         <nuxt-img
                         loading="lazy" format="webp"
@@ -12,7 +12,7 @@
       v-for="(img, index) in ImageProductList"
       :key="index"
       class="add-img-tovar"
-      :src="$api_root + img.photo"
+      :src="$api_root + img.photo.slice(1)"
     />
   </div>
 </template>

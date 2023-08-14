@@ -22,7 +22,7 @@ from . import views
 
 urlpatterns = [
     path('initial/', views.DeliveryAPI.as_view({'post': 'delivery_initial_in_data'})),
-    path('create/lait', views.DeliveryAPI.as_view({'get': 'delivery_create_lait'})),
+    path('create/lait', views.DeliveryAPI.as_view({'post': 'delivery_create_lait'})),
     path('sdek/<str:uuid>', views.DeliveryAPI.as_view({'get': 'delivery_sdek_get'})),
     path('<int:pk>', views.DeliveryAPI.as_view({'get': 'delivery_get'})),
     path('<int:pk>/submit/waiting', views.DeliveryAPI.as_view({'post': 'delivery_submit_waiting'})),
