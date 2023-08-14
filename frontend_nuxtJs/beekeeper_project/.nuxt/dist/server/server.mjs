@@ -9,7 +9,7 @@ import "devalue";
 import "klona";
 import { sanitizeStatusCode, createError as createError$1, setCookie, getCookie, deleteCookie, appendHeader } from "h3";
 import { renderSSRHead } from "@unhead/ssr";
-import { getActiveHead, createServerHead as createServerHead$1, composableNames } from "unhead";
+import { getActiveHead, createServerHead as createServerHead$1 } from "unhead";
 import { defineHeadPlugin } from "@unhead/shared";
 import { createMemoryHistory, createRouter, START_LOCATION, RouterView } from "vue-router";
 import { hasProtocol, parseURL, joinURL, parseQuery, withTrailingSlash, withoutTrailingSlash, withLeadingSlash, encodeParam, encodePath } from "ufo";
@@ -1456,12 +1456,6 @@ function useHead(input, options = {}) {
     return isBrowser ? clientUseHead(input, options) : serverUseHead(input, options);
   }
 }
-const coreComposableNames = [
-  "injectHead"
-];
-({
-  "@unhead/vue": [...coreComposableNames, ...composableNames]
-});
 function useState(...args) {
   const autoKey = typeof args[args.length - 1] === "string" ? args.pop() : void 0;
   if (typeof args[0] !== "string") {
@@ -2048,7 +2042,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/basket-fe19d247.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/basket-8a65b0d5.js").then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -3878,6 +3872,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineNuxtComponent({
   },
   setup(context) {
     useNuxtApp();
+    useHead({
+      title: "Пчелиная артель - Главная",
+      meta: [
+        { name: "description", content: "My amazing site." }
+      ],
+      link: [{ rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Roboto&display=swap", media: "print", onload: "this.media='all'" }]
+    });
   },
   methods: {},
   created() {
