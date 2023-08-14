@@ -25,7 +25,7 @@ export default {
   "components/UserComp/UserInfoRen.vue": () => import('./_nuxt/UserInfoRen-styles.d113fbd5.mjs').then(interopDefault),
   "components/UserComp/UserInfo.vue": () => import('./_nuxt/UserInfo-styles.9ee16e1f.mjs').then(interopDefault),
   "components/Tovar/Tovar.vue": () => import('./_nuxt/Tovar-styles.6a758365.mjs').then(interopDefault),
-  "components/HeadersBase.vue": () => import('./_nuxt/HeadersBase-styles.ba89ded4.mjs').then(interopDefault),
+  "components/HeadersBase.vue": () => import('./_nuxt/HeadersBase-styles.78676f0e.mjs').then(interopDefault),
   "components/FooterBase.vue": () => import('./_nuxt/FooterBase-styles.44b22bf9.mjs').then(interopDefault),
   "components/MainMobailMenu.vue": () => import('./_nuxt/MainMobailMenu-styles.50e79507.mjs').then(interopDefault),
   "components/AddtionalComp/Tooltip.vue": () => import('./_nuxt/Tooltip-styles.cc5ca6df.mjs').then(interopDefault),

@@ -120,7 +120,7 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
         </div>
       </div>
     </div>
-    <div :class="is_menu_mobile ? 'menu_pop_mob_active' : ''" class="absolute menu_pop_mob">
+    <div v-if="is_menu_mobile" :class="is_menu_mobile ? 'menu_pop_mob_active' : ''" class="absolute menu_pop_mob">
       <div class="h_sto w-sto sote">
         <div class="logo-sote auto">
           <div class="logo-page flex auto">
