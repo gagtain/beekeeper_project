@@ -30,7 +30,7 @@
                         expand_more
                     </span>
                 </div>
-                <p class="foo_p_li">О нас</p>
+               <nuxt-link to="/about_us"> <p class="foo_p_li">О нас</p></nuxt-link>
                 <p class="foo_p_li">Контакты</p>
             </div>
         </div>

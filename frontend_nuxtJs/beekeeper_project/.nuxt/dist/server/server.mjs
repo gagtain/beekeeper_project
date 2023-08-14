@@ -2037,12 +2037,20 @@ const __nuxt_page_meta = {
 };
 const _routes = [
   {
+    name: "about_us",
+    path: "/about_us",
+    meta: {},
+    alias: [],
+    redirect: void 0,
+    component: () => import("./_nuxt/about_us-c0090954.js").then((m) => m.default || m)
+  },
+  {
     name: "basket",
     path: "/basket",
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/basket-8a65b0d5.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/basket-953fd926.js").then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -2050,7 +2058,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/catalog-be21ceed.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/catalog-eda045f7.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) ?? "checkout",
@@ -2058,7 +2066,7 @@ const _routes = [
     meta: __nuxt_page_meta$2 || {},
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect) || void 0,
-    component: () => import("./_nuxt/checkout-602c7616.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/checkout-ca23164d.js").then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -2066,7 +2074,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/favorite-0fe9bf5f.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/favorite-3df05860.js").then((m) => m.default || m)
   },
   {
     name: "index",
@@ -2074,7 +2082,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-b747d01f.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-af0ddc22.js").then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2082,7 +2090,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/login-14061abb.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/login-b8a63f87.js").then((m) => m.default || m)
   },
   {
     name: "news-id",
@@ -2090,7 +2098,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/_id_-9fda4313.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_id_-ce184e1e.js").then((m) => m.default || m)
   },
   {
     name: "news",
@@ -2098,7 +2106,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-2d0b16d8.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-d4e4b403.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) ?? "orders",
@@ -2106,7 +2114,7 @@ const _routes = [
     meta: __nuxt_page_meta$1 || {},
     alias: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.alias) || [],
     redirect: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.redirect) || void 0,
-    component: () => import("./_nuxt/orders-4d7a928c.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/orders-8be27cd0.js").then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -2114,7 +2122,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import("./_nuxt/profile-5440bef4.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/profile-2c3c572e.js").then((m) => m.default || m)
   },
   {
     name: "register",
@@ -2122,7 +2130,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/register-170338a3.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/register-9c1506e6.js").then((m) => m.default || m)
   },
   {
     name: "tovar-id",
@@ -2130,7 +2138,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/_id_-59715143.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/_id_-e84c8146.js").then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -2344,7 +2352,7 @@ const globalMiddleware = [
   auth_45global
 ];
 const namedMiddleware = {
-  "is-auth": () => import("./_nuxt/isAuth-4ed2e907.js")
+  "is-auth": () => import("./_nuxt/isAuth-2b9de04a.js")
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
@@ -3703,7 +3711,21 @@ const _sfc_main$4 = /* @__PURE__ */ defineNuxtComponent({
   }
 }, "$JTAA5RZwID");
 function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ id: "footer" }, _attrs))}><footer class="flex" id="deks"><div class="interactiv flex jus-sp auto"><div class="foo"><p class="foo_p">Компания</p><p class="foo_p_li foo_p_li_perv">О нас</p><p class="foo_p_li">Контакты</p></div><div class="foo"><p class="foo_p">ПОЛЕЗНОЕ</p><p class="foo_p_li foo_p_li_perv">Оплата и доставка</p><p class="foo_p_li">Условия возврата</p><p class="foo_p_li">Бонусная система</p></div><div class="foo"><p class="foo_p">ПОКУПАТЕЛЮ</p><p class="foo_p_li foo_p_li_perv">Избранное</p><p class="foo_p_li">Публичная оферта</p><p class="foo_p_li">Политика конфиденциальности</p></div><div class="foo"><p class="foo_p">КОНТАКТЫ</p><div class="foo_img"><span class="material-symbols-outlined"> expand_more </span><span class="material-symbols-outlined"> expand_more </span></div><p class="foo_p_li">О нас</p><p class="foo_p_li">Контакты</p></div></div></footer><footer id="mobs"><div class="interactiv auto"><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div></div></footer></div>`);
+  const _component_nuxt_link = __nuxt_component_0$2;
+  _push(`<div${ssrRenderAttrs(mergeProps({ id: "footer" }, _attrs))}><footer class="flex" id="deks"><div class="interactiv flex jus-sp auto"><div class="foo"><p class="foo_p">Компания</p><p class="foo_p_li foo_p_li_perv">О нас</p><p class="foo_p_li">Контакты</p></div><div class="foo"><p class="foo_p">ПОЛЕЗНОЕ</p><p class="foo_p_li foo_p_li_perv">Оплата и доставка</p><p class="foo_p_li">Условия возврата</p><p class="foo_p_li">Бонусная система</p></div><div class="foo"><p class="foo_p">ПОКУПАТЕЛЮ</p><p class="foo_p_li foo_p_li_perv">Избранное</p><p class="foo_p_li">Публичная оферта</p><p class="foo_p_li">Политика конфиденциальности</p></div><div class="foo"><p class="foo_p">КОНТАКТЫ</p><div class="foo_img"><span class="material-symbols-outlined"> expand_more </span><span class="material-symbols-outlined"> expand_more </span></div>`);
+  _push(ssrRenderComponent(_component_nuxt_link, { to: "/about_us" }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<p class="foo_p_li"${_scopeId}>О нас</p>`);
+      } else {
+        return [
+          createVNode("p", { class: "foo_p_li" }, "О нас")
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`<p class="foo_p_li">Контакты</p></div></div></footer><footer id="mobs"><div class="interactiv auto"><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div><div class=""><div class="foo_mobile flex jus-sp" id="mobs"><p class="foo_p">Компания</p><div class="foo_mobile_butt"><img${ssrRenderAttr("src", _imports_0)} alt=""></div></div><div class="auto foo_mobile_contect" id="mob"><p class="foo_mobile_p">О нас</p><p class="foo_mobile_p">Контакты</p></div></div></div></footer></div>`);
 }
 const _sfc_setup$4 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
@@ -3910,7 +3932,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-component-1712b1ed.js").then((r) => r.default || r));
+    const ErrorComponent = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/error-component-ab76d990.js").then((r) => r.default || r));
     const IslandRenderer = /* @__PURE__ */ defineAsyncComponent(() => import("./_nuxt/island-renderer-a128d128.js").then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
@@ -3977,14 +3999,15 @@ const plugins = normalizePlugins(_plugins);
 const entry$1 = (ctx) => entry(ctx);
 export {
   _export_sfc as _,
-  api_root as a,
-  __nuxt_component_0$2 as b,
+  _imports_0$1 as a,
+  api_root as b,
   createError as c,
   defineNuxtComponent as d,
   entry$1 as default,
-  __nuxt_component_0$1 as e,
-  useMainStore as f,
-  useCookie as g,
+  __nuxt_component_0$2 as e,
+  __nuxt_component_0$1 as f,
+  useMainStore as g,
+  useCookie as h,
   redirect as r,
   useHead as u,
   verifAssessToken as v

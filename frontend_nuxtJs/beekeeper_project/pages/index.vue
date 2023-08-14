@@ -21,7 +21,7 @@
                       <p class="main_bt_p">Попробовать!</p>
                     </div>
                   </button>
-                  <a href="#advantages" v-if="$device.isDesktop" style="margin: 0;margin-left: 0px; width: 45%;" class="main_bt">
+                  <a href="#advantages" v-if="$device.isDesktop" style="margin: 0;margin-left: 8px; width: 45%;" class="main_bt">
                     <div class="flex sto">
                       <p class="main_bt_p">Посмотреть!</p>
                     </div>
@@ -149,6 +149,7 @@
             
             
           </div>
+          <to-scroll :id="'eco'">
           <div style="display: block;" class="block_info">
             <div class="flex w-sto jus-sp info_kart_div">
               <div class="kart">
@@ -168,11 +169,11 @@
             </div>
             
             </div>
-            
-            
-            
           </div>
-
+            </to-scroll>
+            
+            
+          <to-scroll :id="'news'">
           <div class="interactiv auto">
 
             <div class="flex w-sto text_in_sot">
@@ -198,13 +199,17 @@
 <NuxtLink no-prefetch :to="`/news`"><button style="background: rgb(160,166,62);; cursor: pointer;width: 100%;border: none;border-radius: 6px; padding: 2% 3%;"><div class="w-sto h_sto flex"><p class="auto small-big">Все новости</p></div></button>
 </NuxtLink>
         </div>
+      </to-scroll>
+          <to-scroll :id="'sending'">
           <div v-if="!$store.getUser.is_sending" class="interactiv auto">
             <div class="flex w-sto text_in_sot">
             <p class="big auto main-text">Рассылка</p>
           </div>
             <Sending></Sending>
         </div>
+        </to-scroll>
         </div>
+          <to-scroll :id="'ref'">
         <div class="ref-block w-sto">
         <div class="flex w-sto text_in_sot">
           <p class="big auto main-text" style="color: rgb(241, 195, 96);text-shadow: 10px 10px 10px black;padding: 1%;">О нашем товаре</p>
@@ -238,6 +243,7 @@
 
           </div>
         </div>
+        </to-scroll>
       </div>
     </div>
   </template>
@@ -278,13 +284,15 @@
   import axios from "axios";
   import newsList from "~/additional_func/News/newsList";
 import Advantages_slider from '../components/AddtionalComp/advantages_slider.vue';
+import ToScroll from '../components/AddtionalComp/ToScroll.vue';
   export default {
     name: "IndexItem",
     components: {
     Swiper,
     SwiperSlide,
     LoadingComp,
-        Advantages_slider
+        Advantages_slider,
+        ToScroll
 },
     data() {
       return {
