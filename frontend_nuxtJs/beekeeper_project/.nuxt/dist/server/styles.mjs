@@ -4,7 +4,7 @@ export default {
   "pages/catalog.vue": () => import('./_nuxt/catalog-styles.cd788a17.mjs').then(interopDefault),
   "pages/checkout.vue": () => import('./_nuxt/checkout-styles.e90281b0.mjs').then(interopDefault),
   "pages/favorite.vue": () => import('./_nuxt/favorite-styles.c8e83ce0.mjs').then(interopDefault),
-  "pages/index.vue": () => import('./_nuxt/index-styles.7e699570.mjs').then(interopDefault),
+  "pages/index.vue": () => import('./_nuxt/index-styles.f7ffa32b.mjs').then(interopDefault),
   "pages/login.vue": () => import('./_nuxt/login-styles.8b2ae70a.mjs').then(interopDefault),
   "pages/news/[id].vue": () => import('./_nuxt/_id_-styles.b82faf7e.mjs').then(interopDefault),
   "pages/news/index.vue": () => import('./_nuxt/index-styles.7dc1dad7.mjs').then(interopDefault),

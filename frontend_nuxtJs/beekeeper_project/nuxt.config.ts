@@ -15,7 +15,8 @@ export default defineNuxtConfig({
   ssr: true,
   image: {
     domains: ['owa.gagtain.ru']
-  }
+  },
+  
   
   
 })

@@ -1276,7 +1276,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-a608dfd4.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-b747d01f.mjs').then((m) => m.default || m)
   },
   {
     name: "login",

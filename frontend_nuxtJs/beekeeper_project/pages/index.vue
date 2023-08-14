@@ -5,7 +5,7 @@
         rel="preconnect"
   sizes="sm:100vw md:100vw lg:100vw"
         
-        class="absolute w-sto h_sto" src="/images/main.webp" alt=""/>
+        class="absolute w-sto h_sto" src="/images/main.jpg" alt=""/>
         <div
           class="absolute main-nak"
           :class="wrapper_active ? 'actives' : ''"
