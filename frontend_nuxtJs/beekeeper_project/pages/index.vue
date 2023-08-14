@@ -15,15 +15,20 @@
             <div class="main_center auto">
               <div class="main_text_div auto">
                 <p class="main_text">Наш мед имеет ряд преимуществ!</p>
-                <div class="bt">
-                  <button @click="$router.push('/catalog')" class="main_bt">
+                <div class="bt flex m2">
+                  <button @click="$router.push('/catalog')" :style="$device.isDesktop ? 'width: 45%; margin: 0;' : ''" class="main_bt">
                     <div class="flex sto">
                       <p class="main_bt_p">Попробовать!</p>
                     </div>
                   </button>
+                  <a href="#advantages" v-if="$device.isDesktop" style="margin: 0;margin-left: 0px; width: 45%;" class="main_bt">
+                    <div class="flex sto">
+                      <p class="main_bt_p">Посмотреть!</p>
+                    </div>
+                  </a>
                 </div>
               </div>
-              <div v-if="!$device.isMobile" class="main_img_div">
+              <div v-if="!$device.isMobileOrTablet" class="main_img_div">
                 <img
                   :src="`${$api_root}static/online_store/images/phel.png`"
                   class="phel"
@@ -69,6 +74,23 @@
                   <!-- <img src="images/honey.png" class="main_img" width="100%" height="100%" alt=""> -->
                 </div>
               </div>
+              <div v-else>
+
+                <div style="display: block;" class="">
+            <div class="flex w-sto jus-sp info_kart_div">
+              <div class=" w-sto flex">
+                <div class="w-sto auto auto">
+                  <Advantages_slider></Advantages_slider>
+                </div>
+              
+            </div>
+            
+            </div>
+            
+            
+            
+          </div>
+              </div>
             </div>
           </div>
         </div>
@@ -106,6 +128,26 @@
                 <LoadingComp></LoadingComp>
               </div>
             </div>
+          </div>
+          <div  v-if="$device.isDesktop"  class="flex w-sto text_in_sot relative">
+            <div id="advantages" class="absolute" style="top: -80%;">
+
+            </div>
+            <p class="big auto main-text">Наши преимущества</p>
+          </div>
+          <div  v-if="$device.isDesktop" style="display: block;" class="block_info">
+            <div class="flex w-sto jus-sp info_kart_div">
+              <div class=" w-sto flex">
+                <div class="w-sto auto auto">
+                  <Advantages_slider></Advantages_slider>
+                </div>
+              
+            </div>
+            
+            </div>
+            
+            
+            
           </div>
           <div style="display: block;" class="block_info">
             <div class="flex w-sto jus-sp info_kart_div">
@@ -235,15 +277,14 @@
   import LoadingComp from "~/components/AddtionalComp/LoadingComp.vue";
   import axios from "axios";
   import newsList from "~/additional_func/News/newsList";
+import Advantages_slider from '../components/AddtionalComp/advantages_slider.vue';
   export default {
     name: "IndexItem",
     components: {
     Swiper,
     SwiperSlide,
-    LoadingComp
-},
-head: {
-    title: 'my website title'
+    LoadingComp,
+        Advantages_slider
 },
     data() {
       return {
