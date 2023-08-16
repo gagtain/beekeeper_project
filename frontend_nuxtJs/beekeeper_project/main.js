@@ -1,1 +1,1 @@
-export let api_root = 'https://owa.gagtain.ru/'
+export let api_root = 'https://owa.pchel-artel.ru/'
