@@ -3918,7 +3918,11 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
   _push(ssrRenderComponent(_component_tooltip, null, null, _parent));
   _push(ssrRenderComponent(_component_NuxtPage, null, null, _parent));
   _push(ssrRenderComponent(_component_FooterBase, null, null, _parent));
-  _push(ssrRenderComponent(_component_MainMobailMenu, null, null, _parent));
+  if (_ctx.$device.isMobile) {
+    _push(ssrRenderComponent(_component_MainMobailMenu, null, null, _parent));
+  } else {
+    _push(`<!---->`);
+  }
   _push(`</div>`);
 }
 const _sfc_setup$1 = _sfc_main$1.setup;
