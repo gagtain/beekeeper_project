@@ -16,8 +16,6 @@ class DeliveryEngineChoiceSerializers(serializers.Serializer):
         fields = ['delivery_engine']
 
 
-
-
 class DimensionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = DimensionsProduct

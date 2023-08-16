@@ -1,5 +1,6 @@
 import sys
 
+from django.conf import settings
 from django.db.models import Sum, Count
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
@@ -42,20 +43,6 @@ class UserAPI(viewsets.ViewSet):
     def RemoveFavoriteProduct(self, request, pk):
         return ServicesUser.removeFavoriteProduct(request=request, id=pk)
 
-    def AddBasketProduct(self, request, pk):
-
-        return ServicesUser.addBasketProduct(request, pk)
-
-    def RemoveBasketProduct(self, request, pk):
-        return ServicesUser.removeBasketProduct(request.user, pk=pk)
-
-    def GetBasketInfo(self, request):
-        return Response(BasketInfoSerializer(ServicesUser.getBasketInfo(request.user)).data)
-
-
-
-    def UpdateBasketItemCount(self, request, basket_pk):
-        return ServicesUser.updateBasketItemCount(basket_pk, request.user, request.data['count'])
 
 
 ensure_csrf = method_decorator(ensure_csrf_cookie)
@@ -102,7 +89,6 @@ class CategoryAPI(viewsets.ViewSet):
 
 class OrderAPI(viewsets.ViewSet, OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI):
     authentication_classes = [CustomAuthentication]
-
 
 class RatingAPI(viewsets.ViewSet, RatingProductCreate, RatingProductList, RatingProductAVG):
 

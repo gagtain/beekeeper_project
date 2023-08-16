@@ -39,11 +39,6 @@
     display: flex;
     justify-content: space-around;
 }
-@media (min-width: 600px) {
-    #main_mobail_menu{
-        display: none;
-    }
-}
 .main_mobail_menu_item{
     
     height: 28px;

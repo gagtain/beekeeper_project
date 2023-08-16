@@ -1,29 +1,30 @@
-from pprint import pprint
+
 from time import sleep
 
-from django.db.models import QuerySet, Prefetch
+from rest_framework.generics import get_object_or_404
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from delivery.services.additional import field_in_dict
 from delivery.services.optimize_orm.collect import default_delivery_optimize
+from global_modules.exception.base import BaseDataException
 from orders.models import Order
-from delivery.dilivery_core.Client import Configuration
 from delivery.dilivery_core.core import SdekDelivery
 from delivery.dilivery_core.shemas.Delivery import DeliveryAdd, DeliveryResponseAdd
 from delivery.models import DeliveryTransaction
 from delivery.serializers import DeliveryTransactionSerializer, DeliveryTransactionCreateSerializer
-from delivery.services.Delivery import DeliveryService, Sent_Status
-from orders.services.optimize_orm import default_order_optimize
+from delivery.services.Delivery import Sent_Status
 
 
 class DeliveryCreate(APIView):
 
-
-
     def delivery_initial_in_data(self, request):
-        delivery = DeliveryTransaction.objects.get(id=request.data['delivery_id'])
-        print(delivery.status, Sent_Status)
+        try:
+            delivery_id = field_in_dict(request.data, 'delivery_id')
+        except BaseDataException as e:
+            return Response(data=e.error_data, status=400)
+        delivery = DeliveryTransaction.objects.get(id=delivery_id)
         if delivery.status in Sent_Status:
             return Response(data={'error': 'Доставка уже отправлена'}, status=400)
         elif delivery.status == DeliveryTransaction.DeliveryStatus.Under_review:
@@ -43,16 +44,19 @@ class DeliveryCreate(APIView):
         return Response({'sdek': a.json()})
 
     def delivery_create_lait(self, request: Request):
-        """Заглушка, будет удалено при дальнейшем рефакторе"""
-        order = Order.objects.select_related('user').only('user', 'user__number', 'id')\
-            .get(id=request.data.get('order_id'))
+        try:
+            order_id = field_in_dict(request.data, 'order_id')
+        except BaseDataException as e:
+            return Response(data=e.error_data, status=400)
+        order = Order.objects.select_related('user').only('user', 'user__number', 'id') \
+            .get(id=order_id)
         serializer = DeliveryTransactionCreateSerializer(data={
-            'uuid': '122',
+            'uuid': 'default',
             'where': request.data.get('PVZ'),
             'price': request.data.get('price'),
             'number': request.data.get('user_number', order.user.number),
             'order_delivery_transaction': [order.id]
-        },)
+        }, )
         serializer.is_valid(raise_exception=True)
         delivery_ = serializer.save()
         delivery = default_delivery_optimize(DeliveryTransaction.objects).get(id=delivery_.id)
@@ -69,7 +73,10 @@ class DeliverySdekGet(APIView):
 class DeliveryGet(APIView):
 
     def delivery_get(self, request, pk):
-        delivery_obj = default_delivery_optimize(DeliveryTransaction.objects).get(pk=pk)
+        delivery_obj = get_object_or_404(
+            default_delivery_optimize(DeliveryTransaction.objects),
+            pk=pk
+        )
         return Response(DeliveryTransactionSerializer(delivery_obj).data)
 
 

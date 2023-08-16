@@ -4,7 +4,7 @@
     <tooltip></tooltip>
     <NuxtPage/>
   <FooterBase></FooterBase>
-  <MainMobailMenu></MainMobailMenu>
+  <MainMobailMenu v-if="$device.isMobile"></MainMobailMenu>
   </div>
 </template>
 <style src="assets/css/interactive/interact.css"></style>

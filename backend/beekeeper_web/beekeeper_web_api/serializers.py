@@ -73,17 +73,13 @@ class ProductItemNotProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductItem
         fields = ['id', 'price_currency', 'price', 'weight', 'dimensions']
-class RetrieveClearAllOptionalProduct(serializers.ModelSerializer):
-    def __init__(self, *args, **kwargs):
-        """Создание динамических полей сериализатора"""
-        self.Meta.fields = kwargs['context']['fields'] if not ('__all__' in kwargs['context']['fields']) else '__all__'
 
-        super().__init__(self, *args, **kwargs)
+
+class RetrieveProductName(serializers.ModelSerializer):
 
     class Meta:
-        depth = 3
         model = Product
-        fields = '__all__'
+        fields = ['id', 'name']
 
 
 class RetrieveProduct(serializers.ModelSerializer):

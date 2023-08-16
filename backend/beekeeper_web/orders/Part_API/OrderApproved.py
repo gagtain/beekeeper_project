@@ -10,7 +10,7 @@ class OrderApproved:
     def approved(self, request, pk):
 
         order = Order.objects.get(pk=pk)
-        if order.payment.status !=  PaymentTransaction.StatusTransaction.succeeded:
+        if order.payment.status != PaymentTransaction.StatusTransaction.succeeded:
             return Response({'errors': 'У заказа не оплаченный платеж'}, status=400)
         else:
             order.status = Order.StatusChoice.approved
