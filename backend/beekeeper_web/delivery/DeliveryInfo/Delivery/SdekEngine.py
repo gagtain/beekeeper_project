@@ -4,6 +4,7 @@ from delivery.DeliveryInfo.Delivery.Absract.AbstactDeliveryEngine import Abstrac
 from delivery.DeliveryInfo.Delivery.enum.SdekOrderEngineEnum import SdekOrderEngineEnum
 from delivery.dilivery_core.shemas.Delivery import DeliveryAdd, Recipient
 from delivery.models import DeliveryTransaction
+from delivery.services.additional import field_in_dict
 
 
 class SdekEngine(AbstractDeliveryEngine):
@@ -41,3 +42,10 @@ class SdekEngine(AbstractDeliveryEngine):
             data['recipient'] = self._order_engine.get_recipient()
 
         return data
+
+    @classmethod
+    def examination_data(cls, data: dict):
+        field_in_dict(data, 'order_engine')
+        field_in_dict(data, 'pred_payment')
+        field_in_dict(data, 'tariff_code')
+

@@ -147,7 +147,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+if os.environ.get("STATIC_ROOT", 'False') == 'True':
+    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+else:
+    STATICFILES_DIRS = (
+      os.path.join(BASE_DIR, 'static/'),
+    )
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
@@ -232,5 +237,7 @@ CELERY_BROKER_URL = 'amqp://rmuser:rmpassword@rabbitmq:5672'
 Configuration.account_id = '227407'
 Configuration.secret_key = 'test_saGcPjuDSma2BZNQD0nUkutHtn_C6xHPDZPPh0p4lD4'
 
-
 SDEK_SHIPMENT_POINT = 'MSK52'
+
+# default_field
+default_error_key = "error"

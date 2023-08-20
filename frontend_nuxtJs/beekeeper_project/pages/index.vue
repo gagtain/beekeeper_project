@@ -309,7 +309,7 @@ import ToScroll from '../components/AddtionalComp/ToScroll.vue';
     async mounted() {
       self = this
     axios({
-      url: `${this.$api_root}api/v0.1/beekeeper_web_api/get_popular_product?size=5`,
+      url: `${this.$api_root}api/v0.1/beekeeper_web_api/product/search/?size=5&order_by=count_purchase`,
       method: "get",
       headers: {
         "Content-Type": "application/json",

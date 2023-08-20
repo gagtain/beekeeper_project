@@ -9,9 +9,10 @@ from payments.models import PaymentTransaction
 # Create your models here.
 class Order(models.Model):
     class StatusChoice(models.TextChoices):
-        approved = "Одобрен"
-        not_approved = "Не одобренный"
         closed = "Закрытый"
+        checkout = "Не подтвержденный"
+        not_approved = "Не одобренный"
+        approved = "Одобрен"
 
     user: MainUser = models.ForeignKey(MainUser, related_name='user_order', on_delete=models.CASCADE)
     amount = MoneyField(default=0, max_digits=14, decimal_places=2,

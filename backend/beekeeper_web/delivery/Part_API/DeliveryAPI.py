@@ -39,7 +39,6 @@ class DeliveryCreate(APIView):
         delivery.track_number = delivery_sdek.json()['entity']['cdek_number']
         delivery.uuid = delivery_response_class.entity['uuid']
         delivery.status = DeliveryTransaction.DeliveryStatus.Sent
-        """Необходимо добавить выбор модели заказа и сервиса как в приложении payments"""
         delivery.save()
         return Response({'sdek': a.json()})
 

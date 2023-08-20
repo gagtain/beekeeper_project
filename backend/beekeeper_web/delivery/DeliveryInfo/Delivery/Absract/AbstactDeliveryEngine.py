@@ -45,3 +45,7 @@ class AbstractDeliveryEngine(ABC):
     @abstractmethod
     def get_additional_delivery_info(self) -> dict:
         ...
+
+    @classmethod
+    def examination_data(cls, data: dict):
+        ...

@@ -1,10 +1,12 @@
 import sys
 
-from django.db.models import Q
-from rest_framework.exceptions import NotFound
+from rest_framework import status
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from delivery.services.additional import field_in_dict
+from global_modules.exception.base import CodeDataException, BaseDataException
 from orders.tasks import check_order_payment
 from user.models import MainUser
 from ..models import BasketItem
@@ -12,17 +14,19 @@ from ..services.Order import OrderServices
 
 sys.path.append('.')
 
-from ..serializers import OrderSerializers
+from ..serializers import OrderSerializers, UserBasketPkList
 from orders.serializers import OrderSerializers as order_ser
 
 
 class OrderCreateAPI(APIView):
 
     def createOrder(self, request):
-        if request.data.get('basket'):
-            data = request.data.get('basket')
-            order = OrderServices.createOrderInList(request=request,
-                                                    data=data)
+        if request.data.get('order_id'):
+            try:
+                order = OrderServices.create_order_in_checkout(checkout_id=request.data['order_id'],
+                                                               user_id=request.user.id)
+            except CodeDataException as e:
+                return Response(data=e.error_data, status=e.status)
         else:
             BasketItemList = BasketItem.objects.filter(user=request.user)
             order = OrderServices.createOrderInBasket(request=request, basket_item_list=BasketItemList,
@@ -34,15 +38,40 @@ class OrderCreateAPI(APIView):
 class OrderGetLastAPI(APIView):
 
     def getLastOrder(self, request):
-        order = OrderServices.getLastOrder(user_id=request.user.id)
+        try:
+            order = OrderServices.getLastOrder(user_id=request.user.id)
+        except CodeDataException as e:
+            return Response(data=e.error_data, status=e.status)
         return Response(order_ser(order).data)
 
 
 class OrderGetListAPI(APIView):
 
     def getOrderList(self, request):
-        order_list = OrderServices.getOrderList(user=MainUser.objects.get(id=1))
-        if order_list.count():
-            return Response(order_ser(order_list, many=True).data)
-        else:
-            raise NotFound("У пользователя нет заказов")
+        user = MainUser.objects.only('user_order').get(id=request.user.id)
+        order_list = OrderServices.getOrderList(user=user)
+        return Response(order_ser(order_list, many=True).data)
+
+
+class OrderCheckout(APIView):
+
+    def checkout_order_in_data(self, request):
+        try:
+            basket_item_list_id = field_in_dict(dict_req=request.data, field='basket_id_list')
+            if basket_item_list_id == '__all__':
+                basket_item_list_id = [x.id for x in request.user.basket.only('id').all()]
+            basket_pk_serializer = UserBasketPkList(data={
+                'basket': basket_item_list_id
+            })
+            basket_pk_serializer.is_valid(raise_exception=True)
+            basket_item_list = OrderServices.examination_basket_item_in_user(basket_item_list=basket_item_list_id,
+                                                                             user=request.user)
+        except BaseDataException as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data=e.error_data)
+        except ValidationError as e:
+            raise e
+        order = OrderServices.checkout_order_create(basket_item_list=basket_item_list,
+                                                    user_id=request.user.id)
+        return Response(data={
+            'order_id': order.id
+        }, status=status.HTTP_200_OK)

@@ -1,9 +1,14 @@
 from django.db.models import QuerySet, Prefetch, Avg, Min, Count
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from global_modules.exception.base import CodeDataException
+from user.services.optimize_orm import optimize_ImageProductList, optimize_category
 from ..models import Product, Category, ProductItem
 from .custom_mixins import Filter
-from ..serializers import RetrieveProductName, RetrieveProductRemoveToProdachen
+from ..serializers import RetrieveProductName, RetrieveProduct
+from ..services.User import ProductServises
+from ..services.optimize_orm import optimize_product_item_list
 
 
 class ProductFilterName(APIView, Filter):
@@ -28,15 +33,13 @@ class ProductFilter(APIView, Filter):
         'price': 'price__icontains',
     }
     type_obj = 'model'
-    serializers_retrieve = RetrieveProductRemoveToProdachen
+    serializers_retrieve = RetrieveProduct
     order_by = ['count_purchase']
-    skip_params = ['order_by']
-
+    skip_params = ['order_by', 'from', 'size']
 
     def search__default(self, request):
         if request.GET.get('order_by'):
             self.order_by = request.GET['order_by'].split(' ')
-
 
         return super().search(request)
 
@@ -45,6 +48,7 @@ class ProductFilter(APIView, Filter):
             self.order_by.remove('price_min')
             queryset = queryset.annotate(cnt=Min('productItemList__price')).order_by('cnt')
         else:
+            print(self.order_by)
             queryset = queryset.order_by(*self.order_by)
         return queryset
 
@@ -52,12 +56,29 @@ class ProductFilter(APIView, Filter):
         ...
 
     def init_queryset(self, queryset: QuerySet):
+        size = int(self.request.GET.get('size', 10))
+        from_ = int(self.request.GET.get('from', 0))
         queryset = self.init_order_by(queryset)
         queryset = queryset.prefetch_related(
-            Prefetch('category', queryset=Category.objects.all().only('name')),
-            'ImageProductList',
-            Prefetch('productItemList', queryset=ProductItem.objects.all().prefetch_related(
-                'weight', 'dimensions'
-            )),
-        ).annotate(Avg('rating_product__rating'))
+            optimize_category(),
+            optimize_ImageProductList(), optimize_product_item_list('productItemList')
+        ).annotate(Avg('rating_product__rating'))[from_:size + from_]
         return queryset
+
+
+class GetProduct:
+
+    def get_product(self, request, id):
+        try:
+            product = ProductServises.getProduct(id)
+        except CodeDataException as e:
+            return Response(status=e.status, data=e.error_data)
+        return Response(RetrieveProduct(product).data)
+
+
+class GetProductList:
+
+    def get_product_list(self, request):
+        size = request.GET.get('size', 10)
+        product_list = ProductServises.getProductList(size)
+        return Response(RetrieveProduct(product_list, many=True).data)

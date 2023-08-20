@@ -30,7 +30,7 @@
           <div class="kor w-sto relative">
     <p class="small-big VAG">Заказы</p>
     <div class="w-sto h_sto">
-        <div v-if="!list_order[0].loading" class="product_order_list ">
+        <div v-if="list_order[0]" class="product_order_list ">
                 <div v-for="order in list_order" :key="order.id" class="order m-2" >
                     <div :class="order.status == 'Закрытый' ? 'not-active' : ''">
 
@@ -125,20 +125,30 @@
                             </div>
                             <div class="w-50">
 
-                                <p>{{ order.payment.status }}</p>
+                                <p>{{ order?.payment?.status }}</p>
+                            </div>
+                        </div>
+                        <div class="flex w-sto m-2">
+                            <div class="w-50 ">
+
+                                <p>Статус заказа</p>
+                            </div>
+                            <div class="w-50">
+
+                                <p>{{ order.status }}</p>
                             </div>
                         </div>
               </div>
                     </div>
                     <div class="order_menu m-2">
                         
-                    <button v-if="order.status == 'Одобрен'" onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                    <button v-if="order.status == 'Одобрен' && order.delivery.status != 'На проверке'" onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
                               Отследить
                             </button>
-                            <div v-if="order.payment.status == 'pending' && order.status != 'Закрытый'">
+                            <div v-if="order?.payment?.status == 'pending' && order.status != 'Закрытый'">
 
                                 <p>Заказ будет отменен через 30 минут, в случае если он не будет оплачен</p>
-                            <button @click="order_redirect_payments(order.payment.url)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                            <button @click="order_redirect_payments(order?.payment?.url)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
                               Оплатить
                             </button>
                             </div>
@@ -154,7 +164,7 @@
                             </button>
                     </div>
             </div>
-            <div v-else-if="list_order[0].no_order" class="w-sto h_sto flex auto">
+            <div v-else-if="list_order.length == 0" class="w-sto h_sto flex auto">
                 <div class="auto">
                     <p style="font-size: 28px;" class="VAG">Список заказов пуст :(</p>
                     <div class="select_size" >
@@ -253,59 +263,13 @@ export default {
   name: "BasketBase",
   data(){
     return{
-        list_order:[
-            {loading: true, no_order: false}, // свойство для проверки загрузки 
-            {
-                id: null,
-                amount: null,
-                user:{
-                    FIO: null,
-                    email: null,
-                },
-                product_list_transaction:[{
-                    id: null,
-                    productItem:{
-                        id: null,
-                        product:{
-                            name: null,
-                        description: null,
-                        image: null,
-                        price_currency: null,
-                        price: null,
-                        },
-                        weight:{
-                        id: null,
-                        weight: null,
-                    },
-                    type_packaging:{
-                        id: null,
-                        name: null,
-                    },
-                        
-                        
-
-                    },
-                    
-                    count: null
-                }],
-                datetime: null,
-                order_address: null,
-                order_index: null
-            }
-        ],
-        rating_list: true,
-        select_rating_product_id: null,
-        rating_list_obj: [],
-        select_order: null
+        list_order: [null]
     }
   },
   async mounted(){
     let response_list_order = await getListOrder()
-    if (response_list_order.status != 404){
         this.list_order = response_list_order.data
-    }else{
-        this.list_order[0].no_order = true
-    }
+    
   },
   methods:{
     select_rating_product(id){

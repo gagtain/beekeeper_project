@@ -1,12 +1,8 @@
 from django.conf import settings
 from rest_framework import serializers
-import sys
 
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-
-
-sys.path.append('.')
-from .models import Product, MainUser, Category, ImageProduct, \
+from user.models import MainUser
+from .models import Product, Category, ImageProduct, \
     BasketItem, FavoriteItem, RatingProductReview, Type_weight, ProductItem, DimensionsProduct
 from orders.models import Order, OrderItem
 
@@ -20,12 +16,40 @@ class RatingProductReviewSerializer(serializers.ModelSerializer):
         model = RatingProductReview
         fields = '__all__'
 
+class CategoryRetriveSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['name']
+class RetrieveProductDefault(serializers.ModelSerializer):
+    category = CategoryRetriveSerializers(many=True)
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'description', 'image', 'category']
+
+class UserBasketPkList(serializers.ModelSerializer):
+    basket = serializers.PrimaryKeyRelatedField(many=True,
+                                                queryset=BasketItem.objects.all())
+
+    class Meta:
+        model = MainUser
+        fields = ['basket']
+
+    def validate_basket(self, attrs):
+        print('213')
+
+
+class RetrieveUserDefault(serializers.ModelSerializer):
+
+    class Meta:
+        model = MainUser
+        fields = ['username', 'FIO', 'image', 'is_sending']
 
 class RatingProductReviewRetrieveSerializer(serializers.ModelSerializer):
+    user = RetrieveUserDefault()
+    product = RetrieveProductDefault()
     class Meta:
         model = RatingProductReview
-        fields = '__all__'
-        depth = 1
+        fields = ['rating', 'user', 'product']
 
 
 class BasketInfoSerializer(serializers.Serializer):
@@ -35,10 +59,6 @@ class BasketInfoSerializer(serializers.Serializer):
     class Meta:
         fields = '__all__'
 
-class CategoryRetriveSerializers(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = ['name']
 
 class DimensionsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,28 +101,7 @@ class RetrieveProductName(serializers.ModelSerializer):
         model = Product
         fields = ['id', 'name']
 
-
 class RetrieveProduct(serializers.ModelSerializer):
-    favorite = serializers.SerializerMethodField()
-    image = serializers.SerializerMethodField()
-
-    class Meta:
-        model = Product
-        depth = 1
-        fields = ['id', 'name', 'image', 'favorite', 'description', 'list_weight']
-
-    def get_favorite(self, instance):
-        return True if self.context.get('user_id') in instance.favorite_product.all() else False
-
-    def get_image(self, instance):
-        return settings.MEDIA_URL + str(instance.image)
-
-
-
-
-
-
-class RetrieveProductRemoveToProdachen(serializers.ModelSerializer):
     category = CategoryRetriveSerializers(many=True)
     ImageProductList = PhotoItemSerializers(many=True)
     rating = serializers.FloatField(source='rating_product__rating__avg')
