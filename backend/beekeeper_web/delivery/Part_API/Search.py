@@ -1,4 +1,5 @@
 from django.db.models import QuerySet, Prefetch, Count
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.views import APIView
 
 from orders.models import Order, OrderItem
@@ -15,6 +16,10 @@ class DeliveryTransactionFilter(APIView, Filter):
     skip_params = ['size', 'from']
     filter_options = {}
 
+    @swagger_auto_schema(tags=['delivery'])
+    def search(self, request):
+        return super().search(request=request)
+
     def init_queryset(self, queryset: QuerySet):
         """Оптимизация запроса"""
         size = int(self.request.GET.get('size', 10))
@@ -28,6 +33,7 @@ class DeliveryTransactionFilterCount(Filter):
 
     filter_options = {}
 
+    @swagger_auto_schema(tags=['delivery'])
     def search__count(self, *args, **kwargs):
         return super().search(*args, **kwargs)
 

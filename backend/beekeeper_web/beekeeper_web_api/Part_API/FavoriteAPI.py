@@ -1,3 +1,4 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
 
@@ -8,6 +9,7 @@ from user.models import MainUser
 
 
 class GetFavoriteProduct:
+    @swagger_auto_schema(tags=['online_store'])
     def GetFavoriteProduct(self, request):
         user = MainUser.objects.only('id').get(id=request.user.id)
         favorite = ServicesUser.getFavoriteProduct(user)
@@ -16,6 +18,7 @@ class GetFavoriteProduct:
 
 
 class AddFavoriteProduct:
+    @swagger_auto_schema(tags=['online_store'])
     def AddFavoriteProduct(self, request, pk):
         user = MainUser.objects.only('id', 'favorite_product').get(id=request.user.id)
         try:
@@ -27,6 +30,7 @@ class AddFavoriteProduct:
 
 class RemoveFavoriteProduct:
 
+    @swagger_auto_schema(tags=['online_store'])
     def RemoveFavoriteProduct(self, request, pk):
         user = MainUser.objects.only('favorite_product').get(id=request.user.id)
         try:

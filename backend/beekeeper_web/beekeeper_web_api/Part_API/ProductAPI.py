@@ -1,4 +1,5 @@
 from django.db.models import QuerySet, Prefetch, Avg, Min, Count
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -19,7 +20,8 @@ class ProductFilterName(APIView, Filter):
     type_obj = 'model'
     serializers_retrieve = RetrieveProductName
 
-    def search__name(self, request):
+    @swagger_auto_schema(tags=['online_store'])
+    def search(self, request):
         return super().search(request)
 
     def init_queryset(self, queryset: QuerySet):
@@ -37,6 +39,7 @@ class ProductFilter(APIView, Filter):
     order_by = ['count_purchase']
     skip_params = ['order_by', 'from', 'size']
 
+    @swagger_auto_schema(tags=['online_store'])
     def search__default(self, request):
         if request.GET.get('order_by'):
             self.order_by = request.GET['order_by'].split(' ')
@@ -68,6 +71,7 @@ class ProductFilter(APIView, Filter):
 
 class GetProduct:
 
+    @swagger_auto_schema(tags=['online_store'])
     def get_product(self, request, id):
         try:
             product = ProductServises.getProduct(id)
@@ -78,6 +82,7 @@ class GetProduct:
 
 class GetProductList:
 
+    @swagger_auto_schema(tags=['online_store'])
     def get_product_list(self, request):
         size = request.GET.get('size', 10)
         product_list = ProductServises.getProductList(size)

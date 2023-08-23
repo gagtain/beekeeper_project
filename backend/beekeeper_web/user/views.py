@@ -1,5 +1,6 @@
 from django.db.models import Prefetch
 from django.shortcuts import render
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import IsAuthenticated
@@ -21,6 +22,10 @@ from .services.optimize_orm import optimize_basket, optimize_favorite, default_u
 class UserRegistAPI(CreateAPIView):
     serializer_class = UserRegisterSerializers
 
+    @swagger_auto_schema(tags=['user'])
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -33,6 +38,7 @@ class tokenVerif(APIView):
     authentication_classes = [CustomAuthentication]
     permission_classes = [IsAuthenticated]
 
+    @swagger_auto_schema(tags=['user'])
     def post(self, request: Request):
         user = MainUser.objects.only(*default_user_only(), 'basket', 'favorite_product')\
             .prefetch_related(optimize_basket, optimize_favorite).get(id=request.user.id)

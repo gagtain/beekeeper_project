@@ -1,4 +1,5 @@
 from django.db.models import Avg, F
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,6 +13,7 @@ from ..serializers import RatingProductReviewSerializer, RatingProductReviewRetr
 
 class RatingProductCreate(APIView):
 
+    @swagger_auto_schema(tags=['online_store'])
     def create(self, request, product_pk):
         if RatingProductReview.objects.filter(product__id=product_pk, user__id=request.user.id).exists():
             return Response({'error': 'Вы уже оставили отзыв на данный товар'}, status=status.HTTP_400_BAD_REQUEST)
@@ -28,6 +30,7 @@ class RatingProductCreate(APIView):
 
 class RatingProductList(APIView):
 
+    @swagger_auto_schema(tags=['online_store'])
     def list(self, request, product_pk):
         rating_list = RatingProductReview.objects \
             .filter(product__id=product_pk).only('rating',
@@ -47,6 +50,7 @@ class RatingProductList(APIView):
 
 class RatingProductAVG(APIView):
 
+    @swagger_auto_schema(tags=['online_store'])
     def get_rating_avg(self, request, product_pk):
         rating_product = Product.objects.filter(id=product_pk).values('rating_product__rating') \
             .aggregate(Avg('rating_product__rating'))

@@ -1,3 +1,4 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 
 from orders.models import Order
@@ -7,6 +8,7 @@ from payments.models import PaymentTransaction
 
 class OrderApproved:
 
+    @swagger_auto_schema(tags=['order'])
     def approved(self, request, pk):
 
         order = Order.objects.get(pk=pk)

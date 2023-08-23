@@ -1,3 +1,4 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 
 from orders.models import Order
@@ -7,6 +8,7 @@ from payments.models import PaymentTransaction
 
 
 class OrderClosed:
+    @swagger_auto_schema(tags=['order'])
     def closed(self, request, pk):
         order = Order.objects.get(pk=pk)
         if order.status == Order.StatusChoice.closed:

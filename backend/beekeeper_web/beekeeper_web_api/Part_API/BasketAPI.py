@@ -1,4 +1,5 @@
 from django.conf import settings
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -12,6 +13,7 @@ from ..services.User import ServicesUser
 
 class AddBasketProduct:
 
+    @swagger_auto_schema(tags=['online_store'])
     def add_basket_product(self, request, pk):
         try:
             user = MainUser.objects.only('id').get(id=request.user.id)
@@ -22,6 +24,7 @@ class AddBasketProduct:
 
 
 class RemoveBasketProduct:
+    @swagger_auto_schema(tags=['online_store'])
     def remove_basket_product(self, request, pk):
         try:
             data = ServicesUser.removeBasketProduct(request.user.id, pk=pk)
@@ -31,6 +34,7 @@ class RemoveBasketProduct:
 
 
 class GetBasketInfo:
+    @swagger_auto_schema(tags=['online_store'])
     def get_basket_info(self, request):
         basket_info = ServicesUser.getBasketInfo(request.user)
         return Response(BasketInfoSerializer(basket_info).data)
@@ -39,6 +43,7 @@ class GetBasketInfo:
 class UpdateBasketItemCount:
     """Класс реализующий метод изменения кол-ва товара в корзине"""
 
+    @swagger_auto_schema(tags=['online_store'])
     def update_basket_item_count(self, request, basket_pk):
         if not ServicesUser.user_in_basket(basket_id=basket_pk, user_id=request.user.id):
             return Response(data={
@@ -56,6 +61,7 @@ class UpdateBasketItemCount:
 
 
 class GetBasket:
+    @swagger_auto_schema(tags=['online_store'])
     def GetBasket(self, request):
         basket = ServicesUser.getBasket(MainUser.objects.only('id').get(id=request.user.id))
         serializer = BasketSerializer(basket, many=True)

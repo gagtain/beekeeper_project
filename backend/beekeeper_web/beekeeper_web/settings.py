@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'orders',
     'sending',
-    'user'
+    'user',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

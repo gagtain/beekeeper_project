@@ -9,3 +9,4 @@ from user.jwt_token.auth import CustomAuthentication
 
 class SendingAPI(ViewSet, SendingAdd, SendingRemove):
     authentication_classes = [CustomAuthentication]
+    swagger_schema = None

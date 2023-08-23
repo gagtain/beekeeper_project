@@ -12,4 +12,4 @@ class NewsAPI(viewsets.ViewSet, NewsCreateAPI,
               NewsListAPI, NewsRetrieveAPI,
               NewsDelete,
               NewsFilterCount):
-    pass
+   swagger_schema = None

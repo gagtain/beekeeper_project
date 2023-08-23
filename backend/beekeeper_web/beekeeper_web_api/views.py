@@ -1,4 +1,6 @@
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from user.jwt_token.auth import CustomAuthentication
@@ -15,10 +17,12 @@ class BasketAPI(viewsets.ViewSet, GetBasketInfo,
                 UpdateBasketItemCount, RemoveBasketProduct,
                 AddBasketProduct, GetBasket):
     authentication_classes = [CustomAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class FavoriteProductAPI(viewsets.ViewSet, GetFavoriteProduct, AddFavoriteProduct, RemoveFavoriteProduct):
     authentication_classes = [CustomAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class ProductFilterNameAPI(viewsets.ViewSet, ProductFilterName):
@@ -36,6 +40,7 @@ class ProductFilterAPI(viewsets.ViewSet, ProductFilter):
 class CategoryAPI(viewsets.ViewSet):
     authentication_classes = [CustomAuthentication]
 
+    @swagger_auto_schema(tags=['online_store'])
     def get_category_list(self, request):
         category_list = CategoryServises.getCategoryList().only('name')
         return Response(CategoryRetriveSerializers(category_list, many=True).data)
@@ -43,6 +48,7 @@ class CategoryAPI(viewsets.ViewSet):
 
 class OrderAPI(viewsets.ViewSet, OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI, OrderCheckout):
     authentication_classes = [CustomAuthentication]
+    permission_classes = [IsAuthenticated]
 
 
 class RatingAPI(viewsets.ViewSet, RatingProductCreate, RatingProductList, RatingProductAVG):

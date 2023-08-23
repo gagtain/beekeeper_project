@@ -1,6 +1,7 @@
 
 from time import sleep
 
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.generics import get_object_or_404
 from rest_framework.request import Request
 from rest_framework.response import Response
@@ -19,6 +20,7 @@ from delivery.services.Delivery import Sent_Status
 
 class DeliveryCreate(APIView):
 
+    @swagger_auto_schema(tags=['delivery'])
     def delivery_initial_in_data(self, request):
         try:
             delivery_id = field_in_dict(request.data, 'delivery_id')
@@ -42,6 +44,7 @@ class DeliveryCreate(APIView):
         delivery.save()
         return Response({'sdek': a.json()})
 
+    @swagger_auto_schema(tags=['delivery'])
     def delivery_create_lait(self, request: Request):
         try:
             order_id = field_in_dict(request.data, 'order_id')
@@ -64,6 +67,7 @@ class DeliveryCreate(APIView):
 
 class DeliverySdekGet(APIView):
 
+    @swagger_auto_schema(tags=['delivery'])
     def delivery_sdek_get(self, request, uuid):
         a = SdekDelivery.SDEKDelivery.get_delivery(uuid)
         return Response({'sdek': a.json()})
@@ -71,6 +75,7 @@ class DeliverySdekGet(APIView):
 
 class DeliveryGet(APIView):
 
+    @swagger_auto_schema(tags=['delivery'])
     def delivery_get(self, request, pk):
         delivery_obj = get_object_or_404(
             default_delivery_optimize(DeliveryTransaction.objects),
@@ -81,6 +86,7 @@ class DeliveryGet(APIView):
 
 class DeliverySubmitWaiting(APIView):
 
+    @swagger_auto_schema(tags=['delivery'])
     def delivery_submit_waiting(self, request, pk):
         delivery: DeliveryTransaction = DeliveryTransaction.objects.only('status').get(pk=pk)
         delivery.status = DeliveryTransaction.DeliveryStatus.Waiting_for_dispatch
@@ -90,6 +96,7 @@ class DeliverySubmitWaiting(APIView):
 
 class DeliveryTrackAdd(APIView):
 
+    @swagger_auto_schema(tags=['delivery'])
     def delivery_track_add(self, request, pk):
         delivery: DeliveryTransaction = DeliveryTransaction.objects.only('status', 'track_number', 'id').get(pk=pk)
         delivery.track_number = request.data['track_number']

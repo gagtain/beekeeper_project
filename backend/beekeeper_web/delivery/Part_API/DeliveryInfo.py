@@ -1,5 +1,6 @@
 from pprint import pprint
 
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.response import Response
 
 from delivery.DeliveryInfo.Delivery.Absract.AbstactDeliveryEngine import AbstractDeliveryEngine
@@ -9,6 +10,7 @@ from global_modules.exception.base import BaseDataException
 
 
 class DeliveryInfo:
+    @swagger_auto_schema(tags=['delivery'])
     def get_info_in_order(self, request, pk):
         serializer = DeliveryEngineChoiceSerializers(data=request.data)
         serializer.is_valid(raise_exception=True)

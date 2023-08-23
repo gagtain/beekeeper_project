@@ -1,5 +1,6 @@
 import sys
 
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
@@ -21,6 +22,7 @@ from orders.serializers import OrderSerializers as order_ser
 
 class OrderCreateAPI(APIView):
 
+    @swagger_auto_schema(tags=['online_store'])
     def createOrder(self, request):
         if request.data.get('order_id'):
             try:
@@ -38,6 +40,7 @@ class OrderCreateAPI(APIView):
 
 class OrderGetLastAPI(APIView):
 
+    @swagger_auto_schema(tags=['online_store'])
     def getLastOrder(self, request):
         try:
             order = OrderServices.getLastOrder(user_id=request.user.id)
@@ -48,6 +51,7 @@ class OrderGetLastAPI(APIView):
 
 class OrderGetListAPI(APIView):
 
+    @swagger_auto_schema(tags=['online_store'])
     def getOrderList(self, request):
         user = MainUser.objects.only('user_order').get(id=request.user.id)
         order_list = OrderServices.getOrderList(user=user)
@@ -56,6 +60,7 @@ class OrderGetListAPI(APIView):
 
 class OrderCheckout(APIView):
 
+    @swagger_auto_schema(tags=['online_store'])
     def checkout_order_in_data(self, request):
         try:
             basket_item_list_id = field_in_dict(dict_req=request.data, field='basket_id_list')

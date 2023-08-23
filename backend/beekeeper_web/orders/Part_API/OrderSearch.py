@@ -1,4 +1,5 @@
 from django.db.models import QuerySet, Prefetch, Count, Sum
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.views import APIView
 
 from orders.models import Order, OrderItem
@@ -16,6 +17,10 @@ class OrderFilter(APIView, Filter):
 
     filter_options = {}
 
+    @swagger_auto_schema(tags=['order'])
+    def search(self, request):
+        return super().search(request=request)
+
     def init_queryset(self, queryset: QuerySet):
         """Оптимизация запроса"""
 
@@ -30,6 +35,7 @@ class OrderFilterCount(Filter):
 
     filter_options = {}
 
+    @swagger_auto_schema(tags=['order'])
     def search__count(self, *args, **kwargs):
         return super().search(*args, **kwargs)
 
@@ -43,6 +49,7 @@ class OrderFilterSum(Filter):
 
     filter_options = {}
 
+    @swagger_auto_schema(tags=['order'])
     def search__sum(self, *args, **kwargs):
         return super().search(*args, **kwargs)
 

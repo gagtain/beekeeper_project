@@ -13,4 +13,4 @@ class PaymentAPI(viewsets.ViewSet, CreatePaymentsAPI):
     pass
 
 class YookassaAPI(viewsets.ViewSet, YookassaNotifications):
-    pass
+    swagger_schema = None
