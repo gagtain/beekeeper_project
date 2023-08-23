@@ -5,7 +5,7 @@
       <p class="m2">
         Цена:
         {{
-          items.reduce(function (sum, elem) {
+          ordered ? order_amount : items.reduce(function (sum, elem) {
             return sum + parseFloat(elem.productItem.price);
           }, 0)
         }}
@@ -29,7 +29,7 @@
 <script>
 export default {
     el: '#pr_list_info',
-  props: ['items', 'delivery_price', 'ordered'],
+  props: ['items', 'delivery_price', 'ordered', 'order_amount'],
   data(){
     return {
       summ: 0,
@@ -58,11 +58,15 @@ export default {
       return str_weight
     },
     getSumm() {
-      let summ = this.items.reduce(function (sum, elem) {
+      let summ = 0
+      if (this.ordered){
+        summ += parseFloat(this.order_amount)
+        summ += parseFloat(this.delivery_price ? this.delivery_price : 0)
+      }else{
+
+      summ = this.items.reduce(function (sum, elem) {
         return sum + parseFloat(elem.productItem.price * elem.count);
       }, 0);
-      if (this.ordered){
-        summ += parseFloat(this.delivery_price ? this.delivery_price : 0)
       }
       return summ
     },

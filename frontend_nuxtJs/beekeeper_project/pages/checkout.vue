@@ -7,7 +7,7 @@
 
                     <div class="w-sto kor" id="kor">
     <p class="small-big VAG">Оформление</p>
-    <div class="w-sto flex kor_block jus-sp">
+    <div v-if="order" class="w-sto flex kor_block jus-sp">
         <div class="w-sto-1000px checkout">
 
             <client-only>
@@ -15,12 +15,11 @@
 
             </client-only>
             <p align="left" class="VAG small">Товары</p>
-            
-            <order-product-list :orderList="$store.getUser.basket"></order-product-list>
+            <order-product-list :orderList="order.product_list_transaction"></order-product-list>
         </div>
             <div class="w-sto-1000px register_zakaz">
-                <Submit_order :delivery_info="delivery_info" v-on:forms_validate_met="forms_validate_met" :items="$store.getUser.basket" :forms_validate="forms_validate"></Submit_order>
-                <ProductListInfo :ordered="true" :items="$store.getUser.basket" :delivery_price="delivery_info.price"></ProductListInfo>
+                <Submit_order :order_id="order.id" :delivery_info="delivery_info" v-on:forms_validate_met="forms_validate_met" :items="order.product_list_transaction" :forms_validate="forms_validate"></Submit_order>
+                <ProductListInfo :order_amount="order.amount" :ordered="true" :items="order.product_list_transaction" :delivery_price="delivery_info.price"></ProductListInfo>
             </div>
                     
                 </div>
@@ -81,6 +80,8 @@ import Checkouts from '../components/AddtionalComp/Checkout.vue';
 import ProductListInfo from '../components/UserComp/BasketComp/ProductListInfo.vue';
 import Submit_order from '~/components/AddtionalComp/Submit_order.vue';
 import OrderProductList from '~/components/AddtionalComp/OrderProductList.vue';
+import createCheckout from '~/additional_func/Orders/createCheckout'
+import getOrder from '~/additional_func/Orders/getOrder'
 export default {
     el:"#checkout",
     components:{
@@ -104,9 +105,16 @@ data(){
         forms_validate: false,
         delivery_info: {
             price: null
-        }
+        },
+        order: null
     }
 },
+    async created(){
+        let r = await createCheckout('__all__')
+        let order_id = r.data.order_id
+        let order_r = await getOrder(order_id)
+        this.order = order_r.data
+    },
     methods:{
     forms_validate_met(){
         this.forms_validate = this.$refs.checkout_form.order_info_select()

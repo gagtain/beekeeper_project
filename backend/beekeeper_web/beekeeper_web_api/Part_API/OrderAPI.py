@@ -11,6 +11,7 @@ from orders.tasks import check_order_payment
 from user.models import MainUser
 from ..models import BasketItem
 from ..services.Order import OrderServices
+from ..tasks import order_checkout_check
 
 sys.path.append('.')
 
@@ -31,7 +32,7 @@ class OrderCreateAPI(APIView):
             BasketItemList = BasketItem.objects.filter(user=request.user)
             order = OrderServices.createOrderInBasket(request=request, basket_item_list=BasketItemList,
                                                       )
-        check_order_payment.apply_async(kwargs={"order_id": order.id}, countdown=30 * 60)
+        # check_order_payment.apply_async(kwargs={"order_id": order.id}, countdown=30 * 60)
         return Response(OrderSerializers(order).data)
 
 
@@ -72,6 +73,7 @@ class OrderCheckout(APIView):
             raise e
         order = OrderServices.checkout_order_create(basket_item_list=basket_item_list,
                                                     user_id=request.user.id)
+        # order_checkout_check.delay(order.id)
         return Response(data={
             'order_id': order.id
         }, status=status.HTTP_200_OK)

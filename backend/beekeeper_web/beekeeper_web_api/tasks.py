@@ -16,3 +16,9 @@ def order_email_send(order_id, user_id):
     emailOrder = EmailOrder("smtp.gmail.com", 587)
     emailOrder.text_in_render_django_file({'order': order, 'host': 'https://owa.gagtain.ru/'})
     emailOrder.send_message(user.email)
+
+@shared_task()
+def order_checkout_check(order_id):
+    order = Order.objects.get(id=order_id)
+    if order.status == Order.StatusChoice.checkout:
+        order.delete()
