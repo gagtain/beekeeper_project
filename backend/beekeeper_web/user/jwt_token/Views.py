@@ -1,8 +1,17 @@
-from rest_framework import permissions
+import datetime
+
+from django.contrib.auth.hashers import make_password
+from django.core.cache import cache
+from rest_framework import permissions, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
+from beekeeper_web_api.services.User import ServicesUser
+from beekeeper_web_api.services.cache_keys import user_authorization_token
+from delivery.services.additional import field_in_dict
+from global_modules.exception.base import CodeDataException, BaseDataException
 from .serializers import MyTokenObtainPairSerializer, CookieTokenRefreshSerializer
+from ..models import MainUser
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -11,27 +20,35 @@ class MyObtainTokenPairView(TokenObtainPairView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        # you must call .is_valid() before accessing validated_data
         serializer.is_valid(raise_exception=True)
+        user: MainUser = serializer.user
+        if user.is_email_authorization:
+            """Проверка на наличие токена в кэше и его сравнение"""
+            try:
+                select_token = field_in_dict(request.data, "token")
+                token = ServicesUser.user_code_token_get(user_id=user.id)
+                ServicesUser.user_code_toke_validate(token, select_token)
+                return self.set_response(serializer=serializer)
+            except CodeDataException as e:
+                return Response(data=e.error_data, status=e.status)
+            except BaseDataException as e:
+                return Response(data=e.error_data, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return self.set_response(serializer=serializer)
 
-        # get access and refresh tokens to do what you like with
+
+    def set_response(self, serializer):
         access = serializer.validated_data.get("access", None)
         refresh = serializer.validated_data.get("refresh", None)
-
         # build your response and set cookie
         if access is not None:
             response = Response({"access": access, "refresh": refresh}, status=200)
             response.set_cookie('assess', access, domain='localhost', max_age=36000, httponly=True)
             response.set_cookie('refresh', refresh, domain='localhost', max_age=36000, httponly=True)
-            print('1223')
             return response
+        else:
 
-        return Response({"Error": "Something went wrong"}, status=400)
-
-"""
-Добавить блэк лист assess и refresh токенов на случай смены пароля и при авторизации проверять токены
-на принадлежность к блэк листу
-"""
+            return Response({"Error": "Something went wrong"}, status=status.HTTP_400_BAD_REQUEST)
 
 class CookieTokenRefreshView(TokenRefreshView):
     serializer_class = CookieTokenRefreshSerializer

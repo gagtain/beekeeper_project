@@ -33,6 +33,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
             "Unselect this instead of deleting accounts."
         ),
     )
+    is_email_authorization = models.BooleanField(default=False)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
     is_sending = models.BooleanField(default=False, blank=True)
 

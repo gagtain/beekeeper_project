@@ -32,6 +32,7 @@ CSRF_TRUSTED_ORIGINS = ['https://owa.gagtain.ru', 'https://gagtain.ru']
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,13 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'rest_framework',
     'beekeeper_web_api',
     'djmoney',
     'debug_toolbar',
     'rest_framework_simplejwt',
     'corsheaders',
-    'sorl.thumbnail',
     'payments',
     'delivery',
     'news',
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     'sending',
     'user',
     'drf_yasg',
+    'notify'
 ]
 
 MIDDLEWARE = [
@@ -89,8 +91,22 @@ TEMPLATES = [
     },
 ]
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://localhost:6379/0",
+    }
+}
+
+ASGI_APPLICATION = 'beekeeper_web.asgi.application'
 WSGI_APPLICATION = 'beekeeper_web.wsgi.application'
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        "LOCATION": "redis://localhost:6379/0",
+    },
+}
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 if DEBUG:
@@ -115,7 +131,7 @@ else:
             'PORT': '5432'
         }
     }
-print(DATABASES)
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -148,11 +164,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-if os.environ.get("STATIC_ROOT", 'False') == 'True':
-    STATIC_ROOT = os.path.join(BASE_DIR, "static")
+if os.environ.get("STATIC_ROOT", 'True') == 'True':
+    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 else:
     STATICFILES_DIRS = (
-      os.path.join(BASE_DIR, 'static/'),
+        os.path.join(BASE_DIR, 'static/'),
     )
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

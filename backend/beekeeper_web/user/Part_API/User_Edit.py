@@ -26,3 +26,4 @@ class GetUserNumber:
         return Response(data={
             'number': user_number_mask(request.user.number)
         })
+

@@ -9,8 +9,22 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/asgi/
 
 import os
 
+import django
+from channels.routing import ProtocolTypeRouter, URLRouter
 from django.core.asgi import get_asgi_application
+
+django.setup()
+from notify.middleware import JwtAuthMiddlewareStack
+
+from notify import routing
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'beekeeper_web.settings')
 
-application = get_asgi_application()
+application = ProtocolTypeRouter({
+  "http": get_asgi_application(),
+  "websocket": JwtAuthMiddlewareStack(
+        URLRouter(
+            routing.websocket_urlpatterns
+        )
+    ),
+})

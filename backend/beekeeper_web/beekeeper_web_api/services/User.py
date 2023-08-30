@@ -1,7 +1,9 @@
+import datetime
 import sys
 
 from django.conf import settings
 from django.contrib.postgres.aggregates import ArrayAgg
+from django.core.cache import cache
 from django.db.models import Prefetch, Sum, Count, Avg, QuerySet
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
@@ -11,6 +13,7 @@ from beekeeper_web_api.serializers import BasketSerializer, FavoriteSerializer
 from global_modules.exception.base import CodeDataException
 from user.services.optimize_orm import optimize_basket_item, optimize_favorite_item, optimize_ImageProductList, \
     optimize_category
+from .cache_keys import user_authorization_token
 from .optimize_orm import optimize_product_item_list
 
 sys.path.append('.')
@@ -91,6 +94,23 @@ class ServicesUser:
             return True
         else:
             return False
+
+    @classmethod
+    def user_code_token_get(cls, user_id) -> str:
+        key = user_authorization_token(user_id)
+        token = cache.get(key)
+        if not token:
+            raise CodeDataException(status=status.HTTP_400_BAD_REQUEST,
+                                    error="Токен авторизации не был установлен")
+        else:
+            return token
+    @classmethod
+    def user_code_toke_validate(cls, user_token: str, select_token: str) -> bool:
+        if user_token != select_token:
+            raise CodeDataException(status=status.HTTP_400_BAD_REQUEST,
+                                    error="Токен неверен")
+        else:
+            return True
 
 
 class ProductServises():

@@ -87,7 +87,14 @@ services:
       - 15672:15672
     networks: 
       - forwebapi
-
+  
+  redis:
+    image: redis:7.2.0-alpine
+    hostname: redis
+    ports:
+      - 6379:6379
+    networks: 
+      - forwebapi
 
   worker:
     build: 

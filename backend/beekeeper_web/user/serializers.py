@@ -5,13 +5,15 @@ from user.models import MainUser
 
 
 class RetrieveUserDefault(serializers.ModelSerializer):
-
     class Meta:
         model = MainUser
         fields = ['username', 'FIO', 'image', 'is_sending']
+
+
 class RetrieveUser(serializers.ModelSerializer):
     basket = BasketSerializer(many=True)
     favorite_product = FavoriteSerializer(many=True)
+
     class Meta:
         model = MainUser
         fields = ['username', 'FIO', 'image', 'basket', 'favorite_product', 'is_sending']
@@ -46,3 +48,11 @@ class UserImageSerializers(serializers.ModelSerializer):
     class Meta:
         model = MainUser
         fields = ['image']
+
+
+class UserLoginSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=50)
+    password = serializers.CharField(max_length=128)
+
+    class Meta:
+        fields = ['username', 'password']

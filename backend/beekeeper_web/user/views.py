@@ -1,5 +1,4 @@
-from django.db.models import Prefetch
-from django.shortcuts import render
+
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import CreateAPIView
@@ -9,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 
-from beekeeper_web_api.models import BasketItem, FavoriteItem, ProductItem, Category, ImageProduct
+from .Part_API.User import UserSetAuthToken
 from .Part_API.User_Edit import UserImageEdit, GetUserNumber
 from .models import MainUser
 from .serializers import UserRegisterSerializers, RetrieveUser
@@ -45,5 +44,5 @@ class tokenVerif(APIView):
         return Response(RetrieveUser(user).data)
 
 
-class UserAPI(ViewSet, UserImageEdit, GetUserNumber):
+class UserAPI(ViewSet, UserImageEdit, GetUserNumber, UserSetAuthToken):
     authentication_classes = [CustomAuthentication]

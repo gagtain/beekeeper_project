@@ -7,13 +7,6 @@ from .models import MainUser, Product, Category, ImageProduct, ProductItem, \
 
 
 # Register your models here.
-class BasketItemInline(admin.TabularInline):
-    model = BasketItem
-    extra = 1
-
-
-class AccountAdmin(admin.ModelAdmin):
-    inlines = (BasketItemInline,)
 
 class ProductItemInline(admin.TabularInline):
     model = ProductItem
@@ -25,7 +18,6 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(DimensionsProduct)
-admin.site.register(MainUser, AccountAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(BasketItem)
 admin.site.register(ProductItem)
