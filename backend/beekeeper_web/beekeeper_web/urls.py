@@ -24,7 +24,6 @@ from rest_framework import permissions
 from user.jwt_token.Views import MyObtainTokenPairView, CookieTokenRefreshView
 from . import settings
 
-
 schema_view = get_schema_view(
    openapi.Info(
       title="Snippets API",
@@ -37,7 +36,6 @@ schema_view = get_schema_view(
    public=True,
    permission_classes=(permissions.AllowAny,),
 )
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v0.1/beekeeper_web_api/', include('beekeeper_web_api.urls')),

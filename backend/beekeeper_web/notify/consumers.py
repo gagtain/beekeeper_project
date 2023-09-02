@@ -1,30 +1,48 @@
 from asgiref.sync import sync_to_async
+from channels.db import database_sync_to_async
 from django.db.models import QuerySet
 from djangochannelsrestframework.decorators import action
 from djangochannelsrestframework.generics import GenericAsyncAPIConsumer
 from djangochannelsrestframework.observer import model_observer
 from djangochannelsrestframework.observer.generics import ObserverModelInstanceMixin
+from djangochannelsrestframework.permissions import IsAuthenticated
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework.utils import json
 
 from notify.models import Notify
 from notify.serializers import NotifySerializer, IsViewedConsumersSerializer
 from notify.services.fixed import FixedRussianData
+from notify.services.notify_websocket import get_key_code_notify_websocket_message, \
+    get_key_code_user_notify_websocket_message
 
 
 class NotifyConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
+    """ Класс реализующий подписку на прослушивание уведомлений (частных и общих) """
     queryset = Notify.objects.all()
     serializer_class = NotifySerializer
-    user_subscribe = None
+    permission_classes = [IsAuthenticated]
+
 
     @action()
     async def is_viewed(self, **kwargs):
-        await sync_to_async(Notify.objects.create)(type=Notify.NotifyChoice.news, text='123', all=True)
         serializer = IsViewedConsumersSerializer(data=kwargs)
         serializer.is_valid(raise_exception=True)
-        notify_id_list: list[int] = self.scope
+        notify_id_list: list[int] = kwargs.get('notify_id_list', [])
         notify_list = self.filter_queryset(queryset=self.get_queryset(),
                                            id__in=notify_id_list)
         notify_list.update(is_viewed=True)
+
+    @action()
+    async def get_old_notify(self, **kwargs):
+        size = kwargs.get('size', 10)
+        from_ = kwargs.get('from', 0)
+        queryset = await self.get_notify_filter()
+        queryset = queryset.order_by("-id")[from_:size+from_]
+        serializer = NotifySerializer(queryset, many=True, context={
+            'user_id': self.scope["user"].id
+        })
+        data = await sync_to_async(self.get_serializer_data)(serializer)
+        await self.send_json(data)
 
     @action()
     async def subscribe_to_notify(self, **kwargs):
@@ -39,25 +57,28 @@ class NotifyConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsync
 
     @notify_activity.groups_for_signal
     def notify_activity(self, instance: Notify, *args, **kwargs):
-        if instance.all:
-            yield f"all__True"
-        else:
-            yield f"users__{instance.users.pk}"
-        yield f'pk__{instance.pk}'
+        return get_key_code_notify_websocket_message(instance)
 
     @notify_activity.groups_for_consumer
     def notify_activity(self, user=None, *args, **kwargs):
-        if user is not None:
-            if user != 'all':
-                yield f'users__{user}'
-            else:
-                yield f'all__True'
+        return get_key_code_user_notify_websocket_message(user)
 
+    def get_serializer_data(self, serializer):
+        return serializer.data
     @notify_activity.serializer
-    def notify_activity(self, instance: Notify, action):
+    def notify_activity(self, instance: Notify, action, **kwargs):
         serializer = NotifySerializer(instance)
         return dict(
             data=serializer.data,
             action=action.value,
             pk=instance.pk
         )
+
+    @database_sync_to_async
+    def get_notify(self, **kwargs):
+        return self.get_queryset().get(**kwargs)
+
+    @database_sync_to_async
+    def get_notify_filter(self, **kwargs):
+        return self.filter_queryset(self.get_queryset(), **kwargs)
+

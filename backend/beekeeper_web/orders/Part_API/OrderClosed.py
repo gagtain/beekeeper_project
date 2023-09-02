@@ -22,8 +22,8 @@ class OrderClosed:
         order.status = Order.StatusChoice.closed
         order.description = request.data['description']
         order.delivery.status = DeliveryTransaction.DeliveryStatus.closed
-        order.save()
-        order.delivery.save()
+        order.save(update_fields=['status'])
+        order.delivery.save(update_fields=['status'])
         serializer = OrderSerializers(order)
 
         return Response(serializer.data, status=200)

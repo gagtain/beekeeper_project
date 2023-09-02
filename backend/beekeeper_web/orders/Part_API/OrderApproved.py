@@ -17,8 +17,8 @@ class OrderApproved:
         else:
             order.status = Order.StatusChoice.approved
             order.delivery.status = DeliveryTransaction.DeliveryStatus.Waiting_for_dispatch
-            order.save()
-            order.delivery.save()
+            order.save(update_fields=['status'])
+            order.delivery.save(update_fields=['status'])
             serializer = OrderSerializers(order)
 
             return Response(serializer.data, status=200)

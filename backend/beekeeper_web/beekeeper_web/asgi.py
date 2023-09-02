@@ -16,15 +16,16 @@ from django.core.asgi import get_asgi_application
 django.setup()
 from notify.middleware import JwtAuthMiddlewareStack
 
-from notify import routing
+from notify import routing as notify_routing
 
+from beekeeper_web_api import routing as online_store_routing
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'beekeeper_web.settings')
 
 application = ProtocolTypeRouter({
   "http": get_asgi_application(),
   "websocket": JwtAuthMiddlewareStack(
         URLRouter(
-            routing.websocket_urlpatterns
+            notify_routing.websocket_urlpatterns + online_store_routing.websocket_urlpatterns
         )
     ),
 })

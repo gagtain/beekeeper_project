@@ -1,9 +1,11 @@
-from django.db.models import Prefetch
+from typing import Callable
+
+from django.db.models import Prefetch, QuerySet
 
 from beekeeper_web_api.models import ProductItem
 from user.services.optimize_orm import optimize_category, optimize_ImageProductList
 
-optimize_product_item_list = lambda x: Prefetch(x, queryset=ProductItem.objects.all().only(
+optimize_product_item = lambda x: x.only(
     'product_id',
     'weight',
     'weight__weight',
@@ -16,4 +18,7 @@ optimize_product_item_list = lambda x: Prefetch(x, queryset=ProductItem.objects.
     'dimensions__weight',
     'dimensions',
     'price'
-).select_related('dimensions', 'weight'))
+).select_related('dimensions', 'weight')
+
+
+optimize_product_item_list = lambda x: Prefetch(x, queryset=optimize_product_item(ProductItem.objects.all()))
