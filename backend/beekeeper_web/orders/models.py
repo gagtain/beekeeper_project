@@ -3,6 +3,7 @@ from djmoney.models.fields import MoneyField
 
 from beekeeper_web_api.models import MainUser, ProductItem
 from delivery.models import DeliveryTransaction
+from notify.models import Notify
 from payments.models import PaymentTransaction
 
 
@@ -25,12 +26,12 @@ class Order(models.Model):
                                  related_name='order_delivery_transaction',
                                  on_delete=models.CASCADE, blank=True, null=True)
     status = models.CharField(choices=StatusChoice.choices, default=StatusChoice.not_approved)
-
     description = models.CharField(max_length=300, default='')
 
     class Meta:
         verbose_name = u"Заказа"
         verbose_name_plural = u"Заказы"
+
 
 
 class OrderItem(models.Model):

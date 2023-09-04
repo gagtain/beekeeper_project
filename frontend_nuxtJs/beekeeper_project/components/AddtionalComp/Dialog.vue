@@ -26,6 +26,7 @@ export default{
     closed(){
       let a = document.getElementById(this.ids)
       a.close()
+      this.$emit('close_dialog', this.ids)
     }
   }
 }

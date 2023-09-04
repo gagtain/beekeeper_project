@@ -14,8 +14,9 @@ default_order_only = ('id', 'amount', 'amount_currency', 'user', 'product_list_t
 default_order_optimize = lambda x: x.select_related('user', 'payment', 'delivery') \
             .only(*default_user_only('user')).prefetch_related(Prefetch(
             'product_list_transaction', queryset=OrderItem.objects.all().only(
-                'id', 'productItem', 'count', 'price', 'price_currency', 'order_id', *default_productItem_only()
-            ).select_related(*default_productItem_select_related())
+                'id', 'productItem', 'count', 'price', 'price_currency', 'order_id',
+        *default_productItem_only("productItem")
+            ).select_related(*default_productItem_select_related("productItem"))
             .prefetch_related(optimize_category('productItem__product'),
                               optimize_ImageProductList('productItem__product'))
         )).only(*default_order_only, 'id', *default_payment_only('payment'), *default_delivery_only('delivery'))

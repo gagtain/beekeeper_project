@@ -9,37 +9,37 @@ def default_user_only(x=None):
 
 
 def default_productItem_only(x=None):
-    return (f'{x}__productItem', f'{x}__productItem_id',
-            f'{x}__productItem__product_id',
-            f'{x}__productItem__product',
-            f'{x}__productItem__product__name',
-            f'{x}__productItem__product__image',
-            f'{x}__productItem__product__description',
-            f'{x}__productItem__weight',
-            f'{x}__productItem__weight__weight',
-            f'{x}__productItem__weight_id',
-            f'{x}__productItem__price_currency',
-            f'{x}__productItem__dimensions_id',
-            f'{x}__productItem__price',) if x \
-        else ('productItem', 'productItem_id',
-              'productItem__product_id',
-              'productItem__product',
-              'productItem__product__name',
-              'productItem__product__image',
-              'productItem__product__description',
-              'productItem__weight',
-              'productItem__weight__weight',
-              'productItem__weight_id',
-              'productItem__price_currency',
-              'productItem__dimensions_id',
-              'productItem__price',)
+    return (f'{x}', f'{x}_id',
+            f'{x}__product_id',
+            f'{x}__product',
+            f'{x}__product__name',
+            f'{x}__product__image',
+            f'{x}__product__description',
+            f'{x}__weight',
+            f'{x}__weight__weight',
+            f'{x}__weight_id',
+            f'{x}__price_currency',
+            f'{x}__dimensions_id',
+            f'{x}__price',) if x \
+        else ('id',
+              'product_id',
+              'product',
+              'product__name',
+              'product__image',
+              'product__description',
+              'weight',
+              'weight__weight',
+              'weight_id',
+              'price_currency',
+              'dimensions_id',
+              'price',)
 
 
 def default_productItem_select_related(x=None):
-    return (f'{x}__productItem', f'{x}__productItem__product',
-            f'{x}__productItem__weight', f'{x}__productItem__dimensions') if x else (
-        'productItem', 'productItem__product',
-        'productItem__weight', 'productItem__dimensions')
+    return (f'{x}', f'{x}__product',
+            f'{x}__weight', f'{x}__dimensions') if x else (
+        'product',
+        'weight', 'dimensions')
 
 def optimize_ImageProductList(x=None):
     return Prefetch(f'{x}__ImageProductList',
@@ -56,9 +56,9 @@ def optimize_category(x=None):
                  queryset=Category.objects.all().only('name', ))
 
 
-optimize_favorite_item = lambda x: x.only(*default_productItem_only(), 'user_id',
+optimize_favorite_item = lambda x: x.only(*default_productItem_only("productItem"), 'user_id',
                                           'productItem__product__productItemList') \
-    .select_related(*default_productItem_select_related()) \
+    .select_related(*default_productItem_select_related("productItem")) \
     .prefetch_related(optimize_category('productItem__product'),
                       optimize_ImageProductList('productItem__product'))
 
@@ -66,9 +66,9 @@ optimize_favorite = Prefetch('favorite_product',
                              queryset=optimize_favorite_item(FavoriteItem.objects.all())
 
                              )
-optimize_basket_item = lambda x: x.only('count', *default_productItem_only(), 'user_id',
+optimize_basket_item = lambda x: x.only('count', *default_productItem_only("productItem"), 'user_id',
                                         'productItem__product__productItemList') \
-    .select_related(*default_productItem_select_related()) \
+    .select_related(*default_productItem_select_related("productItem")) \
     .prefetch_related(optimize_category('productItem__product'),
                       optimize_ImageProductList('productItem__product'))
 

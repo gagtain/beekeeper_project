@@ -95,7 +95,16 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
                       >Избранное</NuxtLink
                     >
                   </li></NuxtLink>
+                  <li @click.stop class="flex relative">
+                    <p @click="is_notify = !is_notify; open_dialog()" class="normal-small auto">Уведомления</p>
+                    
+                  </li>
                 </ul>
+                <DialogWindow :close_dialog="close_dialog($event)" style="height: 50%;" :id="'notify_dialog'">
+                  <notify
+                     v-show="is_notify"></notify>
+                </DialogWindow>
+                
               </div>
             <!--  <span class="material-symbols-outlined auto"> expand_more </span> -->
             </div>
@@ -153,7 +162,10 @@ a{
 }
 </style>
 <script>
+import Notify from "./AddtionalComp/Notify.vue";
+import DialogWindow from "~/components/AddtionalComp/Dialog.vue"
 export default defineNuxtComponent({
+  components: { Notify, DialogWindow },
   name: "HeadersBase",
   el: "#header",
   
@@ -172,7 +184,8 @@ export default defineNuxtComponent({
         scroll_top: 0
       },
         is_menu_mobile: false,
-        is_menu_mobile_user: false
+        is_menu_mobile_user: false,
+        is_notify: false
     };
   },
   methods: {
@@ -199,6 +212,13 @@ export default defineNuxtComponent({
       console.log(this.is_menu_mobile)
       this.is_menu_mobile = !this.is_menu_mobile
     },
+    open_dialog(){
+      let a = document.getElementById('notify_dialog')
+        a.showModal();
+    },
+    close_dialog(event){
+      this.is_notify = false
+    }
   },
 });
 </script>

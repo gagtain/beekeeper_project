@@ -7,10 +7,12 @@ from djangochannelsrestframework.observer.generics import ObserverModelInstanceM
 from beekeeper_web_api.services.optimize_orm import optimize_product_item_list, optimize_product_item
 from notify.services.fixed import FixedRussianData
 from beekeeper_web_api.models import ProductItem, Product
-from beekeeper_web_api.serializers import ProductItemSerializer, RetrieveProduct
+from orders.serializers import ProductItemSerializer
+from beekeeper_web_api.serializers import RetrieveProduct
 from beekeeper_web_api.services.product_websocket import get_product_websocket_key,\
     get_product_subscribe_websocket_key
-from user.services.optimize_orm import optimize_ImageProductList, optimize_category
+from user.services.optimize_orm import optimize_ImageProductList, optimize_category, default_productItem_only, \
+    default_productItem_select_related
 
 
 class ProductConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
@@ -70,7 +72,12 @@ class ProductConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyn
 
     @product_item_activity.serializer
     def product_item_activity(self, instance: ProductItem, action, **kwargs):
-        product = optimize_product_item(ProductItem.objects).get(pk=instance.pk)
+        product = ProductItem.objects.only(*default_productItem_only(),
+                                           'product__productItemList')\
+            .select_related(*default_productItem_select_related()) \
+            .prefetch_related(optimize_category('product'),
+                              optimize_ImageProductList('product'))\
+            .get(pk=instance.pk)
         serializer = ProductItemSerializer(product)
         return dict(
             data=serializer.data,

@@ -41,7 +41,10 @@ class NotifyConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsync
         serializer = NotifySerializer(queryset, many=True, context={
             'user_id': self.scope["user"].id
         })
-        data = await sync_to_async(self.get_serializer_data)(serializer)
+        data = {
+            'data': await sync_to_async(self.get_serializer_data)(serializer),
+            'type': 'old_notify'
+                }
         await self.send_json(data)
 
     @action()
@@ -71,7 +74,8 @@ class NotifyConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsync
         return dict(
             data=serializer.data,
             action=action.value,
-            pk=instance.pk
+            pk=instance.pk,
+            type='subscribe'
         )
 
     @database_sync_to_async
