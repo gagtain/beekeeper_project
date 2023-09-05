@@ -13,7 +13,8 @@ class Notify(models.Model):
         product = "Продукты"
         delivery = "Доставка"
         order = "Заказы"
-    type = models.CharField(choices=NotifyChoice.choices)
+        general = "Общий"
+    type = models.CharField(choices=NotifyChoice.choices, default=NotifyChoice.general)
     text = models.CharField(max_length=120)
     is_viewed = models.ManyToManyField(MainUser, related_name="is_viewed_notify", blank=True)
     users = models.ForeignKey(MainUser, related_name="notify_list", on_delete=models.CASCADE, blank=True, null=True)
