@@ -11,8 +11,12 @@
     <div class="info_tovar_kor flex jus-sp">
       <div class="info_tovar_kor_osnov">
         <p class="normal-small tovar_kor_name">{{ b.productItem.product.name }} {{ b.productItem.weight ? '[' + b.productItem.weight.weight + 'гр]' : '' }}</p>
-
-        <p class="normal-small info_in_tovar_kor">
+        <div class="relative"
+        style="height: 50px; width: 50%;"
+        v-if="getBasketRefactorPrice(b.productItem.id)">
+        <loading-comp></loading-comp>
+        </div>
+        <p v-else class="normal-small info_in_tovar_kor">
           {{ b.productItem.price }} {{ b.productItem.price_currency }}
         </p>
         <div class="btn_tovar_kor flex">
@@ -60,6 +64,7 @@
 </style>
 
 <script>
+import LoadingComp from '../AddtionalComp/LoadingComp.vue'
 import AddBasket from './BasketComp/AddBasket.vue'
 import CountProduct from './BasketComp/CountProduct.vue'
 import FavoriteComp from './BasketComp/FavoriteComp.vue'
@@ -73,12 +78,22 @@ export default {
     components:{
       AddBasket,
       FavoriteComp,
-      CountProduct
+      CountProduct,
+        LoadingComp
     },
     created(){
     },
   methods:{
-   
-  }
+   getBasketRefactorPrice(productItem_id){
+    let obj = this.$store.getBasket_refactor_websocket.filter(e => e.id == productItem_id)
+    if (obj.length == 0){
+      return false
+    }else if(obj[0].type == 'price'){
+      return true
+    }else{
+      return false
+    }
+   }
+  },
 }
 </script>

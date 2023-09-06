@@ -9,8 +9,9 @@ from notify.services.fixed import FixedRussianData
 from beekeeper_web_api.models import ProductItem, Product
 from orders.serializers import ProductItemSerializer
 from beekeeper_web_api.serializers import RetrieveProduct
-from beekeeper_web_api.services.product_websocket import get_product_websocket_key,\
-    get_product_subscribe_websocket_key
+from beekeeper_web_api.services.product_websocket import get_product_websocket_key, \
+    get_product_subscribe_websocket_key, get_product_item_websocket_key, \
+    get_product_item_subscribe_websocket_key_type, get_product_item_subscribe_websocket_key
 from user.services.optimize_orm import optimize_ImageProductList, optimize_category, default_productItem_only, \
     default_productItem_select_related
 
@@ -55,8 +56,11 @@ class ProductConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyn
     """ ProductItem """
     @action()
     async def subscribe_to_product_item(self, **kwargs):
-        product_id = kwargs.get('product_id')
-        await self.product_item_activity.subscribe(product_id=product_id)
+        if kwargs.get('product_id'):
+            await self.product_item_activity.subscribe(product_id=kwargs['product_id'])
+        elif kwargs.get('type'):
+            await self.product_item_activity.subscribe(type_=kwargs['type'], user_id=self.scope['user'].id)
+
 
     @model_observer(ProductItem)
     async def product_item_activity(self, ProductItem, *args, **kwargs):
@@ -64,11 +68,15 @@ class ProductConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyn
 
     @product_item_activity.groups_for_signal
     def product_item_activity(self, instance: ProductItem, *args, **kwargs):
-        return get_product_websocket_key(product=instance.product)
+        return get_product_item_websocket_key(product_item=instance)
 
     @product_item_activity.groups_for_consumer
-    def product_item_activity(self, product_id=None, *args, **kwargs):
-        return get_product_subscribe_websocket_key(product_id=product_id)
+    def product_item_activity(self, product_id=None, type_=None, user_id=None, *args, **kwargs):
+        if product_id is not None:
+            return get_product_item_subscribe_websocket_key(product_id=product_id)
+        elif type_ is not None:
+            return get_product_item_subscribe_websocket_key_type(type_=type_,
+                                                            user_id=user_id)
 
     @product_item_activity.serializer
     def product_item_activity(self, instance: ProductItem, action, **kwargs):

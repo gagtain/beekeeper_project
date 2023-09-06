@@ -110,7 +110,7 @@ class RatingProductReview(models.Model):
 class BasketItem(models.Model):
     """Связь корзины пользователя с объектом продукта с определенными параметрами"""
     user: MainUser = models.ForeignKey(MainUser, on_delete=models.CASCADE, related_name='basket')
-    productItem = models.ForeignKey(ProductItem, on_delete=models.CASCADE, default=1)
+    productItem = models.ForeignKey(ProductItem, on_delete=models.CASCADE, default=1, related_name='basket_item_list')
     count = models.PositiveIntegerField(default=1)
 
     def __str__(self):

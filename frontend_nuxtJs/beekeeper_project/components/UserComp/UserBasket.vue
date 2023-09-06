@@ -10,6 +10,9 @@
         <BasketInfo :items="$store.getUser.basket"></BasketInfo>
       </div>
     </div>
+    <ClientOnly>
+    <basket-web-socket></basket-web-socket>
+  </ClientOnly>
   </div>
 </template>
 <style lang="scss" scoped>
@@ -25,13 +28,15 @@
 <style lang="css" src="../../assets/css/account.css" scoped></style>
 <script>
 import BasketInfo from './BasketComp/BasketInfo.vue'
+import BasketWebSocket from './BasketComp/BasketWebSocket.vue';
 import BasketList from './BasketList.vue';
 export default {
     el: '#kor',
     name: 'UserBasket',
     components:{
         BasketList,
-        BasketInfo
+        BasketInfo,
+        BasketWebSocket
     }
 };
 </script>

@@ -15,7 +15,11 @@ export const useMainStore = defineStore('main', {
     tooltip: {
       status: false,
       title: ''
-    }
+    },
+    basket_refactor_websocket: [{
+      id: null,
+      type: null
+    }]
   }),
   actions: {
     increment() {
@@ -43,7 +47,8 @@ export const useMainStore = defineStore('main', {
     },
     REFACTOR_COUNT_BASKET_ITEM(obj_basketId_count){
       if (Number.isInteger(obj_basketId_count.count)){
-        this.user.basket.filter(b => b.id == obj_basketId_count.basket_id)[0].count = obj_basketId_count.count
+        let index = this.user.basket.findIndex(b => b.id == obj_basketId_count.basket_id)
+        this.user.basket[index].count = obj_basketId_count.count
       }
     },
     REFACTOR_USER_IMAGE(image){
@@ -75,6 +80,12 @@ export const useMainStore = defineStore('main', {
     },
     REFACTOR_TOOLTIP(tooltip){
       this.tooltip = tooltip
+    },
+    ADD_BASKET_REFACTOR_WEBSOCKET(refact){
+      this.basket_refactor_websocket.push(refact)
+    },
+    REMOVE_BASKET_REFACTOR_WEBSOCKET(refact){
+      this.basket_refactor_websocket = this.basket_refactor_websocket.filter(e => e.id != refact.id && e.type != refact.type)
     }
   },
   getters: {
@@ -95,6 +106,9 @@ export const useMainStore = defineStore('main', {
     },
     getTooltip(state){
       return state.tooltip
+    },
+    getBasket_refactor_websocket(state){
+      return state.basket_refactor_websocket
     }
   }
 })

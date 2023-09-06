@@ -72,7 +72,7 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
                   {{ $store.getUser.username }}
                 </p>
               </div>
-              <div v-if="is_menu_mobile_user" class="context_menu_ absolute">
+              <div v-show="is_menu_mobile_user" class="context_menu_ absolute">
                 <ul>
                   <NuxtLink no-prefetch to="/profile">
                   <li class="flex">
@@ -96,17 +96,18 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
                     >
                   </li></NuxtLink>
                   <li @click.stop class="flex relative">
-                    <p @click="is_notify = !is_notify; open_dialog()" class="normal-small auto">Уведомления</p>
+                    <p  @click="is_notify = !is_notify; open_dialog()" class="normal-small auto">Уведомления</p>
                     
                   </li>
                 </ul>
+                <ClientOnly>
                 <DialogWindow :close_dialog="close_dialog($event)" style="height: 50%;" :id="'notify_dialog'">
                   <notify
                      v-show="is_notify"></notify>
                 </DialogWindow>
+              </ClientOnly>
                 
               </div>
-            <!--  <span class="material-symbols-outlined auto"> expand_more </span> -->
             </div>
             <div v-else class="flex context_menu jus-sp user_in relative" style="min-width: 50%;">
                     <p>Войти</p>
