@@ -96,14 +96,13 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
                     >
                   </li></NuxtLink>
                   <li @click.stop class="flex relative">
-                    <p  @click="is_notify = !is_notify; open_dialog()" class="normal-small auto">Уведомления</p>
+                    <p  @click="open_dialog()" class="normal-small auto">Уведомления</p>
                     
                   </li>
                 </ul>
                 <ClientOnly>
                 <DialogWindow :close_dialog="close_dialog($event)" style="height: 50%;" :id="'notify_dialog'">
-                  <notify
-                     v-show="is_notify"></notify>
+                  <notify></notify>
                 </DialogWindow>
               </ClientOnly>
                 

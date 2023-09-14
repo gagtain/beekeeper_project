@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'sending',
     'user',
     'drf_yasg',
-    'notify'
+    'notify',
+    'user_service'
 ]
 
 MIDDLEWARE = [
