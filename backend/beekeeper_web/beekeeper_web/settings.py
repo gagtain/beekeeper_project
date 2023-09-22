@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'beekeeper_web.wsgi.application'
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        "LOCATION": "redis://localhost:6379/0",
+        "LOCATION": "redis://redis:6379/0",
     },
 }
 # Database
