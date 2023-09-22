@@ -115,9 +115,9 @@ if DEBUG:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'beekeeper',
-            'USER': os.environ.get("DATABASE_HOST"),
+            'USER': 'gagtain',
             'PASSWORD': '13576422',
-            'HOST': 'localhost',
+            'HOST': os.environ.get("DATABASE_HOST"),
             'PORT': '5432'
         }
     }
