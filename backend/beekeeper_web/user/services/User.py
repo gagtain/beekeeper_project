@@ -27,9 +27,13 @@ class UserService:
 
     @classmethod
     def get_is_sending_code(cls, user: MainUser) -> bool:
+        try:
+            user_telegram = user.telegram.is_sending_code
+        except:
+            user_telegram = False
         sending_field = [
             user.is_email_authorization,
-            user.telegram.is_sending_code if user.telegram is not None else False
+            user_telegram
         ]
         if True in sending_field:
             return True
@@ -38,10 +42,14 @@ class UserService:
 
     @classmethod
     def sending_user_auth_code(cls, user: MainUser, type_=None) -> Callable[[MainUser, Any, bool], None]:
+        try:
+            user_telegram = user.telegram.is_sending_code
+        except:
+            user_telegram = False
         sending_field_and_func = {
             'email': (user.is_email_authorization, cls.sending_user_code_auth),
             'telegram': (
-                user.telegram.is_sending_code if user.telegram is not None else False,
+                user_telegram,
                 cls.sending_user_code_auth_telegram
                          )
         }
