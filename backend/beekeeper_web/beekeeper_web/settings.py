@@ -27,13 +27,14 @@ SECRET_KEY = 'django-insecure-tlr9d(mc+d8k7%dwly0rlb3v8w)lb1#lih%-sj1*stk$zg05gp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", 'True') == 'True'
 
-ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'shop.gagtain.online', 'webapi']
-CSRF_TRUSTED_ORIGINS = ['https://owa.gagtain.ru', 'https://gagtain.ru']
+ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'owa.pchel-artel.ru', 'webapi', 'pchel-artel.ru']
+CSRF_TRUSTED_ORIGINS = ['https://owa.pchel-arter.ru', 'https://pchel-arter.ru']
 # Application definition
 
 INSTALLED_APPS = [
     'daphne',
     'jazzmin',
+    'online_store',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -115,9 +116,9 @@ if DEBUG:
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
             'NAME': 'beekeeper',
-            'USER': 'gagtain',
+            'USER': os.environ.get("DATABASE_HOST"),
             'PASSWORD': '13576422',
-            'HOST': os.environ.get("DATABASE_HOST"),
+            'HOST': 'localhost',
             'PORT': '5432'
         }
     }
@@ -171,6 +172,7 @@ else:
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static/'),
     )
+print(STATIC_ROOT, 3241)
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
