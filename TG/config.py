@@ -1,5 +1,6 @@
 import os
 
+from redis.asyncio import Redis
 from sqlalchemy import URL
 
 DEBUG = True
@@ -25,3 +26,11 @@ postgres_url = URL.create(
     )
 
 BASE_API_URL = "http://localhost:8000/"
+
+redis_url = Redis(
+        host="localhost",
+        port=6379,
+        db=4
+
+
+    )

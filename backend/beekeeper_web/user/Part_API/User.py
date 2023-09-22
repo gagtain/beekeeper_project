@@ -7,9 +7,27 @@ from rest_framework import status
 from rest_framework.response import Response
 
 from beekeeper_web_api.services.cache_keys import user_authorization_token
+from global_modules.exception.base import CodeDataException
 from user.models import MainUser
 from user.serializers import UserLoginSerializer
 from user.services.User import UserService
+
+
+class UserRegisterAuthToken:
+    def user_register_auth_token(self, request):
+        type_auth = request.data.get('type')
+        if type_auth == 'email':
+            request.user.email = True
+            request.user.save()
+        return Response(status=status.HTTP_200_OK)
+
+    def user_unregister_auth_token(self, request):
+        type_auth = request.data.get('type')
+        if type_auth == 'email':
+            request.user.email = False
+            request.user.save()
+        return Response(status=status.HTTP_200_OK)
+
 
 
 class UserSetAuthToken:
@@ -22,15 +40,19 @@ class UserSetAuthToken:
                                  password=serializer.validated_data.get('password'))
         except Exception as e:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
-        if user.is_email_authorization:
+        if UserService.get_is_sending_code(user=user):
             key = user_authorization_token(user.id)
             value = self.generate_code()
-            UserService.sending_user_code_auth("gagtain@gmail.com", value)
-            cache.set(key, value, 60 * 5)
-            return Response(data={
-                "time": 60 * 5
-            },
-            status=status.HTTP_200_OK)
+            try:
+                func = UserService.sending_user_auth_code(user=user, type_=request.data.get("type_sending"))
+                func(user, value, False)
+                cache.set(key, value, 60 * 5)
+                return Response(data={
+                    "time": 60 * 5
+                },
+                    status=status.HTTP_200_OK)
+            except CodeDataException as e:
+                return Response(status=e.status, data=e.error_data)
         else:
             return Response(data={
                 "error": "У пользователя отключена двухфакторная аутентификация"

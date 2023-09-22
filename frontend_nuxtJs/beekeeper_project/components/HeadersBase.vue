@@ -1,5 +1,10 @@
 <template>
   <div id="header">
+                <ClientOnly>
+                <DialogWindow @click.stop :close_dialog="close_dialog($event)" style="height: 50%;" :id="'notify_dialog'">
+                  <notify></notify>
+                </DialogWindow>
+              </ClientOnly>
     <div
       class="menu"
       style="background: linear-gradient(45deg, yellow, orange)"
@@ -57,7 +62,7 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
               <span  :class="is_menu_mobile ? 'menu_pop_mob_active' : ''"></span>
             </div>
           </div>
-          <div class="context_menu user_context" @click="is_menu_mobile_user = !is_menu_mobile_user">
+          <div class="context_menu user_context" @click.stop="is_menu_mobile_user = !is_menu_mobile_user">
             <div
               v-if="($store.getUser.username != null && typeof $store.getUser.username !== 'undefined')"
               class="flex jus-sp user_in relative"
@@ -100,11 +105,6 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
                     
                   </li>
                 </ul>
-                <ClientOnly>
-                <DialogWindow :close_dialog="close_dialog($event)" style="height: 50%;" :id="'notify_dialog'">
-                  <notify></notify>
-                </DialogWindow>
-              </ClientOnly>
                 
               </div>
             </div>

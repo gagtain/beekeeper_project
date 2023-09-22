@@ -1,4 +1,5 @@
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
 from rest_framework.response import Response
 
 from user.models import MainUser
@@ -23,7 +24,12 @@ def user_number_mask(number: str):
 class GetUserNumber:
     @swagger_auto_schema(tags=['user'])
     def get_user_number(self, request):
-        return Response(data={
-            'number': user_number_mask(request.user.number)
-        })
+        if not not request.user.number:
+            return Response(data={
+                'number': user_number_mask(request.user.number)
+            })
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={
+                'error': 'у пользователя не указан номер'
+            })
 

@@ -67,7 +67,12 @@ class NotifySerializer(serializers.ModelSerializer):
             if field is not None:
                 serializer = self.Meta.additional_field.get(field)
                 if serializer == 'pk':
-                    fields[field] = getattr(instance, field)
+                    obj = getattr(instance, field)
+                    if obj is not None:
+
+                        fields[field] = getattr(instance, field).pk
+                    else:
+                        fields[field] = None
                 else:
                     fields[field] = serializer(getattr(instance, field)).data
         return fields

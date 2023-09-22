@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ViewSet
 
-from .Part_API.User import UserSetAuthToken
+from .Part_API.User import UserSetAuthToken, UserRegisterAuthToken
 from .Part_API.User_Edit import UserImageEdit, GetUserNumber
 from .models import MainUser
 from .serializers import UserRegisterSerializers, RetrieveUser
@@ -44,5 +44,5 @@ class tokenVerif(APIView):
         return Response(RetrieveUser(user).data)
 
 
-class UserAPI(ViewSet, UserImageEdit, GetUserNumber, UserSetAuthToken):
+class UserAPI(ViewSet, UserImageEdit, GetUserNumber, UserSetAuthToken, UserRegisterAuthToken):
     authentication_classes = [CustomAuthentication]

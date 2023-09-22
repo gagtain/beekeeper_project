@@ -14,7 +14,6 @@
         </OrderProductList>
         <div  v-else>
         <div   class="flex">
-
             <RatingChoise :product_id="select_rating_product_id" v-on:submit="RatingSubmit($event)"></RatingChoise>
         </div>
             <p class="VAG" align="center">Ваш отзыв</p>
@@ -31,7 +30,7 @@
     <p class="small-big VAG">Заказы</p>
     <div class="w-sto h_sto">
         <div v-if="list_order[0]" class="product_order_list ">
-                <div v-for="order in list_order" :key="order.id" class="order m-2" >
+                <div v-for="order in list_order" :key="order.id" :id="`order_${order.id}`" class="order m-2" >
                     <div :class="order.status == 'Закрытый' ? 'not-active' : ''">
 
                     <div class="flex w-sto jus-sp">
@@ -145,11 +144,14 @@
                     <button v-if="order.status == 'Одобрен' && order.delivery.status != 'На проверке'" onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
                               Отследить
                             </button>
-                            <div v-if="order?.payment?.status == 'pending' && order.status != 'Закрытый'">
+                            <div v-if="(order?.payment?.status == 'pending' || order?.payment?.status == undefined) && order.status != 'Закрытый'">
 
                                 <p>Заказ будет отменен через 30 минут, в случае если он не будет оплачен</p>
                             <button @click="order_redirect_payments(order?.payment?.url)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
                               Оплатить
+                            </button>
+                            <button @click="order_canceled(order.id)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                              Отменить
                             </button>
                             </div>
                     </div>
@@ -263,7 +265,12 @@ export default {
   name: "BasketBase",
   data(){
     return{
-        list_order: [null]
+        list_order: [null],
+        select_order: null,
+        select_rating_product_id: null,
+        rating_list: true,
+        rating_list_obj: null
+
     }
   },
   async mounted(){

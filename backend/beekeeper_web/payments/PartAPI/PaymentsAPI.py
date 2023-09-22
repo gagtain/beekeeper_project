@@ -5,7 +5,6 @@ from rest_framework.views import APIView
 from payments.Enum_type.Order_model import OrderModel
 from payments.Enum_type.Payment_System import PaymentService
 from payments.services.Abstract.AbstractPaymentServise import AbstractPaymentService
-from payments.services.Yookassa.Payments import PaymentsYookassaServices
 
 
 class CreatePaymentsAPI(APIView):
@@ -33,6 +32,6 @@ class CreatePaymentsAPI(APIView):
 
         initial_data = payment_service_class.get_initial_data(request.data, Order)
         payment = payment_service_class.create_payment(initial_data)
-        payment_model = payment_service_class.create_model_payment(payment, Order)
+        payment_service_class.create_model_payment(payment, Order)
 
         return Response({'payment_url': payment.confirmation.confirmation_url})

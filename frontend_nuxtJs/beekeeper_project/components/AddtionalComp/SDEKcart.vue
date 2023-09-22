@@ -36,7 +36,7 @@ export default{
             orderWidjet: ISDEKWidjet({
         popup: true,
         defaultCity: 'Тамбов',
-        cityFrom: 'Уварово',
+        cityFrom: 'Тамбов',
         goods: this.get_goods(), // установим данные о товарах из корзины,
         onReady : function(){ // на загрузку виджета отобразим информацию о доставке до ПВЗ
             ipjq('#linkForWidjet').css('display','inline');

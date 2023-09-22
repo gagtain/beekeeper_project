@@ -80,6 +80,10 @@ class ProductItem(models.Model):
     weight = models.ForeignKey('Type_weight', on_delete=models.CASCADE, blank=True, null=True)
     price = MoneyField(default=0, max_digits=14, decimal_places=2,
                        verbose_name="Цена варианта", default_currency='RUB')
+    old_price = MoneyField(default=0, max_digits=14, decimal_places=2,
+                           verbose_name="Не указывать",
+                           default_currency='RUB')
+    is_sale = models.BooleanField(default=False, verbose_name="Скидка")
     dimensions = models.ForeignKey(DimensionsProduct, verbose_name='Габариты', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
@@ -88,6 +92,15 @@ class ProductItem(models.Model):
     class Meta:
         verbose_name = u"Вариант продукта"
         verbose_name_plural = u"Варианты продуктов"
+
+    def save(
+        self, force_insert=False, force_update=False, using=None, update_fields=None
+    ):
+        if not not self.id and self.is_sale:
+            product_item = ProductItem.objects.only("price", "price_currency", "id").get(id=self.id)
+            old_price = product_item.price
+            self.old_price = old_price
+        return super().save(force_insert=False, force_update=False, using=None, update_fields=None)
 
 
 class RatingProductReview(models.Model):

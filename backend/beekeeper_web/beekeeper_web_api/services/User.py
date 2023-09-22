@@ -104,12 +104,23 @@ class ServicesUser:
                                     error="Токен авторизации не был установлен")
         else:
             return token
+
+
+    @classmethod
+    def user_code_token_delete(cls, user_id) -> bool:
+        key = user_authorization_token(user_id)
+        try:
+            cache.delete(key)
+            return True
+        except:
+            return True
     @classmethod
     def user_code_toke_validate(cls, user_token: str, select_token: str) -> bool:
         if user_token != select_token:
             raise CodeDataException(status=status.HTTP_400_BAD_REQUEST,
                                     error="Токен неверен")
         else:
+
             return True
 
 

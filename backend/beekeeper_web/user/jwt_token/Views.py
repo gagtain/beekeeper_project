@@ -12,6 +12,7 @@ from delivery.services.additional import field_in_dict
 from global_modules.exception.base import CodeDataException, BaseDataException
 from .serializers import MyTokenObtainPairSerializer, CookieTokenRefreshSerializer
 from ..models import MainUser
+from ..services.User import UserService
 
 
 class MyObtainTokenPairView(TokenObtainPairView):
@@ -22,12 +23,18 @@ class MyObtainTokenPairView(TokenObtainPairView):
         serializer = self.serializer_class(data=request.data)
         serializer.is_valid(raise_exception=True)
         user: MainUser = serializer.user
-        if user.is_email_authorization:
+        if request.data.get('is_admin') and not user.is_superuser:
+            return Response(status=status.HTTP_400_BAD_REQUEST, data={
+                'error': "Статус пользователя не соответствует запрашиваемому"
+            })
+
+        if UserService.get_is_sending_code(user=user):
             """Проверка на наличие токена в кэше и его сравнение"""
             try:
                 select_token = field_in_dict(request.data, "token")
                 token = ServicesUser.user_code_token_get(user_id=user.id)
                 ServicesUser.user_code_toke_validate(token, select_token)
+                ServicesUser.user_code_token_delete(user_id=user.id)
                 return self.set_response(serializer=serializer)
             except CodeDataException as e:
                 return Response(data=e.error_data, status=e.status)

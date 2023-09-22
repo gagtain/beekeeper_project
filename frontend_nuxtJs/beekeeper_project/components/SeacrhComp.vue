@@ -87,7 +87,7 @@ export default defineNuxtComponent({
                     this.search_product = []
                 }
                 else if (val == this.search_text){
-                    let res = await getSearchNameProduct(`name=${this.search_text}&fields=["id","name"]`)
+                    let res = await getSearchNameProduct(`name=${this.search_text}`)
                     this.search_product = res.data
                     console.log(res.data)
                 }

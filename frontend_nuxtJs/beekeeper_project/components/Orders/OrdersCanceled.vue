@@ -22,8 +22,9 @@ export default {
         }
     },
     methods:{
-        submit_closed_order(){
-            ClosedOrder(this.order_id, this.description)
+        async submit_closed_order(){
+            console.log(this.order_id)
+            await ClosedOrder(this.order_id, this.description)
             this.status = true
         }
     }

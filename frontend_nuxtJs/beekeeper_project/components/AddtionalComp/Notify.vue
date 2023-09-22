@@ -8,7 +8,7 @@
         
       <p>{{ notify.text }}</p>
       <p>Тип: {{ notify.type }}</p>
-      <button style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+      <button @click="to_url(notify)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
       Перейти
       </button>
       </div>
@@ -89,6 +89,25 @@ export default {
       }
       console.log(this.notify_list)
     
+    },
+    sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+},
+    async to_url(notify){
+      if (notify.type == 'Заказы'){
+        console.log(`order_${notify.order}`)
+        await this.$router.push('/orders')
+        let count = 0
+        let el = document.getElementById(`order_${notify.order}`)
+        while (el == null || el == undefined || count > 10){
+          console.log(124)
+          await this.sleep(800)
+
+        el = document.getElementById(`order_${notify.order}`)
+        count++
+        }
+        el.scrollIntoView(false)
+      }
     }
   }
 };

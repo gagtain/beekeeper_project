@@ -21,6 +21,7 @@ class PaymentsConfirmation:
 class PaymentsResponseConfirmation:
     confirmation_url: str
 
+
 @dataclass_json
 @dataclass
 class PaymentsCreate:
@@ -41,8 +42,3 @@ class PaymentsResponseCreate:
     created_at: str
     capture: bool
     description: str
-    
-
-
-
-

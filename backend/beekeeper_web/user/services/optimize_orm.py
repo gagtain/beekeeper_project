@@ -20,7 +20,9 @@ def default_productItem_only(x=None):
             f'{x}__weight_id',
             f'{x}__price_currency',
             f'{x}__dimensions_id',
-            f'{x}__price',) if x \
+            f'{x}__price',
+            f'{x}__old_price',
+            f'{x}__old_price_currency') if x \
         else ('id',
               'product_id',
               'product',
@@ -32,7 +34,9 @@ def default_productItem_only(x=None):
               'weight_id',
               'price_currency',
               'dimensions_id',
-              'price',)
+              'price',
+              'old_price',
+              'old_price_currency')
 
 
 def default_productItem_select_related(x=None):

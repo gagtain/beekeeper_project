@@ -8,6 +8,7 @@ from dataclasses_json import dataclass_json
 class UserAuthRequest:
     username: str
     password: str
+    token: str | None = None
 
 
 @dataclass_json

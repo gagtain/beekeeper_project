@@ -6,6 +6,6 @@ router = Router()
 
 
 @router.message(F.text == "Оформить заказ")
-@AuthServices.user_auth
-async def start_order(message: types.Message, user):
-    await message.answer(text=f"Да {user}")
+@AuthServices.user_auth()
+async def start_order(message: types.Message, user_id):
+    await message.answer(text=f"Да {user_id}")

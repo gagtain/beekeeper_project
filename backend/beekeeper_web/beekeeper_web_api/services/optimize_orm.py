@@ -17,7 +17,10 @@ optimize_product_item = lambda x: x.only(
     'dimensions__length',
     'dimensions__weight',
     'dimensions',
-    'price'
+    'price',
+    'is_sale',
+    'old_price',
+    'old_price_currency'
 ).select_related('dimensions', 'weight')
 
 

@@ -84,7 +84,8 @@ class ProductItemSerializer(serializers.ModelSerializer):
     weight = Type_weightSerializers()
     class Meta:
         model = ProductItem
-        fields = ['id', 'price_currency', 'price', 'product', 'weight', 'dimensions']
+        fields = ['id', 'price_currency', 'price', 'product', 'weight', 'dimensions',
+                  'is_sale', 'old_price', 'old_price_currency']
 
 
 class ProductItemNotProductSerializer(serializers.ModelSerializer):
@@ -92,7 +93,8 @@ class ProductItemNotProductSerializer(serializers.ModelSerializer):
     weight = Type_weightSerializers()
     class Meta:
         model = ProductItem
-        fields = ['id', 'price_currency', 'price', 'weight', 'dimensions']
+        fields = ['id', 'price_currency', 'price', 'weight', 'dimensions',
+                  'is_sale', 'old_price', 'old_price_currency']
 
 
 class RetrieveProductName(serializers.ModelSerializer):

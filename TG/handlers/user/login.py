@@ -14,8 +14,9 @@ from services.auth import AuthServices
 router = Router()
 
 
-@router.callback_query(F.data == 'register')
-async def register(callback_query: types.CallbackQuery, state: FSMContext):
+@router.callback_query(F.data == 'login')
+async def login(callback_query: types.CallbackQuery, state: FSMContext):
+
     await state.set_state(Form.username)
     await callback_query.message.answer(text="Укажите ваш username")
     await callback_query.answer()

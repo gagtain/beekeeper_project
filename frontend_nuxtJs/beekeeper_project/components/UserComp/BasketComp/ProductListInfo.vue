@@ -13,7 +13,7 @@
       <p v-if="ordered" class="m2">Цена доставки: {{ delivery_price ? delivery_price : 'Не выбранно' }}</p>
       <p class="m2">скидки:</p>
       <ul>
-        <li>*в разработке*</li>
+        <li>{{ getSale() }}</li>
       </ul>
       <p id="is" class="small">
         Итоговая сумма:
@@ -70,6 +70,19 @@ export default {
       }
       return summ
     },
+    getSale(){
+      let summ = this.items.reduce(function (sum, elem) {
+        if (elem.productItem.is_sale){
+          console.log(elem)
+          console.log(elem.productItem.old_price, parseFloat(elem.productItem.price), elem.productItem.price)
+          return sum + (parseFloat(elem.productItem.old_price) - parseFloat(elem.productItem.price))
+        }
+        else{
+          return sum
+        }
+      }, 0);
+      return summ
+    }
   },
 }
 </script>

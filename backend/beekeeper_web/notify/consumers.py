@@ -6,8 +6,6 @@ from djangochannelsrestframework.generics import GenericAsyncAPIConsumer
 from djangochannelsrestframework.observer import model_observer
 from djangochannelsrestframework.observer.generics import ObserverModelInstanceMixin
 from djangochannelsrestframework.permissions import IsAuthenticated
-from drf_yasg.utils import swagger_auto_schema
-from rest_framework.utils import json
 
 from notify.models import Notify
 from notify.serializers import NotifySerializer, IsViewedConsumersSerializer

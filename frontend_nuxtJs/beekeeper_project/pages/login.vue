@@ -17,12 +17,16 @@
                     {{ message }}
                   </div>
                 </div>
-                <input type="text" placeholder="username" v-model="username" />
-                <input
+                <input v-if="!is_code" type="text" placeholder="username" v-model="username" />
+                <input v-if="!is_code"
                   type="password"
                   placeholder="password"
                   v-model="password"
                 />
+                <div v-else >
+                  <p>Укажите отправленный вам код</p>
+                <input type="text" placeholder="code" v-model="code" />
+                </div>
                 <button @click="login_request($event)">login</button>
                 <p class="message">
                   Not registered? <a href="#">Create an account</a>
@@ -39,16 +43,53 @@
 <script>
 import login from "@/additional_func/login";
 import { useHead } from "nuxt/app";
+import set_token from "~/additional_func/User/set_token";
 export default {
   el: "#login_main",
+  data() {
+    return {
+      username: "",
+      password: "",
+      login_401: false,
+      message: null,
+      is_code: false,
+      code: ''
+    };
+  },
   methods: {
 
     async login_request(event) {
-      let obj = {
+      if (this.is_code){
+        let obj = {
+        username: this.username,
+        password: this.password,
+        token: this.code
+      };
+      let response = await login(obj);
+      this.default_check_status_login(response)
+      }
+      else{
+        let obj = {
         username: this.username,
         password: this.password,
       };
-      let response = await login(JSON.stringify(obj));
+        let response = await login(obj);
+      if (response?.status == 400 && response?.data?.error == "Не указано поле token"){
+              await set_token({
+              'username':this.username,
+              'password':this.password,
+            })
+            this.is_code = true
+
+      }else{
+
+        this.default_check_status_login(response)
+      }
+      }
+      
+    },
+    async default_check_status_login(response){
+
       if (response.status == 200) {
         await this.$router.push('/profile')
       } else if (response.status == 401) {
@@ -56,19 +97,11 @@ export default {
       } else if (response == 404) {
         alert("сайт на проверке, подождите 5 минут");
       }
-    },
-
+    }
+    
   },
   mounted(){
     this.message = this.$route.query.message
-  },
-  data() {
-    return {
-      username: "gag",
-      password: "13",
-      login_401: false,
-      message: null
-    };
   },
     setup() {
       useHead({

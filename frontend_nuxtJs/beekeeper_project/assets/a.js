@@ -849,7 +849,6 @@ export default function ISDEKWidjet(params) {
 
 		city: {
 			indexOfSome: function (findItem, ObjItem) {
-                console.log(findItem)
 				for (var keyI in ObjItem) {
 					if (ObjItem[keyI] == findItem) {
 						return keyI;
@@ -1120,7 +1119,6 @@ export default function ISDEKWidjet(params) {
 			if (typeof(timestamp) !== 'undefined') {
 				data.timestamp = timestamp;
 			}
-
             if (DATA.city.current)
                 ipjq.getJSON(
 				widjet.options.get('servicepath'),
@@ -1130,6 +1128,7 @@ export default function ISDEKWidjet(params) {
 		},
 
 		onCalc: function (answer) {
+			console.log(21321231, answer.error)
 			if (typeof(answer.error) !== 'undefined') {
 				CALCULATION.bad = true;
 				var sign = "";

@@ -8,6 +8,8 @@
                           :src="$api_root + pr.image.slice(1)"
                           alt="green apple slice"
                         />
+                        <sale-line v-if="select_productItem.is_sale" :old_price="select_productItem.old_price"
+                      :price="select_productItem.price"></sale-line>
                       </div>
                       <TovarMinImageList :image="pr.image" :ImageProductList="pr.ImageProductList"></TovarMinImageList>
                       
@@ -25,8 +27,12 @@
                         >{{ select_productItem.price }}
                         <span class="product__price small">{{
                           pr.price_currency
-                        }}</span></span
+                        }}</span>
+                        </span
                       >
+                      <sale-price v-if="select_productItem.is_sale"
+                      :price="select_productItem.price"
+                      ></sale-price>
                     </div>
                     <rating-comp :rating="pr.rating"></rating-comp>
                     <select-variant-menu :select_productItem="select_productItem"
@@ -76,6 +82,8 @@ import FavoriteComp from '../AddtionalComp/FavoriteComp.vue';
 import RatingComp from '../Tovar/RatingComp.vue';
 import SelectVariantMenu from '../Product/SelectVariantMenu.vue';
 import SelectVariantMixin from '../Product/SelectVariantMixin.vue';
+import SalePrice from '../Product/SalePrice.vue';
+import SaleLine from '../Product/SaleLine.vue';
 export default{
     el:'#product_catalog',
     name:'CatalogProduct',
@@ -86,6 +94,8 @@ export default{
     FavoriteComp,
     RatingComp,
     SelectVariantMenu,
+    SalePrice,
+    SaleLine,
   },
   mixins: [ SelectVariantMixin ],
   data(){

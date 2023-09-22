@@ -9,4 +9,5 @@ from user.models import MainUser
 class UserTelegram(models.Model):
     user = models.OneToOneField(MainUser, related_name="telegram", on_delete=models.CASCADE)
     telegram_id = models.CharField(max_length=150)
+    is_sending_code = models.BooleanField(default=False)
 

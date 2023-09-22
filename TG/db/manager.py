@@ -9,6 +9,10 @@ from db import get_session_maker, create_async_engine, BaseModel
 from config import postgres_url
 
 
+class ObjectNotFound(Exception):
+    ...
+
+
 class EngineManager:
     async_engine = create_async_engine(postgres_url)
 
@@ -23,24 +27,38 @@ class ObjectsManager:
     def __init__(self, model):
         self.model = model
 
-    async def filter(self, *criteria) -> Result:
+    async def filter(self, *criteria, options=None) -> Result:
         async with SessionMakerManager.session() as session:
             async with session.begin():
-                result = await session.execute(select(self.model).filter(*criteria))
+                select_obj = select(self.model).filter(*criteria)
+                if options:
+                    select_obj.options(options)
+                result = await session.execute(select_obj)
                 session.expunge_all()
 
         return result
 
+    async def create(self, obj):
+        async with SessionMakerManager.session() as session:
+            async with session.begin():
+                session.add(obj)
+                await session.commit()
 
-
-
-    async def get(self, *criteria):
-        filter = await self.filter(*criteria)
+    async def get(self, *criteria, options=None):
+        filter = await self.filter(*criteria, options=options)
         result = filter.one_or_none()
         if result:
             return result[0]
         else:
-            raise AttributeError
+            raise ObjectNotFound()
+
+
+    async def save(self, instance):
+        async with SessionMakerManager.session() as session:
+            async with session.begin():
+                session.add(instance)
+                await session.commit()
+
 
 
 class ManagerAnnotate:

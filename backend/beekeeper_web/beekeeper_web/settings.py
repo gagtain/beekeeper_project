@@ -117,7 +117,7 @@ if DEBUG:
             'NAME': 'beekeeper',
             'USER': 'gagtain',
             'PASSWORD': '13576422',
-            'HOST': 'localhost',
+            'HOST': os.environ.get("DATABASE_HOST"),
             'PORT': '5432'
         }
     }

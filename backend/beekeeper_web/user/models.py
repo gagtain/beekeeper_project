@@ -4,6 +4,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from user.validate import user_password_validate
 from user.validators import number_validator
 
 
@@ -18,8 +19,8 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
                               blank=True, default="images/ds.png")
     number = models.CharField(max_length=11, validators=[number_validator], verbose_name="Номер пользователя",
                               blank=True, null=True)
+    password = models.CharField(_("password"), max_length=128, validators=[user_password_validate])
 
-    USERNAME_FIELD = 'username'
     is_staff = models.BooleanField(
         _("staff status"),
         default=False,
@@ -37,6 +38,7 @@ class MainUser(AbstractBaseUser, PermissionsMixin):
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
     is_sending = models.BooleanField(default=False, blank=True)
 
+    USERNAME_FIELD = 'username'
     objects = UserManager()
 
     def __str__(self):
