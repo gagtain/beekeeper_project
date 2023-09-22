@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-tlr9d(mc+d8k7%dwly0rlb3v8w)lb1#lih%-sj1*stk$zg05gp
 DEBUG = os.environ.get("DEBUG", 'True') == 'True'
 
 ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'owa.pchel-artel.ru', 'webapi', 'pchel-artel.ru']
-CSRF_TRUSTED_ORIGINS = ['https://owa.pchel-arter.ru', 'https://pchel-arter.ru']
+CSRF_TRUSTED_ORIGINS = ['https://owa.pchel-artel.ru', 'https://pchel-artel.ru']
 # Application definition
 
 INSTALLED_APPS = [
