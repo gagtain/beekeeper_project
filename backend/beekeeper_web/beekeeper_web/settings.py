@@ -34,7 +34,6 @@ CSRF_TRUSTED_ORIGINS = ['https://owa.pchel-arter.ru', 'https://pchel-arter.ru']
 INSTALLED_APPS = [
     'daphne',
     'jazzmin',
-    'online_store',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
