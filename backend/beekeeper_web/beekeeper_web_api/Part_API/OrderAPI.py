@@ -78,7 +78,7 @@ class OrderCheckout(APIView):
             raise e
         order = OrderServices.checkout_order_create(basket_item_list=basket_item_list,
                                                     user_id=request.user.id)
-        order_checkout_check.delay(kwargs={"order_id": order.id}, countdown=30 * 60)
+        order_checkout_check.apply_async(kwargs={"order_id": order.id}, countdown=30 * 60)
         return Response(data={
             'order_id': order.id
         }, status=status.HTTP_200_OK)
