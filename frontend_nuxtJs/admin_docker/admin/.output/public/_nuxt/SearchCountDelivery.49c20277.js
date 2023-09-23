@@ -1,0 +1,1 @@
+import{g as t,h as o}from"./entry.66c47c99.js";async function i(r){try{var e=await t({url:`${o}api/v0.1/delivery/search/count?${r}`,method:"get",headers:{}});return e}catch(a){return a.response}}export{i as s};
