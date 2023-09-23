@@ -87,7 +87,7 @@ class OrderServices():
         else:
             order.status = Order.StatusChoice.not_approved
             order.save()
-            # order_email_send.delay(order.id, user_id)
+            order_email_send.delay(order.id, user_id)
         return order
 
     @classmethod
