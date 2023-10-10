@@ -10,12 +10,12 @@
         </div>
         <div class="foo">
           <p class="foo_p">ПОЛЕЗНОЕ</p>
-          <p class="foo_p_li foo_p_li_perv"><a href="/public/docs/delivery.docx" class="foo_p_li foo_p_li_perv">Доставка</a></p>
+          <p class="foo_p_li foo_p_li_perv"><a href="/docs/delivery.docx" class="foo_p_li foo_p_li_perv">Доставка</a></p>
         </div>
         <div class="foo">
           <p class="foo_p">ПОКУПАТЕЛЮ</p>
           <p class="foo_p_li foo_p_li_perv">Избранное</p>
-          <p class="foo_p_li"><a href="/public/docs/polzovsogl.docx" class="foo_p_li">Пользовательское соглашение</a></p>
+          <p class="foo_p_li"><a href="/docs/polzovsogl.docx" class="foo_p_li">Пользовательское соглашение</a></p>
         </div>
       </div>
     </footer>
@@ -42,7 +42,7 @@
             </div>
           </div>
           <div class="auto foo_mobile_contect" id="mob">
-          <p class="foo_mobile_p"><a href="/public/docs/delivery.docx" class="foo_mobile_p">Доставка</a></p>
+          <p class="foo_mobile_p"><a href="/docs/delivery.docx" class="foo_mobile_p">Доставка</a></p>
           </div>
         </div>
         <div class="">
@@ -54,7 +54,7 @@
           </div>
           <div class="auto foo_mobile_contect" id="mob">
           <p class="foo_mobile_p">Избранное</p>
-          <p class="foo_mobile_p"><a href="/public/docs/polzovsogl.docx" class="foo_p_li">Пользовательское соглашение</a></p>
+          <p class="foo_mobile_p"><a href="/docs/polzovsogl.docx" class="foo_p_li">Пользовательское соглашение</a></p>
           </div>
         </div>
       </div>
