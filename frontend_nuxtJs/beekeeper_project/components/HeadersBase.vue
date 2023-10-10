@@ -146,9 +146,9 @@ height: 30px;"  class="menu_items no_b_border flex relative" id="deks_hed">
         <ul>
           <NuxtLink to="/" no-prefetch
                       ><li>Главная</li></NuxtLink>
-          <NuxtLink to="/additional" no-prefetch><li>О нас</li></NuxtLink>
+          <NuxtLink to="/about_us" no-prefetch><li>О нас</li></NuxtLink>
           <NuxtLink to="/orders" no-prefetch><li>Заказы</li></NuxtLink>
-          <NuxtLink to="/polit" no-prefetch><li>Политика соглашения</li></NuxtLink>
+          <li><a href="/public/docs/polzovsogl.docx" class="foo_p_li">Пользовательское соглашение</a></li>
         </ul>
       </div>
     </div>
