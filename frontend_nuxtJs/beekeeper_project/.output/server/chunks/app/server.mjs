@@ -1238,7 +1238,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/about_us-aedce1e4.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/about_us-2cba4c7e.mjs').then((m) => m.default || m)
   },
   {
     name: "basket",
