@@ -9,6 +9,8 @@ from user.models import MainUser
 
 
 class GetFavoriteProduct:
+    """Класс реализующий получение избранных товаров пользователя"""
+
     @swagger_auto_schema(tags=['online_store'])
     def GetFavoriteProduct(self, request):
         user = MainUser.objects.only('id').get(id=request.user.id)
@@ -18,6 +20,8 @@ class GetFavoriteProduct:
 
 
 class AddFavoriteProduct:
+    """Класс реализующий добавление товара в избранное пользователя"""
+
     @swagger_auto_schema(tags=['online_store'])
     def AddFavoriteProduct(self, request, pk):
         user = MainUser.objects.only('id', 'favorite_product').get(id=request.user.id)
@@ -29,6 +33,7 @@ class AddFavoriteProduct:
 
 
 class RemoveFavoriteProduct:
+    """Класс реализующий удаление товара из избранного пользователя"""
 
     @swagger_auto_schema(tags=['online_store'])
     def RemoveFavoriteProduct(self, request, pk):

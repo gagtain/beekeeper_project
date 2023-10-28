@@ -2,7 +2,6 @@ from django.conf import settings
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 from delivery.services.additional import field_in_dict
 from global_modules.exception.base import BaseDataException, CodeDataException
@@ -12,6 +11,7 @@ from ..services.User import ServicesUser
 
 
 class AddBasketProduct:
+    """Класс реализующий добавление товара из корзины пользователя"""
 
     @swagger_auto_schema(tags=['online_store'])
     def add_basket_product(self, request, pk):
@@ -24,6 +24,8 @@ class AddBasketProduct:
 
 
 class RemoveBasketProduct:
+    """Класс реализующий удаление товара из корзины пользователя"""
+
     @swagger_auto_schema(tags=['online_store'])
     def remove_basket_product(self, request, pk):
         try:
@@ -34,6 +36,8 @@ class RemoveBasketProduct:
 
 
 class GetBasketInfo:
+    """Класс реализующий получение информации о корзине пользователя"""
+
     @swagger_auto_schema(tags=['online_store'])
     def get_basket_info(self, request):
         basket_info = ServicesUser.getBasketInfo(request.user)
@@ -61,6 +65,8 @@ class UpdateBasketItemCount:
 
 
 class GetBasket:
+    """Класс реализующий получение корзины пользователя"""
+
     @swagger_auto_schema(tags=['online_store'])
     def GetBasket(self, request):
         basket = ServicesUser.getBasket(MainUser.objects.only('id').get(id=request.user.id))

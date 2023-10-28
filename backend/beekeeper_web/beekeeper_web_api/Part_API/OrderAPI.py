@@ -21,13 +21,15 @@ from orders.serializers import OrderSerializers as order_ser
 
 
 class OrderCreateAPI(APIView):
+    """Класс реализующий создание заказа"""
 
     @swagger_auto_schema(tags=['online_store'])
     def createOrder(self, request):
         if request.data.get('order_id'):
             try:
                 order = OrderServices.create_order_in_checkout(checkout_id=request.data['order_id'],
-                                                               user_id=request.user.id)
+                                                               delivery_price=request.data['delivery_price'],
+                                                               user=request.user)
             except CodeDataException as e:
                 return Response(data=e.error_data, status=e.status)
         else:
@@ -39,6 +41,7 @@ class OrderCreateAPI(APIView):
 
 
 class OrderGetLastAPI(APIView):
+    """Класс реализующий получение последнего заказа пользователя"""
 
     @swagger_auto_schema(tags=['online_store'])
     def getLastOrder(self, request):
@@ -50,6 +53,7 @@ class OrderGetLastAPI(APIView):
 
 
 class OrderGetListAPI(APIView):
+    """Класс реализующий получение всех заказов пользователя"""
 
     @swagger_auto_schema(tags=['online_store'])
     def getOrderList(self, request):
@@ -59,17 +63,17 @@ class OrderGetListAPI(APIView):
 
 
 class OrderCheckout(APIView):
+    """Класс реализующий создание не оформленного заказа"""
 
     @swagger_auto_schema(tags=['online_store'])
     def checkout_order_in_data(self, request):
         try:
             basket_item_list_id = field_in_dict(dict_req=request.data, field='basket_id_list')
-            if basket_item_list_id == '__all__':
-                basket_item_list_id = [x.id for x in request.user.basket.only('id').all()]
-            basket_pk_serializer = UserBasketPkList(data={
-                'basket': basket_item_list_id
-            })
-            basket_pk_serializer.is_valid(raise_exception=True)
+            if basket_item_list_id != '__all__':
+                basket_pk_serializer = UserBasketPkList(data={
+                    'basket': basket_item_list_id
+                })
+                basket_pk_serializer.is_valid(raise_exception=True)
             basket_item_list = OrderServices.examination_basket_item_in_user(basket_item_list=basket_item_list_id,
                                                                              user=request.user)
         except BaseDataException as e:
@@ -79,6 +83,4 @@ class OrderCheckout(APIView):
         order = OrderServices.checkout_order_create(basket_item_list=basket_item_list,
                                                     user_id=request.user.id)
         order_checkout_check.apply_async(kwargs={"order_id": order.id}, countdown=30 * 60)
-        return Response(data={
-            'order_id': order.id
-        }, status=status.HTTP_200_OK)
+        return Response(data={'order_id': order.id}, status=status.HTTP_200_OK)

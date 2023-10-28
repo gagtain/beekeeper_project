@@ -33,6 +33,7 @@ class MyObtainTokenPairView(TokenObtainPairView):
             try:
                 select_token = field_in_dict(request.data, "token")
                 token = ServicesUser.user_code_token_get(user_id=user.id)
+                print(token)
                 ServicesUser.user_code_toke_validate(token, select_token)
                 ServicesUser.user_code_token_delete(user_id=user.id)
                 return self.set_response(serializer=serializer)

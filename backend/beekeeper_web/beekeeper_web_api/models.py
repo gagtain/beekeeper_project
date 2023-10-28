@@ -96,7 +96,9 @@ class ProductItem(models.Model):
     def save(
         self, force_insert=False, force_update=False, using=None, update_fields=None
     ):
+        """ меняет цену продукта если указан флаг is_sale  """
         if not not self.id and self.is_sale:
+
             product_item = ProductItem.objects.only("price", "price_currency", "id").get(id=self.id)
             old_price = product_item.price
             self.old_price = old_price

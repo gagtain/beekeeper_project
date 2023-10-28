@@ -3,15 +3,14 @@ import sys
 
 from django.db.models import QuerySet
 from rest_framework import status
-from rest_framework.exceptions import NotFound, ValidationError
+from rest_framework.exceptions import ValidationError
 
 from global_modules.exception.base import CodeDataException
 from orders.models import Order, OrderItem
 from orders.services.optimize_orm import default_order_optimize
-from ..tasks import order_email_send
+from beekeeper_web_api.tasks import order_email_send
 
-sys.path.append('.')
-from ..models import MainUser, BasketItem, ProductItem
+from beekeeper_web_api.models import MainUser, BasketItem, ProductItem
 
 
 def try_index_or_default(list_, index, default):
@@ -68,7 +67,7 @@ class OrderServices():
                                      count=basket_item.count, order_id=order_id, price=basket_item.productItem.price)
 
     @classmethod
-    def createOrderInList(cls, request, data: list[int,]):
+    def createOrderInList(cls, request, data: [int, ]):
         """ Создание заказа из списка идентификаторов вариантов продукта"""
         ProductItemList = cls.generate_product_item_list(data)
         BasketItemList = cls.generate_basket_item(ProductItemList, [], user=request.user)
@@ -76,22 +75,24 @@ class OrderServices():
         cls.createOrderInBasket(request=request, basket_item_list=request.user.basket.all())
 
     @classmethod
-    def create_order_in_checkout(cls, checkout_id: int, user_id: int):
+    def create_order_in_checkout(cls, checkout_id: int, delivery_price: float, user: MainUser):
         try:
             order = Order.objects.get(id=checkout_id)
-        except:
+        except Order.DoesNotExist:
             raise CodeDataException(status=status.HTTP_404_NOT_FOUND,
                                     error='заказа с таким идентификатором не существует')
         if order.status != Order.StatusChoice.checkout:
             raise CodeDataException(status=status.HTTP_400_BAD_REQUEST, error='данный заказ уже оформлен')
         else:
+            order.amount += decimal.Decimal(value=delivery_price)
             order.status = Order.StatusChoice.not_approved
             order.save()
-            order_email_send.delay(order.id, user_id)
+            user.basket.all().delete()
+            order_email_send.delay(order.id, user.id)
         return order
 
     @classmethod
-    def generate_product_item_list(cls, data: list[int,], prefetch=False):
+    def generate_product_item_list(cls, data: list[int, ], prefetch=False):
         ProductItemList = ProductItem.objects.filter(pk__in=data)
         if not prefetch:
             if ProductItemList.count() != len(data):

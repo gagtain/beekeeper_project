@@ -14,49 +14,64 @@ import os
 from pathlib import Path
 
 from yookassa import Configuration
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-tlr9d(mc+d8k7%dwly0rlb3v8w)lb1#lih%-sj1*stk$zg05gp'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", 'True') == 'True'
+DEBUG = os.environ.get("DEBUG") == 'True'
 
-ALLOWED_HOSTS = ['94.139.247.128', 'localhost', 'owa.pchel-artel.ru', 'webapi', 'pchel-artel.ru']
-CSRF_TRUSTED_ORIGINS = ['https://owa.pchel-artel.ru', 'https://pchel-artel.ru']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split()
+CSRF_TRUSTED_ORIGINS = os.environ.get("CSRF_TRUSTED_ORIGINS").split()
 # Application definition
+
+APPS = [
+    'beekeeper_web_api',
+    'payments',
+    'delivery',
+    'news',
+    'orders',
+    'sending',
+    'user',
+    'notify',
+    'user_service'
+]
+
+ADDITIONAL_APPS = [
+    'djmoney',
+    'channels',
+    'debug_toolbar',
+    'corsheaders',
+    'django_celery_beat'
+]
+
+SCHEMAS_APPS = [
+    'jazzmin',
+    'drf_yasg'
+]
 
 INSTALLED_APPS = [
     'daphne',
-    'jazzmin',
+    *SCHEMAS_APPS,
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'channels',
     'rest_framework',
-    'beekeeper_web_api',
-    'djmoney',
-    'debug_toolbar',
     'rest_framework_simplejwt',
-    'corsheaders',
-    'payments',
-    'delivery',
-    'news',
-    'django_celery_beat',
-    'orders',
-    'sending',
-    'user',
-    'drf_yasg',
-    'notify',
-    'user_service'
+    *APPS,
+    *ADDITIONAL_APPS
 ]
 
 MIDDLEWARE = [
@@ -95,7 +110,7 @@ TEMPLATES = [
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://redis:6379/0",
+        "LOCATION": "redis://localhost:6379/0",
     }
 }
 
@@ -106,34 +121,23 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [("redis", 6379)],
+            "hosts": [(os.getenv('REDIS_HOST'), int(os.getenv('REDIS_PORT')))],
         },
     },
 }
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'beekeeper',
-            'USER': 'gagtain',
-            'PASSWORD': '13576422',
-            'HOST': os.environ.get("DATABASE_HOST"),
-            'PORT': '5432'
-        }
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get("DATABASE_NAME"),
+        'USER': os.environ.get("DATABASE_USER"),
+        'PASSWORD': os.environ.get("DATABASE_PASSWORD"),
+        'HOST': os.environ.get("DATABASE_HOST"),
+        'PORT': os.environ.get("DATABASE_PORT")
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'beekeeper',
-            'USER': 'gagtain',
-            'PASSWORD': '13576422',
-            'HOST': os.environ.get("DATABASE_HOST"),
-            'PORT': '5432'
-        }
-    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -167,16 +171,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-if os.environ.get("STATIC_ROOT", 'True') == 'True':
-    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
-else:
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static/'),
-    )
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-MEDIA_ROOT = BASE_DIR.joinpath("media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -245,17 +244,17 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 # MAIL
-SENDER_MAIL = 'gagtain@gmail.com'
-PASSWORD_MAIL = 'wmwqtejviqtydtsp'
+SENDER_MAIL = os.getenv('SENDER_MAIL')
+PASSWORD_MAIL = os.getenv('PASSWORD_MAIL')
 
 # CELERY
 
-CELERY_BROKER_URL = 'amqp://rmuser:rmpassword@rabbitmq:5672'
+CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 
 # yookassa
 
-Configuration.account_id = '227407'
-Configuration.secret_key = 'test_saGcPjuDSma2BZNQD0nUkutHtn_C6xHPDZPPh0p4lD4'
+Configuration.account_id = os.getenv('YOOKASSA_ID')
+Configuration.secret_key = os.getenv('YOOKASSA_KEY')
 
 SDEK_SHIPMENT_POINT = 'MSK52'
 

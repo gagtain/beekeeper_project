@@ -6,13 +6,14 @@ from rest_framework.views import APIView
 from global_modules.exception.base import CodeDataException
 from user.services.optimize_orm import optimize_ImageProductList, optimize_category
 from ..models import Product, Category, ProductItem
-from .custom_mixins import Filter
+from .custom_mixins import Filter, FilterSizeFrom
 from ..serializers import RetrieveProductName, RetrieveProduct
 from ..services.User import ProductServises
 from ..services.optimize_orm import optimize_product_item_list
 
 
 class ProductFilterName(APIView, Filter):
+    """Класс реализующий поиск товаров"""
     models = Product
     filter_options = {
         'name': 'name__icontains',
@@ -28,7 +29,7 @@ class ProductFilterName(APIView, Filter):
         return queryset.only('id', 'name')
 
 
-class ProductFilter(APIView, Filter):
+class ProductFilter(APIView, FilterSizeFrom):
     models = Product
     filter_options = {
         'name': 'name__icontains',
@@ -51,21 +52,16 @@ class ProductFilter(APIView, Filter):
             self.order_by.remove('price_min')
             queryset = queryset.annotate(cnt=Min('productItemList__price')).order_by('cnt')
         else:
-            print(self.order_by)
             queryset = queryset.order_by(*self.order_by)
         return queryset
 
-    def init_queryset_add_params(self):
-        ...
-
     def init_queryset(self, queryset: QuerySet):
-        size = int(self.request.GET.get('size', 10))
-        from_ = int(self.request.GET.get('from', 0))
         queryset = self.init_order_by(queryset)
         queryset = queryset.prefetch_related(
             optimize_category(),
             optimize_ImageProductList(), optimize_product_item_list('productItemList')
-        ).annotate(Avg('rating_product__rating'))[from_:size + from_]
+        ).annotate(Avg('rating_product__rating'))
+        queryset = super().init_queryset(queryset=queryset)
         return queryset
 
 

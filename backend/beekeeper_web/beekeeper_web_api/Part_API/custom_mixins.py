@@ -1,23 +1,25 @@
-import json
-from pyexpat import model
 from django.db.models import Model
 from django.core.exceptions import FieldError
+from django.http import HttpRequest
+
 from rest_framework import status, serializers
 from rest_framework.response import Response
 
 
 class Filter:
-    """Класс для поиска объектов по определенным полям"""
+    """Базовый класс для поиска объектов по определенным полям"""
+
     fields_params = 'fields'
+    filter_options = {}
     fields: str = []
     type_obj = ''
     skip_params = []
-    request = {}
-    serializers_retrieve: serializers.ModelSerializer.__class__
+    request = HttpRequest
+    serializers_retrieve = serializers.ModelSerializer
     models: Model
-
     def init_queryset(self, queryset):
-        """Функция для промежуточных действий с обьектом, например сортировки, выбор полей и т.д"""
+        """Функция для промежуточных действий с объектом, например: сортировки, выбор полей и т.д"""
+
         return queryset
 
     def search(self, request):
@@ -32,8 +34,7 @@ class Filter:
                 ser = self.serializers_retrieve(data=q, many=True)
                 data = ser.initial_data
             return Response(data, status=status.HTTP_200_OK)
-        except FieldError as e:
-            print(e)
+        except FieldError:
             return Response(data={'errors': 'передано неверное имя поля'}, status=status.HTTP_400_BAD_REQUEST)
 
     def filter_req(self, req):
@@ -45,4 +46,13 @@ class Filter:
                 filters[key] = value
         return filters
 
+
+class FilterSizeFrom(Filter):
+    """Базовый класс реализующий срез отфильтрованных объектов"""
+
+    def init_queryset(self, queryset):
+
+        size = int(self.request.GET.get('size', 10))
+        from_ = int(self.request.GET.get('from', 0))
+        return queryset[from_:size + from_]
 

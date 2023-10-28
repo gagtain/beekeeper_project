@@ -2,16 +2,13 @@ import os
 
 from redis.asyncio import Redis
 from sqlalchemy import URL
-
+from dotenv import load_dotenv
 DEBUG = True
 
 
 def get_token():
-    if DEBUG:
-        from env import TOKEN as tk
-        return tk
-    else:
-        return os.getenv("TOKEN")
+    load_dotenv()
+    return os.getenv("TOKEN")
 
 
 TOKEN = get_token()

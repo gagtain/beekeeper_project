@@ -1,12 +1,12 @@
 from django.db.models import Avg
 from djangochannelsrestframework.decorators import action
 from djangochannelsrestframework.generics import GenericAsyncAPIConsumer
-from djangochannelsrestframework.observer import model_observer
+from beekeeper_web_api.observer.model_observer import model_observer
 from djangochannelsrestframework.observer.generics import ObserverModelInstanceMixin
-
+from django.db.models import QuerySet, Prefetch
 from beekeeper_web_api.services.optimize_orm import optimize_product_item_list, optimize_product_item
 from notify.services.fixed import FixedRussianData
-from beekeeper_web_api.models import ProductItem, Product
+from beekeeper_web_api.models import BasketItem, ProductItem, Product
 from orders.serializers import ProductItemSerializer
 from beekeeper_web_api.serializers import RetrieveProduct
 from beekeeper_web_api.services.product_websocket import get_product_websocket_key, \
@@ -16,7 +16,7 @@ from user.services.optimize_orm import optimize_ImageProductList, optimize_categ
     default_productItem_select_related
 
 
-class ProductConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
+class ProductConsumers(FixedRussianData, GenericAsyncAPIConsumer):
     """ Подписка на изменение продукта и его вариантов """
 
     """ Product """
@@ -31,7 +31,8 @@ class ProductConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyn
 
     @product_activity.groups_for_signal
     def product_activity(self, instance: Product, *args, **kwargs):
-        return get_product_websocket_key(product=instance)
+        print(kwargs)
+        return get_product_websocket_key(product=instance, **kwargs)
 
     @product_activity.groups_for_consumer
     def product_activity(self, product_id=None, *args, **kwargs):
@@ -68,7 +69,8 @@ class ProductConsumers(FixedRussianData, ObserverModelInstanceMixin, GenericAsyn
 
     @product_item_activity.groups_for_signal
     def product_item_activity(self, instance: ProductItem, *args, **kwargs):
-        return get_product_item_websocket_key(product_item=instance)
+        print(kwargs, 123)
+        return get_product_item_websocket_key(product_item=instance, **kwargs)
 
     @product_item_activity.groups_for_consumer
     def product_item_activity(self, product_id=None, type_=None, user_id=None, *args, **kwargs):

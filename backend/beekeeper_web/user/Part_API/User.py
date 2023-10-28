@@ -10,21 +10,21 @@ from beekeeper_web_api.services.cache_keys import user_authorization_token
 from global_modules.exception.base import CodeDataException
 from user.models import MainUser
 from user.serializers import UserLoginSerializer
-from user.services.User import UserService
+from user.services.User import UserService, UserSendingType
 
 
 class UserRegisterAuthToken:
     def user_register_auth_token(self, request):
         type_auth = request.data.get('type')
         if type_auth == 'email':
-            request.user.email = True
+            request.user.is_email_authorization = True
             request.user.save()
         return Response(status=status.HTTP_200_OK)
 
     def user_unregister_auth_token(self, request):
         type_auth = request.data.get('type')
         if type_auth == 'email':
-            request.user.email = False
+            request.user.is_email_authorization = False
             request.user.save()
         return Response(status=status.HTTP_200_OK)
 
@@ -38,15 +38,16 @@ class UserSetAuthToken:
         try:
             user = self.get_user(username=serializer.validated_data.get('username'),
                                  password=serializer.validated_data.get('password'))
-        except Exception as e:
+        except Exception:
             return Response(status=status.HTTP_401_UNAUTHORIZED)
         if UserService.get_is_sending_code(user=user):
-            key = user_authorization_token(user.id)
             value = self.generate_code()
             try:
-                func = UserService.sending_user_auth_code(user=user, type_=request.data.get("type_sending"))
-                func(user, value, False)
-                cache.set(key, value, 60 * 5)
+                """ Добавляем почту и код пользователя в список на основе выбранного типа """
+                send_initial = UserSendingType.get_sending(sending_type=request.data.get("type_sending"),
+                                                           user=user, message=f"Ваш код авторизации {value}",
+                                                           ex_message=value)
+                send_initial.sending()
                 return Response(data={
                     "time": 60 * 5
                 },
