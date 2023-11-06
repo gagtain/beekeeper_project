@@ -16,7 +16,7 @@ class Order(models.Model):
         approved = "Одобрен"
 
     user: MainUser = models.ForeignKey(MainUser, related_name='user_order', on_delete=models.CASCADE)
-    amount = MoneyField(default=0, max_digits=14, decimal_places=2,
+    amount = MoneyField(default=0, max_digits=10, decimal_places=3,
                         verbose_name="Сумма транзакции", default_currency='RUB')
     datetime = models.DateTimeField(auto_now_add=True, verbose_name="Время")
     payment = models.ForeignKey(PaymentTransaction,

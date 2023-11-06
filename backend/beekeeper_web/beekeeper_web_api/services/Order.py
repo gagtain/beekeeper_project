@@ -4,7 +4,7 @@ import sys
 from django.db.models import QuerySet
 from rest_framework import status
 from rest_framework.exceptions import ValidationError
-
+from djmoney.money import Money
 from global_modules.exception.base import CodeDataException
 from orders.models import Order, OrderItem
 from orders.services.optimize_orm import default_order_optimize
@@ -84,7 +84,8 @@ class OrderServices():
         if order.status != Order.StatusChoice.checkout:
             raise CodeDataException(status=status.HTTP_400_BAD_REQUEST, error='данный заказ уже оформлен')
         else:
-            order.amount += decimal.Decimal(value=delivery_price)
+            print(order.amount, type(order.amount))
+            order.amount += Money(float(delivery_price), "RUB",decimal_places=3)
             order.status = Order.StatusChoice.not_approved
             order.save()
             user.basket.all().delete()

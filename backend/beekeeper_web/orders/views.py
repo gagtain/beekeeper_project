@@ -1,4 +1,4 @@
-from cdek.api import CDEKClient
+
 from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
