@@ -36,11 +36,12 @@ export default{
             orderWidjet: ISDEKWidjet({
         popup: true,
         defaultCity: 'Тамбов',
-        cityFrom: 'Тамбов',
+        cityFrom: "Уварово",
         goods: this.get_goods(), // установим данные о товарах из корзины,
         onReady : function(){ // на загрузку виджета отобразим информацию о доставке до ПВЗ
             ipjq('#linkForWidjet').css('display','inline');
         },
+        cityFromId: "44",
         onChoose:(info) => { // при выборе ПВЗ: запишем номер ПВЗ в текстовое поле и доп. информацию
            // ipjq('[name="chosenPost"]').val(info.id);
             //ipjq('[name="addresPost"]').val(info.PVZ.Address);
@@ -58,13 +59,16 @@ export default{
         get_goods(){
             let list = []
             this.products.forEach(element => {
-                for(let i; i<=this.products.count; i++){
+                console.log('in_list', element.count)
+                for(let i=1; i<= element.count; i++){
 
+                    console.log('in_list')
                     list.push({ length : element.productItem.dimensions.length,
                      width : element.productItem.dimensions.width,
                       height : element.productItem.dimensions.height, weight : element.productItem.dimensions.weight/1000 })
             };
                 })
+            console.log(list)
             return list
         }
     }

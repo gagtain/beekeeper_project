@@ -119,6 +119,7 @@ class EmailSendingInitial:
                                     error="Выбранный тип авторизации не подключен")
 
     def sending(self):
+        print(213213)
         self.__is_sending()
         key_sending = user_authorization_token(user_id=self.user.id)
         try:
@@ -140,8 +141,27 @@ class UserSendingType(enum.Enum):
     telegram = TelegramSendingInitial
     email = EmailSendingInitial
 
+
+
+
+
     @classmethod
     def get_sending(cls, sending_type: str, user: MainUser, message: str, ex_message=None):
+        if sending_type is not None:
+            return cls._get_sending(sending_type, user, message, ex_message)
+        else:
+            for type_sending in dir(cls):
+                try:
+                    return cls._get_sending(type_sending, user, message, ex_message)
+                except:
+                    ...
+            else:
+                raise CodeDataException(status=status.HTTP_400_BAD_REQUEST,
+                                    error="Выбранный тип авторизации не существует")
+        
+
+    @classmethod
+    def _get_sending(cls, sending_type: str, user: MainUser, message: str, ex_message=None):
         try:
             return cls[sending_type].value(user=user, message=message, ex_message=ex_message)
         except KeyError:

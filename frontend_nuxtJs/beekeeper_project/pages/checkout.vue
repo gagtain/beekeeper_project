@@ -98,7 +98,9 @@ definePageMeta({
   // or middleware: 'auth'
 })
 useHead({
-    title: 'Пчелиная артель - Оформление заказа',})
+    title: 'Пчелиная артель - Оформление заказа',script: [
+        { hid: 'stripe', src: 'https://cdn.jsdelivr.net/gh/cdek-it/widget@3/dist/cdek-widget.umd.js', defer: true }
+      ]})
 },
 data(){
     return{

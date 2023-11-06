@@ -45,13 +45,12 @@ class UserSetAuthToken:
             try:
                 """ Добавляем почту и код пользователя в список на основе выбранного типа """
                 send_initial = UserSendingType.get_sending(sending_type=request.data.get("type_sending"),
-                                                           user=user, message=f"Ваш код авторизации {value}",
-                                                           ex_message=value)
+                                                        user=user, message=f"Ваш код авторизации {value}",
+                                                        ex_message=value)
                 send_initial.sending()
                 return Response(data={
                     "time": 60 * 5
-                },
-                    status=status.HTTP_200_OK)
+                },status=status.HTTP_200_OK)
             except CodeDataException as e:
                 return Response(status=e.status, data=e.error_data)
         else:

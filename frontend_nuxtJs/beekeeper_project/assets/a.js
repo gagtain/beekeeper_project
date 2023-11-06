@@ -627,6 +627,7 @@ export default function ISDEKWidjet(params) {
 			cityFrom: {
 				value: params.cityFrom,
 				check: function (name) {
+					console.log(1223, name)
 					return (this.city.check(name) !== false);
 				},
 				setting: 'dataLoaded',
@@ -726,18 +727,8 @@ export default function ISDEKWidjet(params) {
 				function: function () {
 					loaders.onDataLoad();
 					if (widjet.options.get('cityFrom')) {
-						ipjq.getJSON(
-							widjet.options.get('servicepath'),
-							{isdek_action: 'getCity', city: widjet.options.get('cityFrom')},
-							function (data) {
-								if (typeof(data.error) === 'undefined') {
-									CALCULATION.cityFrom = data.id;
-								} else {
-									widjet.logger.warn("City from was't found " + data.error);
-								}
-								loaders.onCityFrom('onCityFrom');
-							}
-						);
+									CALCULATION.cityFrom = 	3037;
+								loaders.onCityFrom('onCityFrom');;
 					} else {
 						loaders.onCityFrom('onCityFrom');
 					}
@@ -1032,12 +1023,6 @@ export default function ISDEKWidjet(params) {
 	var CALCULATION = {
 		bad: false,
 		profiles: {
-			courier: {
-				price: 0,
-				currency: 'RUB',
-				term: 0,
-				tarif: false
-			},
 			pickup: {
 				price: 0,
 				currency: 'RUB',
@@ -1111,18 +1096,19 @@ export default function ISDEKWidjet(params) {
 			} else {
 				data.goods = [this.defaultGabs];
 			}
+			console.log(cargo.collection, params)
 
-			data.cityFromId = this.cityFrom;
+			data.cityFromId = "3037";
 			data.cityToId = (forse) ? DATA.city.get() : DATA.city.getId(DATA.city.current);
 			data.currency = widjet.options.get('currency');
-
+			console.log(data, 111)
 			if (typeof(timestamp) !== 'undefined') {
 				data.timestamp = timestamp;
 			}
             if (DATA.city.current)
                 ipjq.getJSON(
-				widjet.options.get('servicepath'),
-				{isdek_action: 'calc', shipment: data},
+				'http://api.cdek.ru/calculator/calculate_price_by_json.php',
+				{data},
 				CALCULATION.onCalc
 			);
 		},
@@ -1187,7 +1173,7 @@ export default function ISDEKWidjet(params) {
 	};
 
 	var cargo = {
-		collection: (typeof widjet.options.get('goods') === 'object') ? widjet.options.get('goods') : [],
+		collection: (typeof params.goods === 'object') ? params.goods : [],
 
 		add: function (item) {
 			if (
@@ -1423,7 +1409,6 @@ export default function ISDEKWidjet(params) {
 						// }
 
 						switch (i) {
-							case 'courier':
                             case 'pickup':
                                 if(!CALCULATION.bad || obPrices[i].price !== false) {
                                     var _tmpBlock = HTML.getBlock('d_' + i, {

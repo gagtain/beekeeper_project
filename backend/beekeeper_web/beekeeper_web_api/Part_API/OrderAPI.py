@@ -74,8 +74,10 @@ class OrderCheckout(APIView):
                     'basket': basket_item_list_id
                 })
                 basket_pk_serializer.is_valid(raise_exception=True)
-            basket_item_list = OrderServices.examination_basket_item_in_user(basket_item_list=basket_item_list_id,
-                                                                             user=request.user)
+                basket_item_list = OrderServices.examination_basket_item_in_user(basket_item_list=basket_item_list_id,
+                                                                                user=request.user)
+            else:
+                basket_item_list = request.user.basket.all()
         except BaseDataException as e:
             return Response(status=status.HTTP_400_BAD_REQUEST, data=e.error_data)
         except ValidationError as e:

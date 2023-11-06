@@ -9,5 +9,5 @@ urlpatterns = [
     path('<int:pk>', OrderAPI.as_view({'get': 'retrieve'})),
     path('<int:pk>/approved', OrderAPI.as_view({'post': 'approved'})),
     path('<int:pk>/closed', OrderAPI.as_view({'post': 'closed'})),
-    path('<int:pk>/restart', OrderRestartAPI.as_view({'post': 'restart'})),
+    path('<int:pk>/restart', OrderRestartAPI.as_view({'post': 'restart'}))
 ]

@@ -1,3 +1,5 @@
+import datetime
+
 from delivery.dilivery_core import Client
 from delivery.dilivery_core.Client import Configuration, token_verif
 import requests
@@ -33,5 +35,34 @@ class SDEKDelivery:
             'Content-Type': 'application/json',
             "Accept": "application/json",
         },
+                      )
+        return a
+
+    @classmethod
+    @token_verif(token=Configuration.token, time=Configuration.time)
+    def get_price_delivery(cls, from_code, to_code):
+        a = requests.post(f'{Configuration.api_url}calculator/tariff', headers={
+            'Authorization': f"Bearer {Configuration.token}",
+            'Content-Type': 'application/json',
+            "Accept": "application/json",
+        }, data={
+    "type": "2",
+    "currency": "1",
+    "tariff_code": "136",
+    "from_location": {
+        "code": 44
+    },
+    "to_location": {
+        "code": 44
+    },
+    "packages": [
+        {
+            "height": 10,
+            "length": 10,
+            "weight": 4000,
+            "width": 10
+        }
+    ]
+}
                       )
         return a
