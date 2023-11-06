@@ -36,12 +36,11 @@ export default{
             orderWidjet: ISDEKWidjet({
         popup: true,
         defaultCity: 'Тамбов',
-        cityFrom: "Уварово",
+        cityFrom: "Уварово, г/о Уварово",
         goods: this.get_goods(), // установим данные о товарах из корзины,
         onReady : function(){ // на загрузку виджета отобразим информацию о доставке до ПВЗ
             ipjq('#linkForWidjet').css('display','inline');
         },
-        cityFromId: "44",
         onChoose:(info) => { // при выборе ПВЗ: запишем номер ПВЗ в текстовое поле и доп. информацию
            // ipjq('[name="chosenPost"]').val(info.id);
             //ipjq('[name="addresPost"]').val(info.PVZ.Address);

@@ -1262,7 +1262,7 @@ const _routes = [
     meta: __nuxt_page_meta$2 || {},
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect) || void 0,
-    component: () => import('./_nuxt/checkout-6c28eff2.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout-5134118b.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1406,7 +1406,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "https://owa.pchel-artel.ru/";
+let api_root = "http://77.222.37.151:8000/";
 async function verifAssessToken(token = void 0) {
   try {
     var response = await axios({
@@ -1861,7 +1861,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "https://owa.pchel-artel.ru/"
+      api_root: "http://77.222.37.151:8000/"
     }
   };
 });
