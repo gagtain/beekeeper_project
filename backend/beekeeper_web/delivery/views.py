@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from delivery.Part_API.DeliveryAPI import DeliveryCreate, DeliverySdekGet, DeliveryGet, DeliverySubmitWaiting, \
-    DeliveryTrackAdd
+    DeliveryTrackAdd, DeliveryStateAPI
 from delivery.Part_API.DeliveryInfo import DeliveryInfo
 from delivery.Part_API.Search import DeliveryTransactionFilter, DeliveryTransactionFilterCount
 from delivery.dilivery_core.core.SdekDelivery import SDEKDelivery
@@ -15,7 +15,8 @@ from rest_framework.viewsets import ViewSet
 
 
 class DeliveryAPI(ViewSet, DeliveryTrackAdd, DeliverySdekGet,
-                  DeliveryTransactionFilter, DeliveryGet, DeliverySubmitWaiting, DeliveryCreate):
+                  DeliveryTransactionFilter, DeliveryGet, DeliverySubmitWaiting, DeliveryCreate,
+                  DeliveryStateAPI):
     pass
 
 

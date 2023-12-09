@@ -3,6 +3,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 class CustomAuthentication(JWTAuthentication):
     def authenticate(self, request):
         header = self.get_header(request)
+        print(self.get_cookies(request))
         if header is None:
             raw_token = self.get_cookies(request).get('assess') or None
         else:

@@ -11,7 +11,9 @@ class YookassaNotifications:
     def payment_notifications(self, request):
         if examination_notifications(request):
             object_notification = WebhookNotification(request.data)
-            payment_object: PaymentTransaction = PaymentTransaction.objects.get(id_payment=object_notification.object.id)
+            payment_object: PaymentTransaction = PaymentTransaction.objects.get(
+                id_payment=object_notification.object.id
+            )
             payment_object.status = getattr(PaymentTransaction.StatusTransaction,
                                             object_notification.object.status)
             payment_object.save()

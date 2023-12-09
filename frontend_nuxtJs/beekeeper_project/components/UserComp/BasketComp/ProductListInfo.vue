@@ -10,7 +10,7 @@
           }, 0)
         }}
       </p>
-      <p v-if="ordered" class="m2">Цена доставки: {{ delivery_price ? delivery_price : 'Не выбранно' }}</p>
+      <p v-if="ordered" class="m2">Цена доставки: {{ delivery_price != null ? delivery_price : 'Не выбранно' }}</p>
       <p class="m2">скидки:</p>
       <ul>
         <li>{{ getSale() }}</li>

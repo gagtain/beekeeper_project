@@ -75,7 +75,7 @@ class OrderServices():
         cls.createOrderInBasket(request=request, basket_item_list=request.user.basket.all())
 
     @classmethod
-    def create_order_in_checkout(cls, checkout_id: int, delivery_price: float, user: MainUser):
+    def create_order_in_checkout(cls, checkout_id: int, delivery_price: float, user: MainUser, data: dict):
         try:
             order = Order.objects.get(id=checkout_id)
         except Order.DoesNotExist:
@@ -87,6 +87,7 @@ class OrderServices():
             print(order.amount, type(order.amount))
             order.amount += Money(float(delivery_price), "RUB",decimal_places=3)
             order.status = Order.StatusChoice.not_approved
+            order.number = data.get('number') if data.get('number') else order.user.number
             order.save()
             user.basket.all().delete()
             order_email_send.delay(order.id, user.id)

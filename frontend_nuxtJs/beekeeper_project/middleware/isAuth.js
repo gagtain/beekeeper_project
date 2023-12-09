@@ -2,7 +2,6 @@ import verifAssessToken from "../additional_func/verifAssessToken"
 import { defineEventHandler } from 'h3';
 import { useMainStore } from "../store";
 export default  defineEventHandler( async (event) => {
-  console.log(event)
   /* Попытка авторизовать пользователя на всех переходах  */
   const stores = useMainStore()
   console.log(useCookie('assess').value, 2132)

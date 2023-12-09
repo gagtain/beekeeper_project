@@ -29,7 +29,7 @@
                 </div>
                 <button @click="login_request($event)">login</button>
                 <p class="message">
-                  Not registered? <a href="#">Create an account</a>
+                  Not registered? <a href="/register">Create an account</a>
                 </p>
               </div>
             </div>

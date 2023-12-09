@@ -29,7 +29,7 @@ class PaymentsYookassaServices(AbstractPaymentService):
             ),
             capture=True,
             confirmation=shemas.PaymentsConfirmation(
-                return_url='https://gagtain.ru/orders',
+                return_url='https://pchel-artel.ru/orders',
                 type='redirect'
             ),
             description=f'Заказ №{data["order_id"]}'

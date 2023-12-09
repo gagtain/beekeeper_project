@@ -29,6 +29,7 @@
     height: 32px;
     border: none;
     padding: 8px;
+    margin: 0;
     text-align: center;
 }
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { api_root } from '@/main'
 
-export default async function addOrder(delivery_price, order_id){
+export default async function addOrder(delivery_price, order_id, number){
     try {
         var response = await axios({url: `${api_root}api/v0.1/beekeeper_web_api/order/create`,
         method: "post",
@@ -11,7 +11,8 @@ export default async function addOrder(delivery_price, order_id){
         withCredentials: true,
         data:{
           delivery_price,
-          order_id
+          order_id,
+          number
         }
       })
       return response

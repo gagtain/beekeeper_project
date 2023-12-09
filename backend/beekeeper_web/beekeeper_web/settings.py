@@ -109,7 +109,7 @@ TEMPLATES = [
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://localhost:6379/0",
+        "LOCATION": f"redis://{os.getenv('REDIS_HOST')}:{os.getenv('REDIS_PORT')}/0",
     }
 }
 
@@ -218,3 +218,5 @@ from beekeeper_web.prod_settings.shipment import *
 from beekeeper_web.prod_settings.telegram import *
 from beekeeper_web.prod_settings.token import *
 from beekeeper_web.prod_settings.yookassa import *
+
+COOKIE_DOMAIN = os.getenv('COOKIE_DOMAIN')

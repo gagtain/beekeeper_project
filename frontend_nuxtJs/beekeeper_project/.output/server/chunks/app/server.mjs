@@ -1246,7 +1246,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/basket-63a1334d.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/basket-49ecae77.mjs').then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -1262,7 +1262,7 @@ const _routes = [
     meta: __nuxt_page_meta$2 || {},
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect) || void 0,
-    component: () => import('./_nuxt/checkout-5134118b.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout-afe7c06a.mjs').then((m) => m.default || m)
   },
   {
     name: "favorite",
@@ -1270,7 +1270,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/favorite-5fbd1410.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/favorite-9c19ee08.mjs').then((m) => m.default || m)
   },
   {
     name: "index",
@@ -1286,7 +1286,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/login-017335ee.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/login-2a55d04b.mjs').then((m) => m.default || m)
   },
   {
     name: "news-id",
@@ -1310,7 +1310,7 @@ const _routes = [
     meta: __nuxt_page_meta$1 || {},
     alias: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.alias) || [],
     redirect: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.redirect) || void 0,
-    component: () => import('./_nuxt/orders-6847907c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/orders-3783bd52.mjs').then((m) => m.default || m)
   },
   {
     name: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) ?? "profile",
@@ -1318,7 +1318,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/profile-c9668d1e.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/profile-f41181eb.mjs').then((m) => m.default || m)
   },
   {
     name: "register",
@@ -1562,7 +1562,7 @@ const globalMiddleware = [
   auth_45global
 ];
 const namedMiddleware = {
-  "is-auth": () => import('./_nuxt/isAuth-36f42893.mjs')
+  "is-auth": () => import('./_nuxt/isAuth-be58c6a5.mjs')
 };
 const plugin = /* @__PURE__ */ defineNuxtPlugin({
   name: "nuxt:router",
@@ -1861,7 +1861,7 @@ const plugin_t2GMTTFnMT = /* @__PURE__ */ defineNuxtPlugin((nuxtApp) => {
 const myPlug_YyAoy8K3nS = /* @__PURE__ */ defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: "https://owa.pchel-artel.ru/"
+      api_root
     }
   };
 });

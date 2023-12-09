@@ -29,7 +29,8 @@ class OrderCreateAPI(APIView):
             try:
                 order = OrderServices.create_order_in_checkout(checkout_id=request.data['order_id'],
                                                                delivery_price=request.data['delivery_price'],
-                                                               user=request.user)
+                                                               user=request.user,
+                                                               data=request.data)
             except CodeDataException as e:
                 return Response(data=e.error_data, status=e.status)
         else:
@@ -78,6 +79,8 @@ class OrderCheckout(APIView):
                                                                                 user=request.user)
             else:
                 basket_item_list = request.user.basket.all()
+                if not basket_item_list.count():
+                    return Response()
         except BaseDataException as e:
             return Response(status=status.HTTP_400_BAD_REQUEST, data=e.error_data)
         except ValidationError as e:

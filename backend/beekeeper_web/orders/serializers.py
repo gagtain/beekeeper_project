@@ -22,7 +22,7 @@ class DeliveryTransactionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = DeliveryTransaction
-        fields = ['id', 'uuid', 'track_number','status', 'delivery_method', 'where']
+        fields = ['id', 'uuid', 'track_number','status', 'delivery_method', 'where', 'price']
 
 class OrderSerializers(serializers.ModelSerializer):
     product_list_transaction = OrderItemSerializer(many=True)

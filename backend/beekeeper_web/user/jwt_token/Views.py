@@ -1,5 +1,6 @@
 import datetime
 
+from django.conf import settings
 from django.contrib.auth.hashers import make_password
 from django.core.cache import cache
 from rest_framework import permissions, status
@@ -51,8 +52,8 @@ class MyObtainTokenPairView(TokenObtainPairView):
         # build your response and set cookie
         if access is not None:
             response = Response({"access": access, "refresh": refresh}, status=200)
-            response.set_cookie('assess', access, domain='localhost', max_age=36000, httponly=True)
-            response.set_cookie('refresh', refresh, domain='localhost', max_age=36000, httponly=True)
+            response.set_cookie('assess', access, domain=settings.COOKIE_DOMAIN, max_age=36000, httponly=True)
+            response.set_cookie('refresh', refresh, domain=settings.COOKIE_DOMAIN, max_age=36000, httponly=True)
             return response
         else:
 

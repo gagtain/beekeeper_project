@@ -5,7 +5,7 @@ from beekeeper_web_api.models import MainUser, ProductItem, Product, DimensionsP
 from delivery.DeliveryInfo.Delivery.enum.DeliveryEngine import DeliveryEngine
 from orders.models import Order, OrderItem
 from beekeeper_web_api.serializers import Type_weightSerializers, ProductSerializer
-from delivery.models import DeliveryTransaction
+from delivery.models import DeliveryTransaction, DeliveryState
 from user.serializers import RetrieveUserDefault
 
 
@@ -61,6 +61,7 @@ class OrderSerializers(serializers.ModelSerializer):
 class OrderRetrieveSerializers(serializers.ModelSerializer):
     product_list_transaction = OrderItemSerializer(many=True)
     user = RetrieveUserDefault()
+
     class Meta:
         model = Order
         fields = ['id', 'product_list_transaction', 'datetime', 'user', 'amount', 'amount_currency', 'status',
@@ -68,11 +69,12 @@ class OrderRetrieveSerializers(serializers.ModelSerializer):
 
 
 class DeliveryTransactionCreateSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = DeliveryTransaction
         fields = ['id', 'uuid', 'track_number',
-                  'order_delivery_transaction', 'status', 'delivery_method', 'where', 'number']
+                  'order_delivery_transaction', 'status', 'delivery_method', 'where', 'number',
+                  'delivery_type']
+
 
 class DeliveryTransactionSerializer(serializers.ModelSerializer):
     order_delivery_transaction = OrderRetrieveSerializers(many=True, read_only=True)
@@ -80,7 +82,8 @@ class DeliveryTransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = DeliveryTransaction
         fields = ['id', 'uuid', 'track_number',
-                  'order_delivery_transaction', 'status', 'delivery_method', 'where']
+                  'order_delivery_transaction', 'status', 'delivery_method', 'where', 'price',
+                  'delivery_type']
 
 
 class CountSerializer(serializers.Serializer):
@@ -91,3 +94,9 @@ class CountSerializer(serializers.Serializer):
 
     def get_count(self, instance):
         print(instance, 213)
+
+
+class DeliveryStateSerializer(serializers.ModelSerializer):
+    class Meta:
+        fields = '__all__'
+        model = DeliveryState

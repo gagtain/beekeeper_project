@@ -11,11 +11,10 @@ class CreatePaymentsAPI(APIView):
 
     @swagger_auto_schema(tags=['payment'])
     def create_payments(self, request):
-        """Создание транзакции"""
         """
         data:
             сумма
-            платежная система yookassa
+            платежная система yookassa, offline
             у кого купить (online_store, forum)
             номер заказа
         """
@@ -33,5 +32,4 @@ class CreatePaymentsAPI(APIView):
         initial_data = payment_service_class.get_initial_data(request.data, Order)
         payment = payment_service_class.create_payment(initial_data)
         payment_service_class.create_model_payment(payment, Order)
-
         return Response({'payment_url': payment.confirmation.confirmation_url})

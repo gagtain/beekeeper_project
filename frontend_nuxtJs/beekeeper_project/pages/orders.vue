@@ -74,7 +74,7 @@
                             </div>
                             <div class="w-50">
 
-                                <p>Онлайн {{ order.amount }}</p>
+                                <p>{{ order?.payment?.type }} {{ order.amount }}</p>
                             </div>
                         </div>
                         <div class="flex w-sto m-2">
@@ -104,7 +104,7 @@
                             </div>
                             <div class="w-50">
 
-                                <p>* в разработке *</p>
+                                <p>{{ order?.delivery?.price }}</p>
                             </div>
                         </div> 
                         <div v-if="order.delivery != null" class="flex w-sto m-2">
@@ -141,10 +141,10 @@
                     </div>
                     <div class="order_menu m-2">
                         
-                    <button v-if="order.status == 'Одобрен' && order.delivery.status != 'На проверке'" onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
+                    <!-- <button v-if="order.status == 'Одобрен' && order.delivery.status != 'На проверке'" onclick="alert('В разработке')" style="background: yellow; cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >
                               Отследить
-                            </button>
-                            <div v-if="(order?.payment?.status == 'pending' || order?.payment?.status == undefined) && order.status != 'Закрытый'">
+                            </button> -->
+                            <div v-if="((order?.payment?.status == 'pending' || order?.payment?.status == undefined) && order?.payment?.type != 'Личная оплата') && order.status != 'Закрытый'">
 
                                 <p>Заказ будет отменен через 30 минут, в случае если он не будет оплачен</p>
                             <button @click="order_redirect_payments(order?.payment?.url)" style="background: rgb(76, 175, 80); cursor: pointer; width: 100%; border: medium none; border-radius: 6px;font-size: 16px;padding: 2%;margin-top: 1%;" >

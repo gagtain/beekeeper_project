@@ -5,6 +5,7 @@ from beekeeper_web_api.models import MainUser, ProductItem
 from delivery.models import DeliveryTransaction
 from notify.models import Notify
 from payments.models import PaymentTransaction
+from user.validators import number_validator
 
 
 # Create your models here.
@@ -14,6 +15,8 @@ class Order(models.Model):
         checkout = "Не подтвержденный"
         not_approved = "Не одобренный"
         approved = "Одобрен"
+
+
 
     user: MainUser = models.ForeignKey(MainUser, related_name='user_order', on_delete=models.CASCADE)
     amount = MoneyField(default=0, max_digits=10, decimal_places=3,
@@ -25,12 +28,23 @@ class Order(models.Model):
     delivery = models.ForeignKey(DeliveryTransaction,
                                  related_name='order_delivery_transaction',
                                  on_delete=models.CASCADE, blank=True, null=True)
+    number = models.CharField(max_length=11, validators=[number_validator],
+                              verbose_name="Номер телефона заказчика", blank=True, null=True)
+
     status = models.CharField(choices=StatusChoice.choices, default=StatusChoice.not_approved)
     description = models.CharField(max_length=300, default='')
 
     class Meta:
         verbose_name = u"Заказа"
         verbose_name_plural = u"Заказы"
+
+    def __str__(self):
+        str_def = f"Заказ №{self.id}, {self.user.FIO}," \
+               f" номер {self.user.number},"
+        if self.payment:
+            str_def += f" тип оплаты: {self.payment.type}"
+        return str_def
+
 
 
 

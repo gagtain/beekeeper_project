@@ -13,8 +13,9 @@ from global_modules.exception.base import BaseDataException
 from orders.models import Order
 from delivery.dilivery_core.core import SdekDelivery
 from delivery.dilivery_core.shemas.Delivery import DeliveryAdd, DeliveryResponseAdd
-from delivery.models import DeliveryTransaction
-from delivery.serializers import DeliveryTransactionSerializer, DeliveryTransactionCreateSerializer
+from delivery.models import DeliveryTransaction, DeliveryState
+from delivery.serializers import DeliveryTransactionSerializer, DeliveryTransactionCreateSerializer, \
+    DeliveryStateSerializer
 from delivery.services.Delivery import Sent_Status
 
 
@@ -52,15 +53,20 @@ class DeliveryCreate(APIView):
             return Response(data=e.error_data, status=400)
         order = Order.objects.select_related('user').only('user', 'user__number', 'id') \
             .get(id=order_id)
+        print(request.data.get('delivery_type'))
         serializer = DeliveryTransactionCreateSerializer(data={
             'uuid': 'default',
             'where': request.data.get('PVZ'),
             'price': request.data.get('price'),
             'number': request.data.get('user_number', order.user.number),
-            'order_delivery_transaction': [order.id]
+            'order_delivery_transaction': [order.id],
+            'delivery_type': request.data.get('delivery_type')
         }, )
         serializer.is_valid(raise_exception=True)
         delivery_ = serializer.save()
+        if not order.user.number:
+            order.user.number = request.data.get('user_number')
+            order.user.save()
         delivery = default_delivery_optimize(DeliveryTransaction.objects).get(id=delivery_.id)
         return Response(data=DeliveryTransactionSerializer(delivery).data, status=200)
 
@@ -103,3 +109,13 @@ class DeliveryTrackAdd(APIView):
         delivery.status = DeliveryTransaction.DeliveryStatus.Sent
         delivery.save()
         return Response(DeliveryTransactionSerializer(instance=delivery).data)
+
+
+class DeliveryStateAPI(APIView):
+
+    def delivery_state(self, request):
+
+        delivery_state_list = DeliveryState.objects.all()
+        serializer = DeliveryStateSerializer(instance=delivery_state_list, many=True)
+
+        return Response(data=serializer.data)

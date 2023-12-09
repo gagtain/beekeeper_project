@@ -1,8 +1,9 @@
+import { api_root } from "~/main"
 
 export default defineNuxtPlugin(() => {
   return {
     provide: {
-      api_root: 'https://owa.pchel-artel.ru/',
+      api_root: api_root,
       
     }
   }
