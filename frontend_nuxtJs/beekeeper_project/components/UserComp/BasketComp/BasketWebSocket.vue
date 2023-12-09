@@ -12,7 +12,7 @@ export default {
     };
   },
   created() {
-    this.connection = new WebSocket(`ws://localhost:8000/api/v0.1/online_store`);
+    this.connection = new WebSocket(`wss://owa.pchel-artel.ru/ws/api/v0.1/online_store`);
 
     this.connection.onmessage = this.onmessage
     let time = new Date()

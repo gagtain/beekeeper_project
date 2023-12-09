@@ -1246,7 +1246,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/basket-49ecae77.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/basket-9e357ddd.mjs').then((m) => m.default || m)
   },
   {
     name: "catalog",
@@ -1318,7 +1318,7 @@ const _routes = [
     meta: __nuxt_page_meta || {},
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/profile-f41181eb.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/profile-a1adc40f.mjs').then((m) => m.default || m)
   },
   {
     name: "register",
@@ -2431,7 +2431,7 @@ const _sfc_main$7 = {
     };
   },
   created() {
-    this.connection = new WebSocket(`ws://localhost:8000/api/v0.1/notify`);
+    this.connection = new WebSocket(`wss://owa.pchel-artel.ru/ws/api/v0.1/notify`);
     this.connection.onmessage = this.onmessage;
     let time = /* @__PURE__ */ new Date();
     let socket = this.connection;

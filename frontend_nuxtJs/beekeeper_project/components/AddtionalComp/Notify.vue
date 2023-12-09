@@ -41,7 +41,7 @@ export default {
     };
   },
   created() {
-    this.connection = new WebSocket(`ws://localhost:8000/api/v0.1/notify`);
+    this.connection = new WebSocket(`wss://owa.pchel-artel.ru/ws/api/v0.1/notify`);
 
     this.connection.onmessage = this.onmessage
     let time = new Date()
