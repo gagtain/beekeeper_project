@@ -147,3 +147,30 @@ class FavoriteItem(models.Model):
     class Meta:
         verbose_name = u"Объект избранного"
         verbose_name_plural = u"Объекты избранного"
+
+
+class BlockInfoSite(models.Model):
+
+    class BlockChoise(models.TextChoices):
+        main_block = ('1',"Главный блок")
+        preimusestva = ('2',"Преимущества блок")
+        eco_zoloto = ('3',"Эко блок")
+        niz_block = ('4',"Нижний блок")
+        contact_data = ('5',"Контактная информация блок")
+
+
+    type = models.CharField(choices=BlockChoise.choices, blank=True, null=True)
+    text = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
+    director = models.CharField(max_length=50, blank=True, null=True)
+
+    def __str__(self):
+        return self.type
+    
+    class Meta:
+        verbose_name = u"Блок сайта"
+        verbose_name_plural = u"Блоки сайта"
+
+class AddItem(models.Model):
+    text = models.TextField(blank=True, null=True)
+    block = models.ForeignKey(BlockInfoSite, on_delete=models.CASCADE)
