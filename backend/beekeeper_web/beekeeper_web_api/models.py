@@ -165,7 +165,10 @@ class BlockInfoSite(models.Model):
     director = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
-        return self.type
+        for ch in self.BlockChoise.choices:
+            if ch[0] == self.type:
+                print(ch[1])
+                return ch[1]
     
     class Meta:
         verbose_name = u"Блок сайта"
