@@ -163,6 +163,9 @@ class BlockInfoSite(models.Model):
     text = models.TextField(blank=True, null=True)
     image = models.ImageField(blank=True, null=True)
     director = models.CharField(max_length=50, blank=True, null=True)
+    title = models.CharField(max_length=50, blank=True, null=True)
+    number = models.CharField(max_length=50, blank=True, null=True)
+    email = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         for ch in self.BlockChoise.choices:
@@ -176,4 +179,4 @@ class BlockInfoSite(models.Model):
 
 class AddItem(models.Model):
     text = models.TextField(blank=True, null=True)
-    block = models.ForeignKey(BlockInfoSite, on_delete=models.CASCADE)
+    block = models.ForeignKey(BlockInfoSite, on_delete=models.CASCADE, related_name="add_item_list")

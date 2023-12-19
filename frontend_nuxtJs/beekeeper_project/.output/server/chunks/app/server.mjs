@@ -1238,7 +1238,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/about_us-2cba4c7e.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/about_us-9e69cd74.mjs').then((m) => m.default || m)
   },
   {
     name: "basket",
@@ -1278,7 +1278,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import('./_nuxt/index-a13bd819.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index-fe735617.mjs').then((m) => m.default || m)
   },
   {
     name: "login",
@@ -1406,7 +1406,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "https://owa.pchel-artel.ru/";
+let api_root = "http://localhost:8000/";
 async function verifAssessToken(token = void 0) {
   try {
     var response = await axios({

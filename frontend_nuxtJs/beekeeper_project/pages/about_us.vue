@@ -17,7 +17,7 @@
             </div>
             <div class="desk m2">
                 <p class="small">Пчелиная артель</p>
-                <p class="small">Основатель: Козлов Андрей Викторович</p>
+                <p class="small">Основатель: {{ get_obj_text("5", "director") }}</p>
                 </div>
         </div>
         <div class="big_info">
@@ -31,8 +31,8 @@
         <p class="small VAG auto">Контакты</p>
 
         <p class="normal-small">Почтовый адрес: Тамбовская обл, г. Уварово, пер. Большой Садовый, д. 28А</p>
-        <p class="normal-small">Номер телефона: 89153502162</p>
-        <p class="normal-small">Контактная почта: pcel.artel@gmail.com</p>
+        <p class="normal-small">Номер телефона: {{ get_obj_text("5", "number") }}</p>
+        <p class="normal-small">Контактная почта: {{ get_obj_text("5", "email") }}</p>
         
            </div>
     </div>
@@ -55,11 +55,33 @@
 
 <script>
 import DialogWindow from '~/components/AddtionalComp/Dialog.vue'
+  import getTextList from "~/additional_func/getTexts";
 export default {
     components:{
         DialogWindow
     },
+    data(){
+        return {
+            data_text_list: []
+        }
+    },
+    async mounted(){
+
+        let r_ = await getTextList()
+      this.data_text_list = r_.data
+    },
     methods:{
+      get_obj_text(type, field){
+        let obj = this.data_text_list.filter(f => f.type == type)
+        console.log(obj[field], obj)
+        try{
+
+          return obj[0][field]
+        }
+        catch {
+          return ""
+        }
+      },
         showData(){
         console.log('asdasd')
         let a = document.getElementById('dialog-data')

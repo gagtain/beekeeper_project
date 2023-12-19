@@ -14,7 +14,7 @@
           <div class="interactiv flex">
             <div class="main_center auto">
               <div class="main_text_div auto">
-                <p class="main_text">Наш мед имеет ряд преимуществ!</p>
+                <p class="main_text">{{ get_obj_text("1", "text") }}</p>
                 <div class="bt flex m2">
                   <button @click="$router.push('/catalog')" :style="$device.isDesktop ? 'width: 45%; margin: 0;' : ''" class="main_bt">
                     <div class="flex sto">
@@ -48,7 +48,7 @@
                   >
                     <swiper-slide
                       ><img
-                      :src="$api_root + 'static/online_store/images/honey.png'"
+                      :src="`${$api_root.slice(0, -1)}${get_obj_text('1', 'image')}`"
                         class="main_img"
                         width="100%"
                         height="100%"
@@ -56,7 +56,7 @@
                     /></swiper-slide>
                     <swiper-slide
                       ><img
-                      :src="$api_root + 'static/online_store/images/honey.png'"
+                      :src="`${$api_root.slice(0, -1)}${get_obj_text('1', 'image')}`"
                         class="main_img"
                         width="100%"
                         height="100%"
@@ -64,7 +64,7 @@
                     /></swiper-slide>
                     <swiper-slide
                       ><img
-                      :src="$api_root + 'static/online_store/images/honey.png'"
+                      :src="`${$api_root.slice(0, -1)}${get_obj_text('1', 'image')}`"
                         class="main_img"
                         width="100%"
                         height="100%"
@@ -139,7 +139,7 @@
             <div class="flex w-sto jus-sp info_kart_div">
               <div class=" w-sto flex">
                 <div class="w-sto auto auto">
-                  <Advantages_slider></Advantages_slider>
+                  <Advantages_slider :add_item_list="get_obj_text('2', 'add_item_list')"></Advantages_slider>
                 </div>
               
             </div>
@@ -155,14 +155,14 @@
               <div class="kart">
               <div class="w-sto h_sto">
                 <nuxt-img
-                        loading="lazy" format="webp" style="border-radius: 40px;" class="w-sto h_sto" src="/images/eco-friend.jpg" alt=""/>
+                        loading="lazy" format="webp" style="border-radius: 40px;" class="w-sto h_sto" :src="`${$api_root.slice(0, -1)}${get_obj_text('3', 'image')}`" alt=""/>
               </div>
             </div>
               <div class="dostav_info flex">
                 <div class="w-sto auto">
-                  <p class="small-big VAG" style="line-height: 1;">Чистый как золото, на вкус как солнечный свет</p>
+                  <p class="small-big VAG" style="line-height: 1;">{{ get_obj_text('3', 'title') }}</p>
               <p class="small m2">
-              Наш мед является исключительно натуральным продуктом. Без примесей, без химии.
+                {{ get_obj_text('3', 'text') }}
               </p>
                 </div>
               
@@ -221,20 +221,16 @@
                   <img
                     width="100%"
                     height="100%"
-                    :src="$api_root + 'static/online_store/images/3.jpg'"
+                    :src="$api_root.slice(0, -1) + get_obj_text('4', 'image')"
                     alt=""
                   />
                 </div>
-                <p class="small-big predp-name">Иваненко И.П.</p>
-                <p class="small">Директор компании ...</p>
+                <p class="small-big predp-name">{{ get_obj_text('4', 'director') }}</p>
+                <p class="small">Директор компании </p>
               </div>
               <div class="predp-text flex">
                 <p class="small-big">
-                  Наша доставка распространяется на города: Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Enim, architecto veritatis?
-                  Aut iure labore qui ut molestiae minima repudiandae obcaecati
-                  beatae illo. Aliquam debitis minus consequuntur illum et natus.
-                  Incidunt.
+                  {{ get_obj_text('4', 'text') }}
                 </p>
               </div>
             </div>
@@ -275,16 +271,19 @@
     height: 100%;
   }
   </style>
+
   <script>
   import { useHead } from "nuxt/app";
   import { Swiper, SwiperSlide } from "swiper/vue";
   import "swiper/css";
   import { Autoplay, Navigation } from "swiper";
   import LoadingComp from "~/components/AddtionalComp/LoadingComp.vue";
+  import getTextList from "~/additional_func/getTexts";
   import axios from "axios";
   import newsList from "~/additional_func/News/newsList";
 import Advantages_slider from '../components/AddtionalComp/advantages_slider.vue';
 import ToScroll from '../components/AddtionalComp/ToScroll.vue';
+import { api_root } from "~/main";
   export default {
     name: "IndexItem",
     components: {
@@ -294,13 +293,15 @@ import ToScroll from '../components/AddtionalComp/ToScroll.vue';
         Advantages_slider,
         ToScroll
 },
+
     data() {
       return {
         popular_product: null,
         wrapper_active: false,
         type_weigth_id: null,
         type_pack_id: null,
-        news: []
+        news: [],
+        data_text_list: []
       };
     },
     async created() {
@@ -308,6 +309,8 @@ import ToScroll from '../components/AddtionalComp/ToScroll.vue';
     },
     async mounted() {
       self = this
+      let r_ = await getTextList()
+      this.data_text_list = r_.data
     axios({
       url: `${this.$api_root}api/v0.1/beekeeper_web_api/product/search/?size=5&order_by=count_purchase`,
       method: "get",
@@ -320,7 +323,6 @@ import ToScroll from '../components/AddtionalComp/ToScroll.vue';
       .catch(function (error) {
         console.log(error);
       });
-      console.log(this.popular_product)
       this.wrapper_active = true;
       let recaptchaScript = document.createElement("script");
       recaptchaScript.setAttribute(
@@ -330,8 +332,22 @@ import ToScroll from '../components/AddtionalComp/ToScroll.vue';
       document.head.appendChild(recaptchaScript);
       let r = await newsList(0, 3)
       this.news = r.data
+      
     },
     methods: {
+
+      get_obj_text(type, field){
+        let obj = this.data_text_list.filter(f => f.type == type)
+        console.log(obj[field], obj)
+        try{
+
+          return obj[0][field]
+        }
+        catch {
+          return ""
+        }
+      },
+
       select_type_weigth(pk){
         this.type_weigth_id = pk
       },

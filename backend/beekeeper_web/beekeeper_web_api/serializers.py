@@ -2,7 +2,7 @@ from django.conf import settings
 from rest_framework import serializers
 
 from user.models import MainUser
-from .models import Product, Category, ImageProduct, \
+from .models import BlockInfoSite, Product, Category, ImageProduct, \
     BasketItem, FavoriteItem, RatingProductReview, Type_weight, ProductItem, DimensionsProduct
 from orders.models import Order, OrderItem
 
@@ -144,3 +144,10 @@ class OrderSerializers(serializers.ModelSerializer):
         model = Order
         depth = 2
         fields = ['id', 'amount', 'user', 'product_list_transaction', 'datetime', 'delivery', 'payment', 'status']
+
+
+class BlockInfoSiteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BlockInfoSite
+        depth = 2
+        fields = ['type', 'text', 'image', 'director', "add_item_list", "title", "number", "email"]

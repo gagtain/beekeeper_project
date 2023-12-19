@@ -9,8 +9,9 @@ from .Part_API.FavoriteAPI import GetFavoriteProduct, AddFavoriteProduct, Remove
 from .Part_API.OrderAPI import OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI, OrderCheckout
 from .Part_API.RatingProductAPI import RatingProductCreate, RatingProductList, RatingProductAVG
 from .Part_API.ProductAPI import ProductFilterName, ProductFilter, GetProduct, GetProductList
-from .serializers import CategoryRetriveSerializers
+from .serializers import CategoryRetriveSerializers, BlockInfoSiteSerializer
 from .services.User import CategoryServises
+from .models import BlockInfoSite
 
 
 class BasketAPI(viewsets.ViewSet, GetBasketInfo,
@@ -44,6 +45,12 @@ class CategoryAPI(viewsets.ViewSet):
     def get_category_list(self, request):
         category_list = CategoryServises.getCategoryList().only('name')
         return Response(CategoryRetriveSerializers(category_list, many=True).data)
+    
+    def get_text(self, request):
+        category_list = BlockInfoSite.objects.all()
+        return Response(BlockInfoSiteSerializer(category_list, many=True).data)
+
+
 
 
 class OrderAPI(viewsets.ViewSet, OrderCreateAPI, OrderGetLastAPI, OrderGetListAPI, OrderCheckout):
