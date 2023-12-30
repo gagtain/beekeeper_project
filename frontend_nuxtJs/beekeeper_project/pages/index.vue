@@ -229,8 +229,7 @@
                 <p class="small">Директор компании </p>
               </div>
               <div class="predp-text flex">
-                <p class="small-big">
-                  {{ get_obj_text('4', 'text') }}
+                <p class="small-big" v-html="get_obj_text('4', 'text')">
                 </p>
               </div>
             </div>
