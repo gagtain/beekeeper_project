@@ -179,4 +179,5 @@ class BlockInfoSite(models.Model):
 
 class AddItem(models.Model):
     text = models.TextField(blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
     block = models.ForeignKey(BlockInfoSite, on_delete=models.CASCADE, related_name="add_item_list")

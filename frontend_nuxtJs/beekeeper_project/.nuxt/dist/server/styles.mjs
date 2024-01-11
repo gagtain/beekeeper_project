@@ -1,13 +1,13 @@
 const interopDefault = r => r.default || r || []
 export default {
   "pages/about_us.vue": () => import('./_nuxt/about_us-styles.3e82a822.mjs').then(interopDefault),
-  "pages/basket.vue": () => import('./_nuxt/basket-styles.5f58d1da.mjs').then(interopDefault),
   "pages/catalog.vue": () => import('./_nuxt/catalog-styles.cf58d8bf.mjs').then(interopDefault),
+  "pages/basket.vue": () => import('./_nuxt/basket-styles.5f58d1da.mjs').then(interopDefault),
   "pages/checkout.vue": () => import('./_nuxt/checkout-styles.01ca0e3e.mjs').then(interopDefault),
   "pages/favorite.vue": () => import('./_nuxt/favorite-styles.106002ee.mjs').then(interopDefault),
+  "pages/index.vue": () => import('./_nuxt/index-styles.a367e68b.mjs').then(interopDefault),
   "pages/login.vue": () => import('./_nuxt/login-styles.47abe584.mjs').then(interopDefault),
   "pages/news/[id].vue": () => import('./_nuxt/_id_-styles.b82faf7e.mjs').then(interopDefault),
-  "pages/index.vue": () => import('./_nuxt/index-styles.7e0f1503.mjs').then(interopDefault),
   "pages/news/index.vue": () => import('./_nuxt/index-styles.7dc1dad7.mjs').then(interopDefault),
   "pages/orders.vue": () => import('./_nuxt/orders-styles.c625ebdb.mjs').then(interopDefault),
   "pages/profile.vue": () => import('./_nuxt/profile-styles.934041e0.mjs').then(interopDefault),

@@ -46,25 +46,9 @@
                     :modules="modules"
                     class="h_sto"
                   >
-                    <swiper-slide
+                    <swiper-slide v-for="obj in get_obj_text('1', 'add_item_list')" :key="obj.id"
                       ><img
-                      :src="`${$api_root.slice(0, -1)}${get_obj_text('1', 'image')}`"
-                        class="main_img"
-                        width="100%"
-                        height="100%"
-                        alt=""
-                    /></swiper-slide>
-                    <swiper-slide
-                      ><img
-                      :src="`${$api_root.slice(0, -1)}${get_obj_text('1', 'image')}`"
-                        class="main_img"
-                        width="100%"
-                        height="100%"
-                        alt=""
-                    /></swiper-slide>
-                    <swiper-slide
-                      ><img
-                      :src="`${$api_root.slice(0, -1)}${get_obj_text('1', 'image')}`"
+                      :src="`${$api_root.slice(0, -1)}${obj.image}`"
                         class="main_img"
                         width="100%"
                         height="100%"

@@ -2082,7 +2082,7 @@ const _routes = [
     meta: {},
     alias: [],
     redirect: void 0,
-    component: () => import("./_nuxt/index-59fa0868.js").then((m) => m.default || m)
+    component: () => import("./_nuxt/index-14d4e7e3.js").then((m) => m.default || m)
   },
   {
     name: "login",
@@ -2210,7 +2210,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "https://owa.pchel-artel.ru/";
+let api_root = "http://localhost:8000/";
 async function verifAssessToken(token = void 0) {
   try {
     var response = await axios({
@@ -3060,7 +3060,7 @@ const getImage = (src, { modifiers = {}, baseURL: baseURL2 } = {}, ctx) => {
 };
 const validateDomains = true;
 const supportsAlias = true;
-const ipxRuntime$M3wJ3q2eqi = /* @__PURE__ */ Object.freeze({
+const ipxRuntime$HFb3lfl02Q = /* @__PURE__ */ Object.freeze({
   __proto__: null,
   getImage,
   supportsAlias,
@@ -3084,7 +3084,7 @@ const imageOptions = {
   "alias": {}
 };
 imageOptions.providers = {
-  ["ipx"]: { provider: ipxRuntime$M3wJ3q2eqi, defaults: void 0 }
+  ["ipx"]: { provider: ipxRuntime$HFb3lfl02Q, defaults: void 0 }
 };
 const useImage = () => {
   const config = /* @__PURE__ */ useRuntimeConfig();
