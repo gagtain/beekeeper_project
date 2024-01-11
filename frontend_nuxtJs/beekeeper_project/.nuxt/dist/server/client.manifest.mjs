@@ -29,7 +29,7 @@ export default {
     "file": "UserBasket.672bdfaf.css",
     "src": "UserBasket.css"
   },
-  "_BasketInfo.3bb00265.js": {
+  "_BasketInfo.82e86137.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -38,7 +38,7 @@ export default {
     "css": [
       "BasketInfo.414657d3.css"
     ],
-    "file": "BasketInfo.3bb00265.js",
+    "file": "BasketInfo.82e86137.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -52,7 +52,7 @@ export default {
     "resourceType": "image",
     "mimeType": "image/png"
   },
-  "_CatalogProduct.dc373c89.js": {
+  "_CatalogProduct.2014c990.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -61,17 +61,17 @@ export default {
     "css": [
       "CatalogProduct.138659c4.css"
     ],
-    "file": "CatalogProduct.dc373c89.js",
+    "file": "CatalogProduct.2014c990.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.187fdd8f.js"
+      "_FavoriteComp.15cf2801.js"
     ]
   },
   "CatalogProduct.138659c4.css": {
     "file": "CatalogProduct.138659c4.css",
     "resourceType": "style"
   },
-  "_FavoriteComp.187fdd8f.js": {
+  "_FavoriteComp.15cf2801.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -80,7 +80,7 @@ export default {
     "css": [
       "FavoriteComp.8e81f523.css"
     ],
-    "file": "FavoriteComp.187fdd8f.js",
+    "file": "FavoriteComp.15cf2801.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -89,7 +89,7 @@ export default {
     "file": "FavoriteComp.8e81f523.css",
     "resourceType": "style"
   },
-  "_FavoriteComp.8fea81db.js": {
+  "_FavoriteComp.80bfa1cf.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -98,9 +98,9 @@ export default {
     "css": [
       "FavoriteComp.6d5f3a81.css"
     ],
-    "file": "FavoriteComp.8fea81db.js",
+    "file": "FavoriteComp.80bfa1cf.js",
     "imports": [
-      "_FavoriteComp.187fdd8f.js",
+      "_FavoriteComp.15cf2801.js",
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
@@ -108,21 +108,21 @@ export default {
     "file": "FavoriteComp.6d5f3a81.css",
     "resourceType": "style"
   },
-  "_ImageForm.cb66694a.js": {
+  "_ImageForm.983f17c2.js": {
     "resourceType": "script",
     "module": true,
-    "file": "ImageForm.cb66694a.js",
+    "file": "ImageForm.983f17c2.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_LoadingComp.826b55a4.js": {
+  "_LoadingComp.47badcbb.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "LoadingComp.c9d2ab2a.css"
     ],
-    "file": "LoadingComp.826b55a4.js",
+    "file": "LoadingComp.47badcbb.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -131,13 +131,13 @@ export default {
     "file": "LoadingComp.c9d2ab2a.css",
     "resourceType": "style"
   },
-  "_OrderProductList.12b9fb64.js": {
+  "_OrderProductList.a4a26136.js": {
     "resourceType": "script",
     "module": true,
     "css": [
       "OrderProductList.32225cd6.css"
     ],
-    "file": "OrderProductList.12b9fb64.js",
+    "file": "OrderProductList.a4a26136.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -146,7 +146,7 @@ export default {
     "file": "OrderProductList.32225cd6.css",
     "resourceType": "style"
   },
-  "_UserBasket.e38c92e0.js": {
+  "_UserBasket.5cb362d9.js": {
     "resourceType": "script",
     "module": true,
     "assets": [
@@ -155,38 +155,38 @@ export default {
     "css": [
       "UserBasket.672bdfaf.css"
     ],
-    "file": "UserBasket.e38c92e0.js",
+    "file": "UserBasket.5cb362d9.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_BasketInfo.3bb00265.js",
-      "_LoadingComp.826b55a4.js",
-      "_FavoriteComp.8fea81db.js"
+      "_BasketInfo.82e86137.js",
+      "_LoadingComp.47badcbb.js",
+      "_FavoriteComp.80bfa1cf.js"
     ]
   },
   "UserBasket.672bdfaf.css": {
     "file": "UserBasket.672bdfaf.css",
     "resourceType": "style"
   },
-  "_getTexts.ebb360fb.js": {
+  "_getTexts.b157011e.js": {
     "resourceType": "script",
     "module": true,
-    "file": "getTexts.ebb360fb.js",
+    "file": "getTexts.b157011e.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_index.3991a8bc.js": {
+  "_index.d5a4eac8.js": {
     "resourceType": "script",
     "module": true,
-    "file": "index.3991a8bc.js",
+    "file": "index.d5a4eac8.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
   },
-  "_newsList.c8075b0c.js": {
+  "_newsList.3534fd2b.js": {
     "resourceType": "script",
     "module": true,
-    "file": "newsList.c8075b0c.js",
+    "file": "newsList.3534fd2b.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ]
@@ -236,7 +236,7 @@ export default {
   "middleware/isAuth.js": {
     "resourceType": "script",
     "module": true,
-    "file": "isAuth.81e6e259.js",
+    "file": "isAuth.1ff5aa55.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -252,7 +252,7 @@ export default {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "error-404.1f384121.js",
+    "file": "error-404.2d2ed8db.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -272,7 +272,7 @@ export default {
     "resourceType": "script",
     "module": true,
     "css": [],
-    "file": "error-500.e28b3a42.js",
+    "file": "error-500.e5d94302.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],
@@ -305,7 +305,7 @@ export default {
       "middleware/isAuth.js",
       "virtual:nuxt:F:/beekeeper_project/frontend_nuxtJs/beekeeper_project/.nuxt/error-component.mjs"
     ],
-    "file": "entry.3d94c14a.js",
+    "file": "entry.3c7fa92a.js",
     "isEntry": true,
     "src": "node_modules/nuxt/dist/app/entry.js"
   },
@@ -345,10 +345,10 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "about_us.b4c07eda.js",
+    "file": "about_us.fbd0f0ca.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_getTexts.ebb360fb.js"
+      "_getTexts.b157011e.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/about_us.vue"
@@ -369,14 +369,14 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "basket.cc83633b.js",
+    "file": "basket.f180e249.js",
     "imports": [
-      "_UserBasket.e38c92e0.js",
+      "_UserBasket.5cb362d9.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_BasketInfo.3bb00265.js",
-      "_LoadingComp.826b55a4.js",
-      "_FavoriteComp.8fea81db.js",
-      "_FavoriteComp.187fdd8f.js"
+      "_BasketInfo.82e86137.js",
+      "_LoadingComp.47badcbb.js",
+      "_FavoriteComp.80bfa1cf.js",
+      "_FavoriteComp.15cf2801.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/basket.vue"
@@ -398,12 +398,12 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "catalog.9181c163.js",
+    "file": "catalog.9cc915d9.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_CatalogProduct.dc373c89.js",
-      "_LoadingComp.826b55a4.js",
-      "_FavoriteComp.187fdd8f.js"
+      "_CatalogProduct.2014c990.js",
+      "_LoadingComp.47badcbb.js",
+      "_FavoriteComp.15cf2801.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/catalog.vue"
@@ -429,12 +429,12 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "checkout.5ede9f05.js",
+    "file": "checkout.ece717dc.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_BasketInfo.3bb00265.js",
-      "_index.3991a8bc.js",
-      "_OrderProductList.12b9fb64.js"
+      "_BasketInfo.82e86137.js",
+      "_index.d5a4eac8.js",
+      "_OrderProductList.a4a26136.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/checkout.vue"
@@ -455,11 +455,11 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "favorite.0153ba21.js",
+    "file": "favorite.e6d69eff.js",
     "imports": [
-      "_FavoriteComp.8fea81db.js",
+      "_FavoriteComp.80bfa1cf.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.187fdd8f.js"
+      "_FavoriteComp.15cf2801.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/favorite.vue"
@@ -480,14 +480,14 @@ export default {
       "3.de54ba29.jpg"
     ],
     "css": [],
-    "file": "index.36c002e3.js",
+    "file": "index.b7ed0eec.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.187fdd8f.js",
-      "_CatalogProduct.dc373c89.js",
-      "_LoadingComp.826b55a4.js",
-      "_getTexts.ebb360fb.js",
-      "_newsList.c8075b0c.js"
+      "_FavoriteComp.15cf2801.js",
+      "_CatalogProduct.2014c990.js",
+      "_LoadingComp.47badcbb.js",
+      "_getTexts.b157011e.js",
+      "_newsList.3534fd2b.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/index.vue"
@@ -514,9 +514,9 @@ export default {
       "3.de54ba29.jpg"
     ],
     "css": [],
-    "file": "login.997679d0.js",
+    "file": "login.a7568176.js",
     "imports": [
-      "_ImageForm.cb66694a.js",
+      "_ImageForm.983f17c2.js",
       "node_modules/nuxt/dist/app/entry.js"
     ],
     "isDynamicEntry": true,
@@ -538,10 +538,10 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "_id_.c99b5e33.js",
+    "file": "_id_.9bf10017.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_LoadingComp.826b55a4.js"
+      "_LoadingComp.47badcbb.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/news/[id].vue"
@@ -562,11 +562,11 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "index.b7d8e0bd.js",
+    "file": "index.25f5e90c.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_newsList.c8075b0c.js",
-      "_LoadingComp.826b55a4.js"
+      "_newsList.3534fd2b.js",
+      "_LoadingComp.47badcbb.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/news/index.vue"
@@ -587,11 +587,11 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "orders.8fb351eb.js",
+    "file": "orders.b95a9335.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_LoadingComp.826b55a4.js",
-      "_OrderProductList.12b9fb64.js"
+      "_LoadingComp.47badcbb.js",
+      "_OrderProductList.a4a26136.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/orders.vue"
@@ -612,14 +612,14 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "profile.fe9e167e.js",
+    "file": "profile.6888ea12.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_LoadingComp.826b55a4.js",
-      "_UserBasket.e38c92e0.js",
-      "_BasketInfo.3bb00265.js",
-      "_FavoriteComp.8fea81db.js",
-      "_FavoriteComp.187fdd8f.js"
+      "_LoadingComp.47badcbb.js",
+      "_UserBasket.5cb362d9.js",
+      "_BasketInfo.82e86137.js",
+      "_FavoriteComp.80bfa1cf.js",
+      "_FavoriteComp.15cf2801.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/profile.vue"
@@ -641,11 +641,11 @@ export default {
       "3.de54ba29.jpg"
     ],
     "css": [],
-    "file": "register.dcbf67bc.js",
+    "file": "register.f1416318.js",
     "imports": [
-      "_ImageForm.cb66694a.js",
+      "_ImageForm.983f17c2.js",
       "node_modules/nuxt/dist/app/entry.js",
-      "_index.3991a8bc.js"
+      "_index.d5a4eac8.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/register.vue"
@@ -666,11 +666,11 @@ export default {
       "sot.416737b6.png"
     ],
     "css": [],
-    "file": "_id_.5fc9e602.js",
+    "file": "_id_.bef370f7.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js",
-      "_FavoriteComp.187fdd8f.js",
-      "_CatalogProduct.dc373c89.js"
+      "_FavoriteComp.15cf2801.js",
+      "_CatalogProduct.2014c990.js"
     ],
     "isDynamicEntry": true,
     "src": "pages/tovar/[id].vue"
@@ -686,7 +686,7 @@ export default {
       "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
       "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue"
     ],
-    "file": "error-component.9acde622.js",
+    "file": "error-component.290a64e0.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.js"
     ],

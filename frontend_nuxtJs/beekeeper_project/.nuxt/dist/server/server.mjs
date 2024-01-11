@@ -2210,7 +2210,7 @@ const validate = /* @__PURE__ */ defineNuxtRouteMiddleware(async (to) => {
     return result;
   }
 });
-let api_root = "http://localhost:8000/";
+let api_root = "https://owa.pchel-artel.ru/";
 async function verifAssessToken(token = void 0) {
   try {
     var response = await axios({
